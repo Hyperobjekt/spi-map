@@ -1,0 +1,5 @@
+[
+  { "id": "states", "min_zoom": 1, "max_zoom": 6, "zoom_activate": 1 },
+  { "id": "cities", "min_zoom": 4, "max_zoom": 12, "zoom_activate": 4 },
+  { "id": "tracts", "min_zoom": 6, "max_zoom": 20, "zoom_activate": 9 }
+]

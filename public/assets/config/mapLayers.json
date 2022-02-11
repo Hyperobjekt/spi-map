@@ -1,0 +1,38 @@
+[
+  {
+    "id": "states_choropleth",
+    "region_id": "states",
+    "metric_id": "*",
+    "subgroup_id": "*",
+    "year": "*",
+    "type": "choropleth",
+    "source_id": "states_choropleth",
+    "source_url": "https://tiles.hyperobjekt.io/states/metadata.json",
+    "source_type": "vector_url",
+    "source_layer": "states"
+  },
+  {
+    "id": "cities_choropleth",
+    "region_id": "cities",
+    "metric_id": "*",
+    "subgroup_id": "*",
+    "year": "*",
+    "type": "choropleth",
+    "source_id": "cities_choropleth",
+    "source_url": "https://tiles.hyperobjekt.io/cities/metadata.json",
+    "source_type": "vector_url",
+    "source_layer": "cities"
+  },
+  {
+    "id": "tracts_choropleth",
+    "region_id": "tracts",
+    "metric_id": "*",
+    "subgroup_id": "*",
+    "year": "*",
+    "type": "choropleth",
+    "source_id": "tracts_choropleth",
+    "source_url": "https://tiles.hyperobjekt.io/tracts/metadata.json",
+    "source_type": "vector_url",
+    "source_layer": "tracts"
+  }
+]

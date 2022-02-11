@@ -1,0 +1,15 @@
+{
+  "years": ["2018"],
+  "location_colors": ["#ccc"],
+  "default_choropleth_colors": "YlGnBu",
+  "default_bubble_colors": "#f00",
+  "default_region": "states",
+  "default_choropleth_metric": "bhn",
+  "default_bubble_metric": null,
+  "default_subgroup": "",
+  "default_year": "2018",
+  "default_viewport": {
+    "center": [-98.5795, 39.8283],
+    "zoom": 3.5
+  }
+}

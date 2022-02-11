@@ -1,0 +1,29 @@
+[
+  {
+    "id": "states_*_*_*",
+    "region_id": "states",
+    "metric_id": "*",
+    "subgroup_id": "*",
+    "year": "*",
+    "type": "extents",
+    "url": "/assets/data/states-extents.csv"
+  },
+  {
+    "id": "cities_*_*_*",
+    "region_id": "cities",
+    "metric_id": "*",
+    "subgroup_id": "*",
+    "year": "*",
+    "type": "extents",
+    "url": "/assets/data/states-extents.csv"
+  },
+  {
+    "id": "tracts_*_*_*",
+    "region_id": "tracts",
+    "metric_id": "*",
+    "subgroup_id": "*",
+    "year": "*",
+    "type": "extents",
+    "url": "/assets/data/states-extents.csv"
+  }
+]

@@ -1,23 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import { useConfigStore, useLoadConfig } from "./Dashboard/Config";
+import Debug from "./Dashboard/components/Debug";
+import { QueryClient, QueryClientProvider } from "react-query";
+import "@hyperobjekt/legend/Scale.css";
+import { ReactQueryDevtools } from "react-query/devtools";
+import AllScales from "./Dashboard/components/AllScales";
+const DEBUG = ["context", "metrics"];
 
-function App() {
+const CONFIG = {
+  app: "/assets/config/app.json",
+  metrics: "/assets/config/metrics.json",
+  subgroups: "/assets/config/subgroups.json",
+  regions: "/assets/config/regions.json",
+  dataSources: "/assets/config/dataSources.json",
+  scales: "/assets/config/scales.json",
+  mapLayers: "/assets/config/mapLayers.json",
+  lang: {
+    en: "/assets/en.json",
+  },
+};
+
+function App({ config = CONFIG }) {
+  useLoadConfig(config);
+  const isReady = useConfigStore((state) => state.ready);
+  const queryClient = new QueryClient();
+  if (!isReady) return <div>Loading...</div>;
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <QueryClientProvider client={queryClient}>
+        <AllScales />
+        <Debug options={DEBUG} />
+        <ReactQueryDevtools />
+      </QueryClientProvider>
     </div>
   );
 }

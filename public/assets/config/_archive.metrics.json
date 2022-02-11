@@ -1,0 +1,683 @@
+[
+  {
+    "id": "bhn",
+    "format": "",
+    "category": "",
+    "subcategory": "",
+    "name": "Basic Human Needs",
+    "description": "",
+    "source": "",
+    "link": ""
+  },
+  {
+    "id": "nbm",
+    "format": "",
+    "category": "Basic Human Needs",
+    "subcategory": "",
+    "name": "Nutrition and Basic Medical Care",
+    "description": "",
+    "source": "",
+    "link": ""
+  },
+  {
+    "id": "nbm_dental",
+    "format": "percent",
+    "category": "Basic Human Needs",
+    "subcategory": "Nutrition and Basic Medical Care",
+    "name": "Dental Care Visits (% of adults)",
+    "description": "Rate of visits to dentist or dental clinic for adults aged 18 and older in the previous year",
+    "source": "CDC 500 Cities",
+    "link": "https://www.cdc.gov/places/about/500-cities-2016-2019/index.html"
+  },
+  {
+    "id": "nbm_foodsecurity",
+    "format": "",
+    "category": "Basic Human Needs",
+    "subcategory": "Nutrition and Basic Medical Care",
+    "name": "Food Insecurity Rate",
+    "description": "Estimated percentage of food insecure households, where food security is defined as having access, at all times, to enough food for an active, healthy life for all household members.",
+    "source": "Feeding America",
+    "link": "https://map.feedingamerica.org/"
+  },
+  {
+    "id": "nbm_preventative",
+    "format": "",
+    "category": "Basic Human Needs",
+    "subcategory": "Nutrition and Basic Medical Care",
+    "name": "Preventative Care Visits (% of adults)",
+    "description": "Rate of visits to doctor for routine checkup for adults aged 18 and older in the previous year",
+    "source": "CDC 500 Cities",
+    "link": "https://www.cdc.gov/places/about/500-cities-2016-2019/index.html"
+  },
+  {
+    "id": "nbm_supermarketaccess",
+    "format": "percent",
+    "category": "Basic Human Needs",
+    "subcategory": "Nutrition and Basic Medical Care",
+    "name": "Supermarket access (% of pop.)",
+    "description": "Share of tract population that are beyond 1/2 mile from supermarket",
+    "source": "USDA Food Access Research Atlas",
+    "link": "https://www.ers.usda.gov/data-products/food-access-research-atlas/download-the-data/"
+  },
+  {
+    "id": "ps",
+    "format": "",
+    "category": "Basic Human Needs",
+    "subcategory": "",
+    "name": "Personal Safety",
+    "description": "",
+    "source": "",
+    "link": ""
+  },
+  {
+    "id": "ps_accidents",
+    "format": "",
+    "category": "Basic Human Needs",
+    "subcategory": "Personal Safety",
+    "name": "Fatal motor vehicle accidents (per 10,000 pop.)",
+    "years": "2016-2018",
+    "description": "Number of fatal motor vehicle accidents per 10,000 persons.",
+    "source": "National Highway Transportation Safety Adminstration",
+    "link": "https://www.nhtsa.gov/research-data/fatality-analysis-reporting-system-fars"
+  },
+  {
+    "id": "ps_property",
+    "format": "",
+    "category": "Basic Human Needs",
+    "subcategory": "Personal Safety",
+    "name": "Property crime rate (per 10,000 pop.)",
+    "years": "2016-2018",
+    "description": "Property crime includes the offenses of burglary, larceny-theft, motor vehicle theft, and arson",
+    "source": "FBIs Uniform Crime Reporting (UCR) Program",
+    "link": "https://crime-data-explorer.app.cloud.gov/downloads-and-docs"
+  },
+  {
+    "id": "ps_violent",
+    "format": "",
+    "category": "Basic Human Needs",
+    "subcategory": "Personal Safety",
+    "name": "Violent crime rate (per 10,000 pop.)",
+    "years": "2016-2018",
+    "description": "Violent crime is composed of four offenses: murder and nonnegligent manslaughter, forcible rape, robbery, and aggravated assault.",
+    "source": "FBIs Uniform Crime Reporting (UCR) Program",
+    "link": "https://crime-data-explorer.app.cloud.gov/downloads-and-docs"
+  },
+  {
+    "id": "s",
+    "format": "",
+    "category": "Basic Human Needs",
+    "subcategory": "",
+    "name": "Housing",
+    "description": "",
+    "source": "",
+    "link": ""
+  },
+  {
+    "id": "s_evictions",
+    "format": "",
+    "category": "Basic Human Needs",
+    "subcategory": "Housing",
+    "name": "Eviction Rate (per 100 renter homes)",
+    "description": "Number of evictions per 100 renter homes in each census tract",
+    "source": "Princeton University - Eviction Lab",
+    "link": "https://evictionlab.org/"
+  },
+  {
+    "id": "s_hburdenowner",
+    "format": "",
+    "category": "Basic Human Needs",
+    "subcategory": "Housing",
+    "name": "Housing cost burden (owners) (% of housing units)",
+    "description": "Fraction of owned housing units with cost greater than 30% of household income",
+    "source": "American Community Survey 5-Year Data",
+    "link": "https://www.census.gov/programs-surveys/acs/data.html"
+  },
+  {
+    "id": "s_hburdenrenter",
+    "format": "",
+    "category": "Basic Human Needs",
+    "subcategory": "Housing",
+    "name": "Housing cost burden (renters) (% of housing units)",
+    "description": "Fraction of rented housing units with cost greater than 30% of household income",
+    "source": "American Community Survey 5-Year Data",
+    "link": "https://www.census.gov/programs-surveys/acs/data.html"
+  },
+  {
+    "id": "s_homeless",
+    "format": "",
+    "category": "Basic Human Needs",
+    "subcategory": "Housing",
+    "name": "Unhoused persons (per 100,000 pop.)",
+    "description": "Unhoused/homeless persons per 100,000 persons as measured by local continuum-of-care (CoC) point-in-time (PIT) counts.",
+    "source": "US Department of Housing and Urban Development",
+    "link": "https://www.hudexchange.info/resource/3031/pit-and-hic-data-since-2007/"
+  },
+  {
+    "id": "s_overcrowded",
+    "format": "",
+    "category": "Basic Human Needs",
+    "subcategory": "Housing",
+    "name": "Housing Overcrowding (% of households)",
+    "description": "Percentage of households with more than one occupant per room.",
+    "source": "American Community Survey 5-Year Data",
+    "link": "https://www.census.gov/programs-surveys/acs/data.html"
+  },
+  {
+    "id": "ws",
+    "format": "",
+    "category": "Basic Human Needs",
+    "subcategory": "",
+    "name": "Water and Sanitation",
+    "description": "",
+    "source": "",
+    "link": ""
+  },
+  {
+    "id": "ws_drinkingwater",
+    "format": "",
+    "category": "Basic Human Needs",
+    "subcategory": "Water and Sanitation",
+    "name": "Safe Drinking Water Act health-based violations",
+    "years": "2017-2019",
+    "description": "Three year average of Safe Drinking Water Act health-based violations in public drinking water systems, modeled to census tract level from source location data.",
+    "source": "Environmental Protection Agency",
+    "link": "https://echo.epa.gov/tools/data-downloads#exporter"
+  },
+  {
+    "id": "ws_hazardouswaste",
+    "format": "",
+    "category": "Basic Human Needs",
+    "subcategory": "Water and Sanitation",
+    "name": "Resource Conservation and Recovery Act hazardous waste violations",
+    "years": "2017-2019",
+    "description": "Three year average of Resource Conservation and Recovery Act hazardous waste violations at monitored sites, modeled to census tract level from source location data.",
+    "source": "Environmental Protection Agency",
+    "link": "https://echo.epa.gov/tools/data-downloads#exporter"
+  },
+  {
+    "id": "ws_impervious",
+    "format": "",
+    "category": "Basic Human Needs",
+    "subcategory": "Water and Sanitation",
+    "name": "Impervious Surfaces",
+    "description": "Percent of surface areas that are impervious to water.",
+    "source": "National Land Cover Database",
+    "link": "https://www.mrlc.gov/data"
+  },
+  {
+    "id": "fow",
+    "format": "",
+    "category": "",
+    "subcategory": "",
+    "name": "Foundations of Wellbeing",
+    "description": "",
+    "source": "",
+    "link": ""
+  },
+  {
+    "id": "abk",
+    "format": "",
+    "category": "Foundations of Wellbeing",
+    "subcategory": "",
+    "name": "Access to Basic Knowledge",
+    "description": "",
+    "source": "",
+    "link": ""
+  },
+  {
+    "id": "abk_g3reading",
+    "format": "percent",
+    "category": "Foundations of Wellbeing",
+    "subcategory": "Access to Basic Knowledge",
+    "name": "Third grade language arts proficiency (% of 3rd graders)",
+    "years": "2015-2016",
+    "description": "Percentage of 3rd graders reaching proficiency in language arts on state standardized tests where proficiency levels are modeled to be consistent across states and years.",
+    "source": "Stanford Education Data Archive 4.0",
+    "link": "https://edopportunity.org/"
+  },
+  {
+    "id": "abk_g8math",
+    "format": "percent",
+    "category": "Foundations of Wellbeing",
+    "subcategory": "Access to Basic Knowledge",
+    "name": "Eighth grade math proficiency (% of 8th graders)",
+    "years": "2015-2016",
+    "description": "Percentage of 8th graders reaching proficiency in mathematics on state standardized tests where proficiency levels are modeled to be consistent across states and years.",
+    "source": "Stanford Education Data Archive 4.0",
+    "link": "https://edopportunity.org/"
+  },
+  {
+    "id": "abk_hsincomplete",
+    "format": "percent",
+    "category": "Foundations of Wellbeing",
+    "subcategory": "Access to Basic Knowledge",
+    "name": "Population without high school education or equivalent (% of pop. ages 18-24)",
+    "description": "Percent of population aged 18-24 without high school diploma or equivalent.",
+    "source": "American Community Survey 5-Year Data",
+    "link": "https://www.census.gov/programs-surveys/acs/data.html"
+  },
+  {
+    "id": "abk_lessthan9th",
+    "format": "percent",
+    "category": "Foundations of Wellbeing",
+    "subcategory": "Access to Basic Knowledge",
+    "name": "Population with less than 9th grade education (% of pop.)",
+    "description": "Percentage of population with less than a 9th grade education.",
+    "source": "American Community Survey 5-Year Data",
+    "link": "https://www.census.gov/programs-surveys/acs/data.html"
+  },
+  {
+    "id": "abk_preschoolenroll",
+    "format": "percent",
+    "category": "Foundations of Wellbeing",
+    "subcategory": "Access to Basic Knowledge",
+    "name": "Preschool Enrollment (% of 3 & 4 year olds)",
+    "description": "Percentage of three and four year olds enrolled in school",
+    "source": "American Community Survey 5-Year Data",
+    "link": "https://www.census.gov/programs-surveys/acs/data.html"
+  },
+  {
+    "id": "aic",
+    "format": "",
+    "category": "Foundations of Wellbeing",
+    "subcategory": "",
+    "name": "Access to Information and Communications",
+    "description": "",
+    "source": "",
+    "link": ""
+  },
+  {
+    "id": "aic_broadband",
+    "format": "percent",
+    "category": "Foundations of Wellbeing",
+    "subcategory": "Access to Information and Communications",
+    "name": "Broadband Subscription (% of pop.)",
+    "description": "Percentage of population with a broadband subscription.",
+    "source": "American Community Survey 5-Year Data",
+    "link": "https://www.census.gov/programs-surveys/acs/data.html"
+  },
+  {
+    "id": "aic_broadbandspeed",
+    "format": "decimal",
+    "category": "Foundations of Wellbeing",
+    "subcategory": "Access to Information and Communications",
+    "name": "Average Broadband Speed (Mbps download)",
+    "description": "Average maximum download speed in megabytes per second advertised by all consumer ISPs.",
+    "source": "Federal Communications Commision",
+    "link": "https://www.fcc.gov/general/broadband-deployment-data-fcc-form-477"
+  },
+  {
+    "id": "aic_celldata",
+    "format": "percent",
+    "category": "Foundations of Wellbeing",
+    "subcategory": "Access to Information and Communications",
+    "name": "Cellular Data Subscription (% of pop.)",
+    "description": "Percentage of population with a cellular data subscription.",
+    "source": "American Community Survey 5-Year Data",
+    "link": "https://www.census.gov/programs-surveys/acs/data.html"
+  },
+  {
+    "id": "aic_nointernet",
+    "format": "percent",
+    "category": "Foundations of Wellbeing",
+    "subcategory": "Access to Information and Communications",
+    "name": "No Internet Access (% of pop.)",
+    "description": "Percentage of population with out any access to the internet.",
+    "source": "American Community Survey 5-Year Data",
+    "link": "https://www.census.gov/programs-surveys/acs/data.html"
+  },
+  {
+    "id": "eq",
+    "format": "",
+    "category": "Foundations of Wellbeing",
+    "subcategory": "",
+    "name": "Environmental Quality",
+    "description": "",
+    "source": "",
+    "link": ""
+  },
+  {
+    "id": "eq_deforestation",
+    "format": "",
+    "category": "Foundations of Wellbeing",
+    "subcategory": "Environmental Quality",
+    "name": "Percentage Forest Cover Decline from 2011 to 2016",
+    "years": "2011-2016",
+    "description": "Percentage decline in total forested area in 2016 compared to base year 2011.",
+    "source": "National Land Cover Database",
+    "link": "https://www.mrlc.gov/data"
+  },
+  {
+    "id": "eq_floodrisk",
+    "format": "",
+    "category": "Foundations of Wellbeing",
+    "subcategory": "Environmental Quality",
+    "name": "Percentage of Land Area in High Risk Flood Zone",
+    "description": "Percentage of total land area in FEMA-designated high-risk flood zones A, AE, V, or VE which all have at least a 1% annual chance of flooding and a 26% chance of flooding over the life of a 30-year mortgage.",
+    "source": "FEMA National Flood Hazard Layers",
+    "link": "https://msc.fema.gov/portal/availabilitySearch#searchresultsanchor"
+  },
+  {
+    "id": "eq_no2",
+    "format": "decimal",
+    "category": "Foundations of Wellbeing",
+    "subcategory": "Environmental Quality",
+    "name": "Nitrogen dioxide average annual concentration (ppb)",
+    "description": "Average annual nitrogen dioxide concentration in parts per billion, modeled to census tract level from air quality monitoring station data.",
+    "source": "Environmental Protection Agency",
+    "link": "https://aqs.epa.gov/aqsweb/airdata/download_files.html"
+  },
+  {
+    "id": "eq_ozone",
+    "format": "decimal",
+    "category": "Foundations of Wellbeing",
+    "subcategory": "Environmental Quality",
+    "name": "Ozone average 8-hour concentration (ppm)",
+    "description": "Average 8-hour ozone concentration in parts per million, modeled to census tract level from air quality monitoring station data.",
+    "source": "Environmental Protection Agency",
+    "link": "https://aqs.epa.gov/aqsweb/airdata/download_files.html"
+  },
+  {
+    "id": "eq_pm25",
+    "format": "decimal",
+    "category": "Foundations of Wellbeing",
+    "subcategory": "Environmental Quality",
+    "name": "PM2.5 average annual concentration (μg/m3)",
+    "description": "Average annual particulate matter (2.5) in micrograms per cubic meter, modeled to census tract level from air quality monitoring station data.",
+    "source": "Environmental Protection Agency",
+    "link": "https://aqs.epa.gov/aqsweb/airdata/download_files.html"
+  },
+  {
+    "id": "hw",
+    "format": "",
+    "category": "Foundations of Wellbeing",
+    "subcategory": "",
+    "name": "Health and Wellness",
+    "description": "",
+    "source": "",
+    "link": ""
+  },
+  {
+    "id": "hw_cancer",
+    "format": "",
+    "category": "Foundations of Wellbeing",
+    "subcategory": "Health and Wellness",
+    "name": "Cancer Prevalence (% of adults)",
+    "description": "Cancer (excluding skin cancer) prevalence among adults aged 18 and older.",
+    "source": "CDC 500 Cities",
+    "link": "https://www.cdc.gov/places/about/500-cities-2016-2019/index.html"
+  },
+  {
+    "id": "hw_chd",
+    "format": "",
+    "category": "Foundations of Wellbeing",
+    "subcategory": "Health and Wellness",
+    "name": "Coronary Heart Disease Prevalence (% of adults)",
+    "description": "Coronary heart disease prevalence among aduts aged 18 and older",
+    "source": "CDC 500 Cities",
+    "link": "https://www.cdc.gov/places/about/500-cities-2016-2019/index.html"
+  },
+  {
+    "id": "hw_diabetes",
+    "format": "",
+    "category": "Foundations of Wellbeing",
+    "subcategory": "Health and Wellness",
+    "name": "Diabetes Prevalence (% of adults)",
+    "description": "Percentage of adults aged 20 and above with diagnosed diabetes.",
+    "source": "CDC 500 Cities",
+    "link": "https://www.cdc.gov/places/about/500-cities-2016-2019/index.html"
+  },
+  {
+    "id": "hw_drugod",
+    "format": "",
+    "category": "Foundations of Wellbeing",
+    "subcategory": "Health and Wellness",
+    "name": "Drug Overdose Deaths (per 100,000 pop.)",
+    "description": "Deaths attributable to drug and alcohol overdoses per 100,000 persons.",
+    "source": "CDC National Center for Health Statistics",
+    "link": "https://wonder.cdc.gov/"
+  },
+  {
+    "id": "hw_mentalhealth",
+    "format": "",
+    "category": "Foundations of Wellbeing",
+    "subcategory": "Health and Wellness",
+    "name": "Poor Mental Health Days",
+    "description": "The average number of days a tract’s adult respondents report that their mental health was not good, based on the survey question: “Thinking about your mental health, which includes stress, depression, and problems with emotions, for how many days during the past 30 days was your mental health not good?”.",
+    "source": "CDC 500 Cities",
+    "link": "https://www.cdc.gov/places/about/500-cities-2016-2019/index.html"
+  },
+  {
+    "id": "hw_mentalhealthfacilities",
+    "format": "",
+    "category": "Foundations of Wellbeing",
+    "subcategory": "Health and Wellness",
+    "name": "Mental Health Facilities (per 100,000 pop.)",
+    "description": "Presence of mental health or substance abuse facilities per 100,000 persons.",
+    "source": "DHHS Substance Abuse and Mental Health Services Administration",
+    "link": "https://www.samhsa.gov/"
+  },
+  {
+    "id": "hw_obesity",
+    "format": "",
+    "category": "Foundations of Wellbeing",
+    "subcategory": "Health and Wellness",
+    "name": "Obesity Prevalence (% of adults)",
+    "description": "Percentage of adults that report a BMI of 30 or more.",
+    "source": "CDC 500 Cities",
+    "link": "https://www.cdc.gov/places/about/500-cities-2016-2019/index.html"
+  },
+  {
+    "id": "opp",
+    "format": "",
+    "category": "",
+    "subcategory": "",
+    "name": "Opportunity",
+    "description": "",
+    "source": "",
+    "link": ""
+  },
+  {
+    "id": "aae",
+    "format": "",
+    "category": "Opportunity",
+    "subcategory": "",
+    "name": "Access to Advanced Education",
+    "description": "",
+    "source": "",
+    "link": ""
+  },
+  {
+    "id": "aae_associates",
+    "format": "percent",
+    "category": "Opportunity",
+    "subcategory": "Access to Advanced Education",
+    "name": "Associates Degree Holders (% of pop. age 25+)",
+    "description": "Percent of population 25 and older whose highest degree attained is an Associate's degree.",
+    "source": "American Community Survey 5-Year Data",
+    "link": "https://www.census.gov/programs-surveys/acs/data.html"
+  },
+  {
+    "id": "aae_bachelors",
+    "format": "percent",
+    "category": "Opportunity",
+    "subcategory": "Access to Advanced Education",
+    "name": "Bachelors Degree Holders (% of pop. age 25+)",
+    "description": "Percent of population 25 and older whose highest degree attained is a Bachelor's degree.",
+    "source": "American Community Survey 5-Year Data",
+    "link": "https://www.census.gov/programs-surveys/acs/data.html"
+  },
+  {
+    "id": "aae_graduate",
+    "format": "percent",
+    "category": "Opportunity",
+    "subcategory": "Access to Advanced Education",
+    "name": "Advanced Degree Holders (% of pop. age 25+)",
+    "description": "Percent of population 25 and older whose highest degree attained is a Master's, professional school degree, or Doctorate.",
+    "source": "American Community Survey 5-Year Data",
+    "link": "https://www.census.gov/programs-surveys/acs/data.html"
+  },
+  {
+    "id": "i",
+    "format": "",
+    "category": "Opportunity",
+    "subcategory": "",
+    "name": "Inclusiveness",
+    "description": "",
+    "source": "",
+    "link": ""
+  },
+  {
+    "id": "i_dissimilarity",
+    "format": "",
+    "category": "Opportunity",
+    "subcategory": "Inclusiveness",
+    "name": "Residential Segregation (Non-white/white)",
+    "description": "Index of dissimilarity between white and non-white tract residents. Conceptually, dissimilarity measures the percentage of a group’s population that would have to change residence for each block to have the same percentage of that group as the tract overall. The index ranges from 0.0 (complete integration) to 1.0 (complete segregation).",
+    "source": "American Community Survey 5-Year Data",
+    "link": "https://www.census.gov/programs-surveys/acs/data.html"
+  },
+  {
+    "id": "i_femalerepresentation",
+    "format": "",
+    "category": "Opportunity",
+    "subcategory": "Inclusiveness",
+    "name": "Female Representation",
+    "description": "Percentage of women in state legislature or city council or equivalent in jurisdiction.",
+    "source": "State Legislature and City Council Rosters",
+    "link": "N/A"
+  },
+  {
+    "id": "i_genderpaygap",
+    "format": "",
+    "category": "Opportunity",
+    "subcategory": "Inclusiveness",
+    "name": "Gender Pay Gap (female/male)",
+    "description": "Ratio of female to male median earnings in the past 12 months (2017 inflation-adjusted dollars)",
+    "source": "American Community Survey 5-Year Data",
+    "link": "https://www.census.gov/programs-surveys/acs/data.html"
+  },
+  {
+    "id": "i_isolation",
+    "format": "",
+    "category": "Opportunity",
+    "subcategory": "Inclusiveness",
+    "name": "Residential Isolation (Non-white/white)",
+    "description": "The isolation index measures the extent to which non-white tract residents are exposed only to one another, and is computed as the non-white-weighted average of the non-white proportion in each area.",
+    "source": "American Community Survey 5-Year Data",
+    "link": "https://www.census.gov/programs-surveys/acs/data.html"
+  },
+  {
+    "id": "i_linguistic",
+    "format": "",
+    "category": "Opportunity",
+    "subcategory": "Inclusiveness",
+    "name": "Linguistic isolation (% of households)",
+    "description": "Households in which no one 14 and over speaks English only or speaks a language other than English at home and speaks English very well.",
+    "source": "American Community Survey 5-Year Data",
+    "link": "https://www.census.gov/programs-surveys/acs/data.html"
+  },
+  {
+    "id": "pfc",
+    "format": "",
+    "category": "Opportunity",
+    "subcategory": "",
+    "name": "Personal Freedom and Choice",
+    "description": "",
+    "source": "",
+    "link": ""
+  },
+  {
+    "id": "pfc_cleancommute",
+    "format": "",
+    "category": "Opportunity",
+    "subcategory": "Personal Freedom and Choice",
+    "name": "Alternative Transportation Usage (% of commuters)",
+    "description": "Percentage of commuters taking public transit, biking, walking, or working remotely.",
+    "source": "American Community Survey 5-Year Data",
+    "link": "https://www.census.gov/programs-surveys/acs/data.html"
+  },
+  {
+    "id": "pfc_disconnected",
+    "format": "",
+    "category": "Opportunity",
+    "subcategory": "Personal Freedom and Choice",
+    "name": "Disconnected Youth (% of 16-19 year olds)",
+    "description": "Percentage of teens and young adults ages 16-19 who are neither working nor in school.",
+    "source": "American Community Survey 5-Year Data",
+    "link": "https://www.census.gov/programs-surveys/acs/data.html"
+  },
+  {
+    "id": "pfc_ece",
+    "format": "",
+    "category": "Opportunity",
+    "subcategory": "Personal Freedom and Choice",
+    "name": "Free early childhood care (% of districts)",
+    "years": "2017-2018",
+    "description": "Percentage of Local Educational Agencies (LEA), or school districts, that provide early childhood services to children birth through age 2.",
+    "source": "US Department of Education",
+    "link": "https://www2.ed.gov/about/offices/list/ocr/data.html"
+  },
+  {
+    "id": "pr",
+    "format": "",
+    "category": "Opportunity",
+    "subcategory": "",
+    "name": "Personal Rights",
+    "description": "",
+    "source": "",
+    "link": ""
+  },
+  {
+    "id": "pr_bullyingharassment",
+    "format": "",
+    "category": "Opportunity",
+    "subcategory": "Personal Rights",
+    "name": "Harassment or Bullying Incidents in Schools (per 1,000 enrolled)",
+    "years": "2017-2018",
+    "description": "Number of reported bullying or harassment incidents on the basis of sex, race, or disability status in schools per 1,000 enrolled students.",
+    "source": "US Department of Education",
+    "link": "https://www2.ed.gov/about/offices/list/ocr/data.html"
+  },
+  {
+    "id": "pr_fatal",
+    "format": "",
+    "category": "Opportunity",
+    "subcategory": "Personal Rights",
+    "name": "Fatal Encounters with Law Enforcement (per 100,000 pop.)",
+    "years": "2015-2019",
+    "description": "Number of incidents involving fatal encounters with law enforcment per 100,000 persons.",
+    "source": "Fatal Encounters",
+    "link": "https://fatalencounters.org/"
+  },
+  {
+    "id": "pr_homeownership",
+    "format": "",
+    "category": "Opportunity",
+    "subcategory": "Personal Rights",
+    "name": "Home Ownership (% of households)",
+    "description": "Percentage of households that are owner-occupied.",
+    "source": "American Community Survey 5-Year Data",
+    "link": "https://www.census.gov/programs-surveys/acs/data.html"
+  },
+  {
+    "id": "pr_incarceration",
+    "format": "",
+    "category": "Opportunity",
+    "subcategory": "Personal Rights",
+    "name": "Incarceration Rate (per 100,000 pop.)",
+    "description": "Rate of incarceration in state prisons and county jails per 100,000 persons.",
+    "source": "Vera Institute of Justice",
+    "link": "http://trends.vera.org/incarceration-rates?data=pretrial&year=2018"
+  },
+  {
+    "id": "pr_turnout",
+    "format": "",
+    "category": "Opportunity",
+    "subcategory": "Personal Rights",
+    "name": "Voter Turnout (% of voting eligible pop.)",
+    "description": "Total number of voters divided by voting eligible population in the 2018 Midterm Elections.",
+    "source": "MIT Election Data & Science Lab (MEDSL)",
+    "link": "https://electionlab.mit.edu/"
+  }
+]
