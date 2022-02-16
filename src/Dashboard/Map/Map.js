@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import {
   MapGL,
   useMapFlyToFeature,
@@ -12,6 +12,10 @@ import {
   Layer,
 } from "react-map-gl";
 import { useMapLayers, useMapSources } from "../hooks";
+import { useLocationStore } from "../Locations";
+import { useMapStore } from "@hyperobjekt/mapgl";
+import union from "@turf/union";
+import SelectedLocationLayer from "./SelectedLocationLayer";
 
 const LAYERS = [
   {
@@ -96,16 +100,22 @@ const MAP_STYLE = "mapbox://styles/hyperobjekt/cke1roqr302yq19jnlpc8dgr9";
 export default function Map({ ...props }) {
   const sources = useMapSources();
   const layers = useMapLayers();
-  console.log({ layers });
+  const map = useMapStore((state) => state.map);
+  const toggleSelected = useLocationStore((state) => state.toggleSelected);
   // function that flys the map to a provided feature
   const flyToFeature = useMapFlyToFeature();
 
   // fly to feature on click
-  const handleClick = ({ features }) => {
-    features?.[0] && flyToFeature(features[0]);
-    console.log({ features });
-  };
-  console.log(sources[0]);
+  const handleClick = useCallback(
+    ({ features }) => {
+      const partFeature = features?.[0];
+      if (!partFeature) return;
+      flyToFeature(partFeature);
+      toggleSelected(partFeature);
+    },
+    [flyToFeature]
+  );
+
   return (
     <MapGL
       mapboxAccessToken={TOKEN}
@@ -119,6 +129,7 @@ export default function Map({ ...props }) {
       <GeolocateControl />
       <NavigationControl />
       <ZoomToBoundsControl bounds={US_BOUNDS} />
+      {/* <SelectedLocationLayer /> */}
     </MapGL>
   );
 }

@@ -4,6 +4,11 @@ import { getScale } from "@hyperobjekt/scales";
 import useColors from "./useColor";
 import { getFormatter } from "../Formatters";
 
+/**
+ * Takes a context object and returns `ScaleProps`, `TickProps`, and scale functions
+ * @param {*} context
+ * @returns
+ */
 export default function useScale(context) {
   context.type = context.type || "choropleth";
   const defaultColor = useColors(context.type);
@@ -20,7 +25,6 @@ export default function useScale(context) {
   const { format, short_format } = useMetricConfig(context.metric_id);
   const formatType = short_format || format || "number";
   const tickFormat = getFormatter(formatType);
-  console.log(context.metric_id, formatType, tickFormat(59));
   const { isSuccess, data } = useDataSource({ url: extent_url }, { context });
   const metricEntry =
     isSuccess && data?.find((entry) => entry.id === context.metric_id);

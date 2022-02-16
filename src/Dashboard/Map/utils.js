@@ -1,4 +1,5 @@
 import { getColorInterpolator, getPositionScale } from "@hyperobjekt/scales";
+import union from "@turf/union";
 
 /**
  * Returns an array of from / to values with the given number of steps between.
@@ -26,7 +27,7 @@ export const getLinearRamp = (from, to, steps = 1) => {
 export const getLinearColorRamp = (from, to, steps = 1) => {
   if (!from || !from[0] || !from[1]) from = [0, 1];
   const fromInterpolator = getPositionScale("linear", [0, 1], from);
-  const toInterpolator = getColorInterpolator(to);
+  const toInterpolator = to;
   const values = [];
   for (let i = 0; i <= steps; i++) {
     values.push(fromInterpolator(i / steps));
@@ -49,4 +50,14 @@ export const getStepsFromChunks = (chunks) => {
     steps.push(chunk.color);
   });
   return steps;
+};
+
+export const combineFeatures = (features) => {
+  return features.length > 0
+    ? features.reduce(
+        (combined, f) =>
+          combined ? union(combined, f, { properties: f.properties }) : f,
+        null
+      )
+    : features;
 };
