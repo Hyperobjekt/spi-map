@@ -11,7 +11,7 @@ import {
   Source,
   Layer,
 } from "react-map-gl";
-import { useMapSources } from "../hooks";
+import { useMapLayers, useMapSources } from "../hooks";
 
 const LAYERS = [
   {
@@ -95,6 +95,8 @@ const MAP_STYLE = "mapbox://styles/hyperobjekt/cke1roqr302yq19jnlpc8dgr9";
 
 export default function Map({ ...props }) {
   const sources = useMapSources();
+  const layers = useMapLayers();
+  console.log({ layers });
   // function that flys the map to a provided feature
   const flyToFeature = useMapFlyToFeature();
 
@@ -108,7 +110,7 @@ export default function Map({ ...props }) {
     <MapGL
       mapboxAccessToken={TOKEN}
       sources={sources}
-      layers={LAYERS}
+      layers={layers}
       mapStyle={MAP_STYLE}
       onClick={handleClick}
       interactiveLayerIds={["states-choropleth"]}

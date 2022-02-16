@@ -1,5 +1,5 @@
-import { useMapLayersConfig } from "../Config";
-import useCurrentContext from "./useCurrentContext";
+import { useMapLayersConfig } from "../../Config";
+import useCurrentContext from "../../hooks/useCurrentContext";
 
 /**
  * Returns map sources for the current context for use with mapboxgl.

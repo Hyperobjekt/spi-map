@@ -2,7 +2,7 @@ import ReactJson from "react-json-view";
 import { useConfig, useMetricConfig } from "../Config";
 import useChoroplethScale from "../hooks/useChoroplethScale";
 import useCurrentContext from "../hooks/useCurrentContext";
-import useMapSources from "../hooks/useMapSources";
+import useMapSources from "../Map/hooks/useMapSources";
 import { useLangStore } from "../i18n";
 
 export default function DataSources({ options = [] }) {
