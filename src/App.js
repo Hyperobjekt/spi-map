@@ -1,10 +1,11 @@
 import { useConfigStore, useLoadConfig } from "./Dashboard/Config";
 import Debug from "./Dashboard/components/Debug";
 import { QueryClient, QueryClientProvider } from "react-query";
-import "@hyperobjekt/legend/Scale.css";
 import { ReactQueryDevtools } from "react-query/devtools";
 import AllScales from "./Dashboard/components/AllScales";
-const DEBUG = ["context", "metrics"];
+import { Map } from "./Dashboard/Map";
+
+const DEBUG = ["context", "mapSources", "metrics"];
 
 const CONFIG = {
   app: "/assets/config/app.json",
@@ -27,7 +28,8 @@ function App({ config = CONFIG }) {
   return (
     <div className="App">
       <QueryClientProvider client={queryClient}>
-        <AllScales />
+        {/* <AllScales /> */}
+        <Map />
         <Debug options={DEBUG} />
         <ReactQueryDevtools />
       </QueryClientProvider>

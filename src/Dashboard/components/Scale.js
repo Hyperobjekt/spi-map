@@ -1,4 +1,4 @@
-import { Scale as HypScale } from "@hyperobjekt/legend";
+import { Scale as HypScale } from "@hyperobjekt/scales";
 import { useScale } from "../hooks";
 
 // default margin for scale
@@ -24,7 +24,7 @@ export default function Scale({
     type,
   });
   return (
-    <HypScale margin={DEFAULT_MARGIN} {...ScaleProps} {...props}>
+    <HypScale margin={DEFAULT_MARGIN} nice {...ScaleProps} {...props}>
       <HypScale.Colors />
       <HypScale.Ticks {...TickProps} />
       {children}

@@ -7,8 +7,8 @@
     "year": "*",
     "type": "choropleth",
     "source_id": "states_choropleth",
-    "source_url": "https://tiles.hyperobjekt.io/states/metadata.json",
-    "source_type": "vector_url",
+    "source_url": "https://spi-tilesets.s3.us-west-2.amazonaws.com/v0.0.1/states/{z}/{x}/{y}.pbf",
+    "source_type": "vector_tiles",
     "source_layer": "states"
   },
   {
@@ -20,7 +20,7 @@
     "type": "choropleth",
     "source_id": "cities_choropleth",
     "source_url": "https://tiles.hyperobjekt.io/cities/metadata.json",
-    "source_type": "vector_url",
+    "source_type": "vector_tiles",
     "source_layer": "cities"
   },
   {

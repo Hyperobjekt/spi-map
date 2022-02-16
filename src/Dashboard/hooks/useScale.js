@@ -1,6 +1,6 @@
 import { useMetricConfig, useScaleConfig } from "../Config";
 import useDataSource from "../Data/useDataSource";
-import { getScale } from "@hyperobjekt/legend";
+import { getScale } from "@hyperobjekt/scales";
 import useColors from "./useColor";
 import { getFormatter } from "../Formatters";
 

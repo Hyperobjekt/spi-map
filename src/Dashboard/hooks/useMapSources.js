@@ -33,15 +33,15 @@ export default function useMapSources() {
       // create the source object based on source type
       switch (layerConfig.source_type) {
         case "geojson":
-          sources[id] = { type: "geojson", data: url };
+          sources.push({ id, type: "geojson", data: url });
           sourceIndex.push(url);
           return sources;
         case "vector_url":
-          sources[id] = { type: "vector", url };
+          sources.push({ id, type: "vector", url });
           sourceIndex.push(url);
           return sources;
         case "vector_tiles":
-          sources[id] = { type: "vector", tiles: [url] };
+          sources.push({ id, type: "vector", tiles: [url] });
           sourceIndex.push(url);
           return sources;
         default:
@@ -49,6 +49,6 @@ export default function useMapSources() {
           return sources;
       }
     },
-    {}
+    []
   );
 }
