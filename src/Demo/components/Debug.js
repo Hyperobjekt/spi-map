@@ -1,9 +1,9 @@
 import ReactJson from "react-json-view";
-import { useConfig, useMetricConfig } from "../Config";
-import useChoroplethScale from "../hooks/useChoroplethScale";
-import useCurrentContext from "../hooks/useCurrentContext";
-import useMapSources from "../Map/hooks/useMapSources";
-import { useLangStore } from "../i18n";
+import { useConfig, useMetricConfig } from "../../Dashboard/Config";
+import useChoroplethScale from "../../Dashboard/hooks/useChoroplethScale";
+import useCurrentContext from "../../Dashboard/hooks/useCurrentContext";
+import useMapSources from "../../Dashboard/Map/hooks/useMapSources";
+import { useLangStore } from "../../Dashboard/i18n";
 
 export default function DataSources({ options = [] }) {
   const app = useConfig("app");

@@ -1,8 +1,8 @@
 import React from "react";
 import { Scale } from ".";
-import { useMetricConfig } from "../Config";
-import { useCurrentContext } from "../hooks";
-import { useLangObject } from "../i18n";
+import { useMetricConfig } from "../../Dashboard";
+import { useCurrentContext } from "../../Dashboard/hooks";
+import { useLangObject } from "../../Dashboard/i18n";
 
 export default function AllScales() {
   const { region } = useCurrentContext();

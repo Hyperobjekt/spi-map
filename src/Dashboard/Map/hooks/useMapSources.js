@@ -1,7 +1,5 @@
 import { useMemo } from "react";
 import { useBubbleLayerConfig, useChoroplethLayerConfig } from "../../hooks";
-import { useMapStore } from "@hyperobjekt/mapgl";
-import { useLocationStore } from "../../Locations";
 
 /**
  * Maps an array of layer configs to an array of mapboxgl sources, removing any duplicates.

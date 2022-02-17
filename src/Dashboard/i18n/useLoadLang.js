@@ -10,5 +10,5 @@ export default function useLoadLang(lang, url) {
   const loadLanguageDict = useLangStore((state) => state.loadLanguageDict);
   useEffect(() => {
     lang && url && loadLanguageDict(lang, url);
-  }, [lang, url]);
+  }, [lang, url, loadLanguageDict]);
 }

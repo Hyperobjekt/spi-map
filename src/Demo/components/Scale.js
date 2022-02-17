@@ -1,5 +1,5 @@
 import { Scale as HypScale } from "@hyperobjekt/scales";
-import { useScale } from "../hooks";
+import { useScale } from "../../Dashboard/hooks";
 
 // default margin for scale
 const DEFAULT_MARGIN = { left: 16, right: 16, top: 0, bottom: 0 };

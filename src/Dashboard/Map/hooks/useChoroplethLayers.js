@@ -2,6 +2,7 @@ import { useChoroplethContext, useScale } from "../../hooks";
 import { getStepsFromChunks, getLinearColorRamp } from "../utils";
 import Color from "color";
 import { useLocationStore } from "../../Locations";
+import { useAppConfig } from "../../Config";
 
 /**
  * Returns layer style for choropleth fill layer
@@ -100,7 +101,7 @@ const getChoroplethOutlineLayer = (context) => {
  * @returns {Array<mapboxgl.Layer>} [mapboxgl.Layer](https://docs.mapbox.com/mapbox-gl-js/style-spec/layers/)
  */
 const getChoroplethHoverLayers = (context) => {
-  const { chunks, region_id: region, accessor, steps } = context;
+  const { chunks, region_id: region, accessor, steps, hoverColor } = context;
   const outlineSteps = steps.map((step, i) => {
     if (Number.isFinite(step)) return step;
     const c = Color(step);
@@ -137,7 +138,7 @@ const getChoroplethHoverLayers = (context) => {
         "line-color": [
           "case",
           ["!=", ["get", accessor(context)], null],
-          lineRule,
+          hoverColor === "auto" ? lineRule : hoverColor,
           "#ccc",
         ],
         "line-width": [
@@ -167,10 +168,14 @@ const getChoroplethHoverLayers = (context) => {
  * @returns {Array<mapboxgl.Layer>} [mapboxgl.Layer](https://docs.mapbox.com/mapbox-gl-js/style-spec/layers/)
  */
 const getChoroplethSelectedLayers = (context) => {
-  const locationColors = ["#333", "#666", "#999", "#ccc"];
-  const { chunks, region_id: region, accessor, steps } = context;
+  const { region_id: region, locationColors } = context;
+  const colorSteps = locationColors
+    .map((color, i) => {
+      return [color, i + 1];
+    })
+    .flat()
+    .slice(0, -1);
   const selectedIds = context.selected.map((f) => f.properties.GEOID);
-  console.log("selected ids", selectedIds);
   return [
     {
       id: `${region}-selectedCasing`,
@@ -191,7 +196,15 @@ const getChoroplethSelectedLayers = (context) => {
       type: "line",
       filter: ["in", "GEOID", ...selectedIds],
       paint: {
-        "line-color": "#f00",
+        "line-color": [
+          "step",
+          [
+            "%",
+            ["index-of", ["get", "GEOID"], ["literal", selectedIds]],
+            locationColors.length,
+          ],
+          ...colorSteps,
+        ],
         "line-width": 3,
       },
       beforeId: "road-label",
@@ -207,6 +220,8 @@ export default function useChoroplethLayers(accessor) {
   const context = useChoroplethContext();
   const scale = useScale(context);
   const selected = useLocationStore((state) => state.selected);
+  const locationColors = useAppConfig("location_colors");
+  const hoverColor = useAppConfig("hover_color");
   const {
     color,
     chunks,
@@ -224,6 +239,8 @@ export default function useChoroplethLayers(accessor) {
     color,
     accessor,
     selected,
+    locationColors,
+    hoverColor,
   };
   const choroplethFillLayer = getChoroplethFillLayer(layerContext);
   const choroplethOutlineLayer = getChoroplethOutlineLayer(layerContext);
@@ -235,5 +252,6 @@ export default function useChoroplethLayers(accessor) {
     ...choroplethHoverLayers,
     ...choroplethSelectedLayers,
   ];
+  console.log({ layers });
   return layers;
 }

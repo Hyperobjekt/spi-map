@@ -1,14 +1,15 @@
 import { useConfigStore, useLoadConfig } from "./Dashboard/Config";
-import Debug from "./Dashboard/components/Debug";
+import Debug from "./Demo/components/Debug";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
-import AllScales from "./Dashboard/components/AllScales";
-import { Map } from "./Dashboard/Map";
+import AllScales from "./Demo/components/AllScales";
+import Map from "./Demo/components/Map";
 import "@hyperobjekt/mapgl/dist/style.css";
 import "@hyperobjekt/scales/dist/style.css";
-import { useLocationLoader } from "./Dashboard/Locations";
-import ChoroplethSelect from "./Dashboard/components/ChoroplethSelect";
-import { ChoroplethScale } from "./Dashboard/components";
+import ChoroplethSelect from "./Demo/components/ChoroplethSelect";
+import { ChoroplethScale } from "./Demo/components";
+import { Legend } from "./Demo/components/Legend";
+import { CssBaseline } from "@mui/material";
 const DEBUG = ["context", "mapSources", "metrics"];
 
 const CONFIG = {
@@ -31,6 +32,7 @@ function App({ config = CONFIG }) {
   if (!isReady) return <div>Loading...</div>;
   return (
     <div className="App">
+      <CssBaseline />
       <QueryClientProvider client={queryClient}>
         <div
           style={{
@@ -42,25 +44,10 @@ function App({ config = CONFIG }) {
             minHeight: "100vh",
           }}
         >
-          <div
-            style={{
-              position: "absolute",
-              top: 16,
-              left: 16,
-              zIndex: 99,
-              background: "#fff",
-              padding: 16,
-              border: `1px solid #ccc`,
-              display: "flex",
-              flexDirection: "column",
-              gap: "1rem",
-            }}
-          >
-            <ChoroplethSelect />
-            <ChoroplethScale />
-          </div>
+          <Legend />
           <Map />
         </div>
+        <AllScales />
         <Debug options={DEBUG} />
         <ReactQueryDevtools />
       </QueryClientProvider>

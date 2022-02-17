@@ -46,7 +46,7 @@ export default function useScale(context) {
       chunks,
     },
     TickProps: {
-      ticks: chunks || scaleFns?.chunks?.length || 3,
+      ticks: chunks || scaleFns?.chunks?.length || 5,
       tickFormat,
     },
     ...scaleFns,

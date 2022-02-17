@@ -1,4 +1,4 @@
-import { getColorInterpolator, getPositionScale } from "@hyperobjekt/scales";
+import { getPositionScale } from "@hyperobjekt/scales";
 import union from "@turf/union";
 
 /**

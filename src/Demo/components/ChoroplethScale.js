@@ -1,5 +1,5 @@
 import { Scale } from ".";
-import { useCurrentContext } from "../hooks";
+import { useCurrentContext } from "../../Dashboard/hooks";
 
 export default function ChoroplethScale() {
   const {

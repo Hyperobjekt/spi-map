@@ -1,7 +1,6 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { Source, Layer } from "react-map-gl";
-import { useLocationStore } from "../Locations";
+import { useLocationStore } from "../../Dashboard/Locations";
 
 /**
  * DEPRECATED: this function is one attempt at location outlines, but a better

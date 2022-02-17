@@ -1,5 +1,5 @@
 import { getDefaultParser } from ".";
-import { parseCsvString, parseJsonData } from "../Parsers";
+import { parseCsvString } from "../Parsers";
 
 /**
  * Returns how many values have a non-wildcard match in the provided array.

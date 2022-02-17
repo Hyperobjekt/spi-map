@@ -6,7 +6,6 @@ import { getBestMatch } from "..";
  * @param {object} context context used to match the data source
  */
 export default function useDataSourceConfig(context) {
-  const isReady = useConfig("ready");
   const dataSources = useConfig("dataSources");
   console.debug(context, dataSources, getBestMatch(context, dataSources));
   return getBestMatch(context, dataSources);

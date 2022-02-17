@@ -22,6 +22,7 @@ export const useLocationStore = create((set, get) => ({
     if (alreadyExists) return get().removeSelected(selected);
     return get().addSelected(selected);
   },
+  isSelected: (feature) => get().selected.some((f) => areEqual(f, feature)),
 }));
 
 export default useLocationStore;

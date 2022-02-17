@@ -1,6 +1,16 @@
 {
   "years": ["2018"],
-  "location_colors": ["#ccc"],
+  "location_colors": [
+    "#1b9e77",
+    "#d95f02",
+    "#7570b3",
+    "#e7298a",
+    "#66a61e",
+    "#e6ab02",
+    "#a6761d",
+    "#666666"
+  ],
+  "hover_color": "#f00",
   "default_choropleth_colors": "YlGnBu",
   "default_bubble_colors": "#f00",
   "default_region": "states",

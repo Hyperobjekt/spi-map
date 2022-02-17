@@ -40,5 +40,5 @@ export default async function useLoadConfig(config) {
       setDefaults(configObj);
       setReady(true);
     });
-  }, [setDefaults, loadConfig, loadLanguageDict, config]);
+  }, [setDefaults, loadConfig, loadLanguageDict, config, setReady]);
 }
