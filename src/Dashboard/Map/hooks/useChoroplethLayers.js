@@ -4,6 +4,19 @@ import Color from "color";
 import { useLocationStore } from "../../Locations";
 import { useAppConfig } from "../../Config";
 
+const getLineWidths = (region) => {
+  switch (region) {
+    case "states":
+      return [3, 1, 6, 2, 10, 4];
+    case "cities":
+      return [8, 1, 12, 4];
+    case "tracts":
+      return [10, 1, 20, 3];
+    default:
+      return [1, 1.5];
+  }
+};
+
 /**
  * Returns layer style for choropleth fill layer
  * @param {LayerContext} context
@@ -33,13 +46,28 @@ const getChoroplethFillLayer = (context) => {
         "case",
         ["!=", ["get", accessor(context)], null],
         fillRule,
-        "#ccc",
+        "transparent",
       ],
       "fill-opacity": 1,
     },
     beforeId: "water",
     interactive: true,
   };
+};
+
+/**
+ * Gets a complementary color when provided a color string, used for outlines
+ * @param {*} color
+ * @returns
+ */
+const getComplementaryColor = (color) => {
+  const c = Color(color);
+  const luminosity = c.luminosity();
+  if (luminosity > 0.8) return c.darken(0.333).desaturate(0.25).rgb().string();
+  if (luminosity > 0.5) return c.darken(0.2).desaturate(0.1).rgb().string();
+  if (luminosity > 0.25) return c.lighten(0.333).rgb().string();
+  if (luminosity > 0.1) return c.lighten(0.4).rgb().string();
+  return c.lightness(40).desaturate(0.25).rgb().string();
 };
 
 /**
@@ -60,10 +88,7 @@ const getChoroplethOutlineLayer = (context) => {
   const { chunks, region_id: region, accessor, steps } = context;
   const outlineSteps = steps.map((step, i) => {
     if (Number.isFinite(step)) return step;
-    const c = Color(step);
-    return c.luminosity() > 0.5
-      ? c.darken(0.25).rgb().string()
-      : c.lighten(0.25).rgb().string();
+    return getComplementaryColor(step);
   });
   const lineRule = chunks
     ? ["step", ["get", accessor(context)], ...outlineSteps]
@@ -78,9 +103,14 @@ const getChoroplethOutlineLayer = (context) => {
         "case",
         ["!=", ["get", accessor(context)], null],
         lineRule,
-        "#ccc",
+        "transparent",
       ],
-      "line-width": 1,
+      "line-width": [
+        "interpolate",
+        ["linear"],
+        ["zoom"],
+        ...getLineWidths(region),
+      ],
     },
     beforeId: "road-label",
   };
@@ -252,6 +282,5 @@ export default function useChoroplethLayers(accessor) {
     ...choroplethHoverLayers,
     ...choroplethSelectedLayers,
   ];
-  console.log({ layers });
   return layers;
 }

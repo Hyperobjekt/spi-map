@@ -25,6 +25,7 @@
     "id": "nbm_foodsecurity",
     "category": "bhn",
     "subcategory": "nbm",
+    "format": "percent",
     "source": "Feeding America",
     "link": "https://map.feedingamerica.org/"
   },
@@ -32,6 +33,7 @@
     "id": "nbm_preventative",
     "category": "bhn",
     "subcategory": "nbm",
+    "format": "percent_value",
     "source": "CDC 500 Cities",
     "link": "https://www.cdc.gov/places/about/500-cities-2016-2019/index.html"
   },
@@ -39,6 +41,7 @@
     "id": "nbm_supermarketaccess",
     "category": "bhn",
     "subcategory": "nbm",
+    "format": "percent_value",
     "source": "USDA Food Access Research Atlas",
     "link": "https://www.ers.usda.gov/data-products/food-access-research-atlas/download-the-data/"
   },
@@ -52,7 +55,7 @@
   {
     "id": "ps_accidents",
     "category": "bhn",
-    "subcategory": "Personal Safety",
+    "subcategory": "ps",
     "years": "2016-2018",
     "source": "National Highway Transportation Safety Adminstration",
     "link": "https://www.nhtsa.gov/research-data/fatality-analysis-reporting-system-fars"
@@ -60,7 +63,7 @@
   {
     "id": "ps_property",
     "category": "bhn",
-    "subcategory": "Personal Safety",
+    "subcategory": "ps",
     "years": "2016-2018",
     "source": "FBIs Uniform Crime Reporting (UCR) Program",
     "link": "https://crime-data-explorer.app.cloud.gov/downloads-and-docs"
@@ -68,7 +71,7 @@
   {
     "id": "ps_violent",
     "category": "bhn",
-    "subcategory": "Personal Safety",
+    "subcategory": "ps",
     "years": "2016-2018",
     "source": "FBIs Uniform Crime Reporting (UCR) Program",
     "link": "https://crime-data-explorer.app.cloud.gov/downloads-and-docs"
@@ -91,6 +94,7 @@
     "id": "s_hburdenowner",
     "category": "bhn",
     "subcategory": "s",
+    "format": "percent_value",
     "source": "American Community Survey 5-Year Data",
     "link": "https://www.census.gov/programs-surveys/acs/data.html"
   },
@@ -98,6 +102,7 @@
     "id": "s_hburdenrenter",
     "category": "bhn",
     "subcategory": "s",
+    "format": "percent_value",
     "source": "American Community Survey 5-Year Data",
     "link": "https://www.census.gov/programs-surveys/acs/data.html"
   },
@@ -112,6 +117,7 @@
     "id": "s_overcrowded",
     "category": "bhn",
     "subcategory": "s",
+    "format": "percent_value",
     "source": "American Community Survey 5-Year Data",
     "link": "https://www.census.gov/programs-surveys/acs/data.html"
   },
@@ -142,6 +148,7 @@
     "id": "ws_impervious",
     "category": "bhn",
     "subcategory": "ws",
+    "format": "percent_value",
     "source": "National Land Cover Database",
     "link": "https://www.mrlc.gov/data"
   },
@@ -218,7 +225,7 @@
   },
   {
     "id": "aic_broadbandspeed",
-    "format": "decimal",
+    "format": "number",
     "category": "fow",
     "subcategory": "aic",
     "source": "Federal Communications Commision",

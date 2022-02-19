@@ -6,7 +6,7 @@
     "subgroup_id": "*",
     "year": "*",
     "type": "choropleth",
-    "scale": "quantize",
+    "scale": "continuous",
     "extent_url": "/assets/data/{{region_id}}-extents.csv",
     "extent_min_key": "min",
     "extent_max_key": "max"

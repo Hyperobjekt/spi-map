@@ -11,7 +11,13 @@
     "#666666"
   ],
   "hover_color": "#f00",
-  "default_choropleth_colors": "YlGnBu",
+  "default_choropleth_colors": [
+    "#498ABA",
+    "#6AB1CF",
+    "#8ECAC4",
+    "#B3DBB8",
+    "#D2EAC8"
+  ],
   "default_bubble_colors": "#f00",
   "default_region": "states",
   "default_choropleth_metric": "bhn",

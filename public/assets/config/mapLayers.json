@@ -19,7 +19,7 @@
     "year": "*",
     "type": "choropleth",
     "source_id": "cities_choropleth",
-    "source_url": "https://tiles.hyperobjekt.io/cities/metadata.json",
+    "source_url": "https://spi-tilesets.s3.us-west-2.amazonaws.com/v0.0.1/cities/{z}/{x}/{y}.pbf",
     "source_type": "vector_tiles",
     "source_layer": "cities"
   },
@@ -31,8 +31,8 @@
     "year": "*",
     "type": "choropleth",
     "source_id": "tracts_choropleth",
-    "source_url": "https://tiles.hyperobjekt.io/tracts/metadata.json",
-    "source_type": "vector_url",
+    "source_url": "https://spi-tilesets.s3.us-west-2.amazonaws.com/v0.0.1/tracts/{z}/{x}/{y}.pbf",
+    "source_type": "vector_tiles",
     "source_layer": "tracts"
   }
 ]

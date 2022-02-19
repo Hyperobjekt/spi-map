@@ -7,3 +7,4 @@ export { default as useMapLayersConfig } from "./useMapLayersConfig";
 export { default as useMetricConfig } from "./useMetricConfig";
 export { default as useRegionConfig } from "./useRegionConfig";
 export { default as useSubgroupConfig } from "./useSubgroupConfig";
+export { default as useCategorizedMetrics } from "./useCategorizedMetrics";

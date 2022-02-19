@@ -1,6 +1,6 @@
 {
   "METRIC_BHN": "Basic Human Needs",
-  "UNIT_BHN": "Score out of 100",
+  "UNIT_BHN": "score out of 100",
   "METRIC_NBM": "Nutrition and Basic Medical Care",
   "METRIC_NBM_DENTAL": "Dental Care Visits",
   "UNIT_NBM_DENTAL": "% of adults",
@@ -10,7 +10,7 @@
   "METRIC_NBM_SUPERMARKETACCESS": "Supermarket access",
   "UNIT_NBM_SUPERMARKETACCESS": "% of pop.",
   "METRIC_PS": "Personal Safety",
-  "UNIT_PS": "Score out of 100",
+  "UNIT_PS": "score out of 100",
   "METRIC_PS_ACCIDENTS": "Fatal motor vehicle accidents",
   "UNIT_PS_ACCIDENTS": "per 10,000 pop.",
   "METRIC_PS_PROPERTY": "Property crime rate",
@@ -18,7 +18,7 @@
   "METRIC_PS_VIOLENT": "Violent crime rate",
   "UNIT_PS_VIOLENT": "per 10,000 pop.",
   "METRIC_S": "Housing",
-  "UNIT_S": "Score out of 100",
+  "UNIT_S": "score out of 100",
   "METRIC_S_EVICTIONS": "Eviction Rate",
   "UNIT_S_EVICTIONS": "per 100 renter homes",
   "METRIC_S_HBURDENOWNER": "Housing cost burden (owners)",
@@ -48,8 +48,8 @@
   "METRIC_AIC": "Access to Information and Communications",
   "METRIC_AIC_BROADBAND": "Broadband Subscription",
   "UNIT_AIC_BROADBAND": "% of pop.",
-  "METRIC_AIC_BROADBANDSPEED": "Average Broadband Speed (Mbps download)",
-  "UNIT_AIC_BROADBANDSPEED": "Mbps download",
+  "METRIC_AIC_BROADBANDSPEED": "Average Broadband Speed",
+  "UNIT_AIC_BROADBANDSPEED": "download speed in Mbps",
   "METRIC_AIC_CELLDATA": "Cellular Data Subscription",
   "UNIT_AIC_CELLDATA": "% of pop.",
   "METRIC_AIC_NOINTERNET": "No Internet Access",
@@ -164,5 +164,8 @@
   "DESC_PR_FATAL": "Number of incidents involving fatal encounters with law enforcment per 100,000 persons.",
   "DESC_PR_HOMEOWNERSHIP": "Percentage of households that are owner-occupied.",
   "DESC_PR_INCARCERATION": "Rate of incarceration in state prisons and county jails per 100,000 persons.",
-  "DESC_PR_TURNOUT": "Total number of voters divided by voting eligible population in the 2018 Midterm Elections."
+  "DESC_PR_TURNOUT": "Total number of voters divided by voting eligible population in the 2018 Midterm Elections.",
+  "REGION_STATES": "States",
+  "REGION_CITIES": "Cities",
+  "REGION_TRACTS": "Census Tracts"
 }

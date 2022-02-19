@@ -35,8 +35,20 @@ export default function useScale(context) {
     min: minValue,
     max: maxValue,
     chunks,
-    colors,
+    colors: colorValue,
   });
+  const TickProps = { tickFormat };
+  if (scaleFns?.chunks) {
+    TickProps.endTicks = true;
+    TickProps.tickValues = scaleFns.chunks.reduce((tickValues, chunk, i) => {
+      if (i === 0) return tickValues;
+      if (i === scaleFns.chunks.length - 1)
+        return [...tickValues, chunk.value[0]];
+      return [...tickValues, ...chunk.value];
+    }, []);
+  } else {
+    TickProps.ticks = chunks || 5;
+  }
   return {
     ScaleProps: {
       type: scale,
@@ -45,10 +57,7 @@ export default function useScale(context) {
       colors: colorValue,
       chunks,
     },
-    TickProps: {
-      ticks: chunks || scaleFns?.chunks?.length || 5,
-      tickFormat,
-    },
+    TickProps,
     ...scaleFns,
   };
 }

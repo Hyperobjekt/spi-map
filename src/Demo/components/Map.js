@@ -9,7 +9,11 @@ import {
   GeolocateControl,
   NavigationControl,
 } from "react-map-gl";
-import { useMapLayers, useMapSources } from "../../Dashboard/hooks";
+import {
+  useMapLayers,
+  useMapSources,
+  useChoroplethContext,
+} from "../../Dashboard";
 import { useLocationStore } from "../../Dashboard/Locations";
 
 const TOKEN = `pk.eyJ1IjoiaHlwZXJvYmpla3QiLCJhIjoiY2pzZ3Bnd3piMGV6YTQzbjVqa3Z3dHQxZyJ9.rHobqsY_BjkNbqNQS4DNYw`;
@@ -22,9 +26,10 @@ const US_BOUNDS = [
 
 const MAP_STYLE = "mapbox://styles/hyperobjekt/cke1roqr302yq19jnlpc8dgr9";
 
-export default function Map({ ...props }) {
+export default function Map({ children, ...props }) {
   const sources = useMapSources();
   const layers = useMapLayers();
+  const { region_id } = useChoroplethContext();
   const toggleSelected = useLocationStore((state) => state.toggleSelected);
   const isSelected = useLocationStore((state) => state.isSelected);
   // function that flys the map to a provided feature
@@ -48,13 +53,14 @@ export default function Map({ ...props }) {
       layers={layers}
       mapStyle={MAP_STYLE}
       onClick={handleClick}
-      interactiveLayerIds={["states-choropleth"]}
+      bounds={US_BOUNDS}
+      interactiveLayerIds={[`${region_id}-choropleth`]}
     >
       <FullscreenControl />
       <GeolocateControl />
       <NavigationControl />
       <ZoomToBoundsControl bounds={US_BOUNDS} />
-      {/* <SelectedLocationLayer /> */}
+      {children}
     </MapGL>
   );
 }

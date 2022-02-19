@@ -24,10 +24,15 @@ export default function Scale({
     type,
   });
   return (
-    <HypScale margin={DEFAULT_MARGIN} nice {...ScaleProps} {...props}>
+    <HypScale
+      style={{ marginTop: 8 }}
+      margin={DEFAULT_MARGIN}
+      {...ScaleProps}
+      {...props}
+    >
+      {children}
       <HypScale.Colors />
       <HypScale.Ticks {...TickProps} />
-      {children}
     </HypScale>
   );
 }

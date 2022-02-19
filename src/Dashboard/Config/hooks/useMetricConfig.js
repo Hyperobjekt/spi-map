@@ -1,5 +1,6 @@
 import { useMemo } from "react";
 import { useConfigStore } from "..";
+import { useLangObject } from "../../i18n";
 import { getAllMatches, getBestMatch } from "../utils";
 
 /**
@@ -9,42 +10,20 @@ import { getAllMatches, getBestMatch } from "../utils";
  */
 export default function useMetricConfig(id) {
   const metrics = useConfigStore((state) => state.metrics);
+  const metricIds = metrics.map((m) => m.id);
+  const metricNames = useLangObject(metricIds, { prefix: "METRIC_" });
+  const metricHints = useLangObject(metricIds, { prefix: "HINT_" });
+  const metricUnits = useLangObject(metricIds, { prefix: "UNIT_" });
   return useMemo(() => {
-    if (!id) return metrics;
-    return metrics.find((r) => r.id === id);
-  }, [id, metrics]);
-}
-
-/**
- * Returns config for a given metric ID along with scale, data source, and map layer config.
- * @param {*} id
- * @param {*} param1
- * @returns
- */
-export function useFullMetricConfig(id, { region_id, subgroup_id, year }) {
-  const metrics = useConfigStore((state) => state.metrics);
-  const scales = useConfigStore((state) => state.scales);
-  const dataSources = useConfigStore((state) => state.dataSources);
-  const mapLayers = useConfigStore((state) => state.mapLayers);
-  return useMemo(() => {
-    if (!metrics || !scales) return null;
-    const metric = metrics.find((m) => m.id === id);
-    if (!metric) return null;
-    const matchContext = { metric_id: id, region_id, subgroup_id, year };
-    return {
-      ...metric,
-      scale: getBestMatch(matchContext, scales),
-      dataSource: getBestMatch(matchContext, dataSources),
-      mapLayers: getAllMatches(matchContext, mapLayers),
-    };
-  }, [
-    id,
-    region_id,
-    subgroup_id,
-    year,
-    metrics,
-    scales,
-    dataSources,
-    mapLayers,
-  ]);
+    const metricsWithLang = metrics.map((m) => {
+      return {
+        ...m,
+        name: metricNames[m.id],
+        hint: metricHints[m.id],
+        unit: metricUnits[m.id],
+      };
+    });
+    if (!id) return metricsWithLang;
+    return metricsWithLang.find((r) => r.id === id);
+  }, [id, metrics, metricNames, metricHints, metricUnits]);
 }
