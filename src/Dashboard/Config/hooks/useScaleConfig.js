@@ -7,5 +7,8 @@ import { getBestMatch } from "..";
  */
 export default function useScaleConfig(context) {
   const scales = useConfig("scales");
-  return getBestMatch(context, scales);
+  const defaultScale = scales.find((s) => s.id === "default") || {};
+  const bestMatch = getBestMatch(context, scales);
+  console.log({ bestMatch });
+  return { ...defaultScale, ...bestMatch };
 }

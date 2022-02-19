@@ -1,15 +1,7 @@
 import { styled } from "@mui/system";
-import React from "react";
-import shallow from "zustand/shallow";
-import {
-  useCategorizedMetrics,
-  useChoroplethContext,
-  useCurrentContext,
-  useDashboardStore,
-} from "../../Dashboard";
-import NestedList from "./NestedList";
+import NestedList from "../components/NestedList";
 
-const SpiNestedList = styled(NestedList)(({ theme }) => ({
+const MetricsList = styled(NestedList)(({ theme }) => ({
   "& .HypNestedList-depth2": {
     paddingTop: 0,
   },
@@ -17,6 +9,9 @@ const SpiNestedList = styled(NestedList)(({ theme }) => ({
   // for category indicator and selected indicator
   "& .HypNestedListItem-root": {
     paddingLeft: theme.spacing(5),
+    "&:not(.HypNestedListItem-expanded) .MuiSvgIcon-root": {
+      color: theme.palette.grey[400],
+    },
     "&.Mui-selected .MuiTypography-root": {
       fontWeight: theme.typography.fontWeightBold,
     },
@@ -39,31 +34,54 @@ const SpiNestedList = styled(NestedList)(({ theme }) => ({
       backgroundColor: "#B6C469",
     },
   },
-  // Basic human needs selected colors
+  // default font size for list items
+  "& .MuiTypography-root": {
+    fontSize: theme.typography.pxToRem(14),
+  },
+  // Basic human needs hover + selected colors
   "& .HypNestedListItem-bhn": {
     "&.Mui-selected": {
       backgroundColor: "#F2FBFC",
       color: "#00AFBD",
+      // expand / collapse icon color
+      "& .MuiSvgIcon-root": {
+        color: "#00AFBD",
+      },
+    },
+    "&:hover": {
+      backgroundColor: "#F2FBFC",
     },
   },
-  // Foundations of wellness selected colors
+  // Foundations of wellness hover + selected colors
   "& .HypNestedListItem-fow": {
     "&.Mui-selected": {
       backgroundColor: "#FEF8F4",
       color: "#F79445",
+      // expand / collapse icon color
+      "& .MuiSvgIcon-root": {
+        color: "#F79445",
+      },
+    },
+    "&:hover": {
+      backgroundColor: "#FEF8F4",
     },
   },
-  // Opportunity selected colors
+  // Opportunity hover + selected background and text colors
   "& .HypNestedListItem-opp": {
     "&.Mui-selected": {
       backgroundColor: "#FAFBF6",
       color: "#909B66",
+      // expand / collapse icon color
+      "& .MuiSvgIcon-root": {
+        color: "#909B66",
+      },
+    },
+    "&:hover": {
+      backgroundColor: "#FAFBF6",
     },
   },
-  "& .MuiTypography-root": {
-    fontSize: theme.typography.pxToRem(14),
-  },
-  // top level items
+
+  // top level category styling
   "& .HypNestedListItem-depth0": {
     position: "sticky",
     top: 0,
@@ -95,27 +113,12 @@ const SpiNestedList = styled(NestedList)(({ theme }) => ({
       backgroundColor: "#B6C469",
     },
   },
-  "& .HypNestedListItem-depth1 .MuiTypography-root": {
-    fontWeight: theme.typography.fontWeightBold,
+  // subcategory list items styling
+  "& .HypNestedListItem-depth1": {
+    "& .MuiTypography-root": {
+      fontWeight: theme.typography.fontWeightBold,
+    },
   },
 }));
 
-export default function MetricsList() {
-  const [metric, setMetric] = useDashboardStore(
-    (state) => [state.choroplethMetric, state.setChoroplethMetric],
-    shallow
-  );
-  const metrics = useCategorizedMetrics();
-  const handleSelectMetric = (event, id) => {
-    setMetric(id);
-  };
-  return (
-    <SpiNestedList
-      items={metrics}
-      selected={[metric]}
-      depth={0}
-      collapseDepths={[0, 1]}
-      onClick={handleSelectMetric}
-    />
-  );
-}
+export default MetricsList;

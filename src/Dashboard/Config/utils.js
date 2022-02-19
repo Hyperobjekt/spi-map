@@ -73,6 +73,7 @@ export const getBestMatch = (context = {}, entries = [], keys) => {
   if (!keys || keys.length === 0) return null; // return if no entries or no match keys
   const matchingEntries = getAllMatches(context, entries, keys);
   if (matchingEntries.length === 0) return null; // return if no matches
+  console.log({ context, matchingEntries });
   if (matchingEntries.length === 1) return matchingEntries[0]; // return if single match
   let matchCount = -1;
   let bestMatch = null;
@@ -83,6 +84,7 @@ export const getBestMatch = (context = {}, entries = [], keys) => {
     if (entryMatchCount < matchCount) continue; // skip if this entry has less matches than the current best match
     matchCount = entryMatchCount;
     bestMatch = entry;
+    console.log({ matchCount, bestMatch });
   }
   return bestMatch;
 };

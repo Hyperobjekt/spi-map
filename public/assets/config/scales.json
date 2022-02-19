@@ -17,11 +17,22 @@
     "metric_id": "bhn",
     "subgroup_id": "*",
     "year": "*",
-    "type": "choropleth",
-    "scale": "continuous",
-    "colors": "Spectral",
-    "extent_url": "/assets/data/{{region_id}}-extents.csv",
-    "extent_min_key": "min",
-    "extent_max_key": "max"
+    "type": "choropleth"
+  },
+  {
+    "id": "fow",
+    "region_id": "*",
+    "metric_id": "fow",
+    "subgroup_id": "*",
+    "year": "*",
+    "type": "choropleth"
+  },
+  {
+    "id": "opp",
+    "region_id": "*",
+    "metric_id": "opp",
+    "subgroup_id": "*",
+    "year": "*",
+    "type": "choropleth"
   }
 ]

@@ -12,8 +12,8 @@ import { createTheme } from "@mui/material/styles";
 import Header from "./Demo/components/Header";
 import Panel from "./Demo/components/Panel";
 import { useState } from "react";
-import useCategorizedMetrics from "./Dashboard/Config/hooks/useCategorizedMetrics";
-import MetricsList from "./Demo/components/MetricsList";
+import MetricsList from "./Demo/IndicatorPanel/MetricsList";
+import { IndicatorPanel } from "./Demo/IndicatorPanel/IndicatorPanel";
 const DEBUG = ["context", "mapSources", "metrics"];
 
 const CONFIG = {
@@ -54,6 +54,10 @@ const theme = createTheme({
     MuiButton: {
       styleOverrides: {
         contained: {
+          borderRadius: "24px",
+          boxShadow: "none",
+        },
+        outlined: {
           borderRadius: "24px",
           boxShadow: "none",
         },
@@ -129,14 +133,10 @@ function App({ config = CONFIG }) {
                 )}
               </Legend>
             </Map>
-            <Panel
-              position="right"
-              title="Social Progress Indicators"
+            <IndicatorPanel
               open={indicatorsOpen}
               onClose={() => setIndicatorsOpen(false)}
-            >
-              <MetricsList />
-            </Panel>
+            />
           </MapBodyWrapper>
         </AppWrapper>
         {/* <AllScales /> */}
