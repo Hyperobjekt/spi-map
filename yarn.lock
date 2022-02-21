@@ -1202,10 +1202,10 @@
   resolved "https://registry.npmjs.org/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
 
-"@hyperobjekt/mapgl@^1.1.4":
-  version "1.1.4"
-  resolved "https://registry.yarnpkg.com/@hyperobjekt/mapgl/-/mapgl-1.1.4.tgz#f3866c4e0cbd29a6e0c66c93e14384e551cbfec9"
-  integrity sha512-SyzktLd8sQ5feHW6yNUO7NEe9z+uBSCOTRXBji6HYvByVZbTRl1Sw1wzbs5hXI7mk9wipJTWnk5O4fVivR04mw==
+"@hyperobjekt/mapgl@^1.1.5":
+  version "1.1.5"
+  resolved "https://registry.yarnpkg.com/@hyperobjekt/mapgl/-/mapgl-1.1.5.tgz#cd6370c40febfc5a1c570be1f67472110b833167"
+  integrity sha512-MHQzPOhZ80yT/GxlCqoyJshtx+JbzZ/QdmpQvb6xHgqtIQMQsAmW/1HsQyNTCoRlFb5T1mL+1TVebJ1/zKytrA==
   dependencies:
     "@turf/bbox" "^6.5.0"
     clsx "^1.1.1"

@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useRef } from "react";
 import {
   MapGL,
   useMapFlyToFeature,
@@ -27,6 +27,7 @@ const US_BOUNDS = [
 const MAP_STYLE = "mapbox://styles/hyperobjekt/cke1roqr302yq19jnlpc8dgr9";
 
 export default function Map({ children, ...props }) {
+  const ref = useRef(); // reference to mapgl instance (needed for sizing on panel open / close)
   const sources = useMapSources();
   const layers = useMapLayers();
   const { region_id } = useChoroplethContext();
@@ -48,6 +49,7 @@ export default function Map({ children, ...props }) {
 
   return (
     <MapGL
+      ref={ref}
       mapboxAccessToken={TOKEN}
       sources={sources}
       layers={layers}
