@@ -74,6 +74,7 @@ const Highlighted = ({ text = "", highlight = "" }) => {
  */
 export const NestedListItem = ({
   id,
+  component = ListItemButton,
   name,
   childItems,
   collapsible,
@@ -89,6 +90,8 @@ export const NestedListItem = ({
   onToggleExpanded,
   ...props
 }) => {
+  // base component
+  const Component = component;
   const isVisible =
     depth === 0 ||
     !highlight ||
@@ -115,7 +118,7 @@ export const NestedListItem = ({
   if (!isVisible) return null;
   return (
     <>
-      <ListItemButton
+      <Component
         className={clsx(
           "HypNestedListItem-root",
           `HypNestedListItem-depth${depth}`,
@@ -130,15 +133,20 @@ export const NestedListItem = ({
       >
         <ListItemText primary={itemLabel} />
         {collapsible && (
-          <IconButton size="small" onClick={handleToggleExpanded}>
+          <IconButton
+            className="HypNestedListItem-toggle"
+            size="small"
+            onClick={handleToggleExpanded}
+          >
             {isExpanded ? <ExpandLess /> : <ExpandMore />}
           </IconButton>
         )}
-      </ListItemButton>
+      </Component>
       <ChildWrapper {...ChildWrapperProps}>
         {childItems && (
           <NestedList
             items={childItems}
+            childComponent={component}
             depth={depth + 1}
             parents={childParents}
             selected={selected}
@@ -160,6 +168,7 @@ export const NestedListItem = ({
  */
 export const NestedList = ({
   items,
+  childComponent,
   depth = 0,
   collapseDepths = [0],
   className,
@@ -188,6 +197,7 @@ export const NestedList = ({
           key={id}
           id={id}
           name={name}
+          component={childComponent}
           childItems={children}
           depth={depth}
           parents={parents}

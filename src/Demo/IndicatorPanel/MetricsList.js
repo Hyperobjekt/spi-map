@@ -1,7 +1,10 @@
+import { Help, HelpOutline } from "@mui/icons-material";
+import { IconButton, ListItemButton, Tooltip } from "@mui/material";
 import { styled } from "@mui/system";
+import { useLang } from "../../Dashboard";
 import NestedList from "../components/NestedList";
 
-const MetricsList = styled(NestedList)(({ theme }) => ({
+const StyledNestedList = styled(NestedList)(({ theme }) => ({
   "& .HypNestedList-depth2": {
     paddingTop: 0,
   },
@@ -9,9 +12,10 @@ const MetricsList = styled(NestedList)(({ theme }) => ({
   // for category indicator and selected indicator
   "& .HypNestedListItem-root": {
     paddingLeft: theme.spacing(5),
-    "&:not(.HypNestedListItem-expanded) .MuiSvgIcon-root": {
-      color: theme.palette.grey[400],
-    },
+    "&:not(.HypNestedListItem-expanded) .HypNestedListItem-toggle .MuiSvgIcon-root":
+      {
+        color: theme.palette.grey[400],
+      },
     "&.Mui-selected .MuiTypography-root": {
       fontWeight: theme.typography.fontWeightBold,
     },
@@ -32,6 +36,9 @@ const MetricsList = styled(NestedList)(({ theme }) => ({
     },
     "&.HypNestedListItem-opp:before": {
       backgroundColor: "#B6C469",
+    },
+    "&.Mui-selected .SpiHintIconButton-root, &:hover .SpiHintIconButton-root": {
+      opacity: 1,
     },
   },
   // default font size for list items
@@ -80,7 +87,23 @@ const MetricsList = styled(NestedList)(({ theme }) => ({
       backgroundColor: "#FAFBF6",
     },
   },
-
+  "& .HypNestedListItem-depth0, & .HypNestedListItem-depth1": {
+    // circle category marker
+    "&:after": {
+      content: '""',
+      position: "absolute",
+      borderRadius: theme.spacing(2),
+    },
+    "&.HypNestedListItem-bhn:after": {
+      backgroundColor: "#00AFBD",
+    },
+    "&.HypNestedListItem-fow:after": {
+      backgroundColor: "#F79445",
+    },
+    "&.HypNestedListItem-opp:after": {
+      backgroundColor: "#B6C469",
+    },
+  },
   // top level category styling
   "& .HypNestedListItem-depth0": {
     position: "sticky",
@@ -94,31 +117,54 @@ const MetricsList = styled(NestedList)(({ theme }) => ({
     },
     // circle category marker
     "&:after": {
-      content: '""',
-      position: "absolute",
       top: theme.spacing(2.3333),
       left: theme.spacing(2),
       height: theme.spacing(1.5),
       width: theme.spacing(1.5),
-      borderRadius: theme.spacing(2),
-      zIndex: 2,
-    },
-    "&.HypNestedListItem-bhn:after": {
-      backgroundColor: "#00AFBD",
-    },
-    "&.HypNestedListItem-fow:after": {
-      backgroundColor: "#F79445",
-    },
-    "&.HypNestedListItem-opp:after": {
-      backgroundColor: "#B6C469",
     },
   },
   // subcategory list items styling
   "& .HypNestedListItem-depth1": {
+    "&:after": {
+      top: 21,
+      left: 19,
+      height: 6,
+      width: 6,
+    },
     "& .MuiTypography-root": {
       fontWeight: theme.typography.fontWeightBold,
     },
   },
 }));
 
-export default MetricsList;
+const HintIconButton = styled(IconButton)(({ theme }) => ({
+  position: "absolute",
+  top: theme.spacing(1.2),
+  left: theme.spacing(1.25),
+  opacity: 0,
+  transition: theme.transitions.create("opacity"),
+  "& .MuiSvgIcon-root": {
+    fontSize: theme.typography.pxToRem(16),
+  },
+}));
+
+const ListItemHintButton = ({ value, children, ...props }) => {
+  const langKey = `DESC_${value}`.toUpperCase();
+  const hint = useLang(langKey);
+  return (
+    <ListItemButton {...props}>
+      {hint && (
+        <Tooltip title={hint} arrow placement="left">
+          <HintIconButton className="SpiHintIconButton-root" size="small">
+            <HelpOutline />
+          </HintIconButton>
+        </Tooltip>
+      )}
+      {children}
+    </ListItemButton>
+  );
+};
+
+export default function MetricsList({ ...props }) {
+  return <StyledNestedList childComponent={ListItemHintButton} {...props} />;
+}
