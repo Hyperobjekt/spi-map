@@ -18,7 +18,7 @@ export default function useMetricConfig(id) {
       : metrics.map((m) => m.id);
   // pull language and formatters for the metrics
   const metricNames = useLangObject(idArray, { prefix: "METRIC_" });
-  const metricHints = useLangObject(idArray, { prefix: "HINT_" });
+  const metricHints = useLangObject(idArray, { prefix: "DESC_" });
   const metricUnits = useLangObject(idArray, { prefix: "UNIT_" });
   return useMemo(() => {
     // use id argument for metrics to fetch if it is specified, otherwise use all
