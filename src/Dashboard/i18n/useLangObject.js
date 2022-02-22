@@ -18,9 +18,10 @@ export default function useLangObject(ids, { prefix = "", context } = {}) {
   // pull lang entries for keys from store
   const langEntries = useLang(langKeys, context);
   // if single entry, return single entry
-  if (typeof langEntries === "string") return langEntries;
+  const langArray =
+    typeof langEntries === "string" ? [langEntries] : langEntries;
   // return object mapping metric ID to lang entry
-  return langEntries.reduce((lang, entry, idx) => {
+  return langArray.reduce((lang, entry, idx) => {
     lang[ids[idx]] = entry;
     return lang;
   }, {});

@@ -12,6 +12,9 @@ import Header from "./Demo/components/Header";
 import { IndicatorPanel } from "./Demo/IndicatorPanel/IndicatorPanel";
 import useIndicatorPanelStore from "./Demo/IndicatorPanel/store";
 import shallow from "zustand/shallow";
+import { useDashboardStore } from "./Dashboard";
+import { useCallback } from "react";
+import MapTooltip from "./Demo/components/MapTooltip";
 // // debug tools
 // import Debug from "./Demo/components/Debug";
 // import { ReactQueryDevtools } from "react-query/devtools";
@@ -114,6 +117,15 @@ function App({ config = CONFIG }) {
   useLoadConfig(config);
   const isReady = useConfigStore((state) => state.ready);
   const queryClient = new QueryClient();
+
+  // track mouse coords for tooltip
+  const setHoverCoords = useDashboardStore((state) => state.setHoverCoords);
+  const handleMouseMove = useCallback(
+    (event) => {
+      setHoverCoords([event.pageX, event.pageY]);
+    },
+    [setHoverCoords]
+  );
   if (!isReady) return <div>Loading...</div>;
   return (
     <QueryClientProvider client={queryClient}>
@@ -121,7 +133,7 @@ function App({ config = CONFIG }) {
         <CssBaseline />
         <AppWrapper className="App">
           <Header />
-          <MapBodyWrapper>
+          <MapBodyWrapper onMouseMove={handleMouseMove}>
             <Map>
               <Legend square>
                 {!indicatorsOpen && (
@@ -141,6 +153,7 @@ function App({ config = CONFIG }) {
               open={indicatorsOpen}
               onClose={() => setIndicatorsOpen(false)}
             />
+            <MapTooltip />
           </MapBodyWrapper>
         </AppWrapper>
         {/* <AllScales /> */}

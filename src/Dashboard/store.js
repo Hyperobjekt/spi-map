@@ -19,6 +19,10 @@ export const useDashboardStore = create((set) => ({
   /** current year selection */
   year: null,
   setYear: (year) => set({ year }),
+  /** [x,y] coords of the mouse for positioning tooltips */
+  hoverCoords: [0, 0],
+  setHoverCoords: (hoverCoords) => set({ hoverCoords }),
+  /** updates the store with values in the provided config */
   setDefaultsFromConfig: (config) => {
     const updates = {};
     const appConfig = config.app;
