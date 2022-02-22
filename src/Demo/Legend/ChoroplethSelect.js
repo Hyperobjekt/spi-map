@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useMetricConfig } from "../../Dashboard/Config";
 import useDashboardStore from "../../Dashboard/store";
 import shallow from "zustand/shallow";
-import InlineMenu from "./InlineMenu";
+import InlineMenu from "../components/InlineMenu";
 import { useIndicatorPanelStore } from "../IndicatorPanel";
 
 const DEFAULT_METRICS = ["bhn", "fow", "opp"];

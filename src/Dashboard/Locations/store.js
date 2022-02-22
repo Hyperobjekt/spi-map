@@ -17,11 +17,6 @@ export const useLocationStore = create((set, get) => ({
     set((state) => {
       return { selected: state.selected.filter((f) => !areEqual(f, selected)) };
     }),
-  toggleSelected: (selected) => {
-    const alreadyExists = get().selected.some((f) => areEqual(f, selected));
-    if (alreadyExists) return get().removeSelected(selected);
-    return get().addSelected(selected);
-  },
   isSelected: (feature) => get().selected.some((f) => areEqual(f, feature)),
 }));
 

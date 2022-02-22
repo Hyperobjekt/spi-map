@@ -16,7 +16,6 @@ export default function useMetricConfig(id) {
       : Array.isArray(id)
       ? id
       : metrics.map((m) => m.id);
-  console.log({ idArray });
   // pull language and formatters for the metrics
   const metricNames = useLangObject(idArray, { prefix: "METRIC_" });
   const metricHints = useLangObject(idArray, { prefix: "HINT_" });

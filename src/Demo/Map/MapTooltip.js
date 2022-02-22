@@ -5,9 +5,8 @@ import { Box, styled } from "@mui/system";
 import { useDashboardStore, useMetricConfig } from "../../Dashboard";
 import { useMapStore } from "@hyperobjekt/mapgl";
 import { Divider, Paper, Typography } from "@mui/material";
-import LocationName from "./LocationName";
-
-const NAME_KEY = "NAME";
+import { LocationName } from "../Location";
+import { getLocationNameParts } from "../utils";
 
 // tooltip dimensions (height is an estimate for offsets)
 const TOOLTIP_WIDTH = 240;
@@ -42,9 +41,11 @@ const MapTooltip = ({ classes, yOffset = 0, xOffset = -64, ...props }) => {
   const data = useMapStore((state) => state.hoveredFeature)?.properties;
   const hoverCoords = useDashboardStore((state) => state.hoverCoords);
   const choroplethMetric = useDashboardStore((state) => state.choroplethMetric);
+
   // metric ids to render in the tooltip
   const tooltipMetrics = [choroplethMetric];
   const metricConfigs = useMetricConfig(tooltipMetrics);
+
   // y position with scroll factored in
   const adjustedY = hoverCoords[1] - window.scrollY;
 
@@ -62,11 +63,12 @@ const MapTooltip = ({ classes, yOffset = 0, xOffset = -64, ...props }) => {
   // don't render anything if no tooltip data has been set yet
   if (!dataRef.current) return null;
 
-  console.log({ tooltipData: dataRef.current, metricConfigs });
+  // get hovered feature name and parent location
+  const [name, parent] = getLocationNameParts(dataRef.current);
 
   return (
     <AnimatedPaper style={style} elevation={3} {...props}>
-      <LocationName name={dataRef.current?.[NAME_KEY]} p={2} pb={1.5} />
+      <LocationName name={name} parent={parent} p={2} pb={1.5} />
       <Divider />
       <Box display="flex" flexDirection="columns" alignItems="stretch">
         {metricConfigs.map((metric, i) => (

@@ -9,6 +9,5 @@ export default function useScaleConfig(context) {
   const scales = useConfig("scales");
   const defaultScale = scales.find((s) => s.id === "default") || {};
   const bestMatch = getBestMatch(context, scales);
-  console.log({ bestMatch });
   return { ...defaultScale, ...bestMatch };
 }

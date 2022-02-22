@@ -1,9 +1,8 @@
 import { useConfigStore, useLoadConfig } from "./Dashboard/Config";
 import { QueryClient, QueryClientProvider } from "react-query";
-import Map from "./Demo/components/Map";
 import "@hyperobjekt/mapgl/dist/style.css";
 import "@hyperobjekt/scales/dist/style.css";
-import { Legend } from "./Demo/components/Legend";
+import { Legend } from "./Demo/Legend/Legend";
 import { Button, CssBaseline } from "@mui/material";
 import { styled, ThemeProvider } from "@mui/system";
 import { createTheme } from "@mui/material/styles";
@@ -14,7 +13,7 @@ import useIndicatorPanelStore from "./Demo/IndicatorPanel/store";
 import shallow from "zustand/shallow";
 import { useDashboardStore } from "./Dashboard";
 import { useCallback } from "react";
-import MapTooltip from "./Demo/components/MapTooltip";
+import { MapTooltip, Map } from "./Demo/Map";
 // // debug tools
 // import Debug from "./Demo/components/Debug";
 // import { ReactQueryDevtools } from "react-query/devtools";

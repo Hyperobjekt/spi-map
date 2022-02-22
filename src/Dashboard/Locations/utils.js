@@ -1,9 +1,31 @@
 /**
+ * Returns the region type based on the GEOID
+ * @param {string} geoid
+ * @returns {string} "states", "counties", "cities", "tracts", "bg"
+ */
+export const getRegionFromGeoid = (geoid) => {
+  switch (geoid.length) {
+    case 2:
+      return "states";
+    case 5:
+      return "counties";
+    case 11:
+      return "tracts";
+    case 7:
+      return "cities";
+    case 12:
+      return "bg";
+    default:
+      throw new Error("Could not determine region type from geoid");
+  }
+};
+
+/**
  * Returns the parent identifiers for a given geoid
  * @param {*} geoid
  * @returns
  */
-const getLocationContextFromGeoid = (geoid) => {
+export const getLocationContextFromGeoid = (geoid) => {
   if (typeof geoid !== "string" || geoid.length < 2) return {};
   return {
     state: getStateFromGeoid(geoid),
@@ -19,7 +41,7 @@ const getLocationContextFromGeoid = (geoid) => {
  * @param {*} geoid
  * @returns
  */
-const getStateFromGeoid = (geoid) => {
+export const getStateFromGeoid = (geoid) => {
   if (typeof geoid !== "string" || geoid.length < 2) return null;
   return geoid.substring(0, 2);
 };
@@ -29,7 +51,7 @@ const getStateFromGeoid = (geoid) => {
  * @param {*} geoid
  * @returns
  */
-const getCountyFromGeoid = (geoid) => {
+export const getCountyFromGeoid = (geoid) => {
   if (typeof geoid !== "string" || geoid.length < 5) return null;
   return geoid.substring(0, 5);
 };
@@ -39,7 +61,7 @@ const getCountyFromGeoid = (geoid) => {
  * @param {*} geoid
  * @returns
  */
-const getTractFromGeoid = (geoid) => {
+export const getTractFromGeoid = (geoid) => {
   if (typeof geoid !== "string" || geoid.length < 11) return null;
   return geoid.substring(0, 11);
 };
@@ -49,9 +71,9 @@ const getTractFromGeoid = (geoid) => {
  * @param {*} geoid
  * @returns
  */
-const getCityFromGeoid = (geoid) => {
+export const getCityFromGeoid = (geoid) => {
   if (typeof geoid !== "string" || geoid.length < 8) return null;
-  return geoid.substring(0, 8);
+  return geoid.substring(0, 7);
 };
 
 /**
@@ -59,7 +81,7 @@ const getCityFromGeoid = (geoid) => {
  * @param {*} geoid
  * @returns
  */
-const getBlockGroupFromGeoid = (geoid) => {
+export const getBlockGroupFromGeoid = (geoid) => {
   if (typeof geoid !== "string" || geoid.length < 12) return null;
   return geoid.substring(0, 12);
 };

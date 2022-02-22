@@ -14,7 +14,10 @@ import {
   useMapSources,
   useChoroplethContext,
 } from "../../Dashboard";
-import { useLocationStore } from "../../Dashboard/Locations";
+import {
+  useLocationStore,
+  useToggleSelectedLocation,
+} from "../../Dashboard/Locations";
 
 const TOKEN = `pk.eyJ1IjoiaHlwZXJvYmpla3QiLCJhIjoiY2pzZ3Bnd3piMGV6YTQzbjVqa3Z3dHQxZyJ9.rHobqsY_BjkNbqNQS4DNYw`;
 
@@ -31,12 +34,12 @@ export default function Map({ children, ...props }) {
   const sources = useMapSources();
   const layers = useMapLayers();
   const { region_id } = useChoroplethContext();
-  const toggleSelected = useLocationStore((state) => state.toggleSelected);
+  const toggleSelected = useToggleSelectedLocation();
   const isSelected = useLocationStore((state) => state.isSelected);
   // function that flys the map to a provided feature
   const flyToFeature = useMapFlyToFeature();
 
-  // fly to feature on click
+  // fly to feature on click if it's not selected and toggle "selected" status
   const handleClick = useCallback(
     ({ features }) => {
       const partFeature = features?.[0];
@@ -57,6 +60,7 @@ export default function Map({ children, ...props }) {
       onClick={handleClick}
       bounds={US_BOUNDS}
       interactiveLayerIds={[`${region_id}-choropleth`]}
+      {...props}
     >
       <FullscreenControl />
       <GeolocateControl />

@@ -1,7 +1,7 @@
 import React from "react";
 import useDashboardStore from "../../Dashboard/store";
 import shallow from "zustand/shallow";
-import InlineMenu from "./InlineMenu";
+import InlineMenu from "../components/InlineMenu";
 import { useRegionConfig } from "../../Dashboard";
 
 const RegionSelect = (props) => {

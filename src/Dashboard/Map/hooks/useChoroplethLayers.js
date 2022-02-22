@@ -63,9 +63,9 @@ const getChoroplethFillLayer = (context) => {
 const getComplementaryColor = (color) => {
   const c = Color(color);
   const luminosity = c.luminosity();
-  if (luminosity > 0.8) return c.darken(0.333).desaturate(0.25).rgb().string();
-  if (luminosity > 0.5) return c.darken(0.2).desaturate(0.1).rgb().string();
-  if (luminosity > 0.25) return c.lighten(0.333).rgb().string();
+  if (luminosity > 0.8) return c.darken(0.2).desaturate(0.25).rgb().string();
+  if (luminosity > 0.5) return c.darken(0.1).desaturate(0.1).rgb().string();
+  if (luminosity > 0.25) return c.lighten(0.1).rgb().string();
   if (luminosity > 0.1) return c.lighten(0.4).rgb().string();
   return c.lightness(40).desaturate(0.25).rgb().string();
 };
@@ -198,14 +198,19 @@ const getChoroplethHoverLayers = (context) => {
  * @returns {Array<mapboxgl.Layer>} [mapboxgl.Layer](https://docs.mapbox.com/mapbox-gl-js/style-spec/layers/)
  */
 const getChoroplethSelectedLayers = (context) => {
-  const { region_id: region, locationColors } = context;
-  const colorSteps = locationColors
-    .map((color, i) => {
-      return [color, i + 1];
-    })
-    .flat()
-    .slice(0, -1);
-  const selectedIds = context.selected.map((f) => f.properties.GEOID);
+  const { region_id: region, selected } = context;
+  const selectedIds = selected.map((f) => f?.properties?.GEOID);
+  // reduce selected features into a "case" expression to color features based on GEOID and color property
+  const caseRules = selected.reduce(
+    (rules, f, i) => {
+      rules.push(["==", ["get", "GEOID"], f.properties.GEOID]);
+      rules.push(f.properties.color);
+      // last color is default, which technically should never be used (because of the `filter`)
+      if (i === selected.length - 1) rules.push("#ccc");
+      return rules;
+    },
+    ["case"]
+  );
   return [
     {
       id: `${region}-selectedCasing`,
@@ -226,15 +231,7 @@ const getChoroplethSelectedLayers = (context) => {
       type: "line",
       filter: ["in", "GEOID", ...selectedIds],
       paint: {
-        "line-color": [
-          "step",
-          [
-            "%",
-            ["index-of", ["get", "GEOID"], ["literal", selectedIds]],
-            locationColors.length,
-          ],
-          ...colorSteps,
-        ],
+        "line-color": caseRules.length > 2 ? caseRules : "transparent",
         "line-width": 3,
       },
       beforeId: "road-label",
@@ -250,7 +247,6 @@ export default function useChoroplethLayers(accessor) {
   const context = useChoroplethContext();
   const scale = useScale(context);
   const selected = useLocationStore((state) => state.selected);
-  const locationColors = useAppConfig("location_colors");
   const hoverColor = useAppConfig("hover_color");
   const {
     color,
@@ -269,7 +265,7 @@ export default function useChoroplethLayers(accessor) {
     color,
     accessor,
     selected,
-    locationColors,
+
     hoverColor,
   };
   const choroplethFillLayer = getChoroplethFillLayer(layerContext);

@@ -1,16 +1,7 @@
 import { Box, Typography } from "@mui/material";
 import React from "react";
 
-/** Returns the title and subtitle values based on the data */
-export const getNameParts = (fullName) => {
-  if (!fullName) return ["Unavailable", ""];
-  const [name, parent] = fullName.split(",");
-  const parentName = parent || "United States";
-  return [name, parentName];
-};
-
-const LocationName = ({ name: fullName, ...props }) => {
-  const [name, parent] = getNameParts(fullName);
+const LocationName = ({ name, parent, ...props }) => {
   return (
     <Box {...props}>
       <Typography
