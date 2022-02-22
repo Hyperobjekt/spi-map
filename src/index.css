@@ -63,6 +63,11 @@ code {
   }
 }
 */
+
+.HypMapGL-root .mapboxgl-ctrl-top-right {
+  top: 8px;
+  right: 8px;
+}
 .HypScale-markerWrapper svg * {
   stroke: #fff;
   stroke-width: 1;

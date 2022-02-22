@@ -1,7 +1,5 @@
 import { useConfigStore, useLoadConfig } from "./Dashboard/Config";
-import Debug from "./Demo/components/Debug";
 import { QueryClient, QueryClientProvider } from "react-query";
-import { ReactQueryDevtools } from "react-query/devtools";
 import Map from "./Demo/components/Map";
 import "@hyperobjekt/mapgl/dist/style.css";
 import "@hyperobjekt/scales/dist/style.css";
@@ -10,11 +8,14 @@ import { Button, CssBaseline } from "@mui/material";
 import { styled, ThemeProvider } from "@mui/system";
 import { createTheme } from "@mui/material/styles";
 import Header from "./Demo/components/Header";
-import Panel from "./Demo/components/Panel";
-import { useState } from "react";
-import MetricsList from "./Demo/IndicatorPanel/MetricsList";
+
 import { IndicatorPanel } from "./Demo/IndicatorPanel/IndicatorPanel";
-const DEBUG = ["context", "mapSources", "metrics"];
+import useIndicatorPanelStore from "./Demo/IndicatorPanel/store";
+import shallow from "zustand/shallow";
+// // debug tools
+// import Debug from "./Demo/components/Debug";
+// import { ReactQueryDevtools } from "react-query/devtools";
+// const DEBUG = ["context", "mapSources", "metrics"];
 
 const CONFIG = {
   app: "/assets/config/app.json",
@@ -105,7 +106,10 @@ const MapBodyWrapper = styled("div")(({ theme }) => ({
 }));
 
 function App({ config = CONFIG }) {
-  const [indicatorsOpen, setIndicatorsOpen] = useState(true);
+  const [indicatorsOpen, setIndicatorsOpen] = useIndicatorPanelStore(
+    (state) => [state.open, state.setOpen],
+    shallow
+  );
   console.log({ theme });
   useLoadConfig(config);
   const isReady = useConfigStore((state) => state.ready);
@@ -140,8 +144,8 @@ function App({ config = CONFIG }) {
           </MapBodyWrapper>
         </AppWrapper>
         {/* <AllScales /> */}
-        <Debug options={DEBUG} />
-        <ReactQueryDevtools />
+        {/* <Debug options={DEBUG} />
+        <ReactQueryDevtools /> */}
       </ThemeProvider>
     </QueryClientProvider>
   );

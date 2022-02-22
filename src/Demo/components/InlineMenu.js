@@ -40,6 +40,26 @@ const InlineMenuButton = styled("button")({
   },
 });
 
+const StyledMenu = styled(Menu)(({ theme }) => ({
+  "& .MuiMenuItem-root.more": {
+    marginTop: theme.spacing(2),
+    fontSize: theme.typography.pxToRem(14),
+    color: theme.palette.primary.main,
+    fontStyle: "italic",
+    textDecoration: "underline",
+    "&:before": {
+      borderTop: `1px solid ${theme.palette.divider}`,
+      content: "''",
+      width: "100%",
+      position: "absolute",
+      height: 0,
+      top: -8,
+      left: 0,
+      right: 0,
+    },
+  },
+}));
+
 const InlineMenu = ({ children, options, selected, onSelect, ...props }) => {
   const id = useMemo(uuid, []);
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -66,7 +86,7 @@ const InlineMenu = ({ children, options, selected, onSelect, ...props }) => {
       >
         <span>{children}</span> <ArrowDropDown />
       </Typography>
-      <Menu
+      <StyledMenu
         id={id}
         anchorEl={anchorEl}
         keepMounted
@@ -78,6 +98,7 @@ const InlineMenu = ({ children, options, selected, onSelect, ...props }) => {
           .map((option, i) => (
             <MenuItem
               key={option.id}
+              className={option.className}
               selected={option.active || selected === option.id}
               onClick={(e) => handleClose(e, option)}
             >
@@ -96,7 +117,7 @@ const InlineMenu = ({ children, options, selected, onSelect, ...props }) => {
             </span>
           </MenuItem>
         ))}
-      </Menu>
+      </StyledMenu>
     </>
   );
 };

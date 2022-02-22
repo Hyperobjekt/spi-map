@@ -1,7 +1,6 @@
 import { useMemo } from "react";
 import { useConfigStore } from "..";
 import { useLangObject } from "../../i18n";
-import { getAllMatches, getBestMatch } from "../utils";
 
 /**
  * Returns all metrics config, or an individual metric config if ID is provided

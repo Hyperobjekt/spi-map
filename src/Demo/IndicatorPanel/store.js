@@ -4,6 +4,8 @@ import create from "zustand";
  * Contains expanded state for the indicator panel
  */
 export const useIndicatorPanelStore = create((set, get) => ({
+  open: false,
+  setOpen: (open) => set({ open }),
   expanded: [],
   setExpanded: (expanded) => set({ expanded }),
   addExpanded: (id) =>

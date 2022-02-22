@@ -1,6 +1,5 @@
-import { Help, HelpOutline } from "@mui/icons-material";
+import { HelpOutline } from "@mui/icons-material";
 import { Paper, Tooltip, Typography } from "@mui/material";
-import { grey } from "@mui/material/colors";
 import { Box, styled } from "@mui/system";
 import React from "react";
 import { useChoroplethContext, useLang } from "../../Dashboard";

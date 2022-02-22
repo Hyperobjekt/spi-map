@@ -1,6 +1,5 @@
 import React from "react";
 import useDashboardStore from "../../Dashboard/store";
-import { useLangObject } from "../../Dashboard/i18n";
 import shallow from "zustand/shallow";
 import InlineMenu from "./InlineMenu";
 import { useRegionConfig } from "../../Dashboard";

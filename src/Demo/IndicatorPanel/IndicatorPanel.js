@@ -16,7 +16,7 @@ export const IndicatorPanel = ({ ...props }) => {
   );
   const [highlight, setHighlight] = useState("");
   const [filter, setFilter] = useState([]);
-  const [expanded, setExpanded] = useState([]);
+  const [expanded, setExpanded] = useState(["bhn", "fow", "opp"]);
   const search = useMetricSearch();
   const metrics = useCategorizedMetrics();
   const numMatches = highlight ? filter.length : -1;

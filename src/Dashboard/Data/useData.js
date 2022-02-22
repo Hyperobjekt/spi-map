@@ -1,5 +1,5 @@
 import { autoType } from "d3-dsv";
-import { useConfig, useDataSourceConfig } from "../Config";
+import { useDataSourceConfig } from "../Config";
 import useDataSource from "./useDataSource";
 
 /**
