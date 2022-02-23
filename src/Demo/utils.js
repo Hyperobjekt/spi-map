@@ -57,12 +57,18 @@ const FIPS_TO_STATE_NAME = {
   56: "Wyoming",
 };
 
+/**
+ * Returns the name and parent location for a feature properties object
+ * @param {object} featureProps
+ * @returns
+ */
 export const getLocationNameParts = (featureProps) => {
   if (!featureProps) return null;
-  const { NAME, STATE, GEOID } = featureProps;
+  const { name, state, GEOID } = featureProps;
   const region = getRegionFromGeoid(GEOID);
-  const name = NAME || "Unknown";
+  const nameValue = name || featureProps.NAME || "Unknown";
+  const stateValue = state || featureProps.STATE;
   const parent =
-    region === "states" ? "United States" : FIPS_TO_STATE_NAME[STATE];
-  return [name, parent];
+    region === "states" ? "United States" : FIPS_TO_STATE_NAME[stateValue];
+  return [nameValue, parent];
 };
