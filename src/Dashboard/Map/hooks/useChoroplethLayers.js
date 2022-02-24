@@ -2,7 +2,8 @@ import { useChoroplethContext, useScale } from "../../hooks";
 import { getStepsFromChunks, getLinearColorRamp } from "../utils";
 import Color from "color";
 import { useLocationStore } from "../../Locations";
-import { useAppConfig } from "../../Config";
+import { useAppConfig, useConfig } from "../../Config";
+import useDashboardStore from "../../store";
 
 const getLineWidths = (region) => {
   switch (region) {
@@ -31,28 +32,42 @@ const getLineWidths = (region) => {
  * @param {Array<number>} context.extent - [min, max] for the given context
  * @returns [mapboxgl.Layer](https://docs.mapbox.com/mapbox-gl-js/style-spec/layers/)
  */
-const getChoroplethFillLayer = (context) => {
-  const { chunks, region_id: region, accessor, steps } = context;
+const getChoroplethFillLayers = (context, regionsConfig) => {
+  const { chunks, accessor, steps } = context;
   const fillRule = chunks
     ? ["step", ["get", accessor(context)], ...steps]
     : ["interpolate", ["linear"], ["get", accessor(context)], ...steps];
-  return {
-    id: `${region}-choropleth`,
-    source: `${region}_choropleth`,
-    "source-layer": region,
-    type: "fill",
-    paint: {
-      "fill-color": [
-        "case",
-        ["!=", ["get", accessor(context)], null],
-        fillRule,
-        "transparent",
-      ],
-      "fill-opacity": 1,
-    },
-    beforeId: "water",
-    interactive: true,
-  };
+  return regionsConfig.map((regionConfig) => {
+    return {
+      id: `${regionConfig.id}-choropleth`,
+      source: `${regionConfig.id}_choropleth`,
+      "source-layer": regionConfig.id,
+      type: "fill",
+      paint: {
+        "fill-color": [
+          "case",
+          ["!=", ["get", accessor(context)], null],
+          fillRule,
+          "transparent",
+        ],
+        "fill-opacity": [
+          "interpolate",
+          ["linear"],
+          ["zoom"],
+          Math.max(0, regionConfig.min_zoom - 2),
+          0,
+          regionConfig.min_zoom,
+          1,
+          regionConfig.max_zoom,
+          1,
+          regionConfig.max_zoom + 1,
+          0,
+        ],
+      },
+      beforeId: "water",
+      interactive: true,
+    };
+  });
 };
 
 /**
@@ -84,7 +99,7 @@ const getComplementaryColor = (color) => {
  * @param {Array<number>} context.extent - [min, max] for the given context
  * @returns [mapboxgl.Layer](https://docs.mapbox.com/mapbox-gl-js/style-spec/layers/)
  */
-const getChoroplethOutlineLayer = (context) => {
+export const getChoroplethOutlineLayers = (context) => {
   const { chunks, region_id: region, accessor, steps } = context;
   const outlineSteps = steps.map((step, i) => {
     if (Number.isFinite(step)) return step;
@@ -93,27 +108,29 @@ const getChoroplethOutlineLayer = (context) => {
   const lineRule = chunks
     ? ["step", ["get", accessor(context)], ...outlineSteps]
     : ["interpolate", ["linear"], ["get", accessor(context)], ...outlineSteps];
-  return {
-    id: `${region}-outline`,
-    source: `${region}_choropleth`,
-    "source-layer": region,
-    type: "line",
-    paint: {
-      "line-color": [
-        "case",
-        ["!=", ["get", accessor(context)], null],
-        lineRule,
-        "transparent",
-      ],
-      "line-width": [
-        "interpolate",
-        ["linear"],
-        ["zoom"],
-        ...getLineWidths(region),
-      ],
+  return [
+    {
+      id: `${region}-outline`,
+      source: `${region}_choropleth`,
+      "source-layer": region,
+      type: "line",
+      paint: {
+        "line-color": [
+          "case",
+          ["!=", ["get", accessor(context)], null],
+          lineRule,
+          "transparent",
+        ],
+        "line-width": [
+          "interpolate",
+          ["linear"],
+          ["zoom"],
+          ...getLineWidths(region),
+        ],
+      },
+      beforeId: "road-label-simple",
     },
-    beforeId: "road-label-simple",
-  };
+  ];
 };
 
 /**
@@ -130,7 +147,7 @@ const getChoroplethOutlineLayer = (context) => {
  * @param {Array<number>} context.extent - [min, max] for the given context
  * @returns {Array<mapboxgl.Layer>} [mapboxgl.Layer](https://docs.mapbox.com/mapbox-gl-js/style-spec/layers/)
  */
-const getChoroplethHoverLayers = (context) => {
+export const getChoroplethHoverLayers = (context) => {
   const { chunks, region_id: region, accessor, steps, hoverColor } = context;
   const outlineSteps = steps.map((step, i) => {
     if (Number.isFinite(step)) return step;
@@ -197,7 +214,7 @@ const getChoroplethHoverLayers = (context) => {
  * @param {Array<number>} context.extent - [min, max] for the given context
  * @returns {Array<mapboxgl.Layer>} [mapboxgl.Layer](https://docs.mapbox.com/mapbox-gl-js/style-spec/layers/)
  */
-const getChoroplethSelectedLayers = (context) => {
+export const getChoroplethSelectedLayers = (context) => {
   const { region_id: region, selected } = context;
   const selectedIds = selected.map((f) => f?.properties?.GEOID);
   // reduce selected features into a "case" expression to color features based on GEOID and color property
@@ -241,16 +258,11 @@ const getChoroplethSelectedLayers = (context) => {
 const GET_VARIABLE_NAME = (context) => {
   return context?.metric_id;
 };
-/**
- * Returns map sources for the current context for use with mapboxgl.
- * @returns {object} object containing [map sources](https://docs.mapbox.com/mapbox-gl-js/style-spec/sources)
- */
-export default function useChoroplethLayers({
-  accessor = GET_VARIABLE_NAME,
-  createLayers,
-}) {
+
+export function useChoroplethLayerContext(accessor = GET_VARIABLE_NAME) {
   const context = useChoroplethContext();
   const scale = useScale(context);
+  const autoSwitch = useDashboardStore((state) => state.autoSwitchRegion);
   const selected = useLocationStore((state) => state.selected);
   const hoverColor = useAppConfig("hover_color");
   const {
@@ -262,7 +274,7 @@ export default function useChoroplethLayers({
   const steps = chunks
     ? getStepsFromChunks(chunks)
     : getLinearColorRamp(extent, color.copy().domain([0, 1]), 24);
-  const layerContext = {
+  return {
     ...context,
     extent,
     steps,
@@ -271,16 +283,32 @@ export default function useChoroplethLayers({
     accessor,
     selected,
     hoverColor,
+    autoSwitch,
   };
-  const choroplethFillLayer = getChoroplethFillLayer(layerContext);
-  const choroplethOutlineLayer = getChoroplethOutlineLayer(layerContext);
+}
+
+/**
+ * Returns map sources for the current context for use with mapboxgl.
+ * @returns {object} object containing [map sources](https://docs.mapbox.com/mapbox-gl-js/style-spec/sources)
+ */
+export default function useChoroplethLayers({
+  accessor = GET_VARIABLE_NAME,
+  createLayers,
+}) {
+  const layerContext = useChoroplethLayerContext(accessor);
+  const regionsConfig = useConfig("regions");
+  const choroplethFillLayers = getChoroplethFillLayers(
+    layerContext,
+    regionsConfig
+  );
+  const choroplethOutlineLayers = getChoroplethOutlineLayers(layerContext);
   const choroplethHoverLayers = getChoroplethHoverLayers(layerContext);
   const choroplethSelectedLayers = getChoroplethSelectedLayers(layerContext);
   const extraLayers =
     typeof createLayers === "function" ? createLayers(layerContext) : [];
   const layers = [
-    choroplethFillLayer,
-    choroplethOutlineLayer,
+    ...choroplethFillLayers,
+    ...choroplethOutlineLayers,
     ...choroplethHoverLayers,
     ...choroplethSelectedLayers,
     ...extraLayers,

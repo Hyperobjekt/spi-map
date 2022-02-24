@@ -1,5 +1,6 @@
 import { useMemo } from "react";
-import { useBubbleLayerConfig, useChoroplethLayerConfig } from "../../hooks";
+import { useConfig } from "../../Config";
+// import { useBubbleLayerConfig, useChoroplethLayerConfig } from "../../hooks";
 
 /**
  * Maps an array of layer configs to an array of mapboxgl sources, removing any duplicates.
@@ -38,9 +39,10 @@ const getSourcesFromLayerConfigs = (layerConfigs) => {
  * @returns {Array<mapboxgl.Source>} array of [map sources](https://docs.mapbox.com/mapbox-gl-js/style-spec/sources)
  */
 export default function useMapSources() {
-  const choroplethLayers = useChoroplethLayerConfig();
-  const bubbleLayers = useBubbleLayerConfig();
+  // const choroplethLayers = useChoroplethLayerConfig();
+  // const bubbleLayers = useBubbleLayerConfig();
+  const layerConfigs = useConfig("mapLayers");
   return useMemo(() => {
-    return getSourcesFromLayerConfigs([...choroplethLayers, ...bubbleLayers]);
-  }, [choroplethLayers, bubbleLayers]);
+    return getSourcesFromLayerConfigs(layerConfigs);
+  }, [layerConfigs]);
 }

@@ -22,6 +22,9 @@ export const useDashboardStore = create((set) => ({
   /** [x,y] coords of the mouse for positioning tooltips */
   hoverCoords: [0, 0],
   setHoverCoords: (hoverCoords) => set({ hoverCoords }),
+  /** automatically switch to different geographies when true */
+  autoSwitchRegion: true,
+  setAutoSwitchRegion: (autoSwitchRegion) => set({ autoSwitchRegion }),
   /** updates the store with values in the provided config */
   setDefaultsFromConfig: (config) => {
     const updates = {};

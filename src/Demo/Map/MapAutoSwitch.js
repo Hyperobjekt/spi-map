@@ -8,49 +8,77 @@ import {
 } from "../../Dashboard";
 import { usePreviousProps } from "@mui/utils";
 
-const getLayersInZoomRange = (mapLayersConfig, zoom) => {
-  const layers = [];
-  for (const layer of mapLayersConfig) {
-    if (layer.min_zoom <= zoom && layer.max_zoom >= zoom) {
-      layers.push(layer);
+/**
+ * Given an array of region configs, and a zoom level, returns an array of
+ * region configs that are in the zoom range.
+ * @param {object} regionsConfig
+ * @param {number} zoom
+ * @returns {Array<RegionConfig>}
+ */
+const getRegionsInZoomRange = (regionsConfig, zoom) => {
+  const regions = [];
+  for (const region of regionsConfig) {
+    if (region.min_zoom <= zoom && region.max_zoom >= zoom) {
+      regions.push(region);
     }
   }
-  return layers;
+  return regions;
 };
 
-const getSwitchLayer = (mapLayersConfig, isZoomingIn) => {
-  // if zooming in, switch to the layer lowest max zoom
+/**
+ * Returns the next region to switch to, based on the zoom direction and
+ * regions provided.  Returns the region with the lowest max zoom if zooming in,
+ * and the highest max zoom if zooming out.
+ * @param {*} regionsConfig
+ * @param {*} isZoomingIn
+ * @returns
+ */
+const getSwitchRegion = (regionsConfig, isZoomingIn) => {
+  // if zooming in, switch to the region lowest max zoom
   if (isZoomingIn)
-    return mapLayersConfig.reduce((prev, curr) =>
+    return regionsConfig.reduce((prev, curr) =>
       prev["max_zoom"] < curr["max_zoom"] ? prev : curr
     );
-  // if zooming out, switch to the layer highest max zoom
-  return mapLayersConfig.reduce((prev, curr) =>
+  // if zooming out, switch to the region highest max zoom
+  return regionsConfig.reduce((prev, curr) =>
     prev["max_zoom"] > curr["max_zoom"] ? prev : curr
   );
 };
 
-const MapAutoSwitch = (props) => {
-  const viewState = useMapState("viewState");
-  const previousViewState = usePreviousProps(viewState);
+/**
+ * When this component is used, the map will automatically switch regions
+ * as the user zooms in and out, based on the regions config.
+ *
+ * IMPORTANT: THIS COMPONENT DOES NOT RENDER ANYTHING
+ * The state changes frequently because of zoom actions, so this code is
+ * isolated to an empty component so it doesn't trigger re-renders on
+ * other components.
+ */
+const MapAutoSwitch = () => {
+  // pull region config and state
+  const regionsConfig = useConfig("regions");
   const currentRegion = useDashboardStore((state) => state.region);
   const setRegion = useDashboardStore((state) => state.setRegion);
+
+  // get zoom state of the map, and track previous to know zoom direction
+  const viewState = useMapState("viewState");
+  const previousViewState = usePreviousProps(viewState);
   const zoom = viewState.zoom;
   const previousZoom = previousViewState?.zoom;
   const isZoomingIn = zoom > previousZoom;
-  const mapLayersConfig = useConfig("mapLayers");
-  const layersInZoomRange = getLayersInZoomRange(mapLayersConfig, zoom);
-  const shouldSwitch = !layersInZoomRange.some(
-    (layerConfig) => layerConfig.region_id === currentRegion
-  );
-  // do nothing if we shouldn't switch or if there are no layers to switch to
-  if (!shouldSwitch || layersInZoomRange.length === 0) return null;
-  // get the next layer, based on the zoom direction and layers in range
-  const nextLayer = getSwitchLayer(layersInZoomRange, isZoomingIn);
-  nextLayer?.region_id &&
-    nextLayer.region_id !== "*" &&
-    setRegion(nextLayer.region_id);
 
+  // get regions in the zoom range, and determine if we need to switch
+  const regionsInZoomRange = getRegionsInZoomRange(regionsConfig, zoom);
+  const shouldSwitch = !regionsInZoomRange.some(
+    (regionConfig) => regionConfig.id === currentRegion
+  );
+
+  // do nothing if we shouldn't switch or if there are no regions to switch to
+  if (!shouldSwitch || regionsInZoomRange.length === 0) return null;
+
+  // get the next region, based on the zoom direction and regions in range
+  const nextRegion = getSwitchRegion(regionsInZoomRange, isZoomingIn);
+  nextRegion?.id && setRegion(nextRegion.id);
   return null;
 };
 

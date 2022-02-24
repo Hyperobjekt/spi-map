@@ -1,10 +1,12 @@
 import { ExpandLess, ExpandMore, HelpOutline } from "@mui/icons-material";
 import {
+  Alert,
   Collapse,
   Divider,
   IconButton,
   List,
   Paper,
+  Snackbar,
   Tooltip,
   Typography,
 } from "@mui/material";
@@ -14,6 +16,7 @@ import {
   useChoroplethContext,
   useLocationStore,
   useMetricConfig,
+  useRegionConfig,
 } from "../../Dashboard";
 import { LocationListItem } from "../Location";
 import { getLocationNameParts } from "../utils";
@@ -62,13 +65,16 @@ const HelpContainer = styled(Paper)(({ theme }) => {
 });
 
 export const Legend = ({ children, ...props }) => {
-  const { metric_id } = useChoroplethContext();
+  const { metric_id, region_id } = useChoroplethContext();
+  const regionConfig = useRegionConfig(region_id);
   const metric = useMetricConfig(metric_id);
   const selected = useLocationStore((state) => state.selected);
   const removeSelected = useLocationStore((state) => state.removeSelected);
   const flyToFeature = useMapStore((state) => state.flyToFeature);
   const listRef = React.useRef();
   const [expanded, setExpanded] = React.useState(true);
+
+  const regionHasMetric = regionConfig?.metrics?.includes(metric_id);
 
   // scroll to the bottom of the list when adding new items
   useEffect(() => {
@@ -78,6 +84,11 @@ export const Legend = ({ children, ...props }) => {
 
   return (
     <LegendContainer {...props}>
+      <Snackbar open={!regionHasMetric} autoHideDuration={6000}>
+        <Alert severity="error" variant="filled" sx={{ width: "100%" }}>
+          {metric.name} is unavailable for {regionConfig.name}
+        </Alert>
+      </Snackbar>
       {metric.hint && (
         <HelpContainer>
           <Tooltip title={metric.hint} placement="left" arrow>
@@ -85,7 +96,6 @@ export const Legend = ({ children, ...props }) => {
           </Tooltip>
         </HelpContainer>
       )}
-
       <ChoroplethSelect />
       <Box display="flex" alignItems="center" gap={0.5} mt={0.5} mb={1}>
         <Typography lineHeight={1.2} variant="caption">
