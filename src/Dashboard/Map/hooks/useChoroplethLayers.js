@@ -112,7 +112,7 @@ const getChoroplethOutlineLayer = (context) => {
         ...getLineWidths(region),
       ],
     },
-    beforeId: "road-label",
+    beforeId: "road-label-simple",
   };
 };
 
@@ -157,7 +157,7 @@ const getChoroplethHoverLayers = (context) => {
           0,
         ],
       },
-      beforeId: "road-label",
+      beforeId: "road-label-simple",
     },
     {
       id: `${region}-hoverOutline`,
@@ -178,7 +178,7 @@ const getChoroplethHoverLayers = (context) => {
           0,
         ],
       },
-      beforeId: "road-label",
+      beforeId: "road-label-simple",
     },
   ];
 };
@@ -222,7 +222,7 @@ const getChoroplethSelectedLayers = (context) => {
         "line-color": "#fff",
         "line-width": 5,
       },
-      beforeId: "road-label",
+      beforeId: "road-label-simple",
     },
     {
       id: `${region}-selectedOutline`,
@@ -234,16 +234,21 @@ const getChoroplethSelectedLayers = (context) => {
         "line-color": caseRules.length > 2 ? caseRules : "transparent",
         "line-width": 3,
       },
-      beforeId: "road-label",
+      beforeId: "road-label-simple",
     },
   ];
 };
-
+const GET_VARIABLE_NAME = (context) => {
+  return context?.metric_id;
+};
 /**
  * Returns map sources for the current context for use with mapboxgl.
  * @returns {object} object containing [map sources](https://docs.mapbox.com/mapbox-gl-js/style-spec/sources)
  */
-export default function useChoroplethLayers(accessor) {
+export default function useChoroplethLayers({
+  accessor = GET_VARIABLE_NAME,
+  createLayers,
+}) {
   const context = useChoroplethContext();
   const scale = useScale(context);
   const selected = useLocationStore((state) => state.selected);
@@ -265,18 +270,20 @@ export default function useChoroplethLayers(accessor) {
     color,
     accessor,
     selected,
-
     hoverColor,
   };
   const choroplethFillLayer = getChoroplethFillLayer(layerContext);
   const choroplethOutlineLayer = getChoroplethOutlineLayer(layerContext);
   const choroplethHoverLayers = getChoroplethHoverLayers(layerContext);
   const choroplethSelectedLayers = getChoroplethSelectedLayers(layerContext);
+  const extraLayers =
+    typeof createLayers === "function" ? createLayers(layerContext) : [];
   const layers = [
     choroplethFillLayer,
     choroplethOutlineLayer,
     ...choroplethHoverLayers,
     ...choroplethSelectedLayers,
+    ...extraLayers,
   ];
   return layers;
 }
