@@ -11,7 +11,6 @@ import {
   NavigationControl,
 } from "react-map-gl";
 import {
-  useMapLayers,
   useMapSources,
   useChoroplethContext,
   useChoroplethLayers,
@@ -35,7 +34,7 @@ const US_BOUNDS = [
 const MAP_STYLE = "mapbox://styles/hyperobjekt/cl007w05t000414oaog417i9s";
 
 const createCircleLayers = (context) => {
-  const { chunks, region_id: region, accessor, steps, hoverColor } = context;
+  const { chunks, accessor, steps, hoverColor } = context;
   const fillRule = chunks
     ? ["step", ["get", accessor(context)], ...steps]
     : ["interpolate", ["linear"], ["get", accessor(context)], ...steps];

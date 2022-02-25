@@ -54,7 +54,7 @@ const getChoroplethFillLayers = (context, regionsConfig) => {
           "interpolate",
           ["linear"],
           ["zoom"],
-          Math.max(0, regionConfig.min_zoom - 2),
+          Math.max(0, regionConfig.min_zoom - 1),
           0,
           regionConfig.min_zoom,
           1,

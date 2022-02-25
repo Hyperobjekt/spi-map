@@ -1,11 +1,5 @@
-import React from "react";
-import PropTypes from "prop-types";
 import { useMapState } from "@hyperobjekt/mapgl";
-import {
-  useConfig,
-  useDashboardStore,
-  useMapLayersConfig,
-} from "../../Dashboard";
+import { useConfig, useDashboardStore } from "../../Dashboard";
 import { usePreviousProps } from "@mui/utils";
 
 /**

@@ -76,7 +76,7 @@
   {
     "id": "cities",
     "min_zoom": 7,
-    "max_zoom": 10,
+    "max_zoom": 11,
     "target_zoom": 9,
     "metrics": [
       "spi",
@@ -149,7 +149,7 @@
   },
   {
     "id": "tracts",
-    "min_zoom": 10,
+    "min_zoom": 11,
     "max_zoom": 20,
     "target_zoom": 12,
     "metrics": [
