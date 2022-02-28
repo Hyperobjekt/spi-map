@@ -1,6 +1,5 @@
 import ReactJson from "react-json-view";
 import { useConfig, useMetricConfig } from "../../Dashboard/Config";
-import useChoroplethScale from "../../Dashboard/hooks/useChoroplethScale";
 import useCurrentContext from "../../Dashboard/hooks/useCurrentContext";
 import useMapSources from "../../Dashboard/Map/hooks/useMapSources";
 import { useLangStore } from "../../Dashboard/i18n";
@@ -11,7 +10,6 @@ export default function DataSources({ options = [] }) {
   const context = useCurrentContext();
   const metrics = useMetricConfig();
   const mapSources = useMapSources();
-  const choroplethScale = useChoroplethScale();
   const lang = useLangStore((state) => state.dict);
   const opts = {
     app,

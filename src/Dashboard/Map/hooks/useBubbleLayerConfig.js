@@ -1,5 +1,5 @@
-import { useMapLayersConfig } from "../Config";
-import useCurrentContext from "./useCurrentContext";
+import { useCurrentContext } from "../../hooks";
+import { useMapLayersConfig } from "../../Config";
 
 /**
  * Returns the map layer configuration for the active bubble.

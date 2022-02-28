@@ -1,6 +1,13 @@
 import { FilterList } from "@mui/icons-material";
-import { Box, Button, Typography } from "@mui/material";
-import React, { useState } from "react";
+import {
+  Box,
+  Button,
+  FormControlLabel,
+  Switch,
+  Typography,
+} from "@mui/material";
+import { styled } from "@mui/system";
+import React, { useEffect, useState } from "react";
 import shallow from "zustand/shallow";
 import { useDashboardStore } from "../../Dashboard";
 import Panel from "../components/Panel";
@@ -8,24 +15,91 @@ import { SearchInput } from "../components/SearchInput";
 import useCategorizedMetrics from "./hooks/useCategorizedMetrics";
 import useMetricSearch from "./hooks/useMetricSearch";
 import MetricsList from "./MetricsList";
+import useIndicatorPanelStore from "./store";
+
+const StyledBox = styled(Box)({
+  width: "100%",
+  "& .MuiFormControlLabel-label": {
+    fontSize: 12,
+  },
+});
+
+const FooterActions = ({
+  onCustomize,
+  onToggleCustomized,
+  hasCustomized,
+  enableCustomized,
+  ...props
+}) => {
+  return (
+    <StyledBox
+      display="flex"
+      alignItems="center"
+      justifyContent="space-between"
+      px={2}
+      {...props}
+    >
+      {hasCustomized && (
+        <FormControlLabel
+          control={
+            <Switch checked={enableCustomized} onClick={onToggleCustomized} />
+          }
+          label="Use Customized Indicators"
+        />
+      )}
+      <Button
+        fullWidth={!hasCustomized}
+        variant="contained"
+        size="small"
+        color="primary"
+        onClick={onCustomize}
+      >
+        {hasCustomized ? "Edit" : "Customize Indicators"}
+      </Button>
+    </StyledBox>
+  );
+};
 
 export const IndicatorPanel = ({ ...props }) => {
   const [metric, setMetric] = useDashboardStore(
     (state) => [state.choroplethMetric, state.setChoroplethMetric],
     shallow
   );
-  const [highlight, setHighlight] = useState("");
-  const [filter, setFilter] = useState([]);
+  const setCustomizeOpen = useIndicatorPanelStore(
+    (state) => state.setCustomizeOpen
+  );
+  const customizedMetrics = useIndicatorPanelStore(
+    (state) => state.customizedMetrics
+  );
+  const hasCustomized = customizedMetrics.length > 0;
+  const [enableCustomized, setEnableCustomized] = useIndicatorPanelStore(
+    (state) => [state.enableCustomized, state.setEnableCustomized],
+    shallow
+  );
   const [expanded, setExpanded] = useState(["bhn", "fow", "opp"]);
-  const search = useMetricSearch();
+  const {
+    filter,
+    highlight,
+    matchCount,
+    handleFilterChange,
+    handleFilterClear,
+  } = useMetricSearch();
   const metrics = useCategorizedMetrics();
-  const numMatches = highlight ? filter.length : -1;
-  const handleFilterChange = (event) => {
-    const newValue = event.target.value;
-    const matches = search.search(newValue).map((m) => m.id);
-    setHighlight(newValue);
-    setFilter(matches);
-  };
+  // set the filter to be customized metrics if they are set and there is no search highlight
+  const filteredItems =
+    enableCustomized && hasCustomized && !highlight
+      ? customizedMetrics
+      : filter;
+
+  // expand the default choropleth metric catgegory if needed
+  useEffect(() => {
+    const parts = metric.split("_");
+    if (parts.length > 1 && !expanded.includes(parts[0])) {
+      setExpanded([...expanded, parts[0]]);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const handleSelectMetric = (event, id) => {
     setMetric(id);
     // expand the selected metric if it's not already expanded
@@ -55,12 +129,28 @@ export const IndicatorPanel = ({ ...props }) => {
   const handleExpandNone = () => {
     setExpanded([]);
   };
-  const handleFilterClear = () => {
-    setFilter([]);
-    setHighlight("");
+  const handleCustomizeIndicators = () => {
+    setCustomizeOpen(true);
   };
+  const handleToggleCustomized = () => {
+    console.count("toggle");
+    setEnableCustomized(!enableCustomized);
+  };
+  const footerChildren = (
+    <FooterActions
+      onCustomize={handleCustomizeIndicators}
+      onToggleCustomized={handleToggleCustomized}
+      hasCustomized={hasCustomized}
+      enableCustomized={enableCustomized}
+    />
+  );
   return (
-    <Panel position="right" title="Social Progress Indicators" {...props}>
+    <Panel
+      position="right"
+      title="Social Progress Indicators"
+      footerChildren={footerChildren}
+      {...props}
+    >
       <Box p={2}>
         <SearchInput
           icon={<FilterList />}
@@ -71,7 +161,7 @@ export const IndicatorPanel = ({ ...props }) => {
         {highlight && (
           <Box display="flex" alignItems="center" height={32} mt={2}>
             <Typography variant="body2">
-              Showing {numMatches} matching indicators.
+              Showing {matchCount} matching indicators.
             </Typography>
           </Box>
         )}
@@ -91,7 +181,7 @@ export const IndicatorPanel = ({ ...props }) => {
               color="inherit"
               onClick={handleExpandAll}
             >
-              Show all
+              Expand all
             </Button>
             <Button
               fullWidth
@@ -110,9 +200,9 @@ export const IndicatorPanel = ({ ...props }) => {
         items={metrics}
         selected={[metric]}
         expanded={expanded}
-        filter={filter}
+        filter={filteredItems}
         highlight={highlight}
-        collapseDepths={[0, 1]}
+        collapseDepths={hasCustomized && enableCustomized ? [] : [0, 1]}
         onSelect={handleSelectMetric}
         onToggleExpanded={handleToggleExpanded}
       />

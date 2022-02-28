@@ -94,9 +94,10 @@ export const NestedListItem = ({
   const Component = component;
   const isVisible =
     depth === 0 ||
-    !highlight ||
+    filter.length === 0 ||
     filter.includes(id) ||
     hasChildMatch(filter, childItems);
+
   const childMatches = countChildMatches(filter, childItems);
   const totalChildren = countAllChildren(childItems);
   const matchesString =

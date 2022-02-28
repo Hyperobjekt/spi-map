@@ -274,6 +274,7 @@
   {
     "id": "eq_no2",
     "category": "fow",
+    "format": "number",
     "subcategory": "eq",
     "source": "Environmental Protection Agency",
     "link": "https://aqs.epa.gov/aqsweb/airdata/download_files.html"
@@ -281,6 +282,7 @@
   {
     "id": "eq_ozone",
     "category": "fow",
+    "format": "number",
     "subcategory": "eq",
     "source": "Environmental Protection Agency",
     "link": "https://aqs.epa.gov/aqsweb/airdata/download_files.html"

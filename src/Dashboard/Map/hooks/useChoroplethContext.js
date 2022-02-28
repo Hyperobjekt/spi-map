@@ -1,11 +1,13 @@
 import { useMemo } from "react";
-import useCurrentContext from "./useCurrentContext";
+import { useCurrentContext } from "../../hooks";
 
 /**
  * Returns a context object for the choropleth based on current dashboard state
  */
-export default function useChoroplethContext() {
+export default function useChoroplethContext(overrides) {
   const { choroplethMetric, subgroup, region, year } = useCurrentContext();
+  overrides = overrides || {};
+
   return useMemo(() => {
     return {
       metric_id: choroplethMetric,
@@ -13,6 +15,7 @@ export default function useChoroplethContext() {
       region_id: region,
       year,
       type: "choropleth",
+      ...overrides,
     };
-  }, [choroplethMetric, subgroup, region, year]);
+  }, [choroplethMetric, subgroup, region, year, overrides]);
 }

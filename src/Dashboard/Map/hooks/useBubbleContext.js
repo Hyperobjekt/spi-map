@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import useCurrentContext from "./useCurrentContext";
+import { useCurrentContext } from "../../hooks";
 
 /**
  * Returns a context object for the bubble based on current dashboard state

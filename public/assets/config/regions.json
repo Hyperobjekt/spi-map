@@ -149,7 +149,7 @@
   },
   {
     "id": "tracts",
-    "min_zoom": 11,
+    "min_zoom": 10.99999,
     "max_zoom": 20,
     "target_zoom": 12,
     "metrics": [

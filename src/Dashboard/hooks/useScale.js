@@ -3,42 +3,19 @@ import useDataSource from "../Data/useDataSource";
 import { getScale } from "@hyperobjekt/scales";
 import useColors from "./useColor";
 import { getFormatter } from "../Formatters";
-import Color from "color";
-
-const getCategoryColors = (category) => {
-  switch (category) {
-    case "bhn":
-      return ["#498ABA", "#6AB1CF", "#8ECAC4", "#B3DBB8", "#D2EAC8"];
-    case "fow":
-      return ["#ffffd4", "#fed98e", "#fe9929", "#d95f0e", "#993404"]
-        .map((c, i) => {
-          const color = Color(c);
-          return color.desaturate(0.05 * i).hex();
-        })
-        .reverse();
-    case "opp":
-      return ["#ffffcc", "#c2e699", "#78c679", "#31a354", "#006837"]
-        .map((c, i) => {
-          const color = Color(c);
-          return color
-            .rotate(-10)
-            .desaturate(0.2 * i)
-            .hex();
-        })
-        .reverse();
-    default:
-      return null;
-  }
-};
 
 /**
  * Takes a context object and returns `ScaleProps`, `TickProps`, and scale functions
  * @param {*} context
  * @returns
  */
-export default function useScale(context) {
+export default function useScale(context, configOverrides) {
   context.type = context.type || "choropleth";
   const defaultColor = useColors(context.type);
+  const baseScaleConfig = useScaleConfig(context);
+  const scaleConfig = configOverrides
+    ? { ...baseScaleConfig, ...configOverrides }
+    : baseScaleConfig;
   const {
     extent_url,
     extent_min_key,
@@ -48,10 +25,9 @@ export default function useScale(context) {
     chunks,
     scale,
     colors,
-  } = useScaleConfig(context);
-  const { id, category, format, short_format } = useMetricConfig(
-    context.metric_id
-  );
+  } = scaleConfig;
+
+  const { format, short_format } = useMetricConfig(context.metric_id);
   const formatType = short_format || format || "number";
   const tickFormat = getFormatter(formatType);
   const { isSuccess, data } = useDataSource({ url: extent_url }, { context });
@@ -59,8 +35,7 @@ export default function useScale(context) {
     isSuccess && data?.find((entry) => entry.id === context.metric_id);
   const minValue = (metricEntry && metricEntry[extent_min_key]) || min || 0;
   const maxValue = (metricEntry && metricEntry[extent_max_key]) || max || 1;
-  const colorValue =
-    colors || getCategoryColors(category || id) || defaultColor;
+  const colorValue = colors || defaultColor;
   const scaleFns = getScale(scale, {
     min: minValue,
     max: maxValue,

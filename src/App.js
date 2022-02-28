@@ -14,6 +14,7 @@ import shallow from "zustand/shallow";
 import { useDashboardStore } from "./Dashboard";
 import { useCallback } from "react";
 import { MapTooltip, Map } from "./Demo/Map";
+import CustomizeIndiactorPanel from "./Demo/IndicatorPanel/CustomizeIndicatorPanel";
 // // debug tools
 // import Debug from "./Demo/components/Debug";
 // import { ReactQueryDevtools } from "react-query/devtools";
@@ -112,6 +113,10 @@ function App({ config = CONFIG }) {
     (state) => [state.open, state.setOpen],
     shallow
   );
+  const customizeOpen = useIndicatorPanelStore(
+    (state) => state.customizeOpen,
+    shallow
+  );
   console.log({ theme });
   useLoadConfig(config);
   const isReady = useConfigStore((state) => state.ready);
@@ -152,6 +157,7 @@ function App({ config = CONFIG }) {
               open={indicatorsOpen}
               onClose={() => setIndicatorsOpen(false)}
             />
+            <CustomizeIndiactorPanel open={customizeOpen} />
             <MapTooltip />
           </MapBodyWrapper>
         </AppWrapper>

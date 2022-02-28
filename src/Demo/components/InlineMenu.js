@@ -60,7 +60,14 @@ const StyledMenu = styled(Menu)(({ theme }) => ({
   },
 }));
 
-const InlineMenu = ({ children, options, selected, onSelect, ...props }) => {
+const InlineMenu = ({
+  children,
+  label,
+  options,
+  selected,
+  onSelect,
+  ...props
+}) => {
   const id = useMemo(uuid, []);
   const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -84,7 +91,7 @@ const InlineMenu = ({ children, options, selected, onSelect, ...props }) => {
         onClick={handleClick}
         {...props}
       >
-        <span>{children}</span> <ArrowDropDown />
+        <span>{label}</span> <ArrowDropDown />
       </Typography>
       <StyledMenu
         id={id}
@@ -117,6 +124,7 @@ const InlineMenu = ({ children, options, selected, onSelect, ...props }) => {
             </span>
           </MenuItem>
         ))}
+        {children}
       </StyledMenu>
     </>
   );

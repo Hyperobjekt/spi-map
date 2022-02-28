@@ -6,6 +6,9 @@ const StyledNestedList = styled(NestedList)(({ theme }) => ({
   "& .HypNestedList-depth2": {
     paddingTop: 0,
   },
+  "& .HypNestedListItem-toggle": {
+    padding: 0,
+  },
   // increase space on left of all list items to make room
   // for category indicator and selected indicator
   "& .HypNestedListItem-root": {
@@ -115,7 +118,7 @@ const StyledNestedList = styled(NestedList)(({ theme }) => ({
     },
     // circle category marker
     "&:after": {
-      top: theme.spacing(2.3333),
+      top: theme.spacing(2.15),
       left: theme.spacing(2),
       height: theme.spacing(1.5),
       width: theme.spacing(1.5),
@@ -124,7 +127,7 @@ const StyledNestedList = styled(NestedList)(({ theme }) => ({
   // subcategory list items styling
   "& .HypNestedListItem-depth1": {
     "&:after": {
-      top: 21,
+      top: 19,
       left: 19,
       height: 6,
       width: 6,

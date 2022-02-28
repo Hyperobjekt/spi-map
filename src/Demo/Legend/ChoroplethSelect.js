@@ -61,12 +61,11 @@ const ChoroplethSelect = (props) => {
       options={options}
       variant="body1"
       fontWeight="bold"
+      label={currentMetric?.name}
       lineHeight={1.2}
       selected={choroplethMetric}
       onSelect={handleChange}
-    >
-      {currentMetric?.name}
-    </InlineMenu>
+    />
   );
 };
 

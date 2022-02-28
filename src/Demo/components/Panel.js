@@ -39,6 +39,8 @@ const PanelRoot = styled(Paper)(({ theme }) => ({
 const PanelContents = styled(Box)(({ theme }) => ({
   minWidth: 320,
   maxHeight: "100%",
+  height: "100%",
+
   display: "flex",
   flexDirection: "column",
   alignItems: "stretch",
@@ -60,10 +62,35 @@ const PanelBody = styled(Box)(({ theme }) => ({
   overflow: "auto",
   maxHeight: "calc(100% - 64px)",
   boxSizing: "border-box",
+  flex: 1,
+}));
+
+const PanelFooter = styled(Box)(({ theme }) => ({
+  display: "flex",
+  minHeight: 56,
+  alignItems: "center",
+  borderTop: `1px solid ${theme.palette.divider}`,
+  boxSizing: "border-box",
+  padding: 0,
 }));
 
 const AnimatedPanel = animated(PanelRoot);
 
+/**
+ * Renders a panel that opens / closes from the sides of the screen.
+ * Can be overlayed over content, or push sibling content to the side.
+ *
+ * TODO: PanelHeader / PanelFooter should be child components instead of
+ * being embedded within this component.
+ * e.g. usage should look something like this, to allow custom composition.
+ * ```
+ * <Panel>
+ *   <PanelHeader>My Panel</PanelHeader>
+ *   <PanelBody>panel content</PanelBody>
+ *   <PanelFooter>My Panel Footer</PanelFooter>
+ * </Panel>
+ * ```
+ */
 const Panel = ({
   open = false,
   classes,
@@ -77,6 +104,7 @@ const Panel = ({
   style: styleOverrides,
   bodyRef,
   children,
+  footerChildren,
   onOpen,
   onClose,
   onScroll,
@@ -91,10 +119,14 @@ const Panel = ({
       ? "marginRight"
       : "marginLeft";
   const transformWidth = width;
-  const transformAmount =
+  console.log({ transformProp, transformWidth });
+  let transformAmount =
     !float || !absolute || position !== "right"
       ? -1 * transformWidth
       : transformWidth;
+  if (float && position === "right") {
+    transformAmount = transformWidth;
+  }
   springOptions[transformProp] = open ? 0 + offset : transformAmount - offset;
   springOptions.width = transformWidth;
   const style = useSpring(springOptions);
@@ -151,6 +183,11 @@ const Panel = ({
         <PanelBody className="HypPanel-body" ref={bodyRef} onScroll={onScroll}>
           {children}
         </PanelBody>
+        {footerChildren && (
+          <PanelFooter className="HypPanel-footer">
+            {footerChildren}
+          </PanelFooter>
+        )}
       </PanelContents>
     </AnimatedPanel>
   );

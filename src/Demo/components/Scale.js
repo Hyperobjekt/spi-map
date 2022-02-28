@@ -1,5 +1,6 @@
 import { Scale as HypScale } from "@hyperobjekt/scales";
 import { useScale } from "../../Dashboard/hooks";
+import useSpiScaleOverrides from "../hooks/useSpiScaleOverrides";
 
 // default margin for scale
 const DEFAULT_MARGIN = { left: 16, right: 16, top: 0, bottom: 0 };
@@ -16,13 +17,23 @@ export default function Scale({
   children,
   ...props
 }) {
-  const { ScaleProps, TickProps } = useScale({
+  const scaleOverrides = useSpiScaleOverrides({
     metric_id: metric,
     subgroup_id: subgroup,
     region_id: region,
     year,
     type,
   });
+  const { ScaleProps, TickProps } = useScale(
+    {
+      metric_id: metric,
+      subgroup_id: subgroup,
+      region_id: region,
+      year,
+      type,
+    },
+    scaleOverrides
+  );
   return (
     <HypScale
       style={{ marginTop: 8 }}
