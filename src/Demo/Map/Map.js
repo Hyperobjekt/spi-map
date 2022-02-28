@@ -4,11 +4,7 @@ import {
   useMapFlyToFeature,
   ZoomToBoundsControl,
 } from "@hyperobjekt/mapgl";
-import {
-  FullscreenControl,
-  GeolocateControl,
-  NavigationControl,
-} from "react-map-gl";
+import { GeolocateControl, NavigationControl } from "react-map-gl";
 import { useMapSources, useDashboardStore } from "../../Dashboard";
 import {
   useLocationStore,
@@ -64,7 +60,6 @@ export default function Map({ children, ...props }) {
       // interactiveLayerIds={[`${region_id}-choropleth`, `city-bubbles`]}
       {...props}
     >
-      <FullscreenControl />
       <GeolocateControl />
       <NavigationControl />
       <ZoomToBoundsControl bounds={US_BOUNDS} />
