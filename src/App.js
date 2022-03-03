@@ -1,5 +1,3 @@
-import { useConfigStore, useLoadConfig } from "./Dashboard/Config";
-import { QueryClient, QueryClientProvider } from "react-query";
 import "@hyperobjekt/mapgl/dist/style.css";
 import "@hyperobjekt/scales/dist/style.css";
 import { Legend } from "./Demo/Legend/Legend";
@@ -15,6 +13,7 @@ import { useDashboardStore } from "./Dashboard";
 import { useCallback } from "react";
 import { MapTooltip, Map } from "./Demo/Map";
 import CustomizeIndiactorPanel from "./Demo/IndicatorPanel/CustomizeIndicatorPanel";
+import Dashboard from "./Dashboard/Dashboard";
 // // debug tools
 // import Debug from "./Demo/components/Debug";
 // import { ReactQueryDevtools } from "react-query/devtools";
@@ -108,32 +107,26 @@ const MapBodyWrapper = styled("div")(({ theme }) => ({
   },
 }));
 
-function App({ config = CONFIG }) {
+function App() {
+  // pull state and setter that determines if the indicator panel is open
   const [indicatorsOpen, setIndicatorsOpen] = useIndicatorPanelStore(
     (state) => [state.open, state.setOpen],
     shallow
   );
-  const customizeOpen = useIndicatorPanelStore(
-    (state) => state.customizeOpen,
-    shallow
-  );
-  console.log({ theme });
-  useLoadConfig(config);
-  const isReady = useConfigStore((state) => state.ready);
-  const queryClient = new QueryClient();
-
+  // tracks if the customize indicators panel is open
+  const customizeOpen = useIndicatorPanelStore((state) => state.customizeOpen);
   // track mouse coords for tooltip
   const setHoverCoords = useDashboardStore((state) => state.setHoverCoords);
+  // update the mouse coords as the mouse moves
   const handleMouseMove = useCallback(
     (event) => {
       setHoverCoords([event.pageX, event.pageY]);
     },
     [setHoverCoords]
   );
-  if (!isReady) return <div>Loading...</div>;
   return (
-    <QueryClientProvider client={queryClient}>
-      <ThemeProvider theme={theme}>
+    <ThemeProvider theme={theme}>
+      <Dashboard config={CONFIG}>
         <CssBaseline />
         <AppWrapper className="App">
           <Header />
@@ -161,11 +154,8 @@ function App({ config = CONFIG }) {
             <MapTooltip />
           </MapBodyWrapper>
         </AppWrapper>
-        {/* <AllScales /> */}
-        {/* <Debug options={DEBUG} />
-        <ReactQueryDevtools /> */}
-      </ThemeProvider>
-    </QueryClientProvider>
+      </Dashboard>
+    </ThemeProvider>
   );
 }
 

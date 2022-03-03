@@ -119,7 +119,6 @@ const Panel = ({
       ? "marginRight"
       : "marginLeft";
   const transformWidth = width;
-  console.log({ transformProp, transformWidth });
   let transformAmount =
     !float || !absolute || position !== "right"
       ? -1 * transformWidth

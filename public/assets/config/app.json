@@ -1,5 +1,5 @@
 {
-  "years": ["2018"],
+  "years": [],
   "location_colors": [
     "#1b9e77",
     "#d95f02",
@@ -23,7 +23,7 @@
   "default_choropleth_metric": "ws_impervious",
   "default_bubble_metric": null,
   "default_subgroup": "",
-  "default_year": "2018",
+  "default_year": null,
   "default_viewport": {
     "center": [-98.5795, 39.8283],
     "zoom": 3.5

@@ -8,13 +8,18 @@ import useSpiScaleOverrides from "../../hooks/useSpiScaleOverrides";
 import { createCircleLayers } from "../utils";
 
 /**
- * Returns map sources for the current context for use with mapboxgl.
+ * Returns map layers for the current context for use with mapboxgl.
  * @returns {object} object containing [map sources](https://docs.mapbox.com/mapbox-gl-js/style-spec/sources)
  */
 export default function useSpiMapLayers() {
+  // pull the current context based on user selections
   const currentContext = useChoroplethContext();
+  // pull scale overrides for the current context (for category colors)
   const scaleOverrides = useSpiScaleOverrides(currentContext);
+  // pull if auto-switch is on or off
   const autoSwitchRegion = useDashboardStore((state) => state.autoSwitchRegion);
+  // create layers contexts for all available regions
+  // each region has its own scale extents
   const layerContexts = {
     states: useChoroplethLayerContext({
       context: {
@@ -38,12 +43,13 @@ export default function useSpiMapLayers() {
       scale: scaleOverrides,
     }),
   };
-  const bubbleContext = useChoroplethLayerContext({ scale: scaleOverrides });
+  // create separate context for circles (uses context for whichever region is active)
+  const circleContext = useChoroplethLayerContext({ scale: scaleOverrides });
+  /// if no autoswitch, then only return the layers for the current region
   if (!autoSwitchRegion) {
-    const layers = getChoroplethLayers(layerContexts[currentContext.region_id]);
-    return layers;
+    return getChoroplethLayers(layerContexts[currentContext.region_id]);
   }
-  // const regionsConfig = useConfig("regions");
+  // if autoswitch is on, then return all layers
   const allLayers = Object.keys(layerContexts)
     .map((region) => {
       return getChoroplethLayers(layerContexts[region]);
@@ -62,7 +68,7 @@ export default function useSpiMapLayers() {
         interactive: false,
       };
     });
-  const circleLayers = createCircleLayers(bubbleContext);
-  console.log({ allLayers, circleLayers });
+  /** Circle layers for cities */
+  const circleLayers = createCircleLayers(circleContext);
   return [...allLayers, ...circleLayers];
 }

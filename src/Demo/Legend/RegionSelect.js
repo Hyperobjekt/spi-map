@@ -50,11 +50,7 @@ const RegionSelect = (props) => {
       <Divider />
       <MenuItem onClick={handleToggleAutoSwitch}>
         <Typography variant="body2">Auto-switch on zoom</Typography>
-        <Switch
-          defaultChecked
-          checked={autoSwitchRegion}
-          onClick={handleToggleAutoSwitch}
-        />
+        <Switch checked={autoSwitchRegion} onClick={handleToggleAutoSwitch} />
       </MenuItem>
     </InlineMenu>
   );

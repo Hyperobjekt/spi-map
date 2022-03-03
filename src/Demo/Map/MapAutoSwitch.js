@@ -73,6 +73,8 @@ const MapAutoSwitch = () => {
   // get the next region, based on the zoom direction and regions in range
   const nextRegion = getSwitchRegion(regionsInZoomRange, isZoomingIn);
   nextRegion?.id && setRegion(nextRegion.id);
+
+  // render nothing!
   return null;
 };
 
