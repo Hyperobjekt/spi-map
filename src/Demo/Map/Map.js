@@ -5,11 +5,12 @@ import {
   ZoomToBoundsControl,
 } from "@hyperobjekt/mapgl";
 import { GeolocateControl, NavigationControl } from "react-map-gl";
-import { useMapSources, useDashboardStore } from "../../Dashboard";
 import {
+  useMapSources,
+  useDashboardStore,
   useLocationStore,
   useToggleSelectedLocation,
-} from "../../Dashboard/Locations";
+} from "../../Dashboard";
 import MapAutoSwitch from "./MapAutoSwitch";
 import CityLabelsLayer from "./CityLabelsLayer";
 import useSpiMapLayers from "./hooks/useSpiMapLayers";

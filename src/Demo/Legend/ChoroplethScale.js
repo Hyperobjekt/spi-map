@@ -1,5 +1,5 @@
 import { Scale } from "../components";
-import { useCurrentContext } from "../../Dashboard/hooks";
+import { useCurrentContext } from "../../Dashboard";
 import { useMapStore } from "@hyperobjekt/mapgl";
 import { Scale as HypScale } from "@hyperobjekt/scales";
 

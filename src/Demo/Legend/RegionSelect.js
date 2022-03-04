@@ -1,7 +1,9 @@
 import React from "react";
-import useDashboardStore from "../../Dashboard/store";
-import InlineMenu from "../components/InlineMenu";
-import { useRegionConfig } from "../../Dashboard";
+import {
+  InlineMenu,
+  useDashboardStore,
+  useRegionConfig,
+} from "../../Dashboard";
 import { useMapState } from "@hyperobjekt/mapgl";
 import { Divider, MenuItem, Switch, Typography } from "@mui/material";
 

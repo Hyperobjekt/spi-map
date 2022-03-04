@@ -7,25 +7,7 @@ import { useConfigStore } from "./Config";
 import useDashboardStore from "./store";
 import { useDidMount } from "rooks";
 import { useMapStore } from "@hyperobjekt/mapgl";
-
-/** Renders a loading message */
-const Loader = () => {
-  return (
-    <div
-      style={{
-        position: "absolute",
-        width: "100%",
-        height: "100%",
-        backgroundColor: "rgba(255, 255, 0, 0.5)",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    >
-      <span>Loading</span>
-    </div>
-  );
-};
+import { Loader } from "./components";
 
 /**
  * Dashboard wrapper component that handles setting up the query provider

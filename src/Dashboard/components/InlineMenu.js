@@ -2,7 +2,6 @@ import { ArrowDropDown } from "@mui/icons-material";
 import { Menu, MenuItem, Typography } from "@mui/material";
 import { styled } from "@mui/system";
 import React, { useMemo } from "react";
-// import { useLang } from "../../Language";
 
 function uuid(a) {
   return a

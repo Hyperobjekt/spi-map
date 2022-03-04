@@ -167,7 +167,7 @@ export const NestedListItem = ({
 /**
  * Renders a nested list for the provided items and children
  */
-export const NestedList = ({
+const NestedList = ({
   items,
   childComponent,
   depth = 0,

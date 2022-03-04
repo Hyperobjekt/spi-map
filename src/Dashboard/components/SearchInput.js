@@ -76,3 +76,5 @@ export const SearchInput = ({
     </Search>
   );
 };
+
+export default SearchInput;

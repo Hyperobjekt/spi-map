@@ -1,7 +1,6 @@
 import React from "react";
 import { AppBar, Toolbar, Box } from "@mui/material";
-
-import { SearchInput } from "./SearchInput";
+import { SearchInput } from "../../Dashboard";
 
 export const Header = () => {
   return (

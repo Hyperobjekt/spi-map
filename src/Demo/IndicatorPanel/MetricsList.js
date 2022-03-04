@@ -1,6 +1,8 @@
 import { styled } from "@mui/system";
-import NestedList from "../components/NestedList";
+import { NestedList } from "../../Dashboard";
 import ListItemHintButton from "./ListItemHintButton";
+
+console.log(NestedList);
 
 const StyledNestedList = styled(NestedList)(({ theme }) => ({
   "& .HypNestedList-depth2": {

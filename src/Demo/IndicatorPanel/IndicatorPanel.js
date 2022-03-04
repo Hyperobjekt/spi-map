@@ -9,9 +9,7 @@ import {
 import { styled } from "@mui/system";
 import React, { useEffect, useState } from "react";
 import shallow from "zustand/shallow";
-import { useDashboardStore } from "../../Dashboard";
-import Panel from "../components/Panel";
-import { SearchInput } from "../components/SearchInput";
+import { useDashboardStore, Panel, SearchInput } from "../../Dashboard";
 import useCategorizedMetrics from "./hooks/useCategorizedMetrics";
 import useMetricSearch from "./hooks/useMetricSearch";
 import MetricsList from "./MetricsList";

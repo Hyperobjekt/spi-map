@@ -1,5 +1,5 @@
 import { styled } from "@mui/system";
-import NestedList from "../components/NestedList";
+import { NestedList } from "../../Dashboard";
 import ListItemCheckbox from "./ListItemCheckbox";
 
 const StyledNestedList = styled(NestedList)(({ theme }) => ({
