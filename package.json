@@ -7,6 +7,7 @@
     "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.6.0",
     "@hyperobjekt/mapgl": "^1.1.6",
+    "@hyperobjekt/react-dashboard": "^0.3.0",
     "@hyperobjekt/scales": "^2.0.3",
     "@mui/icons-material": "^5.4.2",
     "@mui/material": "^5.4.2",
