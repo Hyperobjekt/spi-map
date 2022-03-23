@@ -1226,27 +1226,23 @@
   resolved "https://registry.npmjs.org/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
 
-"@hyperobjekt/mapgl@^1.1.6":
-  version "1.1.6"
-  resolved "https://registry.yarnpkg.com/@hyperobjekt/mapgl/-/mapgl-1.1.6.tgz#7b8b14a6353b0c2ec6ff916c19f924b2e4c7d706"
-  integrity sha512-4mJ7yET/dB8QOwN0OEsc9DVd731xWfkO2nD9xLfuxxPk/6W8WpSq3K/MSEujUJNsGxoaEnne9tEctRU2F3cDVQ==
+"@hyperobjekt/mapgl@^1.1.7":
+  version "1.1.7"
+  resolved "https://registry.yarnpkg.com/@hyperobjekt/mapgl/-/mapgl-1.1.7.tgz#6d945d2f87370d780d1ac7af83c3833d6e97786b"
+  integrity sha512-I44BDvA+QP39aDv5Ju2SiNK2EzpaEww8Mj3RJNfkuXhU4w8yEKDj8SeExbjlmWbeR7JEQueqfa+Pyf2JKZ5dlA==
   dependencies:
     "@turf/bbox" "^6.5.0"
     clsx "^1.1.1"
-    mapbox-gl "^2.0.0"
     prop-types "^15.8.1"
-    react "^17.0.2"
-    react-dom "^17.0.2"
-    react-map-gl "^7.0.6"
     rooks "^5.10.0"
     use-resize-observer "^8.0.0"
     viewport-mercator-project "^7.0.4"
     zustand "^3.0.0"
 
-"@hyperobjekt/react-dashboard@^0.3.0":
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/@hyperobjekt/react-dashboard/-/react-dashboard-0.3.0.tgz#8bd28776d3c559b25161de778c83bdd2d12c7821"
-  integrity sha512-vw/FiLsCGK6E3mf1PLTIf/r7FCN/Tqp37AORBUSdeuEoFtaM1LNDIwb4GKKC+2zvV50ZP8d0Rxp55eOVYLeqgw==
+"@hyperobjekt/react-dashboard@^0.3.1":
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/@hyperobjekt/react-dashboard/-/react-dashboard-0.3.1.tgz#fbe57d084aaf4c1a65ef076c82feddaf61dbcf5a"
+  integrity sha512-phxU5Guln2IYR0wYLEUfpkxdMfRohKXnSpV6QXJs9jo3rt3NUkebtmTL++N+6kAaRqF2rDKmU5MU8MVAtk5Zcw==
   dependencies:
     "@react-spring/web" "^9.4.3"
     "@turf/union" "^6.5.0"
@@ -1258,11 +1254,12 @@
     react-query "^3.34.16"
     zustand "^3.7.1"
 
-"@hyperobjekt/scales@^2.0.3":
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/@hyperobjekt/scales/-/scales-2.0.3.tgz#bc6730996038688cc68c2a6f609a01d3bcd3f2de"
-  integrity sha512-/3DVK3TWv/AafROt2NV8e+SarWpWqruuRaNU9l/TVqCvqMUOAqRqkjAlt433ZU+JPWo7GF1ExANlkJ87FuqbsA==
+"@hyperobjekt/scales@^2.1.2":
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/@hyperobjekt/scales/-/scales-2.1.2.tgz#b3eaafd242c2ddb8fbd400a256b9da753de04d97"
+  integrity sha512-ULJ64OvV5N6A6xdHyzBAjHzfTxVenZ9NgyNx9uUliSnUNeTuH4FdVa46oIR3Sk28bhzNN4uZA1CMvQXQ/IWgLw==
   dependencies:
+    "@react-spring/web" "^9.4.3"
     clsx "^1.1.1"
     color "^4.2.1"
     d3-array "^2.12.1"
@@ -1274,9 +1271,6 @@
     d3-selection "^2.0.0"
     deepmerge "^4.2.2"
     prop-types "^15.8.1"
-    react "^17.0.2"
-    react-dom "^17.0.2"
-    react-spring "^9.4.3"
 
 "@istanbuljs/load-nyc-config@^1.0.0":
   version "1.1.0"
@@ -6579,7 +6573,7 @@ makeerror@1.0.12:
   dependencies:
     tmpl "1.0.5"
 
-mapbox-gl@^2.0.0, mapbox-gl@^2.7.0:
+mapbox-gl@^2.7.0:
   version "2.7.0"
   resolved "https://registry.yarnpkg.com/mapbox-gl/-/mapbox-gl-2.7.0.tgz#ff8f6e6f948ed468ae75c9d71884aa59af67505a"
   integrity sha512-7sNoQIpizMjoQkFIcxpWzFCcMd8GJFN0Po00oFZGm1X7xS5XMrzwu+ClfO/ehZqKLa9IS7E3Pj0e2PT+9KeqaA==
@@ -7986,13 +7980,6 @@ react-lifecycles-compat@^3.0.4:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
   integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
-
-react-map-gl@^7.0.6:
-  version "7.0.6"
-  resolved "https://registry.yarnpkg.com/react-map-gl/-/react-map-gl-7.0.6.tgz#2a233bc25591ed7626b63c0a74aa95c44b78d6ba"
-  integrity sha512-c6HcIJ/qhiK/ifxGH2WtgHZAAa5PePUvCL/O3juMCdcUOuvujN3rjK2Cg+Yei9Mp/fDN6z15/g3St9PKQGBG7A==
-  dependencies:
-    "@types/mapbox-gl" "^2.6.0"
 
 react-map-gl@^7.0.7:
   version "7.0.7"

@@ -10,8 +10,8 @@ import {
   useLocationStore,
   useToggleLocation,
 } from "@hyperobjekt/react-dashboard";
-import MapAutoSwitch from "./MapAutoSwitch";
-import CityLabelsLayer from "./CityLabelsLayer";
+import MapAutoSwitch from "./components/MapAutoSwitch";
+import CityLabelsLayer from "./components/CityLabelsLayer";
 import useSpiMapLayers from "./hooks/useSpiMapLayers";
 
 const TOKEN = `pk.eyJ1IjoiaHlwZXJvYmpla3QiLCJhIjoiY2pzZ3Bnd3piMGV6YTQzbjVqa3Z3dHQxZyJ9.rHobqsY_BjkNbqNQS4DNYw`;

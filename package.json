@@ -1,14 +1,14 @@
 {
-  "name": "@hyperobjekt/dashboard",
+  "name": "spi-app",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "@craco/craco": "^6.4.3",
     "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.6.0",
-    "@hyperobjekt/mapgl": "^1.1.6",
-    "@hyperobjekt/react-dashboard": "^0.3.0",
-    "@hyperobjekt/scales": "^2.0.3",
+    "@hyperobjekt/mapgl": "^1.1.7",
+    "@hyperobjekt/react-dashboard": "^0.3.1",
+    "@hyperobjekt/scales": "^2.1.2",
     "@mui/icons-material": "^5.4.2",
     "@mui/material": "^5.4.2",
     "@testing-library/jest-dom": "^5.16.1",

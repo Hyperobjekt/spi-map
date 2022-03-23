@@ -135,6 +135,7 @@ export const IndicatorPanel = ({ ...props }) => {
     console.count("toggle");
     setEnableCustomized(!enableCustomized);
   };
+  console.log({ metrics });
   const footerChildren = (
     <FooterActions
       onCustomize={handleCustomizeIndicators}

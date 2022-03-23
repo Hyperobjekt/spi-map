@@ -3,7 +3,6 @@ import "@hyperobjekt/scales/dist/style.css";
 import { Legend } from "./Legend/Legend";
 import { Button, CssBaseline } from "@mui/material";
 import { styled, ThemeProvider } from "@mui/system";
-import { createTheme } from "@mui/material/styles";
 import Header from "./components/Header";
 
 import { IndicatorPanel } from "./IndicatorPanel/IndicatorPanel";
@@ -13,6 +12,8 @@ import { useCallback } from "react";
 import { MapTooltip, Map } from "./Map";
 import CustomizeIndiactorPanel from "./IndicatorPanel/CustomizeIndicatorPanel";
 import Dashboard, { useDashboardStore } from "@hyperobjekt/react-dashboard";
+import { Scorecards } from "./Scorecards";
+import theme from "../theme";
 // // debug tools
 // import Debug from "./Demo/components/Debug";
 // import { ReactQueryDevtools } from "react-query/devtools";
@@ -30,54 +31,6 @@ const CONFIG = {
     en: "/assets/en.json",
   },
 };
-
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: "#0D7682",
-    },
-    secondary: {
-      main: "#DB8741",
-    },
-    background: {
-      dark: "#142324",
-    },
-  },
-  typography: {
-    fontFamily: "proxima-nova, sans-serif",
-    fontWeightBold: 600,
-    fontWeightRegular: 400,
-    button: {
-      textTransform: "none",
-      fontWeight: 600,
-    },
-  },
-  components: {
-    MuiButton: {
-      styleOverrides: {
-        contained: {
-          borderRadius: "24px",
-          boxShadow: "none",
-        },
-        outlined: {
-          borderRadius: "24px",
-          boxShadow: "none",
-        },
-      },
-    },
-    MuiTooltip: {
-      styleOverrides: {
-        tooltip: {
-          background: "#142324",
-          fontSize: "0.75rem",
-        },
-        arrow: {
-          color: "#142324",
-        },
-      },
-    },
-  },
-});
 
 const AppWrapper = styled("div")({
   position: "relative",
@@ -152,6 +105,7 @@ function App() {
             <CustomizeIndiactorPanel open={customizeOpen} />
             <MapTooltip />
           </MapBodyWrapper>
+          <Scorecards />
         </AppWrapper>
       </Dashboard>
     </ThemeProvider>

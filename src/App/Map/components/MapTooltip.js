@@ -8,8 +8,8 @@ import {
 } from "@hyperobjekt/react-dashboard";
 import { useMapStore } from "@hyperobjekt/mapgl";
 import { Divider, Paper, Typography } from "@mui/material";
-import { LocationName } from "../Location";
-import { getLocationNameParts } from "../utils";
+import { LocationName } from "../../Location";
+import { getLocationNameParts } from "../../utils";
 
 // tooltip dimensions (height is an estimate for offsets)
 const TOOLTIP_WIDTH = 240;

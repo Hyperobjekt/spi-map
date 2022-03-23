@@ -8,6 +8,7 @@ import {
 } from "@mui/material";
 import clsx from "clsx";
 import React from "react";
+import PropTypes from "prop-types";
 import escapeRegExp from "lodash.escaperegexp";
 
 /**
@@ -69,6 +70,27 @@ const Highlighted = ({ text = "", highlight = "" }) => {
   );
 };
 
+/*
+ * TODO: NestedList and NestedListItem could be combined into a
+ * single recursive component.  Should use item props instead of
+ * passing an array of selected, filtered, expanded, etc.
+ */
+
+// const LIST_ITEMS = {
+//   id: "root",
+//   children: [
+//     {
+//       id: "a",
+//       expanded: true,
+//       filtered: false,
+//       active: false,
+//       children: [],
+//     }
+//   ],
+// }
+
+// const TmpListItem = ({depth, active, expanded, filtered, highlight, children })
+
 /**
  * Renders a list item with an optionally collapsable list of childItems
  */
@@ -77,6 +99,7 @@ export const NestedListItem = ({
   component = ListItemButton,
   name,
   childItems,
+  itemProps,
   collapsible,
   depth = 0,
   parents = [],
@@ -128,6 +151,7 @@ export const NestedListItem = ({
           className
         )}
         value={id}
+        itemProps={{ name, ...itemProps }}
         selected={isSelected}
         onClick={handleSelect}
         {...props}
@@ -193,7 +217,7 @@ const NestedList = ({
       )}
       {...props}
     >
-      {items.map(({ id, name, children }) => (
+      {items.map(({ id, name, children, ...itemProps }) => (
         <NestedListItem
           key={id}
           id={id}
@@ -208,12 +232,39 @@ const NestedList = ({
           highlight={highlight}
           filter={filter}
           collapseDepths={collapseDepths}
+          itemProps={itemProps}
           onSelect={onSelect}
           onToggleExpanded={onToggleExpanded}
         />
       ))}
     </List>
   );
+};
+
+NestedList.propTypes = {
+  /** An array of list items, should have `id`, `name`, `children` props. */
+  items: PropTypes.arrayOf(PropTypes.object),
+  /** The base component to use for each list item. */
+  childComponent: PropTypes.any,
+  /** Indicated the depth of the nested list */
+  depth: PropTypes.number,
+  /** Determines which depths are collapsed */
+  collapseDepths: PropTypes.arrayOf(PropTypes.number),
+  className: PropTypes.string,
+  /** An array of parent IDs for the list (if any) */
+  parents: PropTypes.arrayOf(PropTypes.string),
+  /** An array of IDs that should have "selected status"  */
+  selected: PropTypes.arrayOf(PropTypes.string),
+  /** An array of IDs that should be expanded */
+  expanded: PropTypes.arrayOf(PropTypes.string),
+  /** An array of IDs that should be shown in the list */
+  filter: PropTypes.arrayOf(PropTypes.string),
+  /** A string to highlight in on list item names */
+  highlight: PropTypes.string,
+  /** A function to call when a list item is selected */
+  onSelect: PropTypes.func,
+  /** A function to call when a list item is expanded or collapsed */
+  onToggleExpanded: PropTypes.func,
 };
 
 export default NestedList;
