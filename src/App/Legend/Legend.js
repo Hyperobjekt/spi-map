@@ -1,6 +1,7 @@
 import { ExpandLess, ExpandMore, HelpOutline } from "@mui/icons-material";
 import {
   Alert,
+  Button,
   Collapse,
   Divider,
   IconButton,
@@ -17,6 +18,7 @@ import {
   useMetricConfig,
   useRegionConfig,
   useLocationStore,
+  useLocationFeature,
 } from "@hyperobjekt/react-dashboard";
 import { LocationListItem } from "../Location";
 import { getLocationNameParts } from "../utils";
@@ -24,12 +26,13 @@ import ChoroplethScale from "./ChoroplethScale";
 import ChoroplethSelect from "./ChoroplethSelect";
 import RegionSelect from "./RegionSelect";
 import { useMapStore } from "@hyperobjekt/mapgl";
+import useActiveView from "../hooks/useActiveView";
 
 const LegendContainer = styled(Paper)(({ theme }) => ({
   position: "absolute",
   bottom: 24,
   right: 24,
-  zIndex: 99,
+  zIndex: 5,
   display: "flex",
   flexDirection: "column",
   alignItems: "flex-start",
@@ -68,19 +71,24 @@ export const Legend = ({ children, ...props }) => {
   const { metric_id, region_id } = useChoroplethContext();
   const regionConfig = useRegionConfig(region_id);
   const metric = useMetricConfig(metric_id);
-  const selected = useLocationStore((state) => state.selected);
+  const selected = useLocationFeature(5);
   const removeSelected = useLocationStore((state) => state.removeSelected);
   const flyToFeature = useMapStore((state) => state.flyToFeature);
   const listRef = React.useRef();
   const [expanded, setExpanded] = React.useState(true);
 
   const regionHasMetric = regionConfig?.metrics?.includes(metric_id);
+  const [activeView, setActiveView] = useActiveView();
 
   // scroll to the bottom of the list when adding new items
   useEffect(() => {
     if (selected.length > 5 && listRef.current)
       listRef.current.scrollTop = listRef.current.scrollHeight;
   }, [selected.length]);
+
+  const handleShowFullData = () => {
+    setActiveView("scorecard");
+  };
 
   return (
     <LegendContainer {...props}>
@@ -189,6 +197,9 @@ export const Legend = ({ children, ...props }) => {
               })}
             </List>
           </Collapse>
+          <Button fullWidth onClick={handleShowFullData}>
+            View Full Data For Locations
+          </Button>
         </>
       )}
     </LegendContainer>

@@ -17,8 +17,26 @@ export const createMetricTree = (metrics, category = "", depth = 0) => {
       const children = createMetricTree(metrics, metric.id, depth + 1);
       return {
         ...metric,
+        depth,
         children,
       };
     });
   return depth === 1 ? shaped.filter((m) => !m.subcategory) : shaped;
+};
+
+/**
+ * Takes a metric tree and returns an array of metrics w/ depth
+ * @param {*} metrics
+ * @param {*} depth
+ * @returns
+ */
+export const flattenMetricTree = (flattened = [], metric) => {
+  // remove children
+  const { children, ...metricProps } = metric;
+  if (metric.id && metric.id !== "root") {
+    flattened.push(metricProps);
+  }
+  if (!children?.length) return [];
+  children.forEach((m) => flattenMetricTree(flattened, m));
+  return flattened;
 };

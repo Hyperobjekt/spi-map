@@ -72,3 +72,17 @@ export const getLocationNameParts = (featureProps) => {
     region === "states" ? "United States" : FIPS_TO_STATE_NAME[stateValue];
   return [nameValue, parent];
 };
+
+export const getColorForMetric = (metric) => {
+  const category = metric.category || metric.id;
+  switch (category) {
+    case "bhn":
+      return "#00afbd";
+    case "fow":
+      return "#f79445";
+    case "opp":
+      return "#b6c469";
+    default:
+      return "#f5f5f5";
+  }
+};

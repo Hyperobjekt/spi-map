@@ -8,12 +8,13 @@ import Header from "./components/Header";
 import { IndicatorPanel } from "./IndicatorPanel/IndicatorPanel";
 import useIndicatorPanelStore from "./IndicatorPanel/store";
 import shallow from "zustand/shallow";
-import { useCallback } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { MapTooltip, Map } from "./Map";
 import CustomizeIndiactorPanel from "./IndicatorPanel/CustomizeIndicatorPanel";
 import Dashboard, { useDashboardStore } from "@hyperobjekt/react-dashboard";
 import { Scorecards } from "./Scorecards";
 import theme from "../theme";
+import useActiveView from "./hooks/useActiveView";
 // // debug tools
 // import Debug from "./Demo/components/Debug";
 // import { ReactQueryDevtools } from "react-query/devtools";
@@ -39,18 +40,19 @@ const AppWrapper = styled("div")({
   alignItems: "stretch",
   justifyContent: "stretch",
   width: "100%",
-  minHeight: "100vh",
+  height: "100vh",
+  overflow: "hidden",
 });
 
 const MapBodyWrapper = styled("div")(({ theme }) => ({
   position: "relative",
   display: "flex",
   height: `calc(100vh - ${theme.spacing(7)})`,
-  maxHeight: `calc(100vh - ${theme.spacing(7)})`,
+  minHeight: `calc(100vh - ${theme.spacing(7)})`,
   overflow: "hidden",
   [theme.breakpoints.up("sm")]: {
     height: `calc(100vh - ${theme.spacing(8)})`,
-    maxHeight: `calc(100vh - ${theme.spacing(8)})`,
+    minHeight: `calc(100vh - ${theme.spacing(8)})`,
   },
   "& .HypMapGl-root": {
     position: "absolute",
@@ -65,6 +67,7 @@ function App() {
     (state) => [state.open, state.setOpen],
     shallow
   );
+  const [activeView] = useActiveView();
   // tracks if the customize indicators panel is open
   const customizeOpen = useIndicatorPanelStore((state) => state.customizeOpen);
   // track mouse coords for tooltip

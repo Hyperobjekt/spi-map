@@ -58,18 +58,19 @@ const ScorecardList = styled(NestedList)(({ theme }) => ({
   },
 }));
 
-const Scorecard = ({ location, metrics, ...props }) => {
-  const items = metrics.map((m) => getDataMetricTree(m, location));
-  console.log(location);
-  const [name, parent] = getLocationNameParts(location);
+const Scorecard = ({ location, metrics, className, ...props }) => {
+  const items = metrics.map((m) => getDataMetricTree(m, location || {}));
+  const [name, parent] = location
+    ? getLocationNameParts(location)
+    : [null, null];
   return (
-    <Paper className="scorecard__root">
+    <Paper className={clsx("scorecard__root", className)} {...props}>
       <div className="scorecard__header">
         <div
-          style={{ backgroundColor: location.color }}
+          style={{ backgroundColor: location?.color }}
           className="scorecard__location-color"
         />
-        <Typography variant="h2">{name}</Typography>
+        <Typography variant="h5">{name}</Typography>
         <Typography variant="body1" color="textSecondary">
           {parent}
         </Typography>

@@ -5,15 +5,8 @@ const ScorecardsStyle = styled(Box)`
   position: relative;
   display: flex;
   justify-content: center;
-  overflow: hidden;
   gap: ${theme.spacing(2)};
-  padding: ${theme.spacing(8, 3)};
-  min-height: calc(100vh - ${theme.spacing(7)});
-  background: linear-gradient(#fafafa, #e0e0e0);
-  border-top: 1px solid ${theme.palette.grey["300"]};
-  ${theme.breakpoints.up("sm")} {
-    min-height: calc(100vh - ${theme.spacing(8)});
-  }
+
   .scorecard__root {
     position: relative;
     width: 344px;
@@ -142,27 +135,27 @@ const ScorecardsStyle = styled(Box)`
     .scorecard__label {
       // margin-left: 0;
     }
-    &:after {
-      content: "";
-      position: absolute;
-      top: -24px;
-      left: 18px;
-      bottom: 32px;
-      width: 2px;
-      border-radius: 4px;
-      background: ${theme.palette.grey["300"]};
-      opacity: 0.5;
-    }
-    &:nth-of-type(1):after {
-      background: #00afbd;
-    }
-    &:nth-of-type(2):after {
-      background: #f79445;
-    }
-    &:nth-of-type(3):after {
-      background: #b6c469;
-    }
-  }
+  //   &:after {
+  //     content: "";
+  //     position: absolute;
+  //     top: -24px;
+  //     left: 18px;
+  //     bottom: 32px;
+  //     width: 2px;
+  //     border-radius: 4px;
+  //     background: ${theme.palette.grey["300"]};
+  //     opacity: 0.5;
+  //   }
+  //   &:nth-of-type(1):after {
+  //     background: #00afbd;
+  //   }
+  //   &:nth-of-type(2):after {
+  //     background: #f79445;
+  //   }
+  //   &:nth-of-type(3):after {
+  //     background: #b6c469;
+  //   }
+  // }
 
   // SECOND LEVEL SUB-CATEGORY ITEM
 
