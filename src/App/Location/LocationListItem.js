@@ -8,6 +8,7 @@ import {
 } from "@mui/material";
 import { styled } from "@mui/system";
 import React from "react";
+import PerformanceIndicator from "../components/PerformanceIndicator";
 
 const LocationColor = styled("div")(({ theme }) => ({
   position: "absolute",
@@ -39,14 +40,19 @@ const LocationListItem = ({
   name,
   parent,
   value,
+  performance,
   color,
   onDismiss,
   ...props
 }) => {
+  console.log({ performance });
   return (
     <StyledListItem {...props}>
       {color && <LocationColor style={{ background: color }} />}
       <ListItemText primary={name} secondary={parent} />
+      {performance && (
+        <PerformanceIndicator performance={performance} sx={{ mr: 1 }} />
+      )}
       {value && (
         <Typography sx={{ mr: onDismiss ? 4 : 0 }} fontWeight="bold">
           {value}

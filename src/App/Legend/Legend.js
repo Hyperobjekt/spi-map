@@ -176,6 +176,7 @@ export const Legend = ({ children, ...props }) => {
                     value={metric.shortFormatter(
                       feature?.properties?.[metric_id]
                     )}
+                    performance={feature?.properties?.[`${metric_id}_p`]}
                     onDismiss={(event) => {
                       removeSelected(feature);
                       event.stopPropagation();

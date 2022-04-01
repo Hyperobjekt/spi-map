@@ -15,6 +15,7 @@ import Dashboard, { useDashboardStore } from "@hyperobjekt/react-dashboard";
 import { Scorecards } from "./Scorecards";
 import theme from "../theme";
 import useActiveView from "./hooks/useActiveView";
+import SearchModal from "./Search/components/SearchModal";
 // // debug tools
 // import Debug from "./Demo/components/Debug";
 // import { ReactQueryDevtools } from "react-query/devtools";
@@ -110,6 +111,7 @@ function App() {
           </MapBodyWrapper>
           <Scorecards />
         </AppWrapper>
+        <SearchModal />
       </Dashboard>
     </ThemeProvider>
   );

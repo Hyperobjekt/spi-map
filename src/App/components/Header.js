@@ -1,10 +1,11 @@
 import React from "react";
 import { AppBar, Toolbar, Box, Button, Typography } from "@mui/material";
 import SearchInput from "./SearchInput";
-import { ArrowBack } from "@mui/icons-material";
+import { ArrowBack, Search } from "@mui/icons-material";
 import useActiveView from "../hooks/useActiveView";
 import { styled } from "@mui/material";
 import { animated, useSpring } from "@react-spring/web";
+import useSearchActive from "../Search/hooks/useSearchActive";
 
 const StyledBox = styled(Box)`
   display: flex;
@@ -20,6 +21,7 @@ const BackButtonWrapper = animated(StyledBox);
 
 export const Header = () => {
   const [activeView, setActiveView] = useActiveView();
+  const [searchActive, setSearchActive] = useSearchActive();
 
   const buttonSpringProps = useSpring({
     y: activeView === "map" ? -80 : 0,
@@ -28,6 +30,9 @@ export const Header = () => {
 
   const handleBackToMap = () => {
     setActiveView("map");
+  };
+  const handleShowSearch = () => {
+    setSearchActive(true);
   };
   return (
     <AppBar
@@ -50,7 +55,11 @@ export const Header = () => {
         </BackButtonWrapper>
 
         <Box display="flex" gap={1} ml="auto" pl={1}>
-          <SearchInput />
+          {/* <SearchInput /> */}
+          <Button variant="outlined" onClick={handleShowSearch}>
+            <Search sx={{ mr: 1 }} />
+            <Typography>Find a Place</Typography>
+          </Button>
           {/* <Button color="inherit">Menu</Button> */}
         </Box>
       </Toolbar>
