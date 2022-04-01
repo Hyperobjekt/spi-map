@@ -28,6 +28,9 @@ const StyledPaper = styled(Paper)`
     max-width: 300px;
     min-width: 240px;
   }
+  .MuiTableRow-root:hover .scorecard__label-cell {
+    background: #f8f8f8;
+  }
   .MuiTableHead-root .scorecard__label-cell {
     top: 0;
     z-index: 1000;
@@ -61,6 +64,12 @@ const StyledPaper = styled(Paper)`
     display: flex;
     align-items: center;
     justify-content: flex-end;
+  }
+  .scorecard__value-wrapper--percent {
+    .scorecard__value {
+      min-width: 40px;
+      text-align: right;
+    }
   }
   .scorecard__perf-wrapper {
     margin-left: ${theme.spacing(2)};

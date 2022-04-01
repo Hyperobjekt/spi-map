@@ -10,6 +10,8 @@ import {
 import theme from "../../../theme";
 import { CustomizeIndicatorsToggle } from "../../IndicatorPanel";
 import { animated } from "@react-spring/web";
+import { SearchInput } from "../../components";
+import { FilterList } from "@mui/icons-material";
 const StyledPaper = styled(Paper)`
   padding: ${theme.spacing(2)};
   opacity: 0;
@@ -64,12 +66,37 @@ const ScorecardControls = ({ onNavigateToSection, ...props }) => {
         </ListItem>
       </List>
       <Divider />
-      <Typography variant="overline">Scorecard Indicators</Typography>
+      <Typography sx={{ mb: 2, display: "block" }} variant="overline">
+        Scorecard Indicators
+      </Typography>
+      <SearchInput placeholder="Filter by keyword" icon={<FilterList />} />
       <CustomizeIndicatorsToggle
         flexDirection="column"
         px={0}
+        mb={2}
+        mt={1}
         editLabel="Change Custom Indicators"
       />
+      <Divider />
+      <Typography variant="overline">Data Export</Typography>
+      <List>
+        <ListItem
+          button
+          onClick={() => {
+            alert("not implemented");
+          }}
+        >
+          <ListItemText primary="Download PDF Report" />
+        </ListItem>
+        <ListItem
+          button
+          onClick={() => {
+            alert("not implemented");
+          }}
+        >
+          <ListItemText primary="Download Spreadsheet" />
+        </ListItem>
+      </List>
     </ControlsWrapper>
   );
 };
