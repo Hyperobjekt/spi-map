@@ -206,3 +206,5 @@ export const Legend = ({ children, ...props }) => {
     </LegendContainer>
   );
 };
+
+export default Legend;

@@ -1,6 +1,6 @@
 import { styled } from "@mui/material";
 
-const MapBodyWrapper = styled("div")(({ theme }) => ({
+const MapWrapper = styled("div")(({ theme }) => ({
   position: "relative",
   display: "flex",
   height: `calc(100vh - ${theme.spacing(7)})`,
@@ -17,4 +17,4 @@ const MapBodyWrapper = styled("div")(({ theme }) => ({
   },
 }));
 
-export default MapBodyWrapper;
+export default MapWrapper;
