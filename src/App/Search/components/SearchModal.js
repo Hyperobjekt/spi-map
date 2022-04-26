@@ -25,7 +25,7 @@ const SearchModal = () => {
   return (
     <Modal
       keepMounted
-      open={searchActive}
+      open={Boolean(searchActive)}
       onClose={handleClose}
       aria-labelledby="search-modal-title"
     >

@@ -4,18 +4,16 @@ import { Legend } from "./Legend/Legend";
 import { Button, CssBaseline } from "@mui/material";
 import { styled, ThemeProvider } from "@mui/system";
 import Header from "./components/Header";
-
 import { IndicatorPanel } from "./IndicatorPanel/IndicatorPanel";
 import useIndicatorPanelStore from "./IndicatorPanel/store";
 import shallow from "zustand/shallow";
-import { useCallback, useEffect, useState } from "react";
 import { MapTooltip, Map } from "./Map";
 import CustomizeIndiactorPanel from "./IndicatorPanel/CustomizeIndicatorPanel";
-import Dashboard, { useDashboardStore } from "@hyperobjekt/react-dashboard";
+import Dashboard, { QueryParamRouter } from "@hyperobjekt/react-dashboard";
 import { Scorecards } from "./Scorecards";
 import theme from "../theme";
-import useActiveView from "./hooks/useActiveView";
 import SearchModal from "./Search/components/SearchModal";
+
 // // debug tools
 // import Debug from "./Demo/components/Debug";
 // import { ReactQueryDevtools } from "react-query/devtools";
@@ -29,6 +27,7 @@ const CONFIG = {
   dataSources: "/assets/config/dataSources.json",
   scales: "/assets/config/scales.json",
   mapLayers: "/assets/config/mapLayers.json",
+  mapSources: "/assets/config/mapSources.json",
   lang: {
     en: "/assets/en.json",
   },
@@ -68,25 +67,17 @@ function App() {
     (state) => [state.open, state.setOpen],
     shallow
   );
-  const [activeView] = useActiveView();
   // tracks if the customize indicators panel is open
   const customizeOpen = useIndicatorPanelStore((state) => state.customizeOpen);
-  // track mouse coords for tooltip
-  const setHoverCoords = useDashboardStore((state) => state.setHoverCoords);
-  // update the mouse coords as the mouse moves
-  const handleMouseMove = useCallback(
-    (event) => {
-      setHoverCoords([event.pageX, event.pageY]);
-    },
-    [setHoverCoords]
-  );
+
   return (
     <ThemeProvider theme={theme}>
+      <CssBaseline />
       <Dashboard config={CONFIG}>
-        <CssBaseline />
+        <QueryParamRouter />
         <AppWrapper className="App">
           <Header />
-          <MapBodyWrapper onMouseMove={handleMouseMove}>
+          <MapBodyWrapper>
             <Map>
               <Legend square>
                 {!indicatorsOpen && (

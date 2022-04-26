@@ -1,5 +1,4 @@
 import { Box, styled } from "@mui/material";
-import React from "react";
 
 const getColorFromPerformance = (performance) => {
   switch (performance) {
@@ -26,11 +25,5 @@ const PerformanceIndicator = styled(Box)`
   flex-grow: 0;
   background: ${(props) => getColorFromPerformance(props.performance)};
 `;
-
-// function PerformanceIndicator({size, performance, ...props}) {
-//   return (
-//     <div>PerformanceIndicator</div>
-//   )
-// }
 
 export default PerformanceIndicator;

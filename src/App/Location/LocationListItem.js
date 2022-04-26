@@ -45,7 +45,6 @@ const LocationListItem = ({
   onDismiss,
   ...props
 }) => {
-  console.log({ performance });
   return (
     <StyledListItem {...props}>
       {color && <LocationColor style={{ background: color }} />}

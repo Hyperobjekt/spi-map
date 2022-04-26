@@ -10,6 +10,7 @@ import { useMapStore } from "@hyperobjekt/mapgl";
 import { Divider, Paper, Typography } from "@mui/material";
 import { LocationName } from "../../Location";
 import { getLocationNameParts } from "../../utils";
+import useMousePosition from "../../hooks/useMousePosition";
 
 // tooltip dimensions (height is an estimate for offsets)
 const TOOLTIP_WIDTH = 240;
@@ -42,7 +43,7 @@ const offsetScaleX = scaleLinear()
 const MapTooltip = ({ classes, yOffset = 0, xOffset = -64, ...props }) => {
   // retrieve required data for rendering the tooltip
   const data = useMapStore((state) => state.hoveredFeature)?.properties;
-  const hoverCoords = useDashboardStore((state) => state.hoverCoords);
+  const { x, y } = useMousePosition();
   const choroplethMetric = useDashboardStore((state) => state.choroplethMetric);
 
   // metric ids to render in the tooltip
@@ -50,11 +51,11 @@ const MapTooltip = ({ classes, yOffset = 0, xOffset = -64, ...props }) => {
   const metricConfigs = useMetricConfig(tooltipMetrics);
 
   // y position with scroll factored in
-  const adjustedY = hoverCoords[1] - window.scrollY;
+  const adjustedY = y - window.scrollY;
 
   // animate position and opacity
   const style = useSpring({
-    x: (hoverCoords[0] || 0) + offsetScaleX(hoverCoords[0]) + xOffset,
+    x: (x || 0) + offsetScaleX(x) + xOffset,
     y: (adjustedY || 0) + offsetScaleY(adjustedY) + yOffset,
     opacity: data ? 1 : 0,
   });

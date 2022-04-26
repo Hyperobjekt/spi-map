@@ -125,7 +125,7 @@ export const getChoroplethFillLayers = (context) => {
   // base layer where fills are visible at all zooms
   const baseLayer = {
     id: `${region}-choropleth`,
-    source: `${region}_choropleth`,
+    source: `${region}_tileset`,
     "source-layer": region,
     type: "fill",
     minzoom: 1,
@@ -192,7 +192,7 @@ export const getChoroplethOutlineLayers = (context) => {
   return [
     {
       id: `${region}-outline`,
-      source: `${region}_choropleth`,
+      source: `${region}_tileset`,
       "source-layer": region,
       type: "line",
       paint: {
@@ -255,7 +255,7 @@ export const getChoroplethHoverLayers = (context) => {
   return [
     {
       id: `${region}-hoverCasing`,
-      source: `${region}_choropleth`,
+      source: `${region}_tileset`,
       "source-layer": region,
       type: "line",
       layout: {
@@ -274,7 +274,7 @@ export const getChoroplethHoverLayers = (context) => {
     },
     {
       id: `${region}-hoverOutline`,
-      source: `${region}_choropleth`,
+      source: `${region}_tileset`,
       "source-layer": region,
       type: "line",
       layout: {
@@ -325,7 +325,7 @@ export const getChoroplethSelectedLayers = (context) => {
   return [
     {
       id: `${region}-selectedCasing`,
-      source: `${region}_choropleth`,
+      source: `${region}_tileset`,
       "source-layer": region,
       type: "line",
       filter: ["in", "GEOID", ...selectedIds],
@@ -337,7 +337,7 @@ export const getChoroplethSelectedLayers = (context) => {
     },
     {
       id: `${region}-selectedOutline`,
-      source: `${region}_choropleth`,
+      source: `${region}_tileset`,
       "source-layer": region,
       type: "line",
       filter: ["in", "GEOID", ...selectedIds],
@@ -371,9 +371,6 @@ export const getChoroplethLayers = (layerContext) => {
 
 export const createCircleLayers = (context) => {
   const { chunks, accessor, steps, hoverColor } = context;
-  const fillRule = chunks
-    ? ["step", ["get", accessor(context)], ...steps]
-    : ["interpolate", ["linear"], ["get", accessor(context)], ...steps];
   const outlineSteps = steps.map((step, i) => {
     if (Number.isFinite(step)) return step;
     const c = Color(step);
@@ -387,7 +384,7 @@ export const createCircleLayers = (context) => {
   return [
     {
       id: `city-bubbles`,
-      source: `cities_choropleth`,
+      source: `cities_tileset`,
       "source-layer": "cities-centers",
       type: "circle",
       minzoom: 2,
@@ -398,22 +395,24 @@ export const createCircleLayers = (context) => {
           ["linear"],
           ["zoom"],
           3,
-          2,
+          1.5,
           5,
+          3,
+          8,
           4,
-          6,
-          8,
-          8,
           10,
-          10,
-          10,
+          5,
         ],
-        "circle-color": [
-          "case",
-          ["!=", ["get", accessor(context)], null],
-          fillRule,
-          "transparent",
-        ],
+        "circle-color": "rgba(0,0,0,0.35)",
+        // TODO: verify client wants grey circles, if not uncomment the below
+        // "circle-color": [
+        //   "case",
+        //   ["!=", ["get", accessor(context)], null],
+        //   chunks
+        //    ? ["step", ["get", accessor(context)], ...steps]
+        //    : ["interpolate", ["linear"], ["get", accessor(context)], ...steps],
+        //   "transparent",
+        // ],
         "circle-opacity": [
           "interpolate",
           ["linear"],
@@ -422,9 +421,9 @@ export const createCircleLayers = (context) => {
           0,
           3,
           1,
-          8,
+          7,
           1,
-          9,
+          8,
           0,
         ],
         "circle-stroke-width": 1,
@@ -437,9 +436,9 @@ export const createCircleLayers = (context) => {
           0,
           3,
           1,
-          8,
+          7,
           1,
-          9,
+          8,
           0,
         ],
       },
@@ -448,7 +447,7 @@ export const createCircleLayers = (context) => {
     },
     {
       id: `cities-bubble-hoverCasing`,
-      source: `cities_choropleth`,
+      source: `cities_tileset`,
       "source-layer": "cities-centers",
       type: "circle",
       minzoom: 2,
@@ -459,15 +458,13 @@ export const createCircleLayers = (context) => {
           ["linear"],
           ["zoom"],
           3,
-          2,
+          1.5,
           5,
+          3,
+          8,
           4,
-          6,
-          8,
-          8,
           10,
-          10,
-          10,
+          5,
         ],
         "circle-color": "transparent",
         "circle-stroke-opacity": [
@@ -495,7 +492,7 @@ export const createCircleLayers = (context) => {
     },
     {
       id: `cities-bubble-hoverOutline`,
-      source: `cities_choropleth`,
+      source: `cities_tileset`,
       "source-layer": "cities-centers",
       type: "circle",
       minzoom: 2,
@@ -506,15 +503,13 @@ export const createCircleLayers = (context) => {
           ["linear"],
           ["zoom"],
           3,
-          2,
+          1.5,
           5,
+          3,
+          8,
           4,
-          6,
-          8,
-          8,
           10,
-          10,
-          10,
+          5,
         ],
         "circle-color": "transparent",
         "circle-stroke-opacity": [

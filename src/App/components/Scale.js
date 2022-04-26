@@ -27,7 +27,10 @@ export default function Scale({
   // pulls any app specific scale overrides (for choropleth color by category)
   const scaleOverrides = useSpiScaleOverrides(context);
   // get the scale, and pass over the category color overrides
-  const { ScaleProps, TickProps } = useChoroplethScale(context, scaleOverrides);
+  const { ScaleProps, TickProps } = useChoroplethScale({
+    context,
+    config: scaleOverrides,
+  });
   return (
     <HypScale
       style={{ marginTop: 8 }}

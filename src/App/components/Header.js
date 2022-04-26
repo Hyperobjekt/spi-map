@@ -1,6 +1,5 @@
 import React from "react";
 import { AppBar, Toolbar, Box, Button, Typography } from "@mui/material";
-import SearchInput from "./SearchInput";
 import { ArrowBack, Search } from "@mui/icons-material";
 import useActiveView from "../hooks/useActiveView";
 import { styled } from "@mui/material";
@@ -21,7 +20,7 @@ const BackButtonWrapper = animated(StyledBox);
 
 export const Header = () => {
   const [activeView, setActiveView] = useActiveView();
-  const [searchActive, setSearchActive] = useSearchActive();
+  const [, setSearchActive] = useSearchActive();
 
   const buttonSpringProps = useSpring({
     y: activeView === "map" ? -80 : 0,
@@ -55,7 +54,6 @@ export const Header = () => {
         </BackButtonWrapper>
 
         <Box display="flex" gap={1} ml="auto" pl={1}>
-          {/* <SearchInput /> */}
           <Button variant="outlined" onClick={handleShowSearch}>
             <Search sx={{ mr: 1 }} />
             <Typography>Find a Place</Typography>

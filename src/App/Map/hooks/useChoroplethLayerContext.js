@@ -35,8 +35,7 @@ export default function useChoroplethLayerContext({
   scale: scaleOverrides,
 }) {
   const context = useChoroplethContext(contextOverrides);
-  const scale = useChoroplethScale(context, scaleOverrides);
-  // console.log(scale, scaleOverrides);
+  const scale = useChoroplethScale({ context, config: scaleOverrides });
   const autoSwitch = useDashboardStore((state) => state.autoSwitchRegion);
   const selected = useLocationFeature(5);
   const hoverColor = useAppConfig("hover_color");

@@ -1,67 +1,6 @@
 import React from "react";
 import { Layer } from "react-map-gl";
 
-// DEPRECATED: using city-centers
-// const CITY_LABEL_LAYER = {
-//   id: "cities-label",
-//   type: "symbol",
-//   source: "cities_choropleth",
-//   "source-layer": "cities-centers",
-//   minzoom: 3,
-//   maxzoom: 15,
-//   filter: [
-//     "all",
-//     [
-//       "step",
-//       ["zoom"],
-//       false,
-//       3,
-//       [">=", ["get", "CENSUSAREA"], 300],
-//       5,
-//       [">", ["get", "CENSUSAREA"], 200],
-//       6,
-//       [">", ["get", "CENSUSAREA"], 100],
-//       8,
-//       [">", ["get", "CENSUSAREA"], 20],
-//       10,
-//       [">", ["get", "CENSUSAREA"], 10],
-//       12,
-//       [">=", ["get", "CENSUSAREA"], 0],
-//     ],
-//   ],
-//   layout: {
-//     "text-line-height": 1.1,
-//     "text-size": [
-//       "interpolate",
-//       ["cubic-bezier", 0.2, 0, 0.9, 1],
-//       ["zoom"],
-//       3,
-//       12,
-//       6,
-//       14,
-//       15,
-//       18,
-//     ],
-//     "text-radial-offset": 0,
-//     "text-font": ["Montserrat SemiBold", "Arial Unicode MS Regular"],
-//     "text-justify": "center",
-//     "text-anchor": "center",
-//     "text-field": [
-//       "case",
-//       [">=", ["index-of", "(balance)", ["get", "name"]], 0],
-//       ["slice", ["get", "name"], 0, ["index-of", " ", ["get", "name"]]],
-//       ["get", "name"],
-//     ],
-//     "text-max-width": 7,
-//   },
-//   paint: {
-//     "text-color": "#444",
-//     "text-halo-color": "hsl(185, 1%, 100%)",
-//     "text-halo-width": 1,
-//     "text-halo-blur": 1,
-//   },
-// };
-
 // City labels using mapboxgl streets source
 const CITY_LABELS = {
   id: "settlement-major-label",

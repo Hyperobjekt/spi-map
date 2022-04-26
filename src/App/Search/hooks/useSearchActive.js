@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useCallback, useMemo } from "react";
 import { useDidMount } from "rooks";
 import { useDashboardState } from "@hyperobjekt/react-dashboard";
 
@@ -9,7 +9,10 @@ import { useDashboardState } from "@hyperobjekt/react-dashboard";
 export default function useSearchActive() {
   const searchActive = useDashboardState("searchActive");
   const setState = useDashboardState("set");
-  const setSearchActive = (searchActive) => setState({ searchActive });
+  const setSearchActive = useCallback(
+    (searchActive) => setState({ searchActive }),
+    [setState]
+  );
   // set default on mount if it is not set
   useDidMount(() => {
     if (!searchActive) setSearchActive(false);

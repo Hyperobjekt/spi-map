@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useCallback, useMemo } from "react";
 import { useDidMount } from "rooks";
 import { useDashboardState } from "@hyperobjekt/react-dashboard";
 
@@ -9,7 +9,10 @@ import { useDashboardState } from "@hyperobjekt/react-dashboard";
 export default function useActiveView() {
   const activeView = useDashboardState("activeView");
   const setState = useDashboardState("set");
-  const setActiveView = (view) => setState({ activeView: view });
+  const setActiveView = useCallback(
+    (view) => setState({ activeView: view }),
+    [setState]
+  );
   useDidMount(() => {
     if (!activeView) setActiveView("map");
   });

@@ -1,14 +1,5 @@
 import { useLocationData } from "@hyperobjekt/react-dashboard";
-import {
-  styled,
-  Typography,
-  Box,
-  Paper,
-  List,
-  ListItem,
-  ListItemText,
-  Divider,
-} from "@mui/material";
+import { styled, Box } from "@mui/material";
 import useCategorizedMetrics from "../IndicatorPanel/hooks/useCategorizedMetrics";
 import { flattenMetricTree } from "../IndicatorPanel/utils";
 import { getLocationNameParts } from "../utils";
@@ -17,7 +8,7 @@ import { ScorecardTable } from "./components/ScorecardTable";
 import ScorecardTableStyle from "./components/ScorecardTable.style";
 import { ScorecardControls } from "./components";
 import { animated, useSpring, config } from "@react-spring/web";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { useDidMount } from "rooks";
 import useActiveView from "../hooks/useActiveView";
 
@@ -43,18 +34,9 @@ const Scorecards = ({ ...props }) => {
   const active = activeView === "scorecard";
   const initialRender = useRef(true);
   const springProps = useSpring({
-    to: {
-      backdropFilter: "blur(5px)",
-      opacity: 1,
-      background: "rgba(255,255,255,0.5)",
-    },
-    from: {
-      backdropFilter: "blur(0px)",
-      opacity: 0,
-      background: "rgba(255,255,255,0)",
-    },
-    reverse: !active,
-    // reset: true,
+    backdropFilter: active ? "blur(5px)" : "blur(0px)",
+    opacity: active ? 1 : 0,
+    background: active ? "rgba(255,255,255,0.5)" : "rgba(255,255,255,0)",
     config: config.molasses,
   });
   const controlsSpringProps = useSpring({
@@ -91,7 +73,6 @@ const Scorecards = ({ ...props }) => {
       setActiveView("map");
   };
   const handleSectionNavigation = (e, section) => {
-    console.log(e, section, tableRef.current);
     tableRef.current.querySelector(`#scorecard-row-${section}`).scrollIntoView({
       behavior: "smooth",
       block: "start",
@@ -109,11 +90,6 @@ const Scorecards = ({ ...props }) => {
       }}
       onClick={handleBackgroundClick}
     >
-      {/* <ScorecardsStyle>
-        {locations.map((location, i) => {
-          return <Scorecard key={i} location={location} metrics={metrics} />;
-        })}
-      </ScorecardsStyle> */}
       <Box
         className="action--close-scorecards"
         display="flex"

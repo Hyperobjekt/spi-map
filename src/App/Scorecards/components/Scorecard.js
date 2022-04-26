@@ -29,7 +29,6 @@ const ScorecardItem = ({
   className,
   ...props
 }) => {
-  // console.log(itemProps);
   const { name, dataValue, dataPerformance, formatter } = itemProps;
   return (
     <Box
