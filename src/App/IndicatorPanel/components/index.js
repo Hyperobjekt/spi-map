@@ -1,1 +1,1 @@
-export { default as CustomizeIndicatorsToggle } from "./CustomizeIndicatorsToggle";
+export { default as CustomizeIndicatorsToggle } from './CustomizeIndicatorsToggle';

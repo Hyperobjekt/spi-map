@@ -1,13 +1,13 @@
-import { Box, Button, FormControlLabel, Switch } from "@mui/material";
-import { styled } from "@mui/system";
-import clsx from "clsx";
-import React from "react";
-import shallow from "zustand/shallow";
-import useIndicatorPanelStore from "../store";
+import { Box, Button, FormControlLabel, Switch } from '@mui/material';
+import { styled } from '@mui/system';
+import clsx from 'clsx';
+import React from 'react';
+import shallow from 'zustand/shallow';
+import useIndicatorPanelStore from '../store';
 
 const StyledBox = styled(Box)({
-  width: "100%",
-  "& .MuiFormControlLabel-label": {
+  width: '100%',
+  '& .MuiFormControlLabel-label': {
     fontSize: 12,
   },
 });
@@ -17,9 +17,9 @@ const CustomizeIndicatorsToggle = ({
   onToggleCustomized,
   hasCustomized,
   enableCustomized,
-  switchLabel = "Use Customized Indicators",
-  buttonLabel = "Customize Indicators",
-  editLabel = "Edit",
+  switchLabel = 'Use Customized Indicators',
+  buttonLabel = 'Customize Indicators',
+  editLabel = 'Edit',
   className,
   ...props
 }) => {
@@ -29,7 +29,7 @@ const CustomizeIndicatorsToggle = ({
       alignItems="center"
       justifyContent="space-between"
       px={2}
-      className={clsx("customize-toggle__root", className)}
+      className={clsx('customize-toggle__root', className)}
       {...props}
     >
       {hasCustomized && (
@@ -60,26 +60,22 @@ const CustomizeIndicatorsToggle = ({
 };
 
 const ConnectedCustomizeIndicatorsToggle = (props) => {
-  const [
-    enableCustomized,
-    customizedMetrics,
-    setEnableCustomized,
-    setCustomizeOpen,
-  ] = useIndicatorPanelStore(
-    (state) => [
-      state.enableCustomized,
-      state.customizedMetrics,
-      state.setEnableCustomized,
-      state.setCustomizeOpen,
-    ],
-    shallow
-  );
+  const [enableCustomized, customizedMetrics, setEnableCustomized, setCustomizeOpen] =
+    useIndicatorPanelStore(
+      (state) => [
+        state.enableCustomized,
+        state.customizedMetrics,
+        state.setEnableCustomized,
+        state.setCustomizeOpen,
+      ],
+      shallow,
+    );
   const hasCustomized = customizedMetrics.length > 0;
   const handleCustomizeIndicators = () => {
     setCustomizeOpen(true);
   };
   const handleToggleCustomized = () => {
-    console.count("toggle");
+    console.count('toggle');
     setEnableCustomized(!enableCustomized);
   };
 

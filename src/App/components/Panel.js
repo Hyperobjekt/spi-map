@@ -1,36 +1,36 @@
-import React, { useEffect } from "react";
-import { animated, useSpring } from "react-spring";
-import clsx from "clsx";
-import { styled } from "@mui/system";
-import { Box, IconButton, Typography, Paper } from "@mui/material";
-import { Close } from "@mui/icons-material";
+import React, { useEffect } from 'react';
+import { animated, useSpring } from 'react-spring';
+import clsx from 'clsx';
+import { styled } from '@mui/system';
+import { Box, IconButton, Typography, Paper } from '@mui/material';
+import { Close } from '@mui/icons-material';
 
 const PanelRoot = styled(Paper)(({ theme }) => ({
-  position: "relative",
+  position: 'relative',
   flex: 0,
-  height: "100%",
+  height: '100%',
   zIndex: 100,
-  maxHeight: "100%",
-  "&.HypPanel-fixed": {
-    position: "fixed",
+  maxHeight: '100%',
+  '&.HypPanel-fixed': {
+    position: 'fixed',
     top: 64,
-    maxHeight: "calc(100% - 64px)",
-    "&.HypPanel-right": {
+    maxHeight: 'calc(100% - 64px)',
+    '&.HypPanel-right': {
       right: 0,
     },
-    "&.HypPanel-left": {
+    '&.HypPanel-left': {
       left: 0,
     },
   },
-  "&.HypPanel-absolute": {
-    position: "absolute",
+  '&.HypPanel-absolute': {
+    position: 'absolute',
     top: 0,
     bottom: 0,
-    height: "100%",
-    "&.HypPanel-right": {
+    height: '100%',
+    '&.HypPanel-right': {
       right: 0,
     },
-    "&.HypPanel-left": {
+    '&.HypPanel-left': {
       left: 0,
     },
   },
@@ -38,39 +38,39 @@ const PanelRoot = styled(Paper)(({ theme }) => ({
 
 const PanelContents = styled(Box)(({ theme }) => ({
   minWidth: 320,
-  maxHeight: "100%",
-  height: "100%",
+  maxHeight: '100%',
+  height: '100%',
 
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "stretch",
-  justifyContent: "stretch",
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'stretch',
+  justifyContent: 'stretch',
 }));
 
 const PanelHeader = styled(Box)(({ theme }) => ({
-  display: "flex",
-  justifyContent: "space-between",
-  alignItems: "center",
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
   padding: theme.spacing(2),
   height: 64,
   borderBottom: `1px solid ${theme.palette.divider}`,
-  boxSizing: "border-box",
+  boxSizing: 'border-box',
 }));
 
 const PanelBody = styled(Box)(({ theme }) => ({
   padding: theme.spacing(0),
-  overflow: "auto",
-  maxHeight: "calc(100% - 64px)",
-  boxSizing: "border-box",
+  overflow: 'auto',
+  maxHeight: 'calc(100% - 64px)',
+  boxSizing: 'border-box',
   flex: 1,
 }));
 
 const PanelFooter = styled(Box)(({ theme }) => ({
-  display: "flex",
+  display: 'flex',
   minHeight: 56,
-  alignItems: "center",
+  alignItems: 'center',
   borderTop: `1px solid ${theme.palette.divider}`,
-  boxSizing: "border-box",
+  boxSizing: 'border-box',
   padding: 0,
 }));
 
@@ -98,7 +98,7 @@ const Panel = ({
   width = 320,
   float,
   absolute,
-  position = "left",
+  position = 'left',
   offset = 0,
   title,
   style: styleOverrides,
@@ -113,17 +113,11 @@ const Panel = ({
   // 👇 setup transforms required (based on float and position)
   const springOptions = {};
   const transformProp =
-    float || absolute
-      ? "x"
-      : position === "right"
-      ? "marginRight"
-      : "marginLeft";
+    float || absolute ? 'x' : position === 'right' ? 'marginRight' : 'marginLeft';
   const transformWidth = width;
   let transformAmount =
-    !float || !absolute || position !== "right"
-      ? -1 * transformWidth
-      : transformWidth;
-  if (float && position === "right") {
+    !float || !absolute || position !== 'right' ? -1 * transformWidth : transformWidth;
+  if (float && position === 'right') {
     transformAmount = transformWidth;
   }
   springOptions[transformProp] = open ? 0 + offset : transformAmount - offset;
@@ -135,8 +129,7 @@ const Panel = ({
   const restoreRef = React.useRef();
   useEffect(() => {
     // if opening, set the element to restore to
-    if (open && document.activeElement)
-      restoreRef.current = document.activeElement;
+    if (open && document.activeElement) restoreRef.current = document.activeElement;
     // slight delay to allow the panel to open / close
     setTimeout(() => {
       open && buttonRef.current?.focus();
@@ -149,14 +142,14 @@ const Panel = ({
       square
       elevation={2}
       className={clsx(
-        "HypPanel-root",
+        'HypPanel-root',
         {
-          "HypPanel-fixed": float,
-          "HypPanel-absolute": absolute,
-          "HypPanel-right": position === "right",
-          "HypPanel-left": position === "left",
+          'HypPanel-fixed': float,
+          'HypPanel-absolute': absolute,
+          'HypPanel-right': position === 'right',
+          'HypPanel-left': position === 'left',
         },
-        className
+        className,
       )}
       style={{
         ...style,
@@ -182,11 +175,7 @@ const Panel = ({
         <PanelBody className="HypPanel-body" ref={bodyRef} onScroll={onScroll}>
           {children}
         </PanelBody>
-        {footerChildren && (
-          <PanelFooter className="HypPanel-footer">
-            {footerChildren}
-          </PanelFooter>
-        )}
+        {footerChildren && <PanelFooter className="HypPanel-footer">{footerChildren}</PanelFooter>}
       </PanelContents>
     </AnimatedPanel>
   );

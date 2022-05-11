@@ -1,6 +1,6 @@
-import { Box, Paper, styled } from "@mui/material";
-import theme from "../../../theme";
-import { animated } from "@react-spring/web";
+import { Box, Paper, styled } from '@mui/material';
+import theme from '../../../theme';
+import { animated } from '@react-spring/web';
 
 const StyledPaper = styled(Paper)`
   display: block;

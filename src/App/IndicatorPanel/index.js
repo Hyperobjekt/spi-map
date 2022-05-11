@@ -1,2 +1,2 @@
-export { default as useIndicatorPanelStore } from "./store";
-export * from "./components";
+export { default as useIndicatorPanelStore } from './store';
+export * from './components';

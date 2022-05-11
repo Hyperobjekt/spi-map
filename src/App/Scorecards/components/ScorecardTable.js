@@ -6,28 +6,28 @@ import {
   TableHead,
   TableRow,
   Typography,
-} from "@mui/material";
-import clsx from "clsx";
-import React from "react";
-import ScorecardHeaderCell from "./ScorecardHeaderCell";
-import ScorecardValueCell from "./ScorecardValueCell";
-import { getFormatter } from "@hyperobjekt/react-dashboard";
+} from '@mui/material';
+import clsx from 'clsx';
+import React from 'react';
+import ScorecardHeaderCell from './ScorecardHeaderCell';
+import ScorecardValueCell from './ScorecardValueCell';
+import { getFormatter } from '@hyperobjekt/react-dashboard';
 
 export const ScorecardTable = React.forwardRef(
   ({ locations: baseLocations, metrics: baseMetrics, ...props }, ref) => {
     // TODO: use real data for demographics
     const locations = baseLocations.map((l) => ({
       ...l,
-      dem: "",
+      dem: '',
       dem_pop: 124156,
       dem_mhi: 50659,
       dem_pr: 0.165,
-      age: "",
+      age: '',
       age_019: 0.122,
       age_2039: 0.25,
       age_4059: 0.375,
       age_60: 0.168,
-      race: "",
+      race: '',
       race_w: 0.25,
       race_b: 0.25,
       race_h: 0.25,
@@ -35,69 +35,69 @@ export const ScorecardTable = React.forwardRef(
     }));
     const metrics = [
       ...baseMetrics,
-      { id: "dem", name: "Demographics", depth: 0 },
-      { id: "overview", name: "Overview", depth: 1 },
+      { id: 'dem', name: 'Demographics', depth: 0 },
+      { id: 'overview', name: 'Overview', depth: 1 },
       {
-        id: "dem_mhi",
-        name: "Median Household Income",
+        id: 'dem_mhi',
+        name: 'Median Household Income',
         depth: 2,
-        formatter: getFormatter("dollars"),
+        formatter: getFormatter('dollars'),
       },
       {
-        id: "dem_pr",
-        name: "Poverty Rate",
+        id: 'dem_pr',
+        name: 'Poverty Rate',
         depth: 2,
-        formatter: getFormatter("percent"),
+        formatter: getFormatter('percent'),
       },
-      { id: "age", name: "Age Groups", depth: 1 },
+      { id: 'age', name: 'Age Groups', depth: 1 },
       {
-        id: "age_019",
-        name: "0-19",
+        id: 'age_019',
+        name: '0-19',
         depth: 2,
-        formatter: getFormatter("percent"),
-      },
-      {
-        id: "age_2039",
-        name: "20-39",
-        depth: 2,
-        formatter: getFormatter("percent"),
+        formatter: getFormatter('percent'),
       },
       {
-        id: "age_4059",
-        name: "40-59",
+        id: 'age_2039',
+        name: '20-39',
         depth: 2,
-        formatter: getFormatter("percent"),
+        formatter: getFormatter('percent'),
       },
       {
-        id: "age_60",
-        name: "60+",
+        id: 'age_4059',
+        name: '40-59',
         depth: 2,
-        formatter: getFormatter("percent"),
-      },
-      { id: "race", name: "Race / Ethnicity", depth: 1 },
-      {
-        id: "race_a",
-        name: "% Asian",
-        depth: 2,
-        formatter: getFormatter("percent"),
+        formatter: getFormatter('percent'),
       },
       {
-        id: "race_b",
-        name: "% Black",
+        id: 'age_60',
+        name: '60+',
         depth: 2,
-        formatter: getFormatter("percent"),
+        formatter: getFormatter('percent'),
+      },
+      { id: 'race', name: 'Race / Ethnicity', depth: 1 },
+      {
+        id: 'race_a',
+        name: '% Asian',
+        depth: 2,
+        formatter: getFormatter('percent'),
       },
       {
-        id: "race_h",
-        name: "% Hispanic",
+        id: 'race_b',
+        name: '% Black',
         depth: 2,
-        formatter: getFormatter("percent"),
+        formatter: getFormatter('percent'),
       },
       {
-        id: "race_w",
-        name: "% White",
+        id: 'race_h',
+        name: '% Hispanic',
         depth: 2,
-        formatter: getFormatter("percent"),
+        formatter: getFormatter('percent'),
+      },
+      {
+        id: 'race_w',
+        name: '% White',
+        depth: 2,
+        formatter: getFormatter('percent'),
       },
     ];
     return (
@@ -129,31 +129,26 @@ export const ScorecardTable = React.forwardRef(
                   hover
                   tabIndex={-1}
                   key={metric.id}
-                  className={clsx(
-                    "scorecard__row",
-                    "scorecard__row--depth" + metric.depth
-                  )}
+                  className={clsx('scorecard__row', 'scorecard__row--depth' + metric.depth)}
                 >
                   <TableCell className="scorecard__label-cell">
                     {/* SCROLL TARGET: offset by 90px to make room for header */}
                     <span
                       id={`scorecard-row-${metric.id}`}
                       style={{
-                        width: "1px",
-                        height: "1px",
-                        position: "absolute",
+                        width: '1px',
+                        height: '1px',
+                        position: 'absolute',
                         marginTop: -90,
                       }}
                     />
-                    <Typography className="scorecard__metric-label">
-                      {metric.name}
-                    </Typography>
+                    <Typography className="scorecard__metric-label">{metric.name}</Typography>
                   </TableCell>
                   {locations.map((location) => {
                     const value = location[metric.id];
-                    const performance = location[metric.id + "_p"];
-                    const showPercent = ["age_", "race_"].some((prefix) =>
-                      metric.id.startsWith(prefix)
+                    const performance = location[metric.id + '_p'];
+                    const showPercent = ['age_', 'race_'].some((prefix) =>
+                      metric.id.startsWith(prefix),
                     );
                     // TODO: these are placeholder percentValues for prototyping.
                     //   need to calculate real % values where largest value = 1 (100%)
@@ -170,13 +165,9 @@ export const ScorecardTable = React.forwardRef(
                     return (
                       <ScorecardValueCell
                         key={location.id}
-                        value={
-                          metric.formatter ? metric.formatter(value) : value
-                        }
+                        value={metric.formatter ? metric.formatter(value) : value}
                         performance={performance}
-                        percent={
-                          showPercent ? percentValues[metric.id] : undefined
-                        }
+                        percent={showPercent ? percentValues[metric.id] : undefined}
                       />
                     );
                   })}
@@ -187,5 +178,5 @@ export const ScorecardTable = React.forwardRef(
         </Table>
       </TableContainer>
     );
-  }
+  },
 );

@@ -1,4 +1,4 @@
-import { ExpandLess, ExpandMore, HelpOutline } from "@mui/icons-material";
+import { ExpandLess, ExpandMore, HelpOutline } from '@mui/icons-material';
 import {
   Alert,
   Button,
@@ -10,47 +10,47 @@ import {
   Snackbar,
   Tooltip,
   Typography,
-} from "@mui/material";
-import { Box, styled } from "@mui/system";
-import React, { useEffect } from "react";
+} from '@mui/material';
+import { Box, styled } from '@mui/system';
+import React, { useEffect } from 'react';
 import {
   useChoroplethContext,
   useMetricConfig,
   useRegionConfig,
   useLocationStore,
   useLocationFeature,
-} from "@hyperobjekt/react-dashboard";
-import { LocationListItem } from "../Location";
-import { getLocationNameParts } from "../utils";
-import ChoroplethScale from "./ChoroplethScale";
-import ChoroplethSelect from "./ChoroplethSelect";
-import RegionSelect from "./RegionSelect";
-import { useMapStore } from "@hyperobjekt/mapgl";
-import useActiveView from "../hooks/useActiveView";
+} from '@hyperobjekt/react-dashboard';
+import { LocationListItem } from '../Location';
+import { getLocationNameParts } from '../utils';
+import ChoroplethScale from './ChoroplethScale';
+import ChoroplethSelect from './ChoroplethSelect';
+import RegionSelect from './RegionSelect';
+import { useMapStore } from '@hyperobjekt/mapgl';
+import useActiveView from '../hooks/useActiveView';
 
 const LegendContainer = styled(Paper)(({ theme }) => ({
-  position: "absolute",
+  position: 'absolute',
   bottom: 24,
   right: 24,
   zIndex: 5,
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "flex-start",
-  justifyContent: "flex-start",
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'flex-start',
+  justifyContent: 'flex-start',
   padding: theme.spacing(2, 2, 1, 2),
   maxWidth: 300,
 }));
 
 const HelpContainer = styled(Paper)(({ theme }) => {
   return {
-    position: "absolute",
-    right: "-16px",
-    padding: "4px 4px 4px 0px",
-    borderRadius: "0 24px 24px 0",
+    position: 'absolute',
+    right: '-16px',
+    padding: '4px 4px 4px 0px',
+    borderRadius: '0 24px 24px 0',
     top: 10,
-    "&:before": {
+    '&:before': {
       content: '""',
-      position: "absolute",
+      position: 'absolute',
       background: theme.palette.background.paper,
       left: -2,
       height: 40,
@@ -58,11 +58,11 @@ const HelpContainer = styled(Paper)(({ theme }) => {
       top: -2,
       zIndex: 2,
     },
-    "& svg": {
-      display: "block",
-      position: "relative",
+    '& svg': {
+      display: 'block',
+      position: 'relative',
       zIndex: 4,
-      color: theme.palette.grey["500"],
+      color: theme.palette.grey['500'],
     },
   };
 });
@@ -87,13 +87,13 @@ export const Legend = ({ children, ...props }) => {
   }, [selected.length]);
 
   const handleShowFullData = () => {
-    setActiveView("scorecard");
+    setActiveView('scorecard');
   };
 
   return (
     <LegendContainer {...props}>
       <Snackbar open={!regionHasMetric} autoHideDuration={6000}>
-        <Alert severity="error" variant="filled" sx={{ width: "100%" }}>
+        <Alert severity="error" variant="filled" sx={{ width: '100%' }}>
           {metric.name} is unavailable for {regionConfig.name}
         </Alert>
       </Snackbar>
@@ -107,51 +107,35 @@ export const Legend = ({ children, ...props }) => {
       <ChoroplethSelect />
       <Box display="flex" alignItems="center" gap={0.5} mt={0.5} mb={1}>
         <Typography lineHeight={1.2} variant="caption">
-          {" "}
-          for{" "}
-        </Typography>{" "}
-        <RegionSelect lineHeight={1.2} color="grey.700" />{" "}
+          {' '}
+          for{' '}
+        </Typography>{' '}
+        <RegionSelect lineHeight={1.2} color="grey.700" />{' '}
         <Typography lineHeight={1.2} variant="caption">
-          {" "}
-          in the U.S.{" "}
+          {' '}
+          in the U.S.{' '}
         </Typography>
       </Box>
       {metric.unit && (
-        <Typography
-          variant="caption"
-          fontStyle="italic"
-          color="grey.700"
-          mb={0.5}
-        >
+        <Typography variant="caption" fontStyle="italic" color="grey.700" mb={0.5}>
           Values represent {metric.unit}
         </Typography>
       )}
-      <ChoroplethScale style={{ margin: "0px -15px -8px" }} />
+      <ChoroplethScale style={{ margin: '0px -15px -8px' }} />
       {children}
       {/* TODO: split selected locations into separate component */}
       {selected.length > 0 && (
         <>
-          <Divider
-            sx={{ width: "calc(100% + 32px)", mt: 2, mb: 1, ml: -2, mr: -2 }}
-          />
-          <Box
-            display="flex"
-            width="100%"
-            justifyContent="space-between"
-            alignItems="center"
-          >
+          <Divider sx={{ width: 'calc(100% + 32px)', mt: 2, mb: 1, ml: -2, mr: -2 }} />
+          <Box display="flex" width="100%" justifyContent="space-between" alignItems="center">
             <Typography variant="body1" fontWeight="bold">
               Selected Locations
             </Typography>
-            <IconButton
-              size="small"
-              sx={{ mr: -0.5 }}
-              onClick={() => setExpanded(!expanded)}
-            >
+            <IconButton size="small" sx={{ mr: -0.5 }} onClick={() => setExpanded(!expanded)}>
               {expanded ? <ExpandLess /> : <ExpandMore />}
             </IconButton>
           </Box>
-          <Collapse sx={{ width: "100%" }} in={expanded}>
+          <Collapse sx={{ width: '100%' }} in={expanded}>
             <List
               ref={listRef}
               sx={{
@@ -162,7 +146,7 @@ export const Legend = ({ children, ...props }) => {
                 pb: 1,
                 mb: -1,
                 maxHeight: 268,
-                overflow: "auto",
+                overflow: 'auto',
               }}
             >
               {selected.map((feature) => {
@@ -173,9 +157,7 @@ export const Legend = ({ children, ...props }) => {
                     name={name}
                     parent={parent}
                     color={feature?.properties?.color}
-                    value={metric.shortFormatter(
-                      feature?.properties?.[metric_id]
-                    )}
+                    value={metric.shortFormatter(feature?.properties?.[metric_id])}
                     performance={feature?.properties?.[`${metric_id}_p`]}
                     onDismiss={(event) => {
                       removeSelected(feature);

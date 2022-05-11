@@ -1,6 +1,6 @@
-import * as JsSearch from "js-search";
-import { useMemo, useState } from "react";
-import { useMetricConfig } from "@hyperobjekt/react-dashboard";
+import * as JsSearch from 'js-search';
+import { useMemo, useState } from 'react';
+import { useMetricConfig } from '@hyperobjekt/react-dashboard';
 
 /**
  * Sets up a search index of all of the available metrics.
@@ -8,14 +8,14 @@ import { useMetricConfig } from "@hyperobjekt/react-dashboard";
  */
 export default function useMetricSearch() {
   const metrics = useMetricConfig();
-  const [highlight, setHighlight] = useState("");
+  const [highlight, setHighlight] = useState('');
   const [filter, setFilter] = useState([]);
   return useMemo(() => {
     // setup search
-    const search = new JsSearch.Search("id");
-    search.addIndex("name");
-    search.addIndex("hint");
-    search.addIndex("keywords");
+    const search = new JsSearch.Search('id');
+    search.addIndex('name');
+    search.addIndex('hint');
+    search.addIndex('keywords');
     search.addDocuments(metrics);
 
     // number of matches for the current search text
@@ -32,7 +32,7 @@ export default function useMetricSearch() {
     // clears any filtered items and substring highlighting
     const handleFilterClear = () => {
       setFilter([]);
-      setHighlight("");
+      setHighlight('');
     };
 
     return {

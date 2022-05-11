@@ -40,11 +40,21 @@
     "web-vitals": "^2.1.4",
     "zustand": "^3.6.9"
   },
+  "devDependencies": {
+    "husky": ">=6",
+    "lint-staged": ">=10",
+    "prettier": "^2.6.2"
+  },
+  "lint-staged": {
+    "*.{js,css,md}": "npm run format"
+  },
   "scripts": {
     "start": "craco start",
     "build": "craco --max_old_space_size=4096 build",
     "test": "craco test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "prepare": "husky install",
+    "format": "prettier --write \"src/**/*.{js,css,md}\""
   },
   "eslintConfig": {
     "extends": [

@@ -1,13 +1,13 @@
-import { FilterList } from "@mui/icons-material";
-import { Box, Button, Typography } from "@mui/material";
-import React, { useState } from "react";
-import shallow from "zustand/shallow";
-import { SearchInput } from "../components";
-import Panel from "../components/Panel";
-import CheckboxMetricsList from "./CheckboxMetricsList";
-import useCategorizedMetrics from "./hooks/useCategorizedMetrics";
-import useMetricSearch from "./hooks/useMetricSearch";
-import useIndicatorPanelStore from "./store";
+import { FilterList } from '@mui/icons-material';
+import { Box, Button, Typography } from '@mui/material';
+import React, { useState } from 'react';
+import shallow from 'zustand/shallow';
+import { SearchInput } from '../components';
+import Panel from '../components/Panel';
+import CheckboxMetricsList from './CheckboxMetricsList';
+import useCategorizedMetrics from './hooks/useCategorizedMetrics';
+import useMetricSearch from './hooks/useMetricSearch';
+import useIndicatorPanelStore from './store';
 
 /**
  * Renders "Apply" and "Cancel" buttons for the footer of the panel
@@ -23,22 +23,10 @@ const FooterActions = ({ onApply, onCancel, ...props }) => {
       px={2}
       {...props}
     >
-      <Button
-        fullWidth
-        size="small"
-        variant="contained"
-        color="primary"
-        onClick={onApply}
-      >
+      <Button fullWidth size="small" variant="contained" color="primary" onClick={onApply}>
         Apply
       </Button>
-      <Button
-        fullWidth
-        size="small"
-        variant="outlined"
-        color="primary"
-        onClick={onCancel}
-      >
+      <Button fullWidth size="small" variant="outlined" color="primary" onClick={onCancel}>
         Cancel
       </Button>
     </Box>
@@ -70,29 +58,20 @@ const CustomizeIndiactorPanel = ({ ...props }) => {
   // list of the current customized metrics, and the setter
   const [customizedMetrics, setCustomizedMetrics] = useIndicatorPanelStore(
     (state) => [state.customizedMetrics, state.setCustomizedMetrics],
-    shallow
+    shallow,
   );
 
   // setter for the panel's open / closed state
-  const setCustomizeOpen = useIndicatorPanelStore(
-    (state) => state.setCustomizeOpen
-  );
+  const setCustomizeOpen = useIndicatorPanelStore((state) => state.setCustomizeOpen);
 
-  const setEnableCustomized = useIndicatorPanelStore(
-    (state) => state.setEnableCustomized
-  );
+  const setEnableCustomized = useIndicatorPanelStore((state) => state.setEnableCustomized);
 
   // local state for selected options, these are copied to `customizedMetrics` on apply
   const [localSelections, setLocalSelections] = useState(customizedMetrics);
 
   // search results and handlers for metric search
-  const {
-    filter,
-    highlight,
-    matchCount,
-    handleFilterChange,
-    handleFilterClear,
-  } = useMetricSearch();
+  const { filter, highlight, matchCount, handleFilterChange, handleFilterClear } =
+    useMetricSearch();
 
   // metric tree by category
   const metrics = useCategorizedMetrics();
@@ -107,7 +86,7 @@ const CustomizeIndiactorPanel = ({ ...props }) => {
 
   // adds all metric IDs to customized metrics when "Select all" is pressed
   const handleSelectAll = () => {
-    const ids = getIdsFromTree({ id: "root", children: metrics });
+    const ids = getIdsFromTree({ id: 'root', children: metrics });
     setLocalSelections(ids);
   };
 
@@ -131,10 +110,7 @@ const CustomizeIndiactorPanel = ({ ...props }) => {
 
   // footer actions to pass to the Panel footer
   const footerActions = (
-    <FooterActions
-      onApply={handleApplySelections}
-      onCancel={handleCancelSelections}
-    />
+    <FooterActions onApply={handleApplySelections} onCancel={handleCancelSelections} />
   );
 
   return (
@@ -154,20 +130,11 @@ const CustomizeIndiactorPanel = ({ ...props }) => {
         />
         {highlight && (
           <Box display="flex" alignItems="center" height={32} mt={2}>
-            <Typography variant="body2">
-              Showing {matchCount} matching indicators.
-            </Typography>
+            <Typography variant="body2">Showing {matchCount} matching indicators.</Typography>
           </Box>
         )}
         {!highlight && (
-          <Box
-            display="flex"
-            alignItems="center"
-            height={32}
-            gap={2}
-            color="grey.600"
-            mt={2}
-          >
+          <Box display="flex" alignItems="center" height={32} gap={2} color="grey.600" mt={2}>
             <Button
               fullWidth
               variant="outlined"

@@ -1,20 +1,20 @@
-import { Box, styled } from "@mui/material";
-import React from "react";
+import { Box, styled } from '@mui/material';
+import React from 'react';
 
 const getColorFromPerformance = (performance) => {
   switch (performance) {
     case 1:
-      return "#D1605E";
+      return '#D1605E';
     case 2:
-      return "#D1605E";
+      return '#D1605E';
     case 3:
-      return "#E7CA60";
+      return '#E7CA60';
     case 4:
-      return "#6A9F58";
+      return '#6A9F58';
     case 5:
-      return "#6A9F58";
+      return '#6A9F58';
     default:
-      return "#eee";
+      return '#eee';
   }
 };
 

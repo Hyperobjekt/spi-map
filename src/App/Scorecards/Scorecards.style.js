@@ -1,5 +1,5 @@
-import { Box, styled } from "@mui/material";
-import theme from "../../theme";
+import { Box, styled } from '@mui/material';
+import theme from '../../theme';
 
 const ScorecardsStyle = styled(Box)`
   position: relative;
@@ -14,7 +14,7 @@ const ScorecardsStyle = styled(Box)`
   .scorecard__header {
     position: relative;
     padding: ${theme.spacing(2, 5)};
-    border-bottom: 1px solid ${theme.palette.grey["300"]};
+    border-bottom: 1px solid ${theme.palette.grey['300']};
     background: #fff;
     border-radius: 2px 2px 0 0;
     z-index: 2;
@@ -131,7 +131,7 @@ const ScorecardsStyle = styled(Box)`
   .HypNestedList-depth1 {
     position: relative;
     padding-bottom: ${theme.spacing(2)};
-    border-bottom: 1px solid ${theme.palette.grey["300"]};
+    border-bottom: 1px solid ${theme.palette.grey['300']};
     .scorecard__label {
       // margin-left: 0;
     }
@@ -143,7 +143,7 @@ const ScorecardsStyle = styled(Box)`
   //     bottom: 32px;
   //     width: 2px;
   //     border-radius: 4px;
-  //     background: ${theme.palette.grey["300"]};
+  //     background: ${theme.palette.grey['300']};
   //     opacity: 0.5;
   //   }
   //   &:nth-of-type(1):after {
