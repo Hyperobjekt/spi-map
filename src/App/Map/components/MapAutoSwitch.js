@@ -29,7 +29,7 @@ const getRegionsInZoomRange = (regionsConfig, zoom) => {
  * @returns
  */
 const getSwitchRegion = (regionsConfig, isZoomingIn) => {
-  if (!regionsConfig || !Array.isArray(regionsConfig)) return null;
+  if (!regionsConfig?.length || !Array.isArray(regionsConfig)) return null;
   // if zooming in, switch to the region lowest max zoom
   if (isZoomingIn)
     return regionsConfig.reduce((prev, curr) =>
