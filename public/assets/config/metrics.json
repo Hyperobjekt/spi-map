@@ -4,6 +4,7 @@
     "category": "",
     "subcategory": "",
     "source": "",
+    "format": "number",
     "link": ""
   },
   {
@@ -11,6 +12,7 @@
     "category": "bhn",
     "subcategory": "",
     "source": "",
+    "format": "number",
     "link": ""
   },
   {
@@ -25,7 +27,7 @@
     "id": "nbm_foodsecurity",
     "category": "bhn",
     "subcategory": "nbm",
-    "format": "percent",
+    "format": "percent_value",
     "source": "Feeding America",
     "link": "https://map.feedingamerica.org/"
   },
@@ -33,6 +35,7 @@
     "id": "ps",
     "category": "bhn",
     "subcategory": "",
+    "format": "number",
     "source": "",
     "link": ""
   },
@@ -41,6 +44,7 @@
     "category": "bhn",
     "subcategory": "ps",
     "years": "2016-2018",
+    "format": "number",
     "source": "National Highway Transportation Safety Adminstration",
     "link": "https://www.nhtsa.gov/research-data/fatality-analysis-reporting-system-fars"
   },
@@ -48,6 +52,7 @@
     "id": "ps_property",
     "category": "bhn",
     "subcategory": "ps",
+    "format": "number",
     "years": "2016-2018",
     "source": "FBIs Uniform Crime Reporting (UCR) Program",
     "link": "https://crime-data-explorer.app.cloud.gov/downloads-and-docs"
@@ -57,6 +62,7 @@
     "category": "bhn",
     "subcategory": "ps",
     "years": "2016-2018",
+    "format": "number",
     "source": "FBIs Uniform Crime Reporting (UCR) Program",
     "link": "https://crime-data-explorer.app.cloud.gov/downloads-and-docs"
   },
@@ -65,6 +71,7 @@
     "category": "bhn",
     "subcategory": "",
     "source": "",
+    "format": "number",
     "link": ""
   },
   {
@@ -87,6 +94,7 @@
     "id": "s_homeless",
     "category": "bhn",
     "subcategory": "s",
+    "format": "number",
     "source": "US Department of Housing and Urban Development",
     "link": "https://www.hudexchange.info/resource/3031/pit-and-hic-data-since-2007/"
   },
@@ -109,6 +117,7 @@
     "category": "bhn",
     "subcategory": "",
     "source": "",
+    "format": "number",
     "link": ""
   },
   {
@@ -116,6 +125,7 @@
     "category": "bhn",
     "subcategory": "ws",
     "years": "2017-2019",
+    "format": "number",
     "source": "Environmental Protection Agency",
     "link": "https://echo.epa.gov/tools/data-downloads#exporter"
   },
@@ -123,6 +133,7 @@
     "id": "ws_hazardouswaste",
     "category": "bhn",
     "subcategory": "ws",
+    "format": "number",
     "years": "2017-2019",
     "source": "Environmental Protection Agency",
     "link": "https://echo.epa.gov/tools/data-downloads#exporter"
@@ -130,6 +141,7 @@
   {
     "id": "ws_floodrisk",
     "category": "bhn",
+    "format": "number",
     "subcategory": "ws"
   },
   {
@@ -141,6 +153,7 @@
   {
     "id": "fow",
     "category": "",
+    "format": "number",
     "subcategory": "",
     "source": "",
     "link": ""
@@ -148,6 +161,7 @@
   {
     "id": "abk",
     "category": "fow",
+    "format": "number",
     "subcategory": "",
     "source": "",
     "link": ""
@@ -197,6 +211,7 @@
   {
     "id": "aic",
     "category": "fow",
+    "format": "number",
     "subcategory": "",
     "source": "",
     "link": ""
@@ -236,6 +251,7 @@
   {
     "id": "eq",
     "category": "fow",
+    "format": "number",
     "subcategory": "",
     "source": "",
     "link": ""
@@ -267,16 +283,19 @@
   {
     "id": "eq_affectedglobalwa",
     "category": "fow",
+    "format": "percent_value",
     "subcategory": "eq"
   },
   {
     "id": "eq_egridrenewables",
     "category": "fow",
+    "format": "percent_value",
     "subcategory": "eq"
   },
   {
     "id": "eq_waterstress",
     "category": "fow",
+    "format": "number",
     "subcategory": "eq"
   },
   {
@@ -284,6 +303,7 @@
     "category": "fow",
     "subcategory": "",
     "source": "",
+    "format": "number",
     "link": ""
   },
   {
@@ -314,6 +334,7 @@
     "id": "hw_drugod",
     "category": "fow",
     "subcategory": "hw",
+    "format": "number",
     "source": "CDC National Center for Health Statistics",
     "link": "https://wonder.cdc.gov/"
   },
@@ -321,6 +342,7 @@
     "id": "hw_mentalhealth",
     "category": "fow",
     "subcategory": "hw",
+    "format": "number",
     "source": "CDC 500 Cities",
     "link": "https://www.cdc.gov/places/about/500-cities-2016-2019/index.html"
   },
@@ -337,6 +359,7 @@
     "category": "",
     "subcategory": "",
     "source": "",
+    "format": "number",
     "link": ""
   },
   {
@@ -344,6 +367,7 @@
     "category": "opp",
     "subcategory": "",
     "source": "",
+    "format": "number",
     "link": ""
   },
   {
@@ -375,12 +399,14 @@
     "category": "opp",
     "subcategory": "",
     "source": "",
+    "format": "number",
     "link": ""
   },
   {
     "id": "i_dissimilarity",
     "category": "opp",
     "subcategory": "i",
+    "format": "number",
     "source": "American Community Survey 5-Year Data",
     "link": "https://www.census.gov/programs-surveys/acs/data.html"
   },
@@ -388,6 +414,7 @@
     "id": "i_genderpaygap",
     "category": "opp",
     "subcategory": "i",
+    "format": "number",
     "source": "American Community Survey 5-Year Data",
     "link": "https://www.census.gov/programs-surveys/acs/data.html"
   },
@@ -395,6 +422,7 @@
     "id": "i_isolation",
     "category": "opp",
     "subcategory": "i",
+    "format": "number",
     "source": "American Community Survey 5-Year Data",
     "link": "https://www.census.gov/programs-surveys/acs/data.html"
   },
@@ -403,6 +431,7 @@
     "format": "percent_value",
     "category": "opp",
     "subcategory": "i",
+    "format": "number",
     "source": "American Community Survey 5-Year Data",
     "link": "https://www.census.gov/programs-surveys/acs/data.html"
   },
@@ -411,6 +440,7 @@
     "category": "opp",
     "subcategory": "",
     "source": "",
+    "format": "number",
     "link": ""
   },
   {
@@ -424,21 +454,25 @@
   {
     "id": "pfc_adultnoinsuranc",
     "category": "opp",
+    "format": "percent_value",
     "subcategory": "pfc"
   },
   {
     "id": "pfc_altercommute",
     "category": "opp",
+    "format": "percent_value",
     "subcategory": "pfc"
   },
   {
     "id": "pfc_teenbirthrate",
     "category": "opp",
+    "format": "percent_value",
     "subcategory": "pfc"
   },
   {
     "id": "pr",
     "category": "opp",
+    "format": "number",
     "subcategory": "",
     "source": "",
     "link": ""
@@ -448,6 +482,7 @@
     "category": "opp",
     "subcategory": "pr",
     "years": "2015-2019",
+    "format": "number",
     "source": "Fatal Encounters",
     "link": "https://fatalencounters.org/"
   },
@@ -470,6 +505,7 @@
   {
     "id": "pr_gendergappower",
     "category": "opp",
+    "format": "number",
     "subcategory": "pr"
   },
   {
@@ -480,26 +516,31 @@
   {
     "id": "i_commutetime",
     "category": "opp",
+    "format": "number",
     "subcategory": "i"
   },
   {
     "id": "nbm_mencorehealth",
     "category": "fow",
-    "subcategory": "nbm"
+    "subcategory": "nbm",
+    "format": "percent_value"
   },
   {
     "id": "nbm_poorhealth",
     "category": "fow",
+    "format": "percent_value",
     "subcategory": "nbm"
   },
   {
     "id": "nbm_supermarketacce",
     "category": "fow",
-    "subcategory": "nbm"
+    "subcategory": "nbm",
+    "format": "percent_value"
   },
   {
     "id": "nbm_womencorehealth",
     "category": "fow",
+    "format": "percent_value",
     "subcategory": "nbm"
   }
 ]
