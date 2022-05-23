@@ -90,7 +90,6 @@ const Scorecards = ({ ...props }) => {
     if (e.target.className.includes('action--close-scorecards')) setActiveView('map');
   };
   const handleSectionNavigation = (e, section) => {
-    console.log(e, section, tableRef.current);
     tableRef.current.querySelector(`#scorecard-row-${section}`).scrollIntoView({
       behavior: 'smooth',
       block: 'start',

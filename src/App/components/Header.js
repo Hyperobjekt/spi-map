@@ -1,11 +1,10 @@
-import React from 'react';
-import { AppBar, Toolbar, Box, Button, Typography } from '@mui/material';
-import SearchInput from './SearchInput';
+import { styled, AppBar, Toolbar, Box, Button, Typography } from '@mui/material';
 import { ArrowBack, Search } from '@mui/icons-material';
-import useActiveView from '../hooks/useActiveView';
-import { styled } from '@mui/material';
 import { animated, useSpring } from '@react-spring/web';
-import useSearchActive from '../Search/hooks/useSearchActive';
+import React from 'react';
+import shallow from 'zustand/shallow';
+import useActiveView from '../hooks/useActiveView';
+import { useSearchStore } from '../Search';
 
 const StyledBox = styled(Box)`
   display: flex;
@@ -21,7 +20,7 @@ const BackButtonWrapper = animated(StyledBox);
 
 export const Header = () => {
   const [activeView, setActiveView] = useActiveView();
-  const [searchActive, setSearchActive] = useSearchActive();
+  const [setModalOpened] = useSearchStore((state) => [state.setModalOpened], shallow);
 
   const buttonSpringProps = useSpring({
     y: activeView === 'map' ? -80 : 0,
@@ -31,9 +30,11 @@ export const Header = () => {
   const handleBackToMap = () => {
     setActiveView('map');
   };
+
   const handleShowSearch = () => {
-    setSearchActive(true);
+    setModalOpened(true);
   };
+
   return (
     <AppBar color="transparent" sx={{ bgcolor: 'background.paper' }} position="sticky">
       <Toolbar>
@@ -49,14 +50,11 @@ export const Header = () => {
             <Typography variant="h4">Back To Map</Typography>
           </Button>
         </BackButtonWrapper>
-
         <Box display="flex" gap={1} ml="auto" pl={1}>
-          {/* <SearchInput /> */}
           <Button variant="outlined" onClick={handleShowSearch}>
             <Search sx={{ mr: 1 }} />
             <Typography>Find a Place</Typography>
           </Button>
-          {/* <Button color="inherit">Menu</Button> */}
         </Box>
       </Toolbar>
     </AppBar>

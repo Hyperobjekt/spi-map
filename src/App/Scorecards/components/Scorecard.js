@@ -20,7 +20,6 @@ const getDataMetricTree = (metric, data) => {
 };
 
 const ScorecardItem = ({ value, selected, itemProps, children, className, ...props }) => {
-  // console.log(itemProps);
   const { name, dataValue, dataPerformance, formatter } = itemProps;
   return (
     <Box component="li" className={clsx(className, 'scorecard__row')} {...props}>

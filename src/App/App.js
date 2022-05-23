@@ -1,21 +1,18 @@
+import Dashboard, { useDashboardStore } from '@hyperobjekt/react-dashboard';
 import '@hyperobjekt/mapgl/dist/style.css';
 import '@hyperobjekt/scales/dist/style.css';
-import { Legend } from './Legend/Legend';
 import { Button, CssBaseline } from '@mui/material';
 import { styled, ThemeProvider } from '@mui/system';
-import Header from './components/Header';
-
-import { IndicatorPanel } from './IndicatorPanel/IndicatorPanel';
-import useIndicatorPanelStore from './IndicatorPanel/store';
+import { useCallback } from 'react';
 import shallow from 'zustand/shallow';
-import { useCallback, useEffect, useState } from 'react';
+import Header from './components/Header';
 import { MapTooltip, Map } from './Map';
-import CustomizeIndiactorPanel from './IndicatorPanel/CustomizeIndicatorPanel';
-import Dashboard, { useDashboardStore } from '@hyperobjekt/react-dashboard';
+import { IndicatorPanel, CustomizeIndicatorPanel, useIndicatorPanelStore } from './IndicatorPanel';
+import { Legend } from './Legend/Legend';
 import { Scorecards } from './Scorecards';
+import { SearchModal } from './Search';
 import theme from '../theme';
 import useActiveView from './hooks/useActiveView';
-import SearchModal from './Search/components/SearchModal';
 // // debug tools
 // import Debug from "./Demo/components/Debug";
 // import { ReactQueryDevtools } from "react-query/devtools";
@@ -68,7 +65,7 @@ function App() {
     (state) => [state.open, state.setOpen],
     shallow,
   );
-  const [activeView] = useActiveView();
+  useActiveView();
   // tracks if the customize indicators panel is open
   const customizeOpen = useIndicatorPanelStore((state) => state.customizeOpen);
   // track mouse coords for tooltip
@@ -103,7 +100,7 @@ function App() {
               </Legend>
             </Map>
             <IndicatorPanel open={indicatorsOpen} onClose={() => setIndicatorsOpen(false)} />
-            <CustomizeIndiactorPanel open={customizeOpen} />
+            <CustomizeIndicatorPanel open={customizeOpen} />
             <MapTooltip />
           </MapBodyWrapper>
           <Scorecards />

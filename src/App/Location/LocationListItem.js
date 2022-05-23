@@ -37,7 +37,6 @@ const StyledListItem = styled(ListItemButton)(({ theme }) => ({
 }));
 
 const LocationListItem = ({ name, parent, value, performance, color, onDismiss, ...props }) => {
-  console.log({ performance });
   return (
     <StyledListItem {...props}>
       {color && <LocationColor style={{ background: color }} />}

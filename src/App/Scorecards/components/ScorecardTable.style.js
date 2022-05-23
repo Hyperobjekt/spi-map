@@ -1,4 +1,4 @@
-import { Box, Paper, styled } from '@mui/material';
+import { Paper, styled } from '@mui/material';
 import theme from '../../../theme';
 import { animated } from '@react-spring/web';
 

@@ -1,8 +1,9 @@
-import React from 'react';
-import { SearchInput } from '../../components';
-import useSearchActive from '../hooks/useSearchActive';
-import { visuallyHidden } from '@mui/utils';
 import { Box, Modal, Typography } from '@mui/material';
+import { visuallyHidden } from '@mui/utils';
+import React from 'react';
+import shallow from 'zustand/shallow';
+import { SearchInput } from '../../components';
+import { useSearchStore } from '../';
 
 const style = {
   position: 'absolute',
@@ -18,14 +19,19 @@ const style = {
 };
 
 const SearchModal = () => {
-  const [searchActive, setSearchActive] = useSearchActive();
+  const [modalOpened, setModalOpened] = useSearchStore(
+    (state) => [state.modalOpened, state.setModalOpened],
+    shallow,
+  );
+
   const handleClose = () => {
-    setSearchActive(false);
+    setModalOpened(false);
   };
+
   return (
     <Modal
       keepMounted
-      open={searchActive}
+      open={modalOpened}
       onClose={handleClose}
       aria-labelledby="search-modal-title"
     >

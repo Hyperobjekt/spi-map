@@ -10,7 +10,7 @@ import useIndicatorPanelStore from './store';
 import { Panel, SearchInput } from '../components';
 import { CustomizeIndicatorsToggle } from './components';
 
-export const IndicatorPanel = ({ ...props }) => {
+const IndicatorPanel = ({ ...props }) => {
   const [metric, setMetric] = useDashboardStore(
     (state) => [state.choroplethMetric, state.setChoroplethMetric],
     shallow,
@@ -119,3 +119,5 @@ export const IndicatorPanel = ({ ...props }) => {
     </Panel>
   );
 };
+
+export default IndicatorPanel;
