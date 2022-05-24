@@ -77,7 +77,7 @@ const ScorecardControls = ({ onNavigateToSection, ...props }) => {
         mt={1}
         editLabel="Change Custom Indicators"
       />
-      <Divider />
+      {/*<Divider />
       <Typography variant="overline">Data Export</Typography>
       <List>
         <ListItem
@@ -96,7 +96,7 @@ const ScorecardControls = ({ onNavigateToSection, ...props }) => {
         >
           <ListItemText primary="Download Spreadsheet" />
         </ListItem>
-      </List>
+      </List>*/}
     </ControlsWrapper>
   );
 };
