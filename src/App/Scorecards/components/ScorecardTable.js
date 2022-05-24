@@ -11,10 +11,17 @@ import clsx from "clsx";
 import React from "react";
 import ScorecardHeaderCell from "./ScorecardHeaderCell";
 import ScorecardValueCell from "./ScorecardValueCell";
+import useIndicatorPanelStore from "../../IndicatorPanel/store";
 import { getFormatter } from "@hyperobjekt/react-dashboard";
-
 export const ScorecardTable = React.forwardRef(
   ({ locations: baseLocations, metrics: baseMetrics, ...props }, ref) => {
+    const customizedMetrics = useIndicatorPanelStore(
+      (state) => state.customizedMetrics
+    );
+    const hasCustomized = customizedMetrics.length > 0;
+    const enableCustomized = useIndicatorPanelStore(
+      (state) => state.enableCustomized
+    );
     // TODO: use real data for demographics
     const locations = baseLocations.map((l) => ({
       ...l,
@@ -33,8 +40,26 @@ export const ScorecardTable = React.forwardRef(
       race_h: 0.25,
       race_a: 0.25,
     }));
+
+    const filteredMetrics = enableCustomized && hasCustomized
+      ? baseMetrics.filter((metric) => {
+          if(metric.depth === 0) {
+            //true if top-level category
+            return true;
+          } else if(metric.depth === 1) {
+            //true if subcategory with children selected
+            return baseMetrics
+              .filter(m => customizedMetrics.includes(m.id))
+              .map(m => m.subcategory)
+              .includes(metric.id);
+          } else {
+            //true if item is selected
+            return customizedMetrics.includes(metric.id);
+          }
+        })
+      : baseMetrics;
     const metrics = [
-      ...baseMetrics,
+      ...filteredMetrics,
       { id: "dem", name: "Demographics", depth: 0 },
       { id: "overview", name: "Overview", depth: 1 },
       {
