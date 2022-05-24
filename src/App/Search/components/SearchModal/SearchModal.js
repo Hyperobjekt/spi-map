@@ -19,12 +19,12 @@ const SearchModal = () => {
     ],
     shallow,
   );
-  const [viewport, flyToBounds, flyTo, hoveredFeature] = useMapStore((state) => [
+  const [viewport, flyToBounds, flyTo] = useMapStore((state) => [
     state.viewState,
     state.flyToBounds,
     state.flyTo,
-    state.hoveredFeature,
   ]);
+
   const [suggestions, setSuggestions] = useState([]);
   const [value, setValue] = useState('');
 
@@ -40,21 +40,19 @@ const SearchModal = () => {
   const getSuggestions = (value) => {
     const inputValue = encodeURIComponent(value);
 
-    // If not a very long string, just return empty array.
     if (inputValue.length < 3) {
-      return setSuggestions([]);
+      // If not a very long string, just return empty array.
+      setSuggestions([]);
     } else {
-      // Construct query path.
       const path =
         `https://api.mapbox.com/geocoding/v5/mapbox.places/${inputValue}.json?` +
         `access_token=${MAPBOX_TOKEN}&cachebuster=${Math.floor(
           Date.now(),
-        )}&autocomplete=true&country=US${
+        )}&autocomplete=true&country=US&types=region,place${
           viewport?.zoom > FULL_FUNCT_ZOOM_THRESHOLD
             ? `&proximity=${viewport.longitude},${viewport.latitude}`
             : ``
         }`;
-      // Get request for autosuggest results.
       fetch(path)
         .then((r) => r.json())
         .then((json) => {

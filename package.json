@@ -17,6 +17,7 @@
     "@testing-library/user-event": "^13.5.0",
     "@turf/boolean-within": "^6.5.0",
     "@turf/union": "^6.5.0",
+    "aws-sdk": "^2.1142.0",
     "clsx": "^1.1.1",
     "color": "^4.2.1",
     "d3-dsv": "^3.0.1",
