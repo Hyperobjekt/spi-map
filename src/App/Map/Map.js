@@ -1,21 +1,18 @@
 import React, { useCallback, useRef } from 'react';
-import { MapGL, useMapFlyToFeature, ZoomToBoundsControl } from '@hyperobjekt/mapgl';
+import { MapGL, useMapFlyToFeature, ZoomToBoundsControl, useMapStore } from '@hyperobjekt/mapgl';
 import { GeolocateControl, NavigationControl } from 'react-map-gl';
 import { useMapSources, useDashboardStore } from '@hyperobjekt/react-dashboard';
 import { useLocationStore, useToggleLocation } from '@hyperobjekt/react-dashboard';
+import { MAPBOX_TOKEN, MAP_STYLE } from 'App/shared/constants';
 import MapAutoSwitch from './components/MapAutoSwitch';
 import CityLabelsLayer from './components/CityLabelsLayer';
 import useSpiMapLayers from './hooks/useSpiMapLayers';
-
-const TOKEN = `pk.eyJ1IjoiaHlwZXJvYmpla3QiLCJhIjoiY2pzZ3Bnd3piMGV6YTQzbjVqa3Z3dHQxZyJ9.rHobqsY_BjkNbqNQS4DNYw`;
 
 // bounds for continental US
 const US_BOUNDS = [
   [-130, 24],
   [-65, 50],
 ];
-
-const MAP_STYLE = 'mapbox://styles/hyperobjekt/cl007w05t000414oaog417i9s';
 
 export default function Map({ children, ...props }) {
   const ref = useRef(); // reference to mapgl instance (needed for sizing on panel open / close)
@@ -26,6 +23,7 @@ export default function Map({ children, ...props }) {
   // function that flys the map to a provided feature
   const flyToFeature = useMapFlyToFeature();
   const autoSwitchRegion = useDashboardStore((state) => state.autoSwitchRegion);
+  const setViewState = useMapStore((state) => state.setViewState);
 
   // fly to feature on click if it's not selected and toggle "selected" status
   const handleClick = useCallback(
@@ -44,7 +42,7 @@ export default function Map({ children, ...props }) {
   return (
     <MapGL
       ref={ref}
-      mapboxAccessToken={TOKEN}
+      mapboxAccessToken={MAPBOX_TOKEN}
       sources={sources}
       layers={layers}
       mapStyle={MAP_STYLE}
@@ -54,7 +52,11 @@ export default function Map({ children, ...props }) {
       {...props}
     >
       <GeolocateControl />
-      <NavigationControl />
+      <NavigationControl
+        onViewportChange={(viewport) => {
+          setViewState(viewport);
+        }}
+      />
       <ZoomToBoundsControl bounds={US_BOUNDS} />
       {autoSwitchRegion && <MapAutoSwitch />}
       <CityLabelsLayer />
