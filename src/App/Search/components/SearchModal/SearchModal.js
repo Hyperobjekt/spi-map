@@ -1,5 +1,5 @@
 import { useMapStore } from '@hyperobjekt/mapgl';
-import { Box, Modal, Typography, Button, IconButton } from '@mui/material';
+import { Box, Modal, Typography, IconButton } from '@mui/material';
 import { visuallyHidden } from '@mui/utils';
 import { Search as SearchIcon, Clear as ClearIcon } from '@mui/icons-material';
 import React, { useState } from 'react';
@@ -75,7 +75,11 @@ const SearchModal = () => {
         zoom: FLY_TO_ZOOM,
       });
     }
-    setRecentLocations(recentLocations.length < 5 ? [...recentLocations, suggestion] : []);
+    setRecentLocations(
+      recentLocations.length < 5
+        ? [...recentLocations, suggestion]
+        : [...recentLocations.slice(1), suggestion],
+    );
     setModalOpened(false);
     handleClear();
   };
@@ -142,27 +146,29 @@ const SearchModal = () => {
           )}
         </InputWrapper>
         <Content>
-          <Typography sx={{ fontSize: '1rem' }}>RECENT LOCATIONS</Typography>
+          <Typography sx={{ fontSize: '1rem', marginBottom: '1rem' }}>RECENT LOCATIONS</Typography>
           <Box display="flex" flexDirection="column">
-            {recentLocations.reverse().map((location, index) => (
-              <Box
-                width="100%"
-                display="flex"
-                justifyContent="space-between"
-                alignItems="center"
-                borderBottom="1px solid #E0E0E0"
-                padding="0.6rem 0"
-                order={index}
-                key={index}
-              >
-                <Box paddingRight="2rem">
-                  <Typography>{location.suggestion.place_name}</Typography>
-                </Box>
-                <Button sx={{ minWidth: 200 }} variant="outlined">
+            {[...recentLocations].reverse().map((location, index) => {
+              return (
+                <Box
+                  width="100%"
+                  display="flex"
+                  justifyContent="space-between"
+                  alignItems="center"
+                  borderBottom="1px solid #E0E0E0"
+                  padding="0.6rem 0"
+                  order={index}
+                  key={index}
+                >
+                  <Box paddingRight="2rem">
+                    <Typography>{location.suggestion.place_name}</Typography>
+                  </Box>
+                  {/* <Button sx={{ minWidth: 200 }} variant="outlined">
                   Find Similar Places
-                </Button>
-              </Box>
-            ))}
+                </Button> */}
+                </Box>
+              );
+            })}
           </Box>
         </Content>
       </Container>

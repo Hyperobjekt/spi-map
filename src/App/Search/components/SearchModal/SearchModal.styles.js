@@ -36,6 +36,7 @@ export const InputWrapper = styled('div')(({ theme }) => ({
       backgroundColor: theme.palette.background.paper,
       border: '1px solid #E0E0E0',
       marginRight: '2.5rem',
+      zIndex: 1,
       '& .react-autosuggest__suggestions-list': {
         paddingRight: '1rem',
         '& .react-autosuggest__suggestion': {
