@@ -30,7 +30,7 @@ export const getCategoryColors = (category) => {
 
 export default function useSpiScaleOverrides({ metric_id }) {
   const metric = useMetricConfig(metric_id);
-  const category = metric.category || metric_id;
+  const category = metric?.category || metric_id;
   return useMemo(() => {
     return { colors: getCategoryColors(category) };
   }, [category]);
