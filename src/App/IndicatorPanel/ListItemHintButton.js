@@ -18,7 +18,7 @@ const HintIconButton = styled(IconButton)(({ theme }) => ({
  * Custom list item that has a tooltip hint for metrics with a `DESC_` entry
  * in the language dictionary.  Used in the indicator panel metrics list.
  */
-const ListItemHintButton = ({ value, children, ...props }) => {
+const ListItemHintButton = ({ value, children, itemProps, ...props }) => {
   const langKey = `DESC_${value}`.toUpperCase();
   const hint = useLang(langKey);
   return (

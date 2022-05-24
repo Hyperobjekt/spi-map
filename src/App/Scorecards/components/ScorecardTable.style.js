@@ -1,6 +1,6 @@
 import { Paper, styled } from '@mui/material';
-import theme from '../../../theme';
 import { animated } from '@react-spring/web';
+import theme from '../../../theme';
 
 const StyledPaper = styled(Paper)`
   display: block;
@@ -40,14 +40,14 @@ const StyledPaper = styled(Paper)`
     padding-left: ${theme.spacing(1)};
     padding-right: ${theme.spacing(1)};
   }
-  .MuiTableCell-root:nth-child(2n) {
+  .MuiTableCell-root:nth-of-type(2n) {
     background-color: rgba(0, 0, 0, 0.02);
   }
   .MuiTableCell-root.scorecard__header {
     background: #fff;
     z-index: 2;
   }
-  .MuiTableCell-root.scorecard__header:nth-child(2n) {
+  .MuiTableCell-root.scorecard__header:nth-of-type(2n) {
     background-color: #fcfcfc;
   }
   .scorecard__location-name,

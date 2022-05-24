@@ -1,6 +1,7 @@
 import { useMapState } from '@hyperobjekt/mapgl';
 import { useConfig, useDashboardStore } from '@hyperobjekt/react-dashboard';
 import { usePreviousProps } from '@mui/utils';
+import { useEffect } from 'react';
 
 /**
  * Given an array of region configs, and a zoom level, returns an array of
@@ -28,6 +29,7 @@ const getRegionsInZoomRange = (regionsConfig, zoom) => {
  * @returns
  */
 const getSwitchRegion = (regionsConfig, isZoomingIn) => {
+  if (!regionsConfig?.length || !Array.isArray(regionsConfig)) return null;
   // if zooming in, switch to the region lowest max zoom
   if (isZoomingIn)
     return regionsConfig.reduce((prev, curr) =>
@@ -65,12 +67,12 @@ const MapAutoSwitch = () => {
     (regionConfig) => regionConfig.id === currentRegion,
   );
 
-  // do nothing if we shouldn't switch or if there are no regions to switch to
-  if (!shouldSwitch || regionsInZoomRange.length === 0) return null;
-
   // get the next region, based on the zoom direction and regions in range
   const nextRegion = getSwitchRegion(regionsInZoomRange, isZoomingIn);
-  nextRegion?.id && setRegion(nextRegion.id);
+  const nextRegionId = nextRegion?.id;
+  useEffect(() => {
+    shouldSwitch && nextRegionId && setRegion(nextRegionId);
+  }, [nextRegionId, shouldSwitch, setRegion]);
 
   // render nothing!
   return null;

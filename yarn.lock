@@ -1239,20 +1239,15 @@
     viewport-mercator-project "^7.0.4"
     zustand "^3.0.0"
 
-"@hyperobjekt/react-dashboard@^0.4.0":
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/@hyperobjekt/react-dashboard/-/react-dashboard-0.4.0.tgz#7ec61b5007b931c3995b202a21bf44e18db05553"
-  integrity sha512-YF6FAweFH5GBVbTXMEzULeggSFdHq91DmbD6AKCIL6Z37PAJjxMcIhXG41RvRXHFGKc34PMU/9nL6V6K5c5REA==
+"@hyperobjekt/react-dashboard@^1.3.2":
+  version "1.3.2"
+  resolved "https://registry.yarnpkg.com/@hyperobjekt/react-dashboard/-/react-dashboard-1.3.2.tgz#0993e7d393a17063e559e551609681bf36ba7bb3"
+  integrity sha512-PURYzqLab5B/xqEdKC4eWXxdBOfYTV0E+rxyCMwHYs8tEmWEyTnh8svmw1RaiA114ff8kI9zVpzptGHQ+unujg==
   dependencies:
-    "@react-spring/web" "^9.4.3"
-    "@turf/union" "^6.5.0"
-    clsx "^1.1.1"
     d3-dsv "^3.0.1"
     d3-format "^3.1.0"
     d3-time-format "^4.1.0"
     mustache "^4.2.0"
-    react-query "^3.34.16"
-    zustand "^3.7.1"
 
 "@hyperobjekt/scales@^2.1.2":
   version "2.1.2"
@@ -8127,15 +8122,6 @@ react-query@^3.34.12:
     broadcast-channel "^3.4.1"
     match-sorter "^6.0.2"
 
-react-query@^3.34.16:
-  version "3.34.16"
-  resolved "https://registry.yarnpkg.com/react-query/-/react-query-3.34.16.tgz#279ea180bcaeaec49c7864b29d1711ee9f152594"
-  integrity sha512-7FvBvjgEM4YQ8nPfmAr+lJfbW95uyW/TVjFoi2GwCkF33/S8ajx45tuPHPFGWs4qYwPy1mzwxD4IQfpUDrefNQ==
-  dependencies:
-    "@babel/runtime" "^7.5.5"
-    broadcast-channel "^3.4.1"
-    match-sorter "^6.0.2"
-
 react-refresh@^0.11.0:
   version "0.11.0"
   resolved "https://registry.npmjs.org/react-refresh/-/react-refresh-0.11.0.tgz"
@@ -10168,8 +10154,3 @@ zustand@^3.6.9:
   version "3.6.9"
   resolved "https://registry.npmjs.org/zustand/-/zustand-3.6.9.tgz"
   integrity sha512-OvDNu/jEWpRnEC7k8xh8GKjqYog7td6FZrLMuHs/IeI8WhrCwV+FngVuwMIFhp5kysZXr6emaeReMqjLGaldAQ==
-
-zustand@^3.7.1:
-  version "3.7.1"
-  resolved "https://registry.yarnpkg.com/zustand/-/zustand-3.7.1.tgz#7388f0a7175a6c2fd9a2880b383a4bf6cdf6b7c6"
-  integrity sha512-wHBCZlKj+bg03/hP+Tzv24YhnqqP8MCeN9ECPDXoF01062SIbnfl3j9O0znkDw1lNTY0a8WN3F///a0UhhaEqg==

@@ -78,7 +78,7 @@ export const Legend = ({ children, ...props }) => {
   const [expanded, setExpanded] = React.useState(true);
 
   const regionHasMetric = regionConfig?.metrics?.includes(metric_id);
-  const [activeView, setActiveView] = useActiveView();
+  const [, setActiveView] = useActiveView();
 
   // scroll to the bottom of the list when adding new items
   useEffect(() => {
@@ -188,3 +188,5 @@ export const Legend = ({ children, ...props }) => {
     </LegendContainer>
   );
 };
+
+export default Legend;
