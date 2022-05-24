@@ -19,14 +19,15 @@ const SearchModal = () => {
     ],
     shallow,
   );
-  const [viewport, flyToBounds, flyTo] = useMapStore((state) => [
+  const [viewport, flyToBounds, flyTo, hoveredFeature] = useMapStore((state) => [
     state.viewState,
     state.flyToBounds,
     state.flyTo,
+    state.hoveredFeature,
   ]);
   const [suggestions, setSuggestions] = useState([]);
   const [value, setValue] = useState('');
-
+  // console.log(hoveredFeature, recentLocations);
   const handleClose = () => {
     setModalOpened(false);
   };
@@ -80,6 +81,23 @@ const SearchModal = () => {
         ? [...recentLocations, suggestion]
         : [...recentLocations.slice(1), suggestion],
     );
+    setModalOpened(false);
+    handleClear();
+  };
+
+  const handleClickRecentLocation = (suggestion) => {
+    if (!!suggestion.suggestion.bbox) {
+      flyToBounds([
+        [suggestion.suggestion.bbox[0], suggestion.suggestion.bbox[1]],
+        [suggestion.suggestion.bbox[2], suggestion.suggestion.bbox[3]],
+      ]);
+    } else {
+      flyTo({
+        latitude: suggestion.suggestion.center[1],
+        longitude: suggestion.suggestion.center[0],
+        zoom: FLY_TO_ZOOM,
+      });
+    }
     setModalOpened(false);
     handleClear();
   };
@@ -159,6 +177,10 @@ const SearchModal = () => {
                   padding="0.6rem 0"
                   order={index}
                   key={index}
+                  style={{ cursor: 'pointer' }}
+                  onClick={() => {
+                    handleClickRecentLocation(location);
+                  }}
                 >
                   <Box paddingRight="2rem">
                     <Typography>{location.suggestion.place_name}</Typography>
