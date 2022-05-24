@@ -27,7 +27,7 @@ const SearchModal = () => {
   ]);
   const [suggestions, setSuggestions] = useState([]);
   const [value, setValue] = useState('');
-  // console.log(hoveredFeature, recentLocations);
+
   const handleClose = () => {
     setModalOpened(false);
   };

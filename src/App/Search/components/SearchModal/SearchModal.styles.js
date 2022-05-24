@@ -41,6 +41,9 @@ export const InputWrapper = styled('div')(({ theme }) => ({
         paddingRight: '1rem',
         '& .react-autosuggest__suggestion': {
           cursor: 'pointer',
+          '&:hover': {
+            backgroundColor: '#E0E0E0',
+          },
         },
       },
     },
