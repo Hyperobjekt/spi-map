@@ -69,7 +69,7 @@ const ScorecardControls = ({ onNavigateToSection, ...props }) => {
       <Typography sx={{ mb: 2, display: "block" }} variant="overline">
         Scorecard Indicators
       </Typography>
-      <SearchInput placeholder="Filter by keyword" icon={<FilterList />} />
+      {/*<SearchInput placeholder="Filter by keyword" icon={<FilterList />} />*/}
       <CustomizeIndicatorsToggle
         flexDirection="column"
         px={0}
