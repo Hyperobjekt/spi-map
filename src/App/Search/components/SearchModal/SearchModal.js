@@ -2,12 +2,14 @@ import { useMapStore } from '@hyperobjekt/mapgl';
 import { Box, Modal, Typography, IconButton } from '@mui/material';
 import { visuallyHidden } from '@mui/utils';
 import { Search as SearchIcon, Clear as ClearIcon } from '@mui/icons-material';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import shallow from 'zustand/shallow';
 import Autosuggest from 'react-autosuggest';
 import { MAPBOX_TOKEN, FULL_FUNCT_ZOOM_THRESHOLD, FLY_TO_ZOOM } from 'App/shared/constants';
 import { useSearchStore } from '../../store';
 import { Container, InputWrapper, Content } from './SearchModal.styles';
+
+const SEARCH_MIN = 3;
 
 const SearchModal = () => {
   const [modalOpened, setModalOpened, recentLocations, setRecentLocations] = useSearchStore(
@@ -25,6 +27,8 @@ const SearchModal = () => {
     state.flyTo,
     state.hoveredFeature,
   ]);
+
+  const [includedCities, setIncludedCities] = useState([]);
   const [suggestions, setSuggestions] = useState([]);
   const [value, setValue] = useState('');
 
@@ -41,7 +45,7 @@ const SearchModal = () => {
     const inputValue = encodeURIComponent(value);
 
     // If not a very long string, just return empty array.
-    if (inputValue.length < 3) {
+    if (inputValue.length < SEARCH_MIN) {
       return setSuggestions([]);
     } else {
       // Construct query path.
@@ -49,7 +53,7 @@ const SearchModal = () => {
         `https://api.mapbox.com/geocoding/v5/mapbox.places/${inputValue}.json?` +
         `access_token=${MAPBOX_TOKEN}&cachebuster=${Math.floor(
           Date.now(),
-        )}&autocomplete=true&country=US${
+        )}&autocomplete=true&country=US&types=region,place${
           viewport?.zoom > FULL_FUNCT_ZOOM_THRESHOLD
             ? `&proximity=${viewport.longitude},${viewport.latitude}`
             : ``
@@ -58,7 +62,13 @@ const SearchModal = () => {
       fetch(path)
         .then((r) => r.json())
         .then((json) => {
-          setSuggestions(json.features);
+          // Limit to states or city with data on map
+          return json.features.filter(
+            (f) => f.place_type.includes('region') || includedCities.includes(f.place_name),
+          );
+        })
+        .then((results) => {
+          setSuggestions(results);
         });
     }
   };
@@ -114,6 +124,18 @@ const SearchModal = () => {
     return suggestion.place_name;
   };
 
+  const renderSuggestionsContainer = ({ containerProps, children, query }) => {
+    return query.length >= SEARCH_MIN ? (
+      <div {...containerProps}>
+        {children ? (
+          children
+        ) : (
+          <Typography sx={{ padding: '1em' }}>{`No data available for "${query}"`}</Typography>
+        )}
+      </div>
+    ) : null;
+  };
+
   const renderSuggestion = (suggestion) => {
     return (
       <div id={suggestion.id} key={suggestion.id}>
@@ -135,6 +157,19 @@ const SearchModal = () => {
     'aria-label': 'location-search',
   };
 
+  useEffect(async () => {
+    const cities = await fetch('./assets/data/cities.csv')
+      .then((r) => r.text())
+      .then((text) => {
+        let rows = text
+          .split(/(?:\r\n|\n)+/)
+          .filter((row) => row.length !== 0)
+          .map((row) => row.replace(/^"|"$/g, '') + ', United States');
+        return rows;
+      });
+    await setIncludedCities(cities);
+  }, []);
+
   return (
     <Modal
       keepMounted
@@ -154,6 +189,7 @@ const SearchModal = () => {
             onSuggestionsFetchRequested={handleFetchRequested}
             onSuggestionsClearRequested={handleClearRequested}
             getSuggestionValue={getSuggestionValue}
+            renderSuggestionsContainer={renderSuggestionsContainer}
             renderSuggestion={renderSuggestion}
             inputProps={inputProps}
           />
