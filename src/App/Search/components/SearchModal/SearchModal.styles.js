@@ -38,12 +38,11 @@ export const InputWrapper = styled('div')(({ theme }) => ({
       marginRight: '2.5rem',
       zIndex: 1,
       '& .react-autosuggest__suggestions-list': {
-        paddingRight: '1rem',
+        listStyleType: 'none',
+        lineHeight: 1.8,
+        padding: '0 1rem',
         '& .react-autosuggest__suggestion': {
-          cursor: 'pointer',
-          '&:hover': {
-            backgroundColor: '#E0E0E0',
-          },
+          //
         },
       },
     },
@@ -53,3 +52,12 @@ export const InputWrapper = styled('div')(({ theme }) => ({
 export const Content = styled('div')(({ theme }) => ({
   padding: '1.5rem',
 }));
+
+export const SuggestionDiv = styled('div')({
+  cursor: 'pointer',
+  padding: '0 1rem',
+  '&:hover': {
+    backgroundColor: '#0D7682',
+    color: '#FFF',
+  },
+});

@@ -7,7 +7,7 @@ import shallow from 'zustand/shallow';
 import Autosuggest from 'react-autosuggest';
 import { MAPBOX_TOKEN, FULL_FUNCT_ZOOM_THRESHOLD, FLY_TO_ZOOM } from 'App/shared/constants';
 import { useSearchStore } from '../../store';
-import { Container, InputWrapper, Content } from './SearchModal.styles';
+import { Container, InputWrapper, Content, SuggestionDiv } from './SearchModal.styles';
 
 const SearchModal = () => {
   const [modalOpened, setModalOpened, recentLocations, setRecentLocations] = useSearchStore(
@@ -27,6 +27,7 @@ const SearchModal = () => {
 
   const [suggestions, setSuggestions] = useState([]);
   const [value, setValue] = useState('');
+  const [highlighted, setHighlighted] = useState(null);
 
   const handleClose = () => {
     setModalOpened(false);
@@ -113,10 +114,18 @@ const SearchModal = () => {
   };
 
   const renderSuggestion = (suggestion) => {
+    const isHighlighted = highlighted?.id === suggestion?.id;
     return (
-      <div id={suggestion.id} key={suggestion.id}>
+      <SuggestionDiv
+        id={suggestion.id}
+        key={suggestion.id}
+        style={{
+          backgroundColor: isHighlighted ? '#0D7682' : 'transparent',
+          color: isHighlighted ? '#FFF' : '#000',
+        }}
+      >
         {suggestion.place_name}
-      </div>
+      </SuggestionDiv>
     );
   };
 
@@ -153,6 +162,9 @@ const SearchModal = () => {
             onSuggestionsClearRequested={handleClearRequested}
             getSuggestionValue={getSuggestionValue}
             renderSuggestion={renderSuggestion}
+            onSuggestionHighlighted={({ suggestion }) => {
+              setHighlighted(suggestion);
+            }}
             inputProps={inputProps}
           />
           {value && value.length > 0 && (
