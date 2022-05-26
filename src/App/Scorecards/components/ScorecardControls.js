@@ -2,8 +2,8 @@ import { Divider, List, ListItem, ListItemText, Paper, styled, Typography } from
 import theme from '../../../theme';
 import { CustomizeIndicatorsToggle } from '../../IndicatorPanel';
 import { animated } from '@react-spring/web';
-import { SearchInput } from '../../components';
-import { FilterList } from '@mui/icons-material';
+// import { SearchInput } from '../../components';
+// import { FilterList } from '@mui/icons-material';
 const StyledPaper = styled(Paper)`
   padding: ${theme.spacing(2)};
   opacity: 0;

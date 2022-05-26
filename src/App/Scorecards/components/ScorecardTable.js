@@ -1,4 +1,3 @@
-import React, { useEffect } from 'react';
 import { getFormatter } from '@hyperobjekt/react-dashboard';
 import {
   Table,
@@ -9,36 +8,36 @@ import {
   TableRow,
   Typography,
 } from '@mui/material';
+import React, { useEffect, useState } from 'react';
 import clsx from 'clsx';
 import Papa from 'papaparse';
 import ScorecardHeaderCell from './ScorecardHeaderCell';
 import ScorecardValueCell from './ScorecardValueCell';
 import useIndicatorPanelStore from '../../IndicatorPanel/store';
-import { getFormatter } from '@hyperobjekt/react-dashboard';
+
 export const ScorecardTable = React.forwardRef(
   ({ locations: baseLocations, metrics: baseMetrics, ...props }, ref) => {
+    const [demographics, setDemographics] = useState([]);
+    const locations = baseLocations.map((l) => {
+      const isState = l.state && l.GEOID && l.state === l.GEOID;
+      const data = l.GEOID
+        ? demographics.find(
+            (d) =>
+              d?.geoid &&
+              (isState
+                ? d.geoid.startsWith('04000') && d.geoid.endsWith(l.GEOID)
+                : d.geoid.endsWith(l.GEOID)),
+          )
+        : null;
+      return {
+        ...l,
+        ...(data || {}),
+      };
+    });
+
     const customizedMetrics = useIndicatorPanelStore((state) => state.customizedMetrics);
     const hasCustomized = customizedMetrics.length > 0;
     const enableCustomized = useIndicatorPanelStore((state) => state.enableCustomized);
-    // TODO: use real data for demographics
-    const locations = baseLocations.map((l) => ({
-      ...l,
-      dem: '',
-      dem_pop: 124156,
-      dem_mhi: 50659,
-      dem_pr: 0.165,
-      age: '',
-      age_019: 0.122,
-      age_2039: 0.25,
-      age_4059: 0.375,
-      age_60: 0.168,
-      race: '',
-      race_w: 0.25,
-      race_b: 0.25,
-      race_h: 0.25,
-      race_a: 0.25,
-    }));
-
     const filteredMetrics =
       enableCustomized && hasCustomized
         ? baseMetrics.filter((metric) => {
@@ -57,6 +56,7 @@ export const ScorecardTable = React.forwardRef(
             }
           })
         : baseMetrics;
+
     const metrics = [
       ...filteredMetrics,
       { id: 'dem', name: 'Demographics', depth: 0 },
