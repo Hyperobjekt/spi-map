@@ -1,14 +1,10 @@
-import { Box, Typography } from "@mui/material";
-import React from "react";
+import { Box, Typography } from '@mui/material';
+import React from 'react';
 
 const LocationName = ({ name, parent, ...props }) => {
   return (
     <Box {...props}>
-      <Typography
-        variant="body1"
-        fontWeight="bold"
-        sx={{ m: 0, lineHeight: 1 }}
-      >
+      <Typography variant="body1" fontWeight="bold" sx={{ m: 0, lineHeight: 1 }}>
         {name}
       </Typography>
       {parent && (

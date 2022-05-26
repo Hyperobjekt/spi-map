@@ -1,45 +1,34 @@
-import { FilterList } from "@mui/icons-material";
-import { Box, Button, Typography } from "@mui/material";
-import React, { useEffect, useState } from "react";
-import shallow from "zustand/shallow";
-import { useDashboardStore } from "@hyperobjekt/react-dashboard";
-import useCategorizedMetrics from "./hooks/useCategorizedMetrics";
-import useMetricSearch from "./hooks/useMetricSearch";
-import MetricsList from "./MetricsList";
-import useIndicatorPanelStore from "./store";
-import { Panel, SearchInput } from "../components";
-import { CustomizeIndicatorsToggle } from "./components";
+import { FilterList } from '@mui/icons-material';
+import { Box, Button, Typography } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import shallow from 'zustand/shallow';
+import { useDashboardStore } from '@hyperobjekt/react-dashboard';
+import useCategorizedMetrics from './hooks/useCategorizedMetrics';
+import useMetricSearch from './hooks/useMetricSearch';
+import MetricsList from './MetricsList';
+import useIndicatorPanelStore from './store';
+import { Panel, SearchInput } from '../components';
+import { CustomizeIndicatorsToggle } from './components';
 
-export const IndicatorPanel = ({ ...props }) => {
+const IndicatorPanel = ({ ...props }) => {
   const [metric, setMetric] = useDashboardStore(
     (state) => [state.choroplethMetric, state.setChoroplethMetric],
-    shallow
+    shallow,
   );
-  const customizedMetrics = useIndicatorPanelStore(
-    (state) => state.customizedMetrics
-  );
+  const customizedMetrics = useIndicatorPanelStore((state) => state.customizedMetrics);
   const hasCustomized = customizedMetrics.length > 0;
-  const enableCustomized = useIndicatorPanelStore(
-    (state) => state.enableCustomized
-  );
-  const [expanded, setExpanded] = useState(["bhn", "fow", "opp"]);
-  const {
-    filter,
-    highlight,
-    matchCount,
-    handleFilterChange,
-    handleFilterClear,
-  } = useMetricSearch();
+  const enableCustomized = useIndicatorPanelStore((state) => state.enableCustomized);
+  const [expanded, setExpanded] = useState(['bhn', 'fow', 'opp']);
+  const { filter, highlight, matchCount, handleFilterChange, handleFilterClear } =
+    useMetricSearch();
   const metrics = useCategorizedMetrics();
   // set the filter to be customized metrics if they are set and there is no search highlight
   const filteredItems =
-    enableCustomized && hasCustomized && !highlight
-      ? customizedMetrics
-      : filter;
+    enableCustomized && hasCustomized && !highlight ? customizedMetrics : filter;
 
   // expand the default choropleth metric catgegory if needed
   useEffect(() => {
-    const parts = metric.split("_");
+    const parts = metric.split('_');
     if (parts.length > 1 && !expanded.includes(parts[0])) {
       setExpanded([...expanded, parts[0]]);
     }
@@ -55,9 +44,7 @@ export const IndicatorPanel = ({ ...props }) => {
   };
   const handleToggleExpanded = (event, id) => {
     const isRemoving = expanded.includes(id);
-    const newValue = isRemoving
-      ? expanded.filter((e) => e !== id)
-      : [...expanded, id];
+    const newValue = isRemoving ? expanded.filter((e) => e !== id) : [...expanded, id];
     setExpanded(newValue);
     event.stopPropagation();
     event.preventDefault();
@@ -92,20 +79,11 @@ export const IndicatorPanel = ({ ...props }) => {
         />
         {highlight && (
           <Box display="flex" alignItems="center" height={32} mt={2}>
-            <Typography variant="body2">
-              Showing {matchCount} matching indicators.
-            </Typography>
+            <Typography variant="body2">Showing {matchCount} matching indicators.</Typography>
           </Box>
         )}
         {!highlight && (
-          <Box
-            display="flex"
-            alignItems="center"
-            height={32}
-            gap={2}
-            color="grey.600"
-            mt={2}
-          >
+          <Box display="flex" alignItems="center" height={32} gap={2} color="grey.600" mt={2}>
             <Button
               fullWidth
               variant="outlined"
@@ -141,3 +119,5 @@ export const IndicatorPanel = ({ ...props }) => {
     </Panel>
   );
 };
+
+export default IndicatorPanel;

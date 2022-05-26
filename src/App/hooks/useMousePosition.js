@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
 /**
  * Gets the position of the mouse in the provided element,
@@ -13,9 +13,9 @@ export default function useMousePosition(el) {
     const handleMouseMove = (e) => {
       setPosition({ x: e.clientX, y: e.clientY });
     };
-    el.addEventListener("mousemove", handleMouseMove);
+    el.addEventListener('mousemove', handleMouseMove);
     return () => {
-      el.removeEventListener("mousemove", handleMouseMove);
+      el.removeEventListener('mousemove', handleMouseMove);
     };
   });
   return position;

@@ -1,10 +1,7 @@
-import {
-  useChoroplethContext,
-  useDashboardStore,
-} from "@hyperobjekt/react-dashboard";
-import useChoroplethLayerContext from "./useChoroplethLayerContext";
-import useSpiScaleOverrides from "../../hooks/useSpiScaleOverrides";
-import { createCircleLayers, getChoroplethLayers } from "../utils";
+import { useChoroplethContext, useDashboardStore } from '@hyperobjekt/react-dashboard';
+import useChoroplethLayerContext from './useChoroplethLayerContext';
+import useSpiScaleOverrides from '../../hooks/useSpiScaleOverrides';
+import { createCircleLayers, getChoroplethLayers } from '../utils';
 
 /**
  * Returns map layers for the current context for use with mapboxgl.
@@ -22,15 +19,15 @@ export default function useSpiMapLayers() {
   const layerContexts = {
     states: useChoroplethLayerContext({
       context: {
-        region_id: "states",
-        isActiveRegion: currentContext.region_id === "states",
+        region_id: 'states',
+        isActiveRegion: currentContext.region_id === 'states',
       },
       scale: scaleOverrides,
     }),
     cities: useChoroplethLayerContext({
       context: {
-        region_id: "cities",
-        isActiveRegion: currentContext.region_id === "cities",
+        region_id: 'cities',
+        isActiveRegion: currentContext.region_id === 'cities',
       },
       scale: scaleOverrides,
     }),
@@ -57,11 +54,7 @@ export default function useSpiMapLayers() {
     // ensure only the current choropleth region is interactive
     .map((layer) => {
       if (!layer.interactive) return layer;
-      if (
-        layer.interactive &&
-        layer["source-layer"] === currentContext.region_id
-      )
-        return layer;
+      if (layer.interactive && layer['source-layer'] === currentContext.region_id) return layer;
       return {
         ...layer,
         interactive: false,

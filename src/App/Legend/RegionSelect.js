@@ -1,11 +1,8 @@
-import React from "react";
-import {
-  useRegionConfig,
-  useDashboardStore,
-} from "@hyperobjekt/react-dashboard";
-import { useMapState } from "@hyperobjekt/mapgl";
-import { Divider, MenuItem, Switch, Typography } from "@mui/material";
-import { InlineMenu } from "../components";
+import React from 'react';
+import { useRegionConfig, useDashboardStore } from '@hyperobjekt/react-dashboard';
+import { useMapState } from '@hyperobjekt/mapgl';
+import { Divider, MenuItem, Switch, Typography } from '@mui/material';
+import { InlineMenu } from '../components';
 
 /**
  * Renders an inline menu for selecting the region, with an
@@ -18,11 +15,9 @@ const RegionSelect = (props) => {
   const region = useDashboardStore((state) => state.region);
   const setRegion = useDashboardStore((state) => state.setRegion);
   const autoSwitchRegion = useDashboardStore((state) => state.autoSwitchRegion);
-  const setAutoSwitchRegion = useDashboardStore(
-    (state) => state.setAutoSwitchRegion
-  );
+  const setAutoSwitchRegion = useDashboardStore((state) => state.setAutoSwitchRegion);
   const currentRegion = regions.find((r) => r.id === region);
-  const map = useMapState("map");
+  const map = useMapState('map');
 
   // turns off auto switch when selecting a region, and activates the selected region
   const handleChange = (event, option) => {
@@ -36,7 +31,7 @@ const RegionSelect = (props) => {
   const handleToggleAutoSwitch = (event) => {
     setAutoSwitchRegion(!autoSwitchRegion);
     // don't close the menu if toggling the switch
-    const isSwitchClick = event.target.type === "checkbox";
+    const isSwitchClick = event.target.type === 'checkbox';
     if (isSwitchClick) event.stopPropagation();
   };
   return (

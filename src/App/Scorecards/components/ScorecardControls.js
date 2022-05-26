@@ -1,17 +1,9 @@
-import {
-  Divider,
-  List,
-  ListItem,
-  ListItemText,
-  Paper,
-  styled,
-  Typography,
-} from "@mui/material";
-import theme from "../../../theme";
-import { CustomizeIndicatorsToggle } from "../../IndicatorPanel";
-import { animated } from "@react-spring/web";
-import { SearchInput } from "../../components";
-import { FilterList } from "@mui/icons-material";
+import { Divider, List, ListItem, ListItemText, Paper, styled, Typography } from '@mui/material';
+import theme from '../../../theme';
+import { CustomizeIndicatorsToggle } from '../../IndicatorPanel';
+import { animated } from '@react-spring/web';
+import { SearchInput } from '../../components';
+import { FilterList } from '@mui/icons-material';
 const StyledPaper = styled(Paper)`
   padding: ${theme.spacing(2)};
   opacity: 0;
@@ -52,21 +44,21 @@ const ScorecardControls = ({ onNavigateToSection, ...props }) => {
     <ControlsWrapper {...props}>
       <Typography variant="overline">Scorecard Sections</Typography>
       <List>
-        <ListItem button onClick={handleSectionNavigation("bhn")}>
+        <ListItem button onClick={handleSectionNavigation('bhn')}>
           <ListItemText primary="Basic Human Needs" />
         </ListItem>
-        <ListItem button onClick={handleSectionNavigation("fow")}>
+        <ListItem button onClick={handleSectionNavigation('fow')}>
           <ListItemText primary="Foundations of Wellbeing" />
         </ListItem>
-        <ListItem button onClick={handleSectionNavigation("opp")}>
+        <ListItem button onClick={handleSectionNavigation('opp')}>
           <ListItemText primary="Opportunity" />
         </ListItem>
-        <ListItem button onClick={handleSectionNavigation("dem")}>
+        <ListItem button onClick={handleSectionNavigation('dem')}>
           <ListItemText primary="Demographics" />
         </ListItem>
       </List>
       <Divider />
-      <Typography sx={{ mb: 2, display: "block" }} variant="overline">
+      <Typography sx={{ mb: 2, display: 'block' }} variant="overline">
         Scorecard Indicators
       </Typography>
       {/*<SearchInput placeholder="Filter by keyword" icon={<FilterList />} />*/}
@@ -83,7 +75,7 @@ const ScorecardControls = ({ onNavigateToSection, ...props }) => {
         <ListItem
           button
           onClick={() => {
-            alert("not implemented");
+            alert('not implemented');
           }}
         >
           <ListItemText primary="Download PDF Report" />
@@ -91,7 +83,7 @@ const ScorecardControls = ({ onNavigateToSection, ...props }) => {
         <ListItem
           button
           onClick={() => {
-            alert("not implemented");
+            alert('not implemented');
           }}
         >
           <ListItemText primary="Download Spreadsheet" />

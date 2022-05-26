@@ -1,7 +1,7 @@
-import { useMapState } from "@hyperobjekt/mapgl";
-import { useConfig, useDashboardStore } from "@hyperobjekt/react-dashboard";
-import { usePreviousProps } from "@mui/utils";
-import { useEffect } from "react";
+import { useMapState } from '@hyperobjekt/mapgl';
+import { useConfig, useDashboardStore } from '@hyperobjekt/react-dashboard';
+import { usePreviousProps } from '@mui/utils';
+import { useEffect } from 'react';
 
 /**
  * Given an array of region configs, and a zoom level, returns an array of
@@ -33,12 +33,10 @@ const getSwitchRegion = (regionsConfig, isZoomingIn) => {
   // if zooming in, switch to the region lowest max zoom
   if (isZoomingIn)
     return regionsConfig.reduce((prev, curr) =>
-      prev["max_zoom"] < curr["max_zoom"] ? prev : curr
+      prev['max_zoom'] < curr['max_zoom'] ? prev : curr,
     );
   // if zooming out, switch to the region highest max zoom
-  return regionsConfig.reduce((prev, curr) =>
-    prev["max_zoom"] > curr["max_zoom"] ? prev : curr
-  );
+  return regionsConfig.reduce((prev, curr) => (prev['max_zoom'] > curr['max_zoom'] ? prev : curr));
 };
 
 /**
@@ -52,12 +50,12 @@ const getSwitchRegion = (regionsConfig, isZoomingIn) => {
  */
 const MapAutoSwitch = () => {
   // pull region config and state
-  const regionsConfig = useConfig("regions");
+  const regionsConfig = useConfig('regions');
   const currentRegion = useDashboardStore((state) => state.region);
   const setRegion = useDashboardStore((state) => state.setRegion);
 
   // get zoom state of the map, and track previous to know zoom direction
-  const viewState = useMapState("viewState");
+  const viewState = useMapState('viewState');
   const previousViewState = usePreviousProps(viewState);
   const zoom = viewState.zoom;
   const previousZoom = previousViewState?.zoom;
@@ -66,7 +64,7 @@ const MapAutoSwitch = () => {
   // get regions in the zoom range, and determine if we need to switch
   const regionsInZoomRange = getRegionsInZoomRange(regionsConfig, zoom);
   const shouldSwitch = !regionsInZoomRange.some(
-    (regionConfig) => regionConfig.id === currentRegion
+    (regionConfig) => regionConfig.id === currentRegion,
   );
 
   // get the next region, based on the zoom direction and regions in range

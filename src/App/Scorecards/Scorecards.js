@@ -1,16 +1,16 @@
-import { useLocationData } from "@hyperobjekt/react-dashboard";
-import { styled, Box } from "@mui/material";
-import useCategorizedMetrics from "../IndicatorPanel/hooks/useCategorizedMetrics";
-import { flattenMetricTree } from "../IndicatorPanel/utils";
-import { getLocationNameParts } from "../utils";
-import theme from "../../theme";
-import { ScorecardTable } from "./components/ScorecardTable";
-import ScorecardTableStyle from "./components/ScorecardTable.style";
-import { ScorecardControls } from "./components";
-import { animated, useSpring, config } from "@react-spring/web";
-import { useRef } from "react";
-import { useDidMount } from "rooks";
-import useActiveView from "../hooks/useActiveView";
+import { useLocationData } from '@hyperobjekt/react-dashboard';
+import { styled, Box } from '@mui/material';
+import { useRef } from 'react';
+import { animated, useSpring, config } from '@react-spring/web';
+import useCategorizedMetrics from '../IndicatorPanel/hooks/useCategorizedMetrics';
+import { flattenMetricTree } from '../IndicatorPanel/utils';
+import { getLocationNameParts } from '../utils';
+import theme from '../../theme';
+import { ScorecardTable } from './components/ScorecardTable';
+import ScorecardTableStyle from './components/ScorecardTable.style';
+import { ScorecardControls } from './components';
+import { useDidMount } from 'rooks';
+import useActiveView from '../hooks/useActiveView';
 
 const StyledBox = styled(Box)`
   position: absolute;
@@ -19,9 +19,9 @@ const StyledBox = styled(Box)`
   padding: ${theme.spacing(4, 3)};
   min-height: calc(100vh - ${theme.spacing(7)});
   z-index: 10;
-  pointer-events: ${(props) => (props.active ? "auto" : "none")};
-  border-top: 1px solid ${theme.palette.grey["300"]};
-  ${theme.breakpoints.up("sm")} {
+  pointer-events: ${(props) => (props.active ? 'auto' : 'none')};
+  border-top: 1px solid ${theme.palette.grey['300']};
+  ${theme.breakpoints.up('sm')} {
     min-height: calc(100vh - ${theme.spacing(8)});
   }
 `;
@@ -31,12 +31,12 @@ const ScorecardSection = animated(StyledBox);
 const Scorecards = ({ ...props }) => {
   const [activeView, setActiveView] = useActiveView();
   const tableRef = useRef(null);
-  const active = activeView === "scorecard";
+  const active = activeView === 'scorecard';
   const initialRender = useRef(true);
   const springProps = useSpring({
-    backdropFilter: active ? "blur(5px)" : "blur(0px)",
+    backdropFilter: active ? 'blur(5px)' : 'blur(0px)',
     opacity: active ? 1 : 0,
-    background: active ? "rgba(255,255,255,0.5)" : "rgba(255,255,255,0)",
+    background: active ? 'rgba(255,255,255,0.5)' : 'rgba(255,255,255,0)',
     config: config.molasses,
   });
   const controlsSpringProps = useSpring({
@@ -69,14 +69,13 @@ const Scorecards = ({ ...props }) => {
   });
   const flattenedMetrics = flattenMetricTree([], { children: metrics });
   const handleBackgroundClick = (e) => {
-    if (e.target.className.includes("action--close-scorecards"))
-      setActiveView("map");
+    if (e.target.className.includes('action--close-scorecards')) setActiveView('map');
   };
   const handleSectionNavigation = (e, section) => {
     tableRef.current.querySelector(`#scorecard-row-${section}`).scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-      inline: "nearest",
+      behavior: 'smooth',
+      block: 'start',
+      inline: 'nearest',
     });
   };
   return (
@@ -90,22 +89,13 @@ const Scorecards = ({ ...props }) => {
       }}
       onClick={handleBackgroundClick}
     >
-      <Box
-        className="action--close-scorecards"
-        display="flex"
-        gap={2}
-        alignItems="flex-start"
-      >
+      <Box className="action--close-scorecards" display="flex" gap={2} alignItems="flex-start">
         <ScorecardControls
           style={controlsSpringProps}
           onNavigateToSection={handleSectionNavigation}
         />
         <ScorecardTableStyle style={tableSpringProps}>
-          <ScorecardTable
-            locations={shapedLocations}
-            metrics={flattenedMetrics}
-            ref={tableRef}
-          />
+          <ScorecardTable locations={shapedLocations} metrics={flattenedMetrics} ref={tableRef} />
         </ScorecardTableStyle>
       </Box>
     </ScorecardSection>

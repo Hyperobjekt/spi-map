@@ -1,1 +1,1 @@
-export { default as ScorecardControls } from "./ScorecardControls";
+export { default as ScorecardControls } from './ScorecardControls';

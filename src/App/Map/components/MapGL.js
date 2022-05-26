@@ -1,18 +1,11 @@
-import React, { useCallback, useRef } from "react";
-import {
-  MapGL as HypMapGL,
-  useMapFlyToFeature,
-  ZoomToBoundsControl,
-} from "@hyperobjekt/mapgl";
-import { GeolocateControl, NavigationControl } from "react-map-gl";
-import { useMapSources, useDashboardStore } from "@hyperobjekt/react-dashboard";
-import {
-  useLocationStore,
-  useToggleLocation,
-} from "@hyperobjekt/react-dashboard";
-import MapAutoSwitch from "./MapAutoSwitch";
-import CityLabelsLayer from "./CityLabelsLayer";
-import useSpiMapLayers from "../hooks/useSpiMapLayers";
+import React, { useCallback, useRef } from 'react';
+import { MapGL as HypMapGL, useMapFlyToFeature, ZoomToBoundsControl } from '@hyperobjekt/mapgl';
+import { GeolocateControl, NavigationControl } from 'react-map-gl';
+import { useMapSources, useDashboardStore } from '@hyperobjekt/react-dashboard';
+import { useLocationStore, useToggleLocation } from '@hyperobjekt/react-dashboard';
+import MapAutoSwitch from './MapAutoSwitch';
+import CityLabelsLayer from './CityLabelsLayer';
+import useSpiMapLayers from '../hooks/useSpiMapLayers';
 
 const TOKEN = `pk.eyJ1IjoiaHlwZXJvYmpla3QiLCJhIjoiY2pzZ3Bnd3piMGV6YTQzbjVqa3Z3dHQxZyJ9.rHobqsY_BjkNbqNQS4DNYw`;
 
@@ -22,7 +15,7 @@ const US_BOUNDS = [
   [-65, 50],
 ];
 
-const MAP_STYLE = "mapbox://styles/hyperobjekt/cl007w05t000414oaog417i9s";
+const MAP_STYLE = 'mapbox://styles/hyperobjekt/cl007w05t000414oaog417i9s';
 
 export default function MapGL({ children, ...props }) {
   const ref = useRef(); // reference to mapgl instance (needed for sizing on panel open / close)
@@ -45,7 +38,7 @@ export default function MapGL({ children, ...props }) {
         flyToFeature(partFeature);
       toggleSelected(partFeature);
     },
-    [flyToFeature, isSelected, toggleSelected]
+    [flyToFeature, isSelected, toggleSelected],
   );
 
   return (

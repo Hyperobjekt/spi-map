@@ -1,19 +1,19 @@
-import { styled } from "@mui/material";
+import { styled } from '@mui/material';
 
-const MapWrapper = styled("div")(({ theme }) => ({
-  position: "relative",
-  display: "flex",
+const MapWrapper = styled('div')(({ theme }) => ({
+  position: 'relative',
+  display: 'flex',
   height: `calc(100vh - ${theme.spacing(7)})`,
   maxHeight: `calc(100vh - ${theme.spacing(7)})`,
-  overflow: "hidden",
-  [theme.breakpoints.up("sm")]: {
+  overflow: 'hidden',
+  [theme.breakpoints.up('sm')]: {
     height: `calc(100vh - ${theme.spacing(8)})`,
     maxHeight: `calc(100vh - ${theme.spacing(8)})`,
   },
-  "& .HypMapGl-root": {
-    position: "absolute",
+  '& .HypMapGl-root': {
+    position: 'absolute',
     inset: 0,
-    height: "100%",
+    height: '100%',
   },
 }));
 

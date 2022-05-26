@@ -1,9 +1,9 @@
 const TREE = {
-  id: "root",
+  id: 'root',
   childItems: [
     {
-      id: "bhn",
-      name: "Basic Human Needs",
+      id: 'bhn',
+      name: 'Basic Human Needs',
       childItems: [],
       visible: true,
       collapsible: true,
@@ -28,14 +28,14 @@ const TreeListItem = ({
   ...props
 }) => {
   const ChildWrapper = collapsible ? Collapse : React.Fragment;
-  const isButton = typeof onClick === "function";
+  const isButton = typeof onClick === 'function';
   return (
     <ListItem
       className={clsx(
-        "HypTreeListItem-root",
+        'HypTreeListItem-root',
         `HypTreeListItem-depth${depth}`,
-        expanded && "HypNestedListItem-expanded",
-        className
+        expanded && 'HypNestedListItem-expanded',
+        className,
       )}
       button={isButton}
       value={isButton ? id : undefined}
@@ -46,12 +46,7 @@ const TreeListItem = ({
     >
       <ListItemText primary={name} />
       {collapsible && (
-        <IconButton
-          className="HypTreeListItem-toggle"
-          size="small"
-          value={id}
-          onClick={onToggle}
-        >
+        <IconButton className="HypTreeListItem-toggle" size="small" value={id} onClick={onToggle}>
           {expanded ? <ExpandLess /> : <ExpandMore />}
         </IconButton>
       )}

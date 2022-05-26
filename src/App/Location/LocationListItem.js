@@ -1,17 +1,17 @@
-import { Close } from "@mui/icons-material";
+import { Close } from '@mui/icons-material';
 import {
   IconButton,
   ListItemButton,
   ListItemSecondaryAction,
   ListItemText,
   Typography,
-} from "@mui/material";
-import { styled } from "@mui/system";
-import React from "react";
-import PerformanceIndicator from "../components/PerformanceIndicator";
+} from '@mui/material';
+import { styled } from '@mui/system';
+import React from 'react';
+import PerformanceIndicator from '../components/PerformanceIndicator';
 
-const LocationColor = styled("div")(({ theme }) => ({
-  position: "absolute",
+const LocationColor = styled('div')(({ theme }) => ({
+  position: 'absolute',
   width: 4,
   left: theme.spacing(2),
   top: 10,
@@ -24,34 +24,24 @@ const StyledListItem = styled(ListItemButton)(({ theme }) => ({
   paddingTop: 0,
   paddingBottom: 0,
   width: `100%`,
-  "& .MuiListItemText-primary": {
+  '& .MuiListItemText-primary': {
     fontSize: theme.typography.pxToRem(14),
     fontWeight: theme.typography.fontWeightBold,
   },
-  "& .MuiListItemText-secondary": {
+  '& .MuiListItemText-secondary': {
     fontSize: theme.typography.pxToRem(12),
   },
-  "& .MuiSvgIcon-root": {
+  '& .MuiSvgIcon-root': {
     fontSize: 16,
   },
 }));
 
-const LocationListItem = ({
-  name,
-  parent,
-  value,
-  performance,
-  color,
-  onDismiss,
-  ...props
-}) => {
+const LocationListItem = ({ name, parent, value, performance, color, onDismiss, ...props }) => {
   return (
     <StyledListItem {...props}>
       {color && <LocationColor style={{ background: color }} />}
       <ListItemText primary={name} secondary={parent} />
-      {performance && (
-        <PerformanceIndicator performance={performance} sx={{ mr: 1 }} />
-      )}
+      {performance && <PerformanceIndicator performance={performance} sx={{ mr: 1 }} />}
       {value && (
         <Typography sx={{ mr: onDismiss ? 4 : 0 }} fontWeight="bold">
           {value}

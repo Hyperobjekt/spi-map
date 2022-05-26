@@ -6,8 +6,8 @@ import {
   useChoroplethContext,
   useChoroplethScale,
   getStepsFromChunks,
-} from "@hyperobjekt/react-dashboard";
-import { getPositionScale } from "@hyperobjekt/scales";
+} from '@hyperobjekt/react-dashboard';
+import { getPositionScale } from '@hyperobjekt/scales';
 
 const GET_VARIABLE_NAME = (context) => {
   return context?.metric_id;
@@ -20,7 +20,7 @@ const GET_VARIABLE_NAME = (context) => {
  */
 const getLinearColorRamp = (from, to, steps = 1) => {
   if (!from || !from[0] || !from[1]) from = [0, 1];
-  const fromInterpolator = getPositionScale("linear", [0, 1], from);
+  const fromInterpolator = getPositionScale('linear', [0, 1], from);
   const toInterpolator = to;
   const values = [];
   for (let i = 0; i <= steps; i++) {
@@ -38,7 +38,7 @@ export default function useChoroplethLayerContext({
   const scale = useChoroplethScale({ context, config: scaleOverrides });
   const autoSwitch = useDashboardStore((state) => state.autoSwitchRegion);
   const selected = useLocationFeature(5);
-  const hoverColor = useAppConfig("hover_color");
+  const hoverColor = useAppConfig('hover_color');
   const regionConfig = useRegionConfig(context.region_id);
   const {
     color,

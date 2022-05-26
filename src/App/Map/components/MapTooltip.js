@@ -1,28 +1,25 @@
-import React, { useRef } from "react";
-import { animated, useSpring } from "react-spring";
-import { scaleLinear } from "d3-scale";
-import { Box, styled } from "@mui/system";
-import {
-  useDashboardStore,
-  useMetricConfig,
-} from "@hyperobjekt/react-dashboard";
-import { useMapStore } from "@hyperobjekt/mapgl";
-import { Divider, Paper, Typography } from "@mui/material";
-import { LocationName } from "../../Location";
-import { getLocationNameParts } from "../../utils";
-import useMousePosition from "../../hooks/useMousePosition";
+import { useDashboardStore, useMetricConfig } from '@hyperobjekt/react-dashboard';
+import { useMapStore } from '@hyperobjekt/mapgl';
+import { Divider, Paper, Typography } from '@mui/material';
+import { Box, styled } from '@mui/system';
+import React, { useRef } from 'react';
+import { animated, useSpring } from 'react-spring';
+import { scaleLinear } from 'd3-scale';
+import { LocationName } from '../../Location';
+import { getLocationNameParts } from '../../utils';
+import useMousePosition from '../../hooks/useMousePosition';
 
 // tooltip dimensions (height is an estimate for offsets)
 const TOOLTIP_WIDTH = 240;
 const TOOLTIP_HEIGHT = 164;
 
 const TooltipPaper = styled(Paper)(({ theme }) => ({
-  position: "fixed",
+  position: 'fixed',
   top: 0,
   left: 0,
   zIndex: 101,
   width: TOOLTIP_WIDTH,
-  pointerEvents: "none",
+  pointerEvents: 'none',
 }));
 
 // create animated version of Paper for react-spring

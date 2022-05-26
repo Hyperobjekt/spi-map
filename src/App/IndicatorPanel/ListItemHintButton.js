@@ -1,15 +1,15 @@
-import { HelpOutline } from "@mui/icons-material";
-import { IconButton, ListItemButton, Tooltip } from "@mui/material";
-import { styled } from "@mui/system";
-import { useLang } from "@hyperobjekt/react-dashboard";
+import { HelpOutline } from '@mui/icons-material';
+import { IconButton, ListItemButton, Tooltip } from '@mui/material';
+import { styled } from '@mui/system';
+import { useLang } from '@hyperobjekt/react-dashboard';
 
 const HintIconButton = styled(IconButton)(({ theme }) => ({
-  position: "absolute",
+  position: 'absolute',
   top: theme.spacing(1.2),
   left: theme.spacing(1.25),
   opacity: 0,
-  transition: theme.transitions.create("opacity"),
-  "& .MuiSvgIcon-root": {
+  transition: theme.transitions.create('opacity'),
+  '& .MuiSvgIcon-root': {
     fontSize: theme.typography.pxToRem(16),
   },
 }));

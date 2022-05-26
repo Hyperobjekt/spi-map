@@ -6,11 +6,11 @@
  * @param {*} depth
  * @returns
  */
-export const createMetricTree = (metrics, category = "", depth = 0) => {
+export const createMetricTree = (metrics, category = '', depth = 0) => {
   if (!metrics || !metrics.length || depth > 2) {
     return null;
   }
-  const key = depth < 2 ? "category" : "subcategory";
+  const key = depth < 2 ? 'category' : 'subcategory';
   const shaped = metrics
     .filter((m) => m[key] === category)
     .map((metric) => {
@@ -33,7 +33,7 @@ export const createMetricTree = (metrics, category = "", depth = 0) => {
 export const flattenMetricTree = (flattened = [], metric) => {
   // remove children
   const { children, ...metricProps } = metric;
-  if (metric.id && metric.id !== "root") {
+  if (metric.id && metric.id !== 'root') {
     flattened.push(metricProps);
   }
   if (!children?.length) return [];

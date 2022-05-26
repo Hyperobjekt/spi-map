@@ -1,6 +1,6 @@
-import { TableCell, Typography, Box, styled } from "@mui/material";
-import clsx from "clsx";
-import PerformanceIndicator from "../../components/PerformanceIndicator";
+import { TableCell, Typography, Box, styled } from '@mui/material';
+import clsx from 'clsx';
+import PerformanceIndicator from '../../components/PerformanceIndicator';
 
 // TODO: split "PercentBar" into separate component
 const PercentBarStyle = styled(Box)`
@@ -32,15 +32,9 @@ const PercentBarStyle = styled(Box)`
 // TODO: split "PercentBar" into separate component
 const PercentBar = ({ percent = 0, className, ...props }) => {
   return (
-    <PercentBarStyle
-      className={clsx("percent-bar__root", className)}
-      {...props}
-    >
+    <PercentBarStyle className={clsx('percent-bar__root', className)} {...props}>
       <div className="percent-bar__track" />
-      <div
-        className="percent-bar__value"
-        style={{ width: percent * 100 + "%" }}
-      />
+      <div className="percent-bar__value" style={{ width: percent * 100 + '%' }} />
     </PercentBarStyle>
   );
 };
@@ -58,22 +52,17 @@ const ScorecardValueCell = ({
   ...props
 }) => {
   return (
-    <TableCell className={clsx(className, "scorecard__value-cell")} {...props}>
+    <TableCell className={clsx(className, 'scorecard__value-cell')} {...props}>
       <Box
-        className={clsx("scorecard__value-wrapper", {
-          "scorecard__value-wrapper--percent": percent,
+        className={clsx('scorecard__value-wrapper', {
+          'scorecard__value-wrapper--percent': percent,
         })}
       >
-        {percent && (
-          <PercentBar percent={percent} sx={{ mr: 1, color: "primary.main" }} />
-        )}
+        {percent && <PercentBar percent={percent} sx={{ mr: 1, color: 'primary.main' }} />}
         <Typography className="scorecard__value">{value}</Typography>
         {Number.isFinite(performance) && (
           <Box className="scorecard__perf-wrapper">
-            <PerformanceIndicator
-              className="scorecard__perf-circle"
-              performance={performance}
-            />
+            <PerformanceIndicator className="scorecard__perf-circle" performance={performance} />
           </Box>
         )}
       </Box>

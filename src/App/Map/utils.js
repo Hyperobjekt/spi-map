@@ -1,7 +1,7 @@
-import Color from "color";
-import union from "@turf/union";
-import { getPositionScale } from "@hyperobjekt/scales";
-import deepmerge from "deepmerge";
+import Color from 'color';
+import union from '@turf/union';
+import { getPositionScale } from '@hyperobjekt/scales';
+import deepmerge from 'deepmerge';
 
 /**
  * Returns an array of from / to values with the given number of steps between.
@@ -11,8 +11,8 @@ export const getLinearRamp = (from, to, steps = 1) => {
   // adjust from extent if values are equal
   if (from && from[0] === from[1]) from = [0, from[1]];
   if (from[0] === from[1]) from = [0, 1];
-  const fromInterpolator = getPositionScale("linear", [0, 1], from);
-  const toInterpolator = getPositionScale("linear", [0, 1], to);
+  const fromInterpolator = getPositionScale('linear', [0, 1], from);
+  const toInterpolator = getPositionScale('linear', [0, 1], to);
   const values = [];
   for (let i = 0; i <= steps; i++) {
     values.push(fromInterpolator(i / steps));
@@ -28,7 +28,7 @@ export const getLinearRamp = (from, to, steps = 1) => {
  */
 export const getLinearColorRamp = (from, to, steps = 1) => {
   if (!from || !from[0] || !from[1]) from = [0, 1];
-  const fromInterpolator = getPositionScale("linear", [0, 1], from);
+  const fromInterpolator = getPositionScale('linear', [0, 1], from);
   const toInterpolator = to;
   const values = [];
   for (let i = 0; i <= steps; i++) {
@@ -62,9 +62,8 @@ export const getStepsFromChunks = (chunks) => {
 export const combineFeatures = (features) => {
   return features.length > 0
     ? features.reduce(
-        (combined, f) =>
-          combined ? union(combined, f, { properties: f.properties }) : f,
-        null
+        (combined, f) => (combined ? union(combined, f, { properties: f.properties }) : f),
+        null,
       )
     : features;
 };
@@ -76,9 +75,9 @@ export const combineFeatures = (features) => {
  */
 const getLineWidths = (region) => {
   switch (region) {
-    case "states":
+    case 'states':
       return [3, 1, 6, 2, 10, 4];
-    case "cities":
+    case 'cities':
       return [8, 1, 12, 4];
     // case "tracts":
     //   return [10, 1, 20, 3];
@@ -114,30 +113,25 @@ export const getChoroplethFillLayers = (context) => {
     region_id: region,
     steps,
     zoomBuffer,
-    beforeId = "water",
+    beforeId = 'water',
     min_zoom,
     max_zoom,
     autoSwitch,
   } = context;
   const fillRule = chunks
-    ? ["step", ["get", accessor(context)], ...steps]
-    : ["interpolate", ["linear"], ["get", accessor(context)], ...steps];
+    ? ['step', ['get', accessor(context)], ...steps]
+    : ['interpolate', ['linear'], ['get', accessor(context)], ...steps];
   // base layer where fills are visible at all zooms
   const baseLayer = {
     id: `${region}-choropleth`,
     source: `${region}_tileset`,
-    "source-layer": region,
-    type: "fill",
+    'source-layer': region,
+    type: 'fill',
     minzoom: 1,
     maxzoom: 24,
     paint: {
-      "fill-color": [
-        "case",
-        ["!=", ["get", accessor(context)], null],
-        fillRule,
-        "transparent",
-      ],
-      "fill-opacity": 1,
+      'fill-color': ['case', ['!=', ['get', accessor(context)], null], fillRule, 'transparent'],
+      'fill-opacity': 1,
     },
     beforeId,
     interactive: true,
@@ -147,10 +141,10 @@ export const getChoroplethFillLayers = (context) => {
     minzoom: min_zoom - zoomBuffer,
     maxzoom: max_zoom + zoomBuffer,
     paint: {
-      "fill-opacity": [
-        "interpolate",
-        ["linear"],
-        ["zoom"],
+      'fill-opacity': [
+        'interpolate',
+        ['linear'],
+        ['zoom'],
         min_zoom - zoomBuffer,
         0,
         min_zoom,
@@ -180,38 +174,28 @@ export const getChoroplethOutlineLayers = (context) => {
     min_zoom,
     max_zoom,
     zoomBuffer,
-    beforeId = "road-label-simple",
+    beforeId = 'road-label-simple',
   } = context;
   const outlineSteps = steps.map((step, i) => {
     if (Number.isFinite(step)) return step;
     return getComplementaryColor(step);
   });
   const lineRule = chunks
-    ? ["step", ["get", accessor(context)], ...outlineSteps]
-    : ["interpolate", ["linear"], ["get", accessor(context)], ...outlineSteps];
+    ? ['step', ['get', accessor(context)], ...outlineSteps]
+    : ['interpolate', ['linear'], ['get', accessor(context)], ...outlineSteps];
   return [
     {
       id: `${region}-outline`,
       source: `${region}_tileset`,
-      "source-layer": region,
-      type: "line",
+      'source-layer': region,
+      type: 'line',
       paint: {
-        "line-color": [
-          "case",
-          ["!=", ["get", accessor(context)], null],
-          lineRule,
-          "transparent",
-        ],
-        "line-width": [
-          "interpolate",
-          ["linear"],
-          ["zoom"],
-          ...getLineWidths(region),
-        ],
-        "line-opacity": [
-          "interpolate",
-          ["linear"],
-          ["zoom"],
+        'line-color': ['case', ['!=', ['get', accessor(context)], null], lineRule, 'transparent'],
+        'line-width': ['interpolate', ['linear'], ['zoom'], ...getLineWidths(region)],
+        'line-opacity': [
+          'interpolate',
+          ['linear'],
+          ['zoom'],
           min_zoom - zoomBuffer,
           0,
           min_zoom,
@@ -239,60 +223,48 @@ export const getChoroplethHoverLayers = (context) => {
     accessor,
     steps,
     hoverColor,
-    beforeId = "road-label-simple",
+    beforeId = 'road-label-simple',
     isActiveRegion,
   } = context;
   const outlineSteps = steps.map((step, i) => {
     if (Number.isFinite(step)) return step;
     const c = Color(step);
-    return c.luminosity() > 0.5
-      ? c.darken(0.25).rgb().string()
-      : c.lighten(0.25).rgb().string();
+    return c.luminosity() > 0.5 ? c.darken(0.25).rgb().string() : c.lighten(0.25).rgb().string();
   });
   const lineRule = chunks
-    ? ["step", ["get", accessor(context)], ...outlineSteps]
-    : ["interpolate", ["linear"], ["get", accessor(context)], ...outlineSteps];
+    ? ['step', ['get', accessor(context)], ...outlineSteps]
+    : ['interpolate', ['linear'], ['get', accessor(context)], ...outlineSteps];
   return [
     {
       id: `${region}-hoverCasing`,
       source: `${region}_tileset`,
-      "source-layer": region,
-      type: "line",
+      'source-layer': region,
+      type: 'line',
       layout: {
-        visibility: isActiveRegion ? "visible" : "none",
+        visibility: isActiveRegion ? 'visible' : 'none',
       },
       paint: {
-        "line-color": "#fff",
-        "line-width": [
-          "case",
-          ["boolean", ["feature-state", "hover"], false],
-          5,
-          0,
-        ],
+        'line-color': '#fff',
+        'line-width': ['case', ['boolean', ['feature-state', 'hover'], false], 5, 0],
       },
       beforeId,
     },
     {
       id: `${region}-hoverOutline`,
       source: `${region}_tileset`,
-      "source-layer": region,
-      type: "line",
+      'source-layer': region,
+      type: 'line',
       layout: {
-        visibility: isActiveRegion ? "visible" : "none",
+        visibility: isActiveRegion ? 'visible' : 'none',
       },
       paint: {
-        "line-color": [
-          "case",
-          ["!=", ["get", accessor(context)], null],
-          hoverColor === "auto" ? lineRule : hoverColor,
-          "#ccc",
+        'line-color': [
+          'case',
+          ['!=', ['get', accessor(context)], null],
+          hoverColor === 'auto' ? lineRule : hoverColor,
+          '#ccc',
         ],
-        "line-width": [
-          "case",
-          ["boolean", ["feature-state", "hover"], false],
-          3,
-          0,
-        ],
+        'line-width': ['case', ['boolean', ['feature-state', 'hover'], false], 3, 0],
       },
       beforeId,
     },
@@ -305,45 +277,41 @@ export const getChoroplethHoverLayers = (context) => {
  * @returns {Array<mapboxgl.Layer>} [mapboxgl.Layer](https://docs.mapbox.com/mapbox-gl-js/style-spec/layers/)
  */
 export const getChoroplethSelectedLayers = (context) => {
-  const {
-    region_id: region,
-    selected,
-    beforeId = "road-label-simple",
-  } = context;
+  const { region_id: region, selected, beforeId = 'road-label-simple' } = context;
   const selectedIds = selected.map((f) => f?.properties?.GEOID);
   // reduce selected features into a "case" expression to color features based on GEOID and color property
   const caseRules = selected.reduce(
     (rules, f, i) => {
-      rules.push(["==", ["get", "GEOID"], f.properties.GEOID]);
+      rules.push(['==', ['get', 'GEOID'], f.properties.GEOID]);
       rules.push(f.properties.color);
       // last color is default, which technically should never be used (because of the `filter`)
-      if (i === selected.length - 1) rules.push("#ccc");
+      if (i === selected.length - 1) rules.push('#ccc');
       return rules;
     },
-    ["case"]
+    ['case'],
   );
   return [
     {
       id: `${region}-selectedCasing`,
       source: `${region}_tileset`,
-      "source-layer": region,
-      type: "line",
-      filter: ["in", "GEOID", ...selectedIds],
+      'source-layer': region,
+      type: 'line',
+      filter: ['in', 'GEOID', ...selectedIds],
       paint: {
-        "line-color": "#fff",
-        "line-width": 5,
+        'line-color': '#fff',
+        'line-width': 5,
       },
       beforeId,
     },
     {
       id: `${region}-selectedOutline`,
       source: `${region}_tileset`,
-      "source-layer": region,
-      type: "line",
-      filter: ["in", "GEOID", ...selectedIds],
+      'source-layer': region,
+      type: 'line',
+      filter: ['in', 'GEOID', ...selectedIds],
       paint: {
-        "line-color": caseRules.length > 2 ? caseRules : "transparent",
-        "line-width": 3,
+        'line-color': caseRules.length > 2 ? caseRules : 'transparent',
+        'line-width': 3,
       },
       beforeId,
     },
@@ -374,36 +342,22 @@ export const createCircleLayers = (context) => {
   const outlineSteps = steps.map((step, i) => {
     if (Number.isFinite(step)) return step;
     const c = Color(step);
-    return c.luminosity() > 0.5
-      ? c.darken(0.25).rgb().string()
-      : c.lighten(0.25).rgb().string();
+    return c.luminosity() > 0.5 ? c.darken(0.25).rgb().string() : c.lighten(0.25).rgb().string();
   });
   const lineRule = chunks
-    ? ["step", ["get", accessor(context)], ...outlineSteps]
-    : ["interpolate", ["linear"], ["get", accessor(context)], ...outlineSteps];
+    ? ['step', ['get', accessor(context)], ...outlineSteps]
+    : ['interpolate', ['linear'], ['get', accessor(context)], ...outlineSteps];
   return [
     {
       id: `city-bubbles`,
       source: `cities_tileset`,
-      "source-layer": "cities-centers",
-      type: "circle",
+      'source-layer': 'cities-centers',
+      type: 'circle',
       minzoom: 2,
       maxzoom: 9,
       paint: {
-        "circle-radius": [
-          "interpolate",
-          ["linear"],
-          ["zoom"],
-          3,
-          1.5,
-          5,
-          3,
-          8,
-          4,
-          10,
-          5,
-        ],
-        "circle-color": "rgba(0,0,0,0.35)",
+        'circle-radius': ['interpolate', ['linear'], ['zoom'], 3, 1.5, 5, 3, 8, 4, 10, 5],
+        'circle-color': 'rgba(0,0,0,0.35)',
         // TODO: verify client wants grey circles, if not uncomment the below
         // "circle-color": [
         //   "case",
@@ -413,132 +367,50 @@ export const createCircleLayers = (context) => {
         //    : ["interpolate", ["linear"], ["get", accessor(context)], ...steps],
         //   "transparent",
         // ],
-        "circle-opacity": [
-          "interpolate",
-          ["linear"],
-          ["zoom"],
-          2,
-          0,
-          3,
-          1,
-          7,
-          1,
-          8,
-          0,
-        ],
-        "circle-stroke-width": 1,
-        "circle-stroke-color": "#fff",
-        "circle-stroke-opacity": [
-          "interpolate",
-          ["linear"],
-          ["zoom"],
-          2,
-          0,
-          3,
-          1,
-          7,
-          1,
-          8,
-          0,
-        ],
+        'circle-opacity': ['interpolate', ['linear'], ['zoom'], 2, 0, 3, 1, 7, 1, 8, 0],
+        'circle-stroke-width': 1,
+        'circle-stroke-color': '#fff',
+        'circle-stroke-opacity': ['interpolate', ['linear'], ['zoom'], 2, 0, 3, 1, 7, 1, 8, 0],
       },
-      beforeId: "road-label-simple",
+      beforeId: 'road-label-simple',
       interactive: true,
     },
     {
       id: `cities-bubble-hoverCasing`,
       source: `cities_tileset`,
-      "source-layer": "cities-centers",
-      type: "circle",
+      'source-layer': 'cities-centers',
+      type: 'circle',
       minzoom: 2,
       maxzoom: 9,
       paint: {
-        "circle-radius": [
-          "interpolate",
-          ["linear"],
-          ["zoom"],
-          3,
-          1.5,
-          5,
-          3,
-          8,
-          4,
-          10,
-          5,
-        ],
-        "circle-color": "transparent",
-        "circle-stroke-opacity": [
-          "interpolate",
-          ["linear"],
-          ["zoom"],
-          2,
-          0,
-          3,
-          1,
-          8,
-          1,
-          9,
-          0,
-        ],
-        "circle-stroke-color": "#fff",
-        "circle-stroke-width": [
-          "case",
-          ["boolean", ["feature-state", "hover"], false],
-          5,
-          0,
-        ],
+        'circle-radius': ['interpolate', ['linear'], ['zoom'], 3, 1.5, 5, 3, 8, 4, 10, 5],
+        'circle-color': 'transparent',
+        'circle-stroke-opacity': ['interpolate', ['linear'], ['zoom'], 2, 0, 3, 1, 8, 1, 9, 0],
+        'circle-stroke-color': '#fff',
+        'circle-stroke-width': ['case', ['boolean', ['feature-state', 'hover'], false], 5, 0],
       },
-      beforeId: "road-label-simple",
+      beforeId: 'road-label-simple',
     },
     {
       id: `cities-bubble-hoverOutline`,
       source: `cities_tileset`,
-      "source-layer": "cities-centers",
-      type: "circle",
+      'source-layer': 'cities-centers',
+      type: 'circle',
       minzoom: 2,
       maxzoom: 9,
       paint: {
-        "circle-radius": [
-          "interpolate",
-          ["linear"],
-          ["zoom"],
-          3,
-          1.5,
-          5,
-          3,
-          8,
-          4,
-          10,
-          5,
+        'circle-radius': ['interpolate', ['linear'], ['zoom'], 3, 1.5, 5, 3, 8, 4, 10, 5],
+        'circle-color': 'transparent',
+        'circle-stroke-opacity': ['interpolate', ['linear'], ['zoom'], 2, 0, 3, 1, 8, 1, 9, 0],
+        'circle-stroke-color': [
+          'case',
+          ['!=', ['get', accessor(context)], null],
+          hoverColor === 'auto' ? lineRule : hoverColor,
+          '#ccc',
         ],
-        "circle-color": "transparent",
-        "circle-stroke-opacity": [
-          "interpolate",
-          ["linear"],
-          ["zoom"],
-          2,
-          0,
-          3,
-          1,
-          8,
-          1,
-          9,
-          0,
-        ],
-        "circle-stroke-color": [
-          "case",
-          ["!=", ["get", accessor(context)], null],
-          hoverColor === "auto" ? lineRule : hoverColor,
-          "#ccc",
-        ],
-        "circle-stroke-width": [
-          "case",
-          ["boolean", ["feature-state", "hover"], false],
-          3,
-          0,
-        ],
+        'circle-stroke-width': ['case', ['boolean', ['feature-state', 'hover'], false], 3, 0],
       },
-      beforeId: "road-label-simple",
+      beforeId: 'road-label-simple',
     },
   ];
 };

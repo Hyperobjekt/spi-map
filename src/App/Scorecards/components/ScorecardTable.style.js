@@ -1,6 +1,6 @@
-import { Paper, styled } from "@mui/material";
-import theme from "../../../theme";
-import { animated } from "@react-spring/web";
+import { Paper, styled } from '@mui/material';
+import { animated } from '@react-spring/web';
+import theme from '../../../theme';
 
 const StyledPaper = styled(Paper)`
   display: block;
