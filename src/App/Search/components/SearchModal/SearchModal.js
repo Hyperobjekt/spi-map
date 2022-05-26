@@ -163,17 +163,19 @@ const SearchModal = () => {
     'aria-label': 'location-search',
   };
 
-  useEffect(async () => {
-    const cities = await fetch('./assets/data/cities.csv')
-      .then((r) => r.text())
-      .then((text) => {
-        let rows = text
-          .split(/(?:\r\n|\n)+/)
-          .filter((row) => row.length !== 0)
-          .map((row) => row.replace(/^"|"$/g, '') + ', United States');
-        return rows;
-      });
-    await setIncludedCities(cities);
+  useEffect(() => {
+    (async () => {
+      const cities = await fetch('./assets/data/cities.csv')
+        .then((r) => r.text())
+        .then((text) => {
+          let rows = text
+            .split(/(?:\r\n|\n)+/)
+            .filter((row) => row.length !== 0)
+            .map((row) => row.replace(/^"|"$/g, '') + ', United States');
+          return rows;
+        });
+      await setIncludedCities(cities);
+    })();
   }, []);
 
   return (
