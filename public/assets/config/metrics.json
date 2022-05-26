@@ -526,6 +526,12 @@
     "format": "percent_value"
   },
   {
+    "id": "nbm_womencorehealth",
+    "category": "fow",
+    "format": "percent_value",
+    "subcategory": "nbm"
+  },
+  {
     "id": "nbm_poorhealth",
     "category": "fow",
     "format": "percent_value",
@@ -536,11 +542,6 @@
     "category": "fow",
     "subcategory": "nbm",
     "format": "percent_value"
-  },
-  {
-    "id": "nbm_womencorehealth",
-    "category": "fow",
-    "format": "percent_value",
-    "subcategory": "nbm"
   }
+
 ]
