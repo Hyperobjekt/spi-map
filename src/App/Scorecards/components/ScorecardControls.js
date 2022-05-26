@@ -61,7 +61,7 @@ const ScorecardControls = ({ onNavigateToSection, ...props }) => {
       <Typography sx={{ mb: 2, display: 'block' }} variant="overline">
         Scorecard Indicators
       </Typography>
-      <SearchInput placeholder="Filter by keyword" icon={<FilterList />} />
+      {/*<SearchInput placeholder="Filter by keyword" icon={<FilterList />} />*/}
       <CustomizeIndicatorsToggle
         flexDirection="column"
         px={0}
@@ -69,7 +69,7 @@ const ScorecardControls = ({ onNavigateToSection, ...props }) => {
         mt={1}
         editLabel="Change Custom Indicators"
       />
-      <Divider />
+      {/*<Divider />
       <Typography variant="overline">Data Export</Typography>
       <List>
         <ListItem
@@ -88,7 +88,7 @@ const ScorecardControls = ({ onNavigateToSection, ...props }) => {
         >
           <ListItemText primary="Download Spreadsheet" />
         </ListItem>
-      </List>
+      </List>*/}
     </ControlsWrapper>
   );
 };

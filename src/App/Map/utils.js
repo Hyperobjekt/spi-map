@@ -79,8 +79,8 @@ const getLineWidths = (region) => {
       return [3, 1, 6, 2, 10, 4];
     case 'cities':
       return [8, 1, 12, 4];
-    case 'tracts':
-      return [10, 1, 20, 3];
+    // case "tracts":
+    //   return [10, 1, 20, 3];
     default:
       return [1, 1.5];
   }

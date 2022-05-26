@@ -31,13 +31,13 @@ export default function useSpiMapLayers() {
       },
       scale: scaleOverrides,
     }),
-    tracts: useChoroplethLayerContext({
-      context: {
-        region_id: 'tracts',
-        isActiveRegion: currentContext.region_id === 'tracts',
-      },
-      scale: scaleOverrides,
-    }),
+    // tracts: useChoroplethLayerContext({
+    //   context: {
+    //     region_id: "tracts",
+    //     isActiveRegion: currentContext.region_id === "tracts",
+    //   },
+    //   scale: scaleOverrides,
+    // }),
   };
   // create separate context for circles (uses context for whichever region is active)
   const circleContext = useChoroplethLayerContext({ scale: scaleOverrides });
