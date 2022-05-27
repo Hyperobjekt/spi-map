@@ -12,6 +12,15 @@ const theme = createTheme({
       dark: '#142324',
     },
   },
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 600,
+      md: 900,
+      lg: 1200,
+      xl: 1536,
+    },
+  },
   typography: {
     fontFamily: 'proxima-nova, sans-serif',
     fontWeightBold: 600,

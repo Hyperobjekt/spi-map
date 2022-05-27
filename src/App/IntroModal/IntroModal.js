@@ -4,7 +4,14 @@ import { Modal, Box, Button, Typography, Backdrop } from '@mui/material';
 import shallow from 'zustand/shallow';
 import { useDashboardStore } from '@hyperobjekt/react-dashboard';
 import useIntroModalStore from './store';
-import { Container, Content, Description, Label } from './IntroModal.styles';
+import {
+  Boxmodal,
+  Container,
+  Content,
+  Description,
+  Buttoncontainer,
+  Label,
+} from './IntroModal.styles';
 
 const IntroModal = ({ ...props }) => {
   const [introModalOpen, setIntroModalOpen] = useIntroModalStore(
@@ -61,7 +68,7 @@ const IntroModal = ({ ...props }) => {
     >
       <Container>
         <Content>
-          <Box
+          <Boxmodal
             sx={{
               display: 'flex',
               flexDirection: 'row',
@@ -89,9 +96,9 @@ const IntroModal = ({ ...props }) => {
                 started.
               </Description>
             </Box>
-          </Box>
+          </Boxmodal>
 
-          <Box
+          <Buttoncontainer
             sx={{
               width: '50%',
               mt: 3,
@@ -101,7 +108,7 @@ const IntroModal = ({ ...props }) => {
             <Label>View data for 50 U.S. states</Label>
             <Button
               fullWidth
-              size="small"
+              size="large"
               variant="contained"
               color="primary"
               onClick={handleViewStates}
@@ -112,7 +119,7 @@ const IntroModal = ({ ...props }) => {
             <Label>View data for 500 U.S. cities</Label>
             <Button
               fullWidth
-              size="small"
+              size="large"
               variant="contained"
               color="primary"
               onClick={handleViewCities}
@@ -124,14 +131,14 @@ const IntroModal = ({ ...props }) => {
             <Button
               disabled
               fullWidth
-              size="small"
+              size="large"
               variant="contained"
               color="primary"
               onClick={handleViewTracts}
             >
               Coming soon!
             </Button>
-          </Box>
+          </Buttoncontainer>
         </Content>
       </Container>
     </Modal>
