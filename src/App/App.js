@@ -6,6 +6,7 @@ import { styled, ThemeProvider } from '@mui/system';
 import shallow from 'zustand/shallow';
 import Header from './components/Header';
 import { Map } from './Map';
+import { IntroModal } from './IntroModal';
 import { IndicatorPanel, CustomizeIndicatorPanel, useIndicatorPanelStore } from './IndicatorPanel';
 import { SearchModal } from './Search';
 import { Scorecards } from './Scorecards';
@@ -54,6 +55,7 @@ function App() {
         <AppWrapper className="App">
           <Header />
           <Map>
+            <IntroModal />
             <IndicatorPanel open={indicatorsOpen} onClose={() => setIndicatorsOpen(false)} />
             <CustomizeIndicatorPanel open={customizeOpen} />
           </Map>

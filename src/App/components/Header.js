@@ -40,7 +40,7 @@ export const Header = () => {
       <Toolbar>
         <img
           src="/assets/img/spi-logo.png"
-          alt="SPI"
+          alt="Social Progress Imperative logo"
           height="40"
           sx={{ marginRight: 'auto', height: 40 }}
         />
