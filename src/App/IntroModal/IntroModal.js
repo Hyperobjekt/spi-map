@@ -16,21 +16,32 @@ const IntroModal = ({ ...props }) => {
 
   const handleClose = (e) => {
     setIntroModalOpen(false);
+    storeFirstVisit();
   };
 
   const handleViewStates = (e) => {
     setIntroModalOpen(false);
+    storeFirstVisit();
   };
 
   const handleViewCities = (e) => {
     setAutoSwitchRegion(false);
     setRegion('cities');
     setIntroModalOpen(false);
+    storeFirstVisit();
   };
 
   const handleViewTracts = (e) => {
     setRegion('tracts');
     setIntroModalOpen(false);
+    storeFirstVisit();
+  };
+
+  const storeFirstVisit = () => {
+    const firstVisit = localStorage.getItem('spi.firstVisit');
+    if (!firstVisit) {
+      localStorage.setItem('spi.firstVisit', new Date());
+    }
   };
 
   return (
