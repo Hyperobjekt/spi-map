@@ -11,6 +11,9 @@ export const Container = styled('div')(({ theme }) => ({
   backgroundColor: theme.palette.background.paper,
   boxShadow: 24,
   borderRadius: '12px',
+  [theme.breakpoints.down('md')]: {
+    width: '90%',
+  },
 }));
 
 export const InputWrapper = styled('div')(({ theme }) => ({
