@@ -254,7 +254,7 @@
   "DESC_PFC_ADULTNOINSURANC": "People aged 18–64 years who report having no current health insurance coverage",
   "DESC_PR_FATAL": "Number of incidents involving fatal encounters with law enforcment per 100,000 persons.",
   "DESC_PR_STATECONSTAGAINS": "State constitution prohibits government discrimination on basis of sex",
-  "DESC_PR_GENDERGAPPOWER": "Absolute distance from 1 to the ratio of female to male political representation.",
+  "DESC_PR_GENDERGAPPOWER": "Absolute distance from 1 to the ratio of female to male political representation. (Number closer to 1 = more gender balance, numbers farther from 1 = less balance.)",
   "DESC_PR_HOMEOWNERSHIP": "Percentage of households that are owner-occupied.",
   "DESC_PR_TURNOUT": "Total number of voters divided by voting eligible population in the 2018 Midterm Elections."
 }
