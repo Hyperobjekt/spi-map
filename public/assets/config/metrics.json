@@ -521,25 +521,25 @@
   },
   {
     "id": "nbm_mencorehealth",
-    "category": "fow",
+    "category": "bhn",
     "subcategory": "nbm",
     "format": "percent_value"
   },
   {
     "id": "nbm_womencorehealth",
-    "category": "fow",
+    "category": "bhn",
     "format": "percent_value",
     "subcategory": "nbm"
   },
   {
     "id": "nbm_poorhealth",
-    "category": "fow",
+    "category": "bhn",
     "format": "percent_value",
     "subcategory": "nbm"
   },
   {
     "id": "nbm_supermarketacce",
-    "category": "fow",
+    "category": "bhn",
     "subcategory": "nbm",
     "format": "percent_value"
   }
