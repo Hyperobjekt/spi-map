@@ -267,7 +267,7 @@
   {
     "id": "eq_ozone",
     "category": "fow",
-    "format": "number",
+    "format": "decimal",
     "subcategory": "eq",
     "source": "Environmental Protection Agency",
     "link": "https://aqs.epa.gov/aqsweb/airdata/download_files.html"
