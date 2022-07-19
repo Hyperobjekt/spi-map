@@ -44,6 +44,9 @@ const ScorecardControls = ({ onNavigateToSection, ...props }) => {
     <ControlsWrapper {...props}>
       <Typography variant="overline">Scorecard Sections</Typography>
       <List>
+        <ListItem button onClick={handleSectionNavigation('spi')}>
+          <ListItemText primary="Social Progress Index" />
+        </ListItem>
         <ListItem button onClick={handleSectionNavigation('bhn')}>
           <ListItemText primary="Basic Human Needs" />
         </ListItem>

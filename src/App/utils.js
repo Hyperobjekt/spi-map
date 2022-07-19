@@ -75,6 +75,8 @@ export const getLocationNameParts = (featureProps) => {
 export const getColorForMetric = (metric) => {
   const category = metric.category || metric.id;
   switch (category) {
+    case 'spi':
+      return '#AAAAAA';
     case 'bhn':
       return '#00afbd';
     case 'fow':
