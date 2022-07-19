@@ -1,0 +1,41 @@
+[
+  {
+    "id": "states_tileset",
+    "region_id": "*",
+    "metric_id": "*",
+    "subgroup_id": "*",
+    "year": "*",
+    "tiles": [
+      "https://spi-tilesets.s3.us-west-2.amazonaws.com/v0.0.3/states/{z}/{x}/{y}.pbf"
+    ],
+    "type": "vector",
+    "min_zoom": 1,
+    "max_zoom": 8
+  },
+  {
+    "id": "cities_tileset",
+    "region_id": "*",
+    "metric_id": "*",
+    "subgroup_id": "*",
+    "year": "*",
+    "tiles": [
+      "https://spi-tilesets.s3.us-west-2.amazonaws.com/v0.0.3/cities/{z}/{x}/{y}.pbf"
+    ],
+    "type": "vector",
+    "min_zoom": 7,
+    "max_zoom": 11
+  },
+  {
+    "id": "tracts_tileset",
+    "region_id": "*",
+    "metric_id": "*",
+    "subgroup_id": "*",
+    "year": "*",
+    "tiles": [
+      "https://spi-tilesets.s3.us-west-2.amazonaws.com/v0.0.2/tracts/{z}/{x}/{y}.pbf"
+    ],
+    "type": "vector",
+    "min_zoom": 11,
+    "max_zoom": 20
+  }
+]

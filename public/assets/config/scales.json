@@ -42,5 +42,16 @@
     "subgroup_id": "*",
     "year": "*",
     "type": "choropleth"
+  },
+  {
+    "id": "pr_stateconstagains",
+    "region_id": "*",
+    "metric_id": "pr_stateconstagains",
+    "subgroup_id": "*",
+    "year": "*",
+    "type": "choropleth",
+    "scale": "quantize",
+    "chunks": 3,
+    "tickValues": [0, 0.5, 1]
   }
 ]

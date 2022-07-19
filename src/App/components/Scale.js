@@ -1,6 +1,6 @@
-import { Scale as HypScale } from "@hyperobjekt/scales";
-import { useChoroplethScale } from "@hyperobjekt/react-dashboard";
-import useSpiScaleOverrides from "../hooks/useSpiScaleOverrides";
+import { Scale as HypScale } from '@hyperobjekt/scales';
+import { useChoroplethScale } from '@hyperobjekt/react-dashboard';
+import useSpiScaleOverrides from '../hooks/useSpiScaleOverrides';
 
 // default margin for scale
 const DEFAULT_MARGIN = { left: 16, right: 16, top: 0, bottom: 0 };
@@ -13,7 +13,7 @@ export default function Scale({
   subgroup_id,
   region_id,
   year,
-  type = "choropleth",
+  type = 'choropleth',
   children,
   ...props
 }) {
@@ -27,14 +27,12 @@ export default function Scale({
   // pulls any app specific scale overrides (for choropleth color by category)
   const scaleOverrides = useSpiScaleOverrides(context);
   // get the scale, and pass over the category color overrides
-  const { ScaleProps, TickProps } = useChoroplethScale(context, scaleOverrides);
+  const { ScaleProps, TickProps } = useChoroplethScale({
+    context,
+    config: scaleOverrides,
+  });
   return (
-    <HypScale
-      style={{ marginTop: 8 }}
-      margin={DEFAULT_MARGIN}
-      {...ScaleProps}
-      {...props}
-    >
+    <HypScale style={{ marginTop: 8 }} margin={DEFAULT_MARGIN} {...ScaleProps} {...props}>
       {children}
       <HypScale.Colors />
       <HypScale.Ticks {...TickProps} />

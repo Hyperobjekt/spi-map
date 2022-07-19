@@ -1,143 +1,142 @@
-import { styled } from "@mui/system";
-import { NestedList } from "../components";
-import ListItemHintButton from "./ListItemHintButton";
+import { styled } from '@mui/system';
+import { NestedList } from '../components';
+import ListItemHintButton from './ListItemHintButton';
 
 const StyledNestedList = styled(NestedList)(({ theme }) => ({
-  "& .HypNestedList-depth2": {
+  '& .HypNestedList-depth2': {
     paddingTop: 0,
   },
-  "& .HypNestedListItem-toggle": {
+  '& .HypNestedListItem-toggle': {
     padding: 0,
   },
   // increase space on left of all list items to make room
   // for category indicator and selected indicator
-  "& .HypNestedListItem-root": {
+  '& .HypNestedListItem-root': {
     paddingLeft: theme.spacing(5),
-    "&:not(.HypNestedListItem-expanded) .HypNestedListItem-toggle .MuiSvgIcon-root":
-      {
-        color: theme.palette.grey[400],
-      },
-    "&.Mui-selected .MuiTypography-root": {
+    '&:not(.HypNestedListItem-expanded) .HypNestedListItem-toggle .MuiSvgIcon-root': {
+      color: theme.palette.grey[400],
+    },
+    '&.Mui-selected .MuiTypography-root': {
       fontWeight: theme.typography.fontWeightBold,
     },
     // selected indicator
-    "&.Mui-selected:before": {
+    '&.Mui-selected:before': {
       content: '""',
-      position: "absolute",
+      position: 'absolute',
       top: theme.spacing(1),
       bottom: theme.spacing(1),
       left: theme.spacing(0.75),
       width: theme.spacing(0.25),
     },
-    "&.HypNestedListItem-spi:before": {
-      backgroundColor: "#AAAAAA",
+    '&.HypNestedListItem-spi:before': {
+      backgroundColor: '#AAAAAA',
     },
-    "&.HypNestedListItem-bhn:before": {
-      backgroundColor: "#00AFBD",
+    '&.HypNestedListItem-bhn:before': {
+      backgroundColor: '#00AFBD',
     },
-    "&.HypNestedListItem-fow:before": {
-      backgroundColor: "#F79445",
+    '&.HypNestedListItem-fow:before': {
+      backgroundColor: '#F79445',
     },
-    "&.HypNestedListItem-opp:before": {
-      backgroundColor: "#B6C469",
+    '&.HypNestedListItem-opp:before': {
+      backgroundColor: '#B6C469',
     },
-    "&.Mui-selected .SpiHintIconButton-root, &:hover .SpiHintIconButton-root": {
+    '&.Mui-selected .SpiHintIconButton-root, &:hover .SpiHintIconButton-root': {
       opacity: 1,
     },
   },
   // default font size for list items
-  "& .MuiTypography-root": {
+  '& .MuiTypography-root': {
     fontSize: theme.typography.pxToRem(14),
   },
   // Social progress index hover + selected colors
-  "& .HypNestedListItem-spi": {
-    "&.Mui-selected": {
-      backgroundColor: "#AAAAAA",
-      color: "#BBBBBB",
+  '& .HypNestedListItem-spi': {
+    '&.Mui-selected': {
+      backgroundColor: '#AAAAAA',
+      color: '#BBBBBB',
       // expand / collapse icon color
-      "& .MuiSvgIcon-root": {
-        color: "#CCCCCC",
+      '& .MuiSvgIcon-root': {
+        color: '#CCCCCC',
       },
     },
-    "&:hover": {
-      backgroundColor: "#F2FBFC",
+    '&:hover': {
+      backgroundColor: '#F2FBFC',
     },
   },
   // Basic human needs hover + selected colors
-  "& .HypNestedListItem-bhn": {
-    "&.Mui-selected": {
-      backgroundColor: "#F2FBFC",
-      color: "#00AFBD",
+  '& .HypNestedListItem-bhn': {
+    '&.Mui-selected': {
+      backgroundColor: '#F2FBFC',
+      color: '#00AFBD',
       // expand / collapse icon color
-      "& .MuiSvgIcon-root": {
-        color: "#00AFBD",
+      '& .MuiSvgIcon-root': {
+        color: '#00AFBD',
       },
     },
-    "&:hover": {
-      backgroundColor: "#F2FBFC",
+    '&:hover': {
+      backgroundColor: '#F2FBFC',
     },
   },
   // Foundations of wellness hover + selected colors
-  "& .HypNestedListItem-fow": {
-    "&.Mui-selected": {
-      backgroundColor: "#FEF8F4",
-      color: "#F79445",
+  '& .HypNestedListItem-fow': {
+    '&.Mui-selected': {
+      backgroundColor: '#FEF8F4',
+      color: '#F79445',
       // expand / collapse icon color
-      "& .MuiSvgIcon-root": {
-        color: "#F79445",
+      '& .MuiSvgIcon-root': {
+        color: '#F79445',
       },
     },
-    "&:hover": {
-      backgroundColor: "#FEF8F4",
+    '&:hover': {
+      backgroundColor: '#FEF8F4',
     },
   },
   // Opportunity hover + selected background and text colors
-  "& .HypNestedListItem-opp": {
-    "&.Mui-selected": {
-      backgroundColor: "#FAFBF6",
-      color: "#909B66",
+  '& .HypNestedListItem-opp': {
+    '&.Mui-selected': {
+      backgroundColor: '#FAFBF6',
+      color: '#909B66',
       // expand / collapse icon color
-      "& .MuiSvgIcon-root": {
-        color: "#909B66",
+      '& .MuiSvgIcon-root': {
+        color: '#909B66',
       },
     },
-    "&:hover": {
-      backgroundColor: "#FAFBF6",
+    '&:hover': {
+      backgroundColor: '#FAFBF6',
     },
   },
-  "& .HypNestedListItem-depth0, & .HypNestedListItem-depth1": {
+  '& .HypNestedListItem-depth0, & .HypNestedListItem-depth1': {
     // circle category marker
-    "&:after": {
+    '&:after': {
       content: '""',
-      position: "absolute",
+      position: 'absolute',
       borderRadius: theme.spacing(2),
     },
-    "&.HypNestedListItem-spi:after": {
-      backgroundColor: "#AAAAAA",
+    '&.HypNestedListItem-spi:after': {
+      backgroundColor: '#AAAAAA',
     },
-    "&.HypNestedListItem-bhn:after": {
-      backgroundColor: "#00AFBD",
+    '&.HypNestedListItem-bhn:after': {
+      backgroundColor: '#00AFBD',
     },
-    "&.HypNestedListItem-fow:after": {
-      backgroundColor: "#F79445",
+    '&.HypNestedListItem-fow:after': {
+      backgroundColor: '#F79445',
     },
-    "&.HypNestedListItem-opp:after": {
-      backgroundColor: "#B6C469",
+    '&.HypNestedListItem-opp:after': {
+      backgroundColor: '#B6C469',
     },
   },
   // top level category styling
-  "& .HypNestedListItem-depth0": {
-    position: "sticky",
+  '& .HypNestedListItem-depth0': {
+    position: 'sticky',
     top: 0,
     zIndex: 2,
     background: theme.palette.background.paper,
     // larger + bolder type
-    "& .MuiTypography-root": {
+    '& .MuiTypography-root': {
       fontWeight: theme.typography.fontWeightBold,
       fontSize: theme.typography.pxToRem(16),
     },
     // circle category marker
-    "&:after": {
+    '&:after': {
       top: theme.spacing(2.15),
       left: theme.spacing(2),
       height: theme.spacing(1.5),
@@ -145,14 +144,14 @@ const StyledNestedList = styled(NestedList)(({ theme }) => ({
     },
   },
   // subcategory list items styling
-  "& .HypNestedListItem-depth1": {
-    "&:after": {
+  '& .HypNestedListItem-depth1': {
+    '&:after': {
       top: 19,
       left: 19,
       height: 6,
       width: 6,
     },
-    "& .MuiTypography-root": {
+    '& .MuiTypography-root': {
       fontWeight: theme.typography.fontWeightBold,
     },
   },

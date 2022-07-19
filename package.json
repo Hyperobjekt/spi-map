@@ -1,21 +1,23 @@
 {
-  "name": "@hyperobjekt/dashboard",
+  "name": "spi-app",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "@craco/craco": "^6.4.3",
     "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.6.0",
-    "@hyperobjekt/mapgl": "^1.1.6",
-    "@hyperobjekt/react-dashboard": "^0.3.0",
-    "@hyperobjekt/scales": "^2.0.3",
+    "@hyperobjekt/mapgl": "^1.1.7",
+    "@hyperobjekt/react-dashboard": "^1.3.2",
+    "@hyperobjekt/scales": "^2.1.2",
     "@mui/icons-material": "^5.4.2",
     "@mui/material": "^5.4.2",
+    "@react-spring/web": "^9.4.4",
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
     "@turf/boolean-within": "^6.5.0",
     "@turf/union": "^6.5.0",
+    "aws-sdk": "^2.1142.0",
     "clsx": "^1.1.1",
     "color": "^4.2.1",
     "d3-dsv": "^3.0.1",
@@ -27,8 +29,10 @@
     "lodash.escaperegexp": "^4.1.2",
     "mapbox-gl": "^2.7.0",
     "mustache": "^4.2.0",
+    "papaparse": "^5.3.2",
     "prop-types": "^15.8.1",
     "react": "^17.0.2",
+    "react-autosuggest": "^10.1.0",
     "react-dom": "^17.0.2",
     "react-json-view": "^1.21.3",
     "react-map-gl": "^7.0.7",
@@ -39,11 +43,21 @@
     "web-vitals": "^2.1.4",
     "zustand": "^3.6.9"
   },
+  "devDependencies": {
+    "husky": ">=6",
+    "lint-staged": ">=10",
+    "prettier": "^2.6.2"
+  },
+  "lint-staged": {
+    "*.{js,css,md}": "npm run format"
+  },
   "scripts": {
     "start": "craco start",
     "build": "craco --max_old_space_size=4096 build",
     "test": "craco test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "prepare": "husky install",
+    "format": "prettier --write \"src/**/*.{js,css,md}\""
   },
   "eslintConfig": {
     "extends": [

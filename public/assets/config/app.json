@@ -20,7 +20,7 @@
   ],
   "default_bubble_colors": "#f00",
   "default_region": "states",
-  "default_choropleth_metric": "ws_impervious",
+  "default_choropleth_metric": "bhn",
   "default_bubble_metric": null,
   "default_subgroup": "",
   "default_year": null,
