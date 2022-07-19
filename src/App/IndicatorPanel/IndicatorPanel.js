@@ -75,7 +75,7 @@ export const IndicatorPanel = ({ ...props }) => {
     (state) => [state.enableCustomized, state.setEnableCustomized],
     shallow
   );
-  const [expanded, setExpanded] = useState(["bhn", "fow", "opp"]);
+  const [expanded, setExpanded] = useState(["spi", "bhn", "fow", "opp"]);
   const {
     filter,
     highlight,

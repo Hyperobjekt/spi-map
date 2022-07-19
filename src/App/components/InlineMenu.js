@@ -109,13 +109,16 @@ const InlineMenu = ({
               onClick={(e) => handleClose(e, option)}
             >
               <span style={{ textTransform: "capitalize" }}>
-                {option?.name ? option.name : option}{" "}
+                {/*{option?.name ? option.name : option}{" "}*/}
+                {option?.name ? option.name : ""}{" "}
+
               </span>
             </MenuItem>
-          ))}
-        {/* {unavailableOptions.length > 0 && (
+          )
+        )}
+        {/*{unavailableOptions.length > 0 && (
           <ListSubheader>{unavailableLabel}</ListSubheader>
-        )} */}
+        )}*/}
         {unavailableOptions.map((option, i) => (
           <MenuItem key={option.id} disabled>
             <span style={{ textTransform: "capitalize" }}>

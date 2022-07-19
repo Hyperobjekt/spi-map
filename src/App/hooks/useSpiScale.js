@@ -2,6 +2,8 @@ import Color from "color";
 
 export const getCategoryColors = (category) => {
   switch (category) {
+    case "spi":
+      return ["#AAAAAA", "#BBBBBB", "#CCCCCC", "#DDDDDD", "#EEEEEE"];
     case "bhn":
       return ["#498ABA", "#6AB1CF", "#8ECAC4", "#B3DBB8", "#D2EAC8"];
     case "fow":

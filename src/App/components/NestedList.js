@@ -182,7 +182,7 @@ const NestedList = ({
   onToggleExpanded,
   ...props
 }) => {
-  const hasCollapse = !highlight && collapseDepths.indexOf(depth) > -1;
+  
   if (!items || !items.length) return null;
   return (
     <List
@@ -193,25 +193,28 @@ const NestedList = ({
       )}
       {...props}
     >
-      {items.map(({ id, name, children }) => (
-        <NestedListItem
-          key={id}
-          id={id}
-          name={name}
-          component={childComponent}
-          childItems={children}
-          depth={depth}
-          parents={parents}
-          collapsible={hasCollapse}
-          selected={selected}
-          expanded={expanded}
-          highlight={highlight}
-          filter={filter}
-          collapseDepths={collapseDepths}
-          onSelect={onSelect}
-          onToggleExpanded={onToggleExpanded}
-        />
-      ))}
+      {items.map(({ id, name, children }) => {
+        const hasCollapse = children && children.length > 0 && !highlight && collapseDepths.indexOf(depth) > -1;
+        return (
+          <NestedListItem
+            key={id}
+            id={id}
+            name={name}
+            component={childComponent}
+            childItems={children}
+            depth={depth}
+            parents={parents}
+            collapsible={hasCollapse}
+            selected={selected}
+            expanded={expanded}
+            highlight={highlight}
+            filter={filter}
+            collapseDepths={collapseDepths}
+            onSelect={onSelect}
+            onToggleExpanded={onToggleExpanded}
+          />
+        )
+       })}
     </List>
   );
 };

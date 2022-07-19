@@ -7,7 +7,7 @@ import {
 import { useIndicatorPanelStore } from "../IndicatorPanel";
 import { InlineMenu } from "../components";
 
-const DEFAULT_METRICS = ["bhn", "fow", "opp"];
+const DEFAULT_METRICS = ["spi", "bhn", "fow", "opp"];
 
 const ChoroplethSelect = (props) => {
   const metrics = useMetricConfig();

@@ -29,6 +29,9 @@ const StyledNestedList = styled(NestedList)(({ theme }) => ({
       left: theme.spacing(0.75),
       width: theme.spacing(0.25),
     },
+    "&.HypNestedListItem-spi:before": {
+      backgroundColor: "#AAAAAA",
+    },
     "&.HypNestedListItem-bhn:before": {
       backgroundColor: "#00AFBD",
     },
@@ -45,6 +48,20 @@ const StyledNestedList = styled(NestedList)(({ theme }) => ({
   // default font size for list items
   "& .MuiTypography-root": {
     fontSize: theme.typography.pxToRem(14),
+  },
+  // Social progress index hover + selected colors
+  "& .HypNestedListItem-spi": {
+    "&.Mui-selected": {
+      backgroundColor: "#AAAAAA",
+      color: "#BBBBBB",
+      // expand / collapse icon color
+      "& .MuiSvgIcon-root": {
+        color: "#CCCCCC",
+      },
+    },
+    "&:hover": {
+      backgroundColor: "#F2FBFC",
+    },
   },
   // Basic human needs hover + selected colors
   "& .HypNestedListItem-bhn": {
@@ -94,6 +111,9 @@ const StyledNestedList = styled(NestedList)(({ theme }) => ({
       content: '""',
       position: "absolute",
       borderRadius: theme.spacing(2),
+    },
+    "&.HypNestedListItem-spi:after": {
+      backgroundColor: "#AAAAAA",
     },
     "&.HypNestedListItem-bhn:after": {
       backgroundColor: "#00AFBD",

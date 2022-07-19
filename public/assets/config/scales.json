@@ -12,6 +12,14 @@
     "extent_max_key": "max"
   },
   {
+    "id": "spi",
+    "region_id": "*",
+    "metric_id": "spi",
+    "subgroup_id": "*",
+    "year": "*",
+    "type": "choropleth"
+  },
+  {
     "id": "bhn",
     "region_id": "*",
     "metric_id": "bhn",
