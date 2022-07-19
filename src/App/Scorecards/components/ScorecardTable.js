@@ -148,7 +148,7 @@ export const ScorecardTable = React.forwardRef(
         formatter: getFormatter('percent'),
       },
     ];
-    console.log(metrics);
+
     useEffect(() => {
       let subscribed = true;
 
