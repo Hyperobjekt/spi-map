@@ -76,7 +76,7 @@ export const getColorForMetric = (metric) => {
   const category = metric.category || metric.id;
   switch (category) {
     case 'spi':
-      return '#AAAAAA';
+      return '#00afbd';
     case 'bhn':
       return '#00afbd';
     case 'fow':

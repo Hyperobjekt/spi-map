@@ -29,7 +29,7 @@ const StyledNestedList = styled(NestedList)(({ theme }) => ({
       width: theme.spacing(0.25),
     },
     '&.HypNestedListItem-spi:before': {
-      backgroundColor: '#AAAAAA',
+      backgroundColor: '#00AFBD',
     },
     '&.HypNestedListItem-bhn:before': {
       backgroundColor: '#00AFBD',
@@ -51,11 +51,11 @@ const StyledNestedList = styled(NestedList)(({ theme }) => ({
   // Social progress index hover + selected colors
   '& .HypNestedListItem-spi': {
     '&.Mui-selected': {
-      backgroundColor: '#AAAAAA',
-      color: '#BBBBBB',
+      backgroundColor: '#F2FBFC',
+      color: '#00AFBD',
       // expand / collapse icon color
       '& .MuiSvgIcon-root': {
-        color: '#CCCCCC',
+        color: '#00AFBD',
       },
     },
     '&:hover': {
@@ -112,7 +112,7 @@ const StyledNestedList = styled(NestedList)(({ theme }) => ({
       borderRadius: theme.spacing(2),
     },
     '&.HypNestedListItem-spi:after': {
-      backgroundColor: '#AAAAAA',
+      backgroundColor: '#00AFBD',
     },
     '&.HypNestedListItem-bhn:after': {
       backgroundColor: '#00AFBD',
