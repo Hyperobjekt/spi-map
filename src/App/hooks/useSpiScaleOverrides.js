@@ -2,9 +2,8 @@ import Color from 'color';
 import { useMemo } from 'react';
 import { useMetricConfig } from '@hyperobjekt/react-dashboard';
 
-var bluegreen = ['#498ABA', '#6AB1CF', '#8ECAC4', '#B3DBB8', '#D2EAC8'];
-
 export const getCategoryColors = (category) => {
+  const bluegreen = ['#498ABA', '#6AB1CF', '#8ECAC4', '#B3DBB8', '#D2EAC8'];
   switch (category) {
     case 'spi':
       return bluegreen.reverse();
@@ -31,8 +30,6 @@ export const getCategoryColors = (category) => {
       return null;
   }
 };
-console.log(bluegreen.reverse());
-console.log(bluegreen);
 
 export default function useSpiScaleOverrides({ metric_id }) {
   const metric = useMetricConfig(metric_id);
