@@ -17,10 +17,12 @@ const non_reverse_metric_ids = [
   'eq_no2',
   'eq_ozone',
   'eq_pm25',
+  'nbm_foodsecurity',
   'hw_cancer',
   'hw_chd',
   'hw_diabetes',
   'hw_drugod',
+  'hw_mentalhealth',
   'hw_obesity',
   'i_dissimilarity',
   'pfc_disconnected',
@@ -34,6 +36,8 @@ const non_reverse_metric_ids = [
   'pfc_teenbirthrate',
   'pfc_adultnoinsuranc',
   'pr_gendergappower',
+  'ws_floodrisk',
+  'ws_noplumbing',
 ];
 
 export const getCategoryColors = (category, metric_id) => {
