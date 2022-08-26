@@ -1,8 +1,10 @@
 import { styled, AppBar, Toolbar, Box, Button, Typography } from '@mui/material';
-import { ArrowBack, Search } from '@mui/icons-material';
+import { AccountCircleOutlined, ArrowBack, Search } from '@mui/icons-material';
 import { animated, useSpring } from '@react-spring/web';
+import firebase from 'firebase/compat/app';
 import React from 'react';
 import shallow from 'zustand/shallow';
+import { InlineMenu } from '../components';
 import useActiveView from '../hooks/useActiveView';
 import { useSearchStore } from '../Search';
 
@@ -57,6 +59,13 @@ export const Header = () => {
             <Search sx={{ mr: 1 }} />
             <Typography>Find a Place</Typography>
           </Button>
+          <InlineMenu
+            options={[{ id: 'logout', name: 'Log Out' }]}
+            label={<AccountCircleOutlined />}
+            onSelect={(event, option) => {
+              if (option.id === 'logout') firebase.auth().signOut();
+            }}
+          />
         </Box>
       </Toolbar>
     </AppBar>

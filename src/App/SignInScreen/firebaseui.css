@@ -1,0 +1,77 @@
+.firebaseui-container {
+  background: transparent !important;
+  box-shadow: none !important;
+  margin-top: 32px !important;
+}
+
+.firebaseui-page-provider-sign-in {
+  background: transparent;
+  box-shadow: none;
+  min-height: 0;
+  padding-top: 0;
+}
+
+.firebaseui-id-page-callback {
+  background: transparent;
+  box-shadow: none;
+  margin-top: 40px;
+  height: 84px;
+  min-height: 0;
+  margin-bottom: 0;
+  padding-top: 0;
+}
+
+.firebaseui-title {
+  color: var(--palette-primary-main) !important;
+}
+
+.firebaseui-subtitle,
+.firebaseui-text {
+  color: rgba(255, 255, 255, 0.87);
+}
+
+.mdl-button--primary {
+  color: var(--palette-primary-main) !important;
+}
+
+.mdl-button--colored {
+  background: var(--palette-primary-main) !important;
+}
+
+.mdl-button--colored:hover {
+  background: var(--palette-primary-dark) !important;
+}
+
+.firebaseui-id-dismiss-info-bar {
+  display: block;
+}
+
+.firebaseui-info-bar {
+  border: 0;
+  border-radius: 10px;
+  left: 5%;
+  right: 5%;
+  top: 10%;
+  bottom: 10%;
+}
+
+.firebaseui-textfield.mdl-textfield .firebaseui-label:after {
+  background-color: var(--palette-primary-main) !important;
+}
+
+.mdl-progress > .progressbar {
+  background-color: var(--palette-primary-main) !important;
+}
+
+.mdl-progress > .bufferbar {
+  background-image: linear-gradient(90deg, hsla(0, 0%, 100%, 0.7), hsla(0, 0%, 100%, 0.7)),
+    linear-gradient(90deg, var(--palette-primary-main), var(--palette-primary-main)) !important;
+  z-index: 0;
+  left: 0;
+}
+
+.mdl-progress:not(.mdl-progress--indeterminate) > .auxbar,
+.mdl-progress:not(.mdl-progress__indeterminate) > .auxbar {
+  background-image: linear-gradient(90deg, hsla(0, 0%, 100%, 0.9), hsla(0, 0%, 100%, 0.9)),
+    linear-gradient(90deg, var(--palette-primary-main), var(--palette-primary-main)) !important;
+}
