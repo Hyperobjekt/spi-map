@@ -1,11 +1,30 @@
-// Import FirebaseAuth and firebase.
-import React, { useEffect, useRef } from 'react';
-
-import FirebaseAuth from 'react-firebaseui/FirebaseAuth';
-import firebase from 'firebase/compat/app';
-import 'firebase/compat/auth';
-import './firebaseui.css';
-import { useTheme } from '@emotion/react';
+import React, { useState } from 'react';
+import { initializeApp } from 'firebase/app';
+import { getAuth } from 'firebase/auth';
+import {
+  Box,
+  Button,
+  Checkbox,
+  Container,
+  CssBaseline,
+  FormControlLabel,
+  Grid,
+  IconButton,
+  InputAdornment,
+  Link,
+  TextField,
+  Typography,
+} from '@mui/material';
+import { Visibility, VisibilityOff } from '@mui/icons-material';
+import * as yup from 'yup';
+import {
+  useCreateUserWithEmailAndPassword,
+  useSignInWithEmailAndPassword,
+} from 'react-firebase-hooks/auth';
+import { Formik } from 'formik';
+import { values } from 'lodash';
+import RegistrationForm from './RegistrationForm';
+import LoginForm from './LoginForm';
 
 // Configure Firebase.
 const config = {
@@ -17,50 +36,22 @@ const config = {
   appId: '1:54606573448:web:09fa7f82355f05cfc4143d',
   measurementId: 'G-MP8HGDHKHJ',
 };
-firebase.initializeApp(config);
 
-// Configure FirebaseUI.
-const uiConfig = {
-  // Popup signin flow rather than redirect flow.
-  signInFlow: 'popup',
-  // Redirect to /signedIn after sign in is successful. Alternatively you can provide a callbacks.signInSuccess function.
-  signInSuccessUrl: '/signedIn',
-  // We will display Google and Facebook as auth providers.
-  signInOptions: [
-    firebase.auth.EmailAuthProvider.PROVIDER_ID,
-    firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-    firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-  ],
-  callbacks: {
-    signInSuccessWithAuthResult: () => false,
-  },
-};
+initializeApp(config);
 
 const SignInScreen = () => {
-  const theme = useTheme();
-  const containerRef = useRef();
+  const [showRegistrationForm, setShowRegistrationForm] = useState();
 
-  useEffect(() => {
-    const container = containerRef.current;
-
-    const { contained, outlined } = theme.components.MuiButton.styleOverrides;
-
-    if (container) {
-      container.style.setProperty('--button-contained-border-radius', contained.borderRadius);
-      container.style.setProperty('--button-outlined-border-radius', outlined.borderRadius);
-
-      container.style.setProperty('--btn-contained-box-shadow', contained.boxShadow);
-      container.style.setProperty('--btn-outlined-box-shadow', outlined.boxShadow);
-
-      const { main, light, dark } = theme.palette.primary;
-      container.style.setProperty('--palette-primary-main', main);
-      container.style.setProperty('--palette-primary-light', light);
-      container.style.setProperty('--palette-primary-dark', dark);
-    }
-  }, [theme]);
   return (
-    <div ref={containerRef}>
-      <FirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
+    <div>
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        {showRegistrationForm ? (
+          <RegistrationForm setShowRegistrationForm={setShowRegistrationForm} />
+        ) : (
+          <LoginForm setShowRegistrationForm={setShowRegistrationForm} />
+        )}
+      </Container>
     </div>
   );
 };

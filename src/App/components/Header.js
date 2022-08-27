@@ -1,12 +1,11 @@
 import { styled, AppBar, Toolbar, Box, Button, Typography } from '@mui/material';
-import { AccountCircleOutlined, ArrowBack, Search } from '@mui/icons-material';
+import { ArrowBack, Search } from '@mui/icons-material';
 import { animated, useSpring } from '@react-spring/web';
-import firebase from 'firebase/compat/app';
 import React from 'react';
 import shallow from 'zustand/shallow';
-import { InlineMenu } from '../components';
 import useActiveView from '../hooks/useActiveView';
 import { useSearchStore } from '../Search';
+import ProfileMenu from './ProfileMenu';
 
 const StyledBox = styled(Box)`
   display: flex;
@@ -54,18 +53,12 @@ export const Header = () => {
             <Typography variant="h4">Back To Map</Typography>
           </Button>
         </BackButtonWrapper>
-        <Box display="flex" gap={1} ml="auto" pl={1}>
-          <Button variant="outlined" onClick={handleShowSearch}>
+        <Box display="flex" gap={1} ml="auto" pl={1} alignItems="center">
+          <Button variant="outlined" onClick={handleShowSearch} sx={{ height: '36px' }}>
             <Search sx={{ mr: 1 }} />
             <Typography>Find a Place</Typography>
           </Button>
-          <InlineMenu
-            options={[{ id: 'logout', name: 'Log Out' }]}
-            label={<AccountCircleOutlined />}
-            onSelect={(event, option) => {
-              if (option.id === 'logout') firebase.auth().signOut();
-            }}
-          />
+          <ProfileMenu />
         </Box>
       </Toolbar>
     </AppBar>

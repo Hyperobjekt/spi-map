@@ -1,9 +1,8 @@
-import { useState, useEffect } from 'react';
 import Dashboard, { QueryParamRouter } from '@hyperobjekt/react-dashboard';
 import '@hyperobjekt/mapgl/dist/style.css';
 import '@hyperobjekt/scales/dist/style.css';
 import { CssBaseline } from '@mui/material';
-import firebase from 'firebase/compat/app';
+import { getAuth } from 'firebase/auth';
 import { styled, ThemeProvider } from '@mui/system';
 import shallow from 'zustand/shallow';
 import Header from './components/Header';
@@ -13,6 +12,7 @@ import { IndicatorPanel, CustomizeIndicatorPanel, useIndicatorPanelStore } from 
 import { SearchModal } from './Search';
 import { Scorecards } from './Scorecards';
 import theme from '../theme';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { LoginModal } from './LoginModal';
 
 const CONFIG = {
@@ -41,14 +41,9 @@ const AppWrapper = styled('div')({
 });
 
 function App() {
-  const [isSignedIn, setIsSignedIn] = useState(true);
+  const [user, loading, error] = useAuthState(getAuth());
 
-  useEffect(() => {
-    const unregisterAuthObserver = firebase.auth().onAuthStateChanged((user) => {
-      setIsSignedIn(!!user);
-    });
-    return () => unregisterAuthObserver();
-  }, []);
+  const isSignedIn = !!user;
 
   // pull state and setter that determines if the indicator panel is open
   const [indicatorsOpen, setIndicatorsOpen] = useIndicatorPanelStore(
