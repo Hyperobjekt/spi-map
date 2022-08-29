@@ -1,145 +1,145 @@
+import { useState, useMemo, useEffect } from 'react';
 import { styled } from '@mui/system';
 import { visuallyHidden } from '@mui/utils';
-import { Modal, Box, Button, Typography, Backdrop } from '@mui/material';
-import shallow from 'zustand/shallow';
-import { useDashboardStore } from '@hyperobjekt/react-dashboard';
-import useIntroModalStore from './store';
 import {
-  Boxmodal,
-  Container,
-  Content,
-  Description,
-  Buttoncontainer,
-  Label,
-} from './IntroModal.styles';
+  Modal,
+  Box,
+  Typography,
+  Backdrop,
+  CssBaseline,
+  Container as MUIContainer,
+} from '@mui/material';
+import RegistrationForm from './RegistrationForm';
+import LoginForm from './LoginForm';
+import { JumpTo } from './JumpTo';
+import { Boxmodal, Container, Content, Description } from './IntroModal.styles';
+import { initializeApp } from 'firebase/app';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { getAuth } from 'firebase/auth';
+import Fade from './Fade';
+import { useSpring, animated } from 'react-spring';
+import useIntroModalStore from './store';
+import shallow from 'zustand/shallow';
+import { STAGE } from './constants';
 
-const IntroModal = ({ ...props }) => {
-  const [introModalOpen, setIntroModalOpen] = useIntroModalStore(
-    (state) => [state.open, state.setOpen],
+// Configure Firebase.
+const config = {
+  apiKey: 'AIzaSyBev3DymCj11FvaNPiH5fbzsyUPGnD160g',
+  authDomain: 'spi-map-5fc21.firebaseapp.com',
+  projectId: 'spi-map-5fc21',
+  storageBucket: 'spi-map-5fc21.appspot.com',
+  messagingSenderId: '54606573448',
+  appId: '1:54606573448:web:09fa7f82355f05cfc4143d',
+  measurementId: 'G-MP8HGDHKHJ',
+};
+
+initializeApp(config);
+
+const IntroModal = () => {
+  const [isOpen, setIsOpen, stage, setStage] = useIntroModalStore(
+    (state) => [state.open, state.setOpen, state.stage, state.setStage],
     shallow,
   );
-  const setRegion = useDashboardStore((state) => state.setRegion);
 
-  const handleClose = (e) => {
-    setIntroModalOpen(false);
-    storeFirstVisit();
-  };
+  const Component = useMemo(
+    () =>
+      ({
+        LOGIN: () => (
+          <LoginForm
+            onLogin={() => setIsOpen(false)}
+            handleShowRegistrationForm={() => setStage(STAGE.REGISTRATION)}
+          />
+        ),
+        REGISTRATION: () => (
+          <RegistrationForm
+            onRegister={() => setStage(STAGE.JUMP_TO)}
+            handleShowLoginForm={() => setStage(STAGE.LOGIN)}
+          />
+        ),
+        JUMP_TO: () => <JumpTo onJumpTo={() => setIsOpen(false)} />,
+      }[stage]),
+    [stage],
+  );
 
-  const handleViewStates = (e) => {
-    setIntroModalOpen(false);
-    storeFirstVisit();
-  };
+  const [user, loading, error] = useAuthState(getAuth());
 
-  const handleViewCities = (e) => {
-    setRegion('cities');
-    setIntroModalOpen(false);
-    storeFirstVisit();
-  };
+  const isSignedIn = !!user;
 
-  const handleViewTracts = (e) => {
-    setRegion('tracts');
-    setIntroModalOpen(false);
-    storeFirstVisit();
-  };
+  useEffect(() => {
+    // Only used for UI to decide whether or not to show
+    // the Intro Modal immediately on startup.
+    // If the auth request returns invalid, the modal will open regardless
+    localStorage.setItem('SIGNED_IN', isSignedIn);
 
-  const storeFirstVisit = () => {
-    const firstVisit = localStorage.getItem('spi.firstVisit');
-    if (!firstVisit) {
-      localStorage.setItem('spi.firstVisit', new Date());
+    if (!isSignedIn && !loading) {
+      setStage(STAGE.LOGIN);
+      setIsOpen(true);
     }
-  };
+  }, [isSignedIn, loading, setStage, setIsOpen]);
+
+  // Handles backdropFilter only. Fade is handled by child of modal
+  // see: https://mui.com/material-ui/react-modal/#transitions
+  const styles = useSpring({ backdropFilter: `blur(${isOpen ? 5 : 0}px)` });
+  const AnimatedModal = animated(Modal);
 
   return (
-    <Modal
-      open={introModalOpen}
-      onClose={handleClose}
+    <AnimatedModal
+      open={isOpen}
       aria-labelledby="intro-modal-title"
       aria-describedby="intro-modal-description"
-      sx={{
+      style={{
         display: 'flex',
         flexDirection: 'row',
-        backdropFilter: 'blur(5px)',
+        ...styles,
       }}
       BackdropComponent={styled(Backdrop)({
         backgroundColor: 'transparent',
       })}
     >
-      <Container>
-        <Content>
-          <Boxmodal
-            sx={{
-              display: 'flex',
-              flexDirection: 'row',
-            }}
-          >
-            <Box
+      <Fade in={isOpen}>
+        <Container>
+          <Content>
+            <Boxmodal
               sx={{
-                mt: 0.75,
-                mr: 3,
+                display: 'flex',
+                flexDirection: 'row',
               }}
             >
-              <img
-                src="/assets/img/spi-logo.png"
-                alt="Social Progress Imperative logo"
-                width="120"
-              />
-              <Typography id="intro-modal-title" style={visuallyHidden}>
-                Social Progress Imperative
-              </Typography>
-            </Box>
-            <Box>
-              <Description id="intro-modal-description">
-                This map presents Social Progress Index data, including dozens of indicators and
-                demographics, for the 50 US states and 500 cities. Click a view below to get
-                started.
-              </Description>
-            </Box>
-          </Boxmodal>
-
-          <Buttoncontainer
-            sx={{
-              width: '50%',
-              mt: 3,
-              mx: 'auto',
-            }}
-          >
-            <Label>View data for 50 U.S. states</Label>
-            <Button
-              fullWidth
-              size="large"
-              variant="contained"
-              color="primary"
-              onClick={handleViewStates}
-            >
-              Go to states view
-            </Button>
-
-            <Label>View data for 500 U.S. cities</Label>
-            <Button
-              fullWidth
-              size="large"
-              variant="contained"
-              color="primary"
-              onClick={handleViewCities}
-            >
-              Go to cities view
-            </Button>
-
-            <Label>View data for Census tracts</Label>
-            <Button
-              disabled
-              fullWidth
-              size="large"
-              variant="contained"
-              color="primary"
-              onClick={handleViewTracts}
-            >
-              Coming soon!
-            </Button>
-          </Buttoncontainer>
-        </Content>
-      </Container>
-    </Modal>
+              <Box
+                sx={{
+                  mt: 0.75,
+                  mr: 3,
+                }}
+              >
+                <img
+                  src="/assets/img/spi-logo.png"
+                  alt="Social Progress Imperative logo"
+                  width="120"
+                />
+                <Typography id="login-modal-title" style={visuallyHidden}>
+                  Social Progress Imperative
+                </Typography>
+              </Box>
+              <Box>
+                <Description id="intro-modal-description">
+                  This map presents Social Progress Index data, including dozens of indicators and
+                  demographics, for the 50 US states and 500 cities.{' '}
+                  {stage === STAGE.JUMP_TO
+                    ? 'Click a view below to get started.'
+                    : 'Login or create an account below to get started.'}
+                </Description>
+              </Box>
+            </Boxmodal>
+            <div>
+              <MUIContainer component="main" maxWidth="xs">
+                <CssBaseline />
+                <Component />
+              </MUIContainer>
+            </div>
+          </Content>
+        </Container>
+      </Fade>
+    </AnimatedModal>
   );
 };
 

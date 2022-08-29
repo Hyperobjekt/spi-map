@@ -1,0 +1,5 @@
+export const STAGE = {
+  LOGIN: 'LOGIN',
+  REGISTRATION: 'REGISTRATION',
+  JUMP_TO: 'JUMP_TO',
+};

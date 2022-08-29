@@ -2,7 +2,6 @@ import Dashboard, { QueryParamRouter } from '@hyperobjekt/react-dashboard';
 import '@hyperobjekt/mapgl/dist/style.css';
 import '@hyperobjekt/scales/dist/style.css';
 import { CssBaseline } from '@mui/material';
-import { getAuth } from 'firebase/auth';
 import { styled, ThemeProvider } from '@mui/system';
 import shallow from 'zustand/shallow';
 import Header from './components/Header';
@@ -12,8 +11,6 @@ import { IndicatorPanel, CustomizeIndicatorPanel, useIndicatorPanelStore } from 
 import { SearchModal } from './Search';
 import { Scorecards } from './Scorecards';
 import theme from '../theme';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { LoginModal } from './LoginModal';
 
 const CONFIG = {
   app: '/assets/config/app.json',
@@ -41,10 +38,6 @@ const AppWrapper = styled('div')({
 });
 
 function App() {
-  const [user, loading, error] = useAuthState(getAuth());
-
-  const isSignedIn = !!user;
-
   // pull state and setter that determines if the indicator panel is open
   const [indicatorsOpen, setIndicatorsOpen] = useIndicatorPanelStore(
     (state) => [state.open, state.setOpen],
@@ -62,15 +55,9 @@ function App() {
         <AppWrapper className="App">
           <Header />
           <Map>
-            {!isSignedIn ? (
-              <LoginModal />
-            ) : (
-              <>
-                <IntroModal />
-                <IndicatorPanel open={indicatorsOpen} onClose={() => setIndicatorsOpen(false)} />
-                <CustomizeIndicatorPanel open={customizeOpen} />
-              </>
-            )}
+            <IntroModal />
+            <IndicatorPanel open={indicatorsOpen} onClose={() => setIndicatorsOpen(false)} />
+            <CustomizeIndicatorPanel open={customizeOpen} />
           </Map>
           <Scorecards />
         </AppWrapper>

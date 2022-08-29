@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import {
   Button,
@@ -42,12 +43,17 @@ const RegistrationFormSchema = yup.object({
     .required('Primary use is required'),
 });
 
-const RegistrationForm = ({ setShowRegistrationForm }) => {
+const RegistrationForm = ({ handleShowLoginForm, onRegister }) => {
   const [showPassword, setShowPassword] = useState(false);
 
-  const [createUserWithEmailAndPassword, user, loading, error] = useCreateUserWithEmailAndPassword(
-    getAuth(),
-  );
+  const [createUserWithEmailAndPassword, userCredentials, loading, error] =
+    useCreateUserWithEmailAndPassword(getAuth());
+
+  useEffect(() => {
+    if (userCredentials) {
+      onRegister(userCredentials);
+    }
+  }, [onRegister, userCredentials]);
 
   const handleClickShowPassword = () => {
     setShowPassword((x) => !x);
@@ -77,9 +83,7 @@ const RegistrationForm = ({ setShowRegistrationForm }) => {
             usage: '',
           }}
           onSubmit={(values, { setSubmitting, setFieldError, setStatus }) =>
-            createUserWithEmailAndPassword(values.email, values.password).then((res) => {
-              debugger;
-            })
+            createUserWithEmailAndPassword(values.email, values.password)
           }
           validationSchema={RegistrationFormSchema}
         >
@@ -163,7 +167,7 @@ const RegistrationForm = ({ setShowRegistrationForm }) => {
         </Formik>
         <Grid container>
           <Grid item>
-            <Link href="#" variant="body2" onClick={() => setShowRegistrationForm(false)}>
+            <Link href="#" variant="body2" onClick={handleShowLoginForm}>
               {'Back to login'}
             </Link>
           </Grid>

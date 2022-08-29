@@ -12,7 +12,7 @@ import {
 import { Box } from '@mui/system';
 import { getAuth } from 'firebase/auth';
 import { Formik } from 'formik';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import * as yup from 'yup';
 import { EmailError, PasswordError } from './utils';
@@ -22,12 +22,18 @@ const LoginFormSchema = yup.object({
   password: yup.string('Enter your password').required('Password is required'),
 });
 
-const LoginForm = ({ setShowRegistrationForm }) => {
+const LoginForm = ({ handleShowRegistrationForm, onLogin }) => {
   const [showPassword, setShowPassword] = useState(false);
 
   const [signInWithEmailAndPassword, user, loading, error] = useSignInWithEmailAndPassword(
     getAuth(),
   );
+
+  useEffect(() => {
+    if (user) {
+      onLogin(user);
+    }
+  }, [onLogin, user]);
 
   const handleClickShowPassword = () => {
     setShowPassword((x) => !x);
@@ -123,7 +129,7 @@ const LoginForm = ({ setShowRegistrationForm }) => {
             </Link>
           </Grid>
           <Grid item>
-            <Link href="#" variant="body2" onClick={() => setShowRegistrationForm(true)}>
+            <Link href="#" variant="body2" onClick={handleShowRegistrationForm}>
               {"Don't have an account? Sign Up"}
             </Link>
           </Grid>

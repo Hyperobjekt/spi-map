@@ -2,8 +2,15 @@ import React from 'react';
 import { getAuth, signOut } from 'firebase/auth';
 import { AccountCircleOutlined } from '@mui/icons-material';
 import { IconButton, Menu, MenuItem } from '@mui/material';
+import { STAGE, useIntroModalStore } from '../IntroModal';
+import shallow from 'zustand/shallow';
 
 const ProfileMenu = () => {
+  const [setIntroModalIsOpen, setIntroModalStage] = useIntroModalStore(
+    (state) => [state.setOpen, state.setStage],
+    shallow,
+  );
+
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = (e) => {
@@ -34,6 +41,14 @@ const ProfileMenu = () => {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
+        <MenuItem
+          onClick={() => {
+            setIntroModalIsOpen(true);
+            setIntroModalStage(STAGE.JUMP_TO);
+          }}
+        >
+          About
+        </MenuItem>
         <MenuItem onClick={() => signOut(getAuth())}>Log Out</MenuItem>
       </Menu>
     </>
