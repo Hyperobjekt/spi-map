@@ -7,6 +7,7 @@ const JumpTo = ({ onJumpTo = () => {} }) => {
   const setAutoSwitchRegion = useDashboardStore((state) => state.setAutoSwitchRegion);
 
   const handleViewStates = (e) => {
+    setRegion('states');
     onJumpTo();
   };
 
