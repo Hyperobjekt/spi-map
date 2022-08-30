@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect } from 'react';
+import { useMemo, useEffect } from 'react';
 import { styled } from '@mui/system';
 import { visuallyHidden } from '@mui/utils';
 import {
@@ -13,27 +13,13 @@ import RegistrationForm from './RegistrationForm';
 import LoginForm from './LoginForm';
 import { JumpTo } from './JumpTo';
 import { Boxmodal, Container, Content, Description } from './IntroModal.styles';
-import { initializeApp } from 'firebase/app';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { getAuth } from 'firebase/auth';
 import Fade from './Fade';
 import { useSpring, animated } from 'react-spring';
 import useIntroModalStore from './store';
 import shallow from 'zustand/shallow';
 import { STAGE } from './constants';
-
-// Configure Firebase.
-const config = {
-  apiKey: 'AIzaSyBev3DymCj11FvaNPiH5fbzsyUPGnD160g',
-  authDomain: 'spi-map-5fc21.firebaseapp.com',
-  projectId: 'spi-map-5fc21',
-  storageBucket: 'spi-map-5fc21.appspot.com',
-  messagingSenderId: '54606573448',
-  appId: '1:54606573448:web:09fa7f82355f05cfc4143d',
-  measurementId: 'G-MP8HGDHKHJ',
-};
-
-initializeApp(config);
+import { useAuthUser } from '@react-query-firebase/auth';
+import { auth } from 'App/firebase';
 
 const IntroModal = () => {
   const [isOpen, setIsOpen, stage, setStage] = useIntroModalStore(
@@ -61,7 +47,7 @@ const IntroModal = () => {
     [stage],
   );
 
-  const [user, loading, error] = useAuthState(getAuth());
+  const { data: user, isLoading } = useAuthUser(['user'], auth);
 
   const isSignedIn = !!user;
 
@@ -71,11 +57,11 @@ const IntroModal = () => {
     // If the auth request returns invalid, the modal will open regardless
     localStorage.setItem('SIGNED_IN', isSignedIn);
 
-    if (!isSignedIn && !loading) {
+    if (!isSignedIn && !isLoading) {
       setStage(STAGE.LOGIN);
       setIsOpen(true);
     }
-  }, [isSignedIn, loading, setStage, setIsOpen]);
+  }, [isSignedIn, isLoading, setStage, setIsOpen]);
 
   // Handles backdropFilter only. Fade is handled by child of modal
   // see: https://mui.com/material-ui/react-modal/#transitions

@@ -12,12 +12,12 @@ import {
   Typography,
 } from '@mui/material';
 import { Box } from '@mui/system';
-import { getAuth } from 'firebase/auth';
 import { Formik } from 'formik';
 import { useState } from 'react';
-import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import * as yup from 'yup';
 import { EmailError, PasswordError } from './utils';
+import { useAuthCreateUserWithEmailAndPassword } from '@react-query-firebase/auth';
+import { auth } from 'App/firebase';
 
 const RegistrationFormSchema = yup.object({
   email: yup.string('Enter your email').email('Enter a valid email').required('Email is required'),
@@ -46,14 +46,15 @@ const RegistrationFormSchema = yup.object({
 const RegistrationForm = ({ handleShowLoginForm, onRegister }) => {
   const [showPassword, setShowPassword] = useState(false);
 
-  const [createUserWithEmailAndPassword, userCredentials, loading, error] =
-    useCreateUserWithEmailAndPassword(getAuth());
-
-  useEffect(() => {
-    if (userCredentials) {
+  const { mutate: createUser, error } = useAuthCreateUserWithEmailAndPassword(auth, {
+    onSuccess: (userCredentials) => {
       onRegister(userCredentials);
-    }
-  }, [onRegister, userCredentials]);
+      // firestore.collection('users').doc(userCredential.user.uid).set({
+      //   name,
+      //   lastName,
+      // });
+    },
+  });
 
   const handleClickShowPassword = () => {
     setShowPassword((x) => !x);
@@ -82,8 +83,8 @@ const RegistrationForm = ({ handleShowLoginForm, onRegister }) => {
             password: '',
             usage: '',
           }}
-          onSubmit={(values, { setSubmitting, setFieldError, setStatus }) =>
-            createUserWithEmailAndPassword(values.email, values.password)
+          onSubmit={({ email, password }, { setSubmitting, setFieldError, setStatus }) =>
+            createUser({ email, password })
           }
           validationSchema={RegistrationFormSchema}
         >

@@ -1,9 +1,10 @@
 import React from 'react';
-import { getAuth, signOut } from 'firebase/auth';
+import { signOut } from 'firebase/auth';
 import { AccountCircleOutlined } from '@mui/icons-material';
 import { IconButton, Menu, MenuItem } from '@mui/material';
 import { STAGE, useIntroModalStore } from '../IntroModal';
 import shallow from 'zustand/shallow';
+import { auth } from 'App/firebase';
 
 const ProfileMenu = () => {
   const [setIntroModalIsOpen, setIntroModalStage] = useIntroModalStore(
@@ -50,7 +51,7 @@ const ProfileMenu = () => {
         >
           About
         </MenuItem>
-        <MenuItem onClick={() => signOut(getAuth())}>Log Out</MenuItem>
+        <MenuItem onClick={() => signOut(auth)}>Log Out</MenuItem>
       </Menu>
     </>
   );

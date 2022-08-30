@@ -10,10 +10,10 @@ import {
   Typography,
 } from '@mui/material';
 import { Box } from '@mui/system';
-import { getAuth } from 'firebase/auth';
+import { useAuthSignInWithEmailAndPassword } from '@react-query-firebase/auth';
+import { auth } from 'App/firebase';
 import { Formik } from 'formik';
-import { useState, useEffect } from 'react';
-import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useState } from 'react';
 import * as yup from 'yup';
 import { EmailError, PasswordError } from './utils';
 
@@ -25,15 +25,11 @@ const LoginFormSchema = yup.object({
 const LoginForm = ({ handleShowRegistrationForm, onLogin }) => {
   const [showPassword, setShowPassword] = useState(false);
 
-  const [signInWithEmailAndPassword, user, loading, error] = useSignInWithEmailAndPassword(
-    getAuth(),
-  );
-
-  useEffect(() => {
-    if (user) {
+  const { mutate: signIn, error } = useAuthSignInWithEmailAndPassword(auth, {
+    onSuccess: (user) => {
       onLogin(user);
-    }
-  }, [onLogin, user]);
+    },
+  });
 
   const handleClickShowPassword = () => {
     setShowPassword((x) => !x);
@@ -61,8 +57,8 @@ const LoginForm = ({ handleShowRegistrationForm, onLogin }) => {
             email: '',
             password: '',
           }}
-          onSubmit={(values, { setSubmitting, setFieldError, setStatus }) =>
-            signInWithEmailAndPassword(values.email, values.password)
+          onSubmit={({ email, password }, { setSubmitting, setFieldError, setStatus }) =>
+            signIn({ email, password })
           }
           validationSchema={LoginFormSchema}
         >
