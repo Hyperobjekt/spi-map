@@ -40,6 +40,7 @@ const ProfileMenu = () => {
         keepMounted
         open={Boolean(anchorEl)}
         onClose={handleClose}
+        onClick={handleClose}
       >
         <MenuItem
           onClick={() => {
