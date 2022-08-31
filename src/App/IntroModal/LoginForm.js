@@ -15,7 +15,7 @@ import { auth } from 'App/firebase';
 import { Formik } from 'formik';
 import { useState } from 'react';
 import * as yup from 'yup';
-import { EmailError, PasswordError } from './utils';
+import { EmailError, FormError, PasswordError } from './utils';
 
 const LoginFormSchema = yup.object({
   email: yup.string('Enter your email').email('Enter a valid email').required('Email is required'),
@@ -111,9 +111,7 @@ const LoginForm = ({ handleShowRegistrationForm, handleShowResetPasswordForm, on
                 Sign In
               </Button>
               <FormHelperText error>
-                {!!error?.code && !PasswordError[error?.code] && !EmailError[error?.code]
-                  ? 'An unexpected error occurred. Please try again later.'
-                  : ' '}
+                {!!error?.code ? FormError[error?.code] || FormError['*'] : ' '}
               </FormHelperText>
             </>
           )}
