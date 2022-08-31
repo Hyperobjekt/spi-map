@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import {
   Button,
@@ -17,7 +16,7 @@ import { useState } from 'react';
 import * as yup from 'yup';
 import { EmailError, PasswordError } from './utils';
 import { useAuthCreateUserWithEmailAndPassword } from '@react-query-firebase/auth';
-import { auth } from 'App/firebase';
+import { addUser, auth, db } from 'App/firebase';
 
 const RegistrationFormSchema = yup.object({
   email: yup.string('Enter your email').email('Enter a valid email').required('Email is required'),
@@ -47,12 +46,15 @@ const RegistrationForm = ({ handleShowLoginForm, onRegister }) => {
   const [showPassword, setShowPassword] = useState(false);
 
   const { mutate: createUser, error } = useAuthCreateUserWithEmailAndPassword(auth, {
-    onSuccess: (userCredentials) => {
-      onRegister(userCredentials);
-      // firestore.collection('users').doc(userCredential.user.uid).set({
-      //   name,
-      //   lastName,
-      // });
+    onSuccess: (userCredential, { usage }) => {
+      onRegister(userCredential);
+
+      const { email } = userCredential.user;
+
+      addUser({
+        email,
+        usage,
+      });
     },
   });
 
@@ -83,9 +85,7 @@ const RegistrationForm = ({ handleShowLoginForm, onRegister }) => {
             password: '',
             usage: '',
           }}
-          onSubmit={({ email, password }, { setSubmitting, setFieldError, setStatus }) =>
-            createUser({ email, password })
-          }
+          onSubmit={(values, { setSubmitting, setFieldError, setStatus }) => createUser(values)}
           validationSchema={RegistrationFormSchema}
         >
           {({ values, touched, errors, handleChange, handleSubmit }) => (

@@ -20,6 +20,7 @@ import shallow from 'zustand/shallow';
 import { STAGE } from './constants';
 import { useAuthUser } from '@react-query-firebase/auth';
 import { auth } from 'App/firebase';
+import ResetPasswordForm from './ResetPasswordForm';
 
 const IntroModal = () => {
   const [isOpen, setIsOpen, stage, setStage] = useIntroModalStore(
@@ -34,7 +35,11 @@ const IntroModal = () => {
           <LoginForm
             onLogin={() => setIsOpen(false)}
             handleShowRegistrationForm={() => setStage(STAGE.REGISTRATION)}
+            handleShowResetPasswordForm={() => setStage(STAGE.RESET_PASSWORD)}
           />
+        ),
+        RESET_PASSWORD: () => (
+          <ResetPasswordForm handleShowLoginForm={() => setStage(STAGE.LOGIN)} />
         ),
         REGISTRATION: () => (
           <RegistrationForm
@@ -44,7 +49,7 @@ const IntroModal = () => {
         ),
         JUMP_TO: () => <JumpTo onJumpTo={() => setIsOpen(false)} />,
       }[stage]),
-    [stage],
+    [stage, setIsOpen, setStage],
   );
 
   const { data: user, isLoading } = useAuthUser(['user'], auth);

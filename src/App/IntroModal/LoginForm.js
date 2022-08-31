@@ -22,7 +22,7 @@ const LoginFormSchema = yup.object({
   password: yup.string('Enter your password').required('Password is required'),
 });
 
-const LoginForm = ({ handleShowRegistrationForm, onLogin }) => {
+const LoginForm = ({ handleShowRegistrationForm, handleShowResetPasswordForm, onLogin }) => {
   const [showPassword, setShowPassword] = useState(false);
 
   const { mutate: signIn, error } = useAuthSignInWithEmailAndPassword(auth, {
@@ -120,7 +120,7 @@ const LoginForm = ({ handleShowRegistrationForm, onLogin }) => {
         </Formik>
         <Grid container>
           <Grid item xs>
-            <Link href="#" variant="body2">
+            <Link href="#" variant="body2" onClick={handleShowResetPasswordForm}>
               Forgot password?
             </Link>
           </Grid>
