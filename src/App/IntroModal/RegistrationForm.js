@@ -15,7 +15,10 @@ import { Formik } from 'formik';
 import { useState } from 'react';
 import * as yup from 'yup';
 import { EmailError, PasswordError } from './utils';
-import { useAuthCreateUserWithEmailAndPassword } from '@react-query-firebase/auth';
+import {
+  useAuthCreateUserWithEmailAndPassword,
+  useAuthSendEmailVerification,
+} from '@react-query-firebase/auth';
 import { addUser, auth, db } from 'App/firebase';
 
 const RegistrationFormSchema = yup.object({
@@ -45,9 +48,19 @@ const RegistrationFormSchema = yup.object({
 const RegistrationForm = ({ handleShowLoginForm, onRegister }) => {
   const [showPassword, setShowPassword] = useState(false);
 
+  const { mutate: sendVerificationEmail } = useAuthSendEmailVerification();
+
+  // mutation.mutate({
+  //   user: auth.currentUser,
+  //   // actionCodeSettings: {...}, // optional
+  // });
+
   const { mutate: createUser, error } = useAuthCreateUserWithEmailAndPassword(auth, {
     onSuccess: (userCredential, { usage }) => {
       onRegister(userCredential);
+      sendVerificationEmail({
+        user: auth.currentUser,
+      });
 
       const { email } = userCredential.user;
 
@@ -149,7 +162,7 @@ const RegistrationForm = ({ handleShowLoginForm, onRegister }) => {
                 <MenuItem value={'policymaking'}>Policymaking</MenuItem>
                 <MenuItem value={'resource_allocation'}>Resource allocation</MenuItem>
                 <MenuItem value={'investments'}>Investments</MenuItem>
-                <MenuItem value={'Advocacy'}>Advocacy</MenuItem>
+                <MenuItem value={'advocacy'}>Advocacy</MenuItem>
                 <MenuItem value={'academic_research'}>Academic research</MenuItem>
                 <MenuItem value={'personal_research'}>Personal research</MenuItem>
                 <MenuItem value={'csr_esg_strategy'}>CSR or ESG strategy</MenuItem>
