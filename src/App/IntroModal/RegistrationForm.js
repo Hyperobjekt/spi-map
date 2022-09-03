@@ -50,16 +50,14 @@ const RegistrationForm = ({ handleShowLoginForm, onRegister }) => {
 
   const { mutate: sendVerificationEmail } = useAuthSendEmailVerification();
 
-  // mutation.mutate({
-  //   user: auth.currentUser,
-  //   // actionCodeSettings: {...}, // optional
-  // });
-
   const { mutate: createUser, error } = useAuthCreateUserWithEmailAndPassword(auth, {
     onSuccess: (userCredential, { usage }) => {
       onRegister(userCredential);
       sendVerificationEmail({
         user: auth.currentUser,
+        actionCodeSettings: {
+          url: 'http://localhost:3001/?email=' + auth.currentUser.email,
+        },
       });
 
       const { email } = userCredential.user;

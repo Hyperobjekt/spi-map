@@ -7,6 +7,7 @@ import shallow from 'zustand/shallow';
 import Header from './components/Header';
 import { Map } from './Map';
 import { IntroModal } from './IntroModal';
+import { EmailAction } from './EmailAction';
 import { IndicatorPanel, CustomizeIndicatorPanel, useIndicatorPanelStore } from './IndicatorPanel';
 import { SearchModal } from './Search';
 import { Scorecards } from './Scorecards';
@@ -47,6 +48,8 @@ function App() {
   // tracks if the customize indicators panel is open
   const customizeOpen = useIndicatorPanelStore((state) => state.customizeOpen);
 
+  const params = Object.fromEntries(new URLSearchParams(window.location.search));
+  console.log(params);
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -55,7 +58,7 @@ function App() {
         <AppWrapper className="App">
           <Header />
           <Map>
-            <IntroModal />
+            {!!params.mode ? <EmailAction {...params} /> : <IntroModal />}
             <IndicatorPanel open={indicatorsOpen} onClose={() => setIndicatorsOpen(false)} />
             <CustomizeIndicatorPanel open={customizeOpen} />
           </Map>
