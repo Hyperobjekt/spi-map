@@ -40,96 +40,80 @@ const LoginForm = ({ handleShowRegistrationForm, handleShowResetPasswordForm, on
   };
 
   return (
-    <Box
-      sx={{
-        marginTop: 4,
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
+    <Formik
+      initialValues={{
+        email: '',
+        password: '',
       }}
+      onSubmit={({ email, password }, { setSubmitting, setFieldError, setStatus }) =>
+        signIn({ email, password })
+      }
+      validationSchema={LoginFormSchema}
     >
-      <Typography component="h1" variant="h5">
-        Sign In
-      </Typography>
-      <Box sx={{ mt: 1 }}>
-        <Formik
-          initialValues={{
-            email: '',
-            password: '',
-          }}
-          onSubmit={({ email, password }, { setSubmitting, setFieldError, setStatus }) =>
-            signIn({ email, password })
-          }
-          validationSchema={LoginFormSchema}
-        >
-          {({ values, touched, errors, handleChange, handleSubmit }) => (
-            <>
-              <TextField
-                margin="dense"
-                fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
-                value={values.email}
-                onChange={handleChange}
-                error={!!EmailError[error?.code] || (touched.email && !!errors.email)}
-                helperText={EmailError[error?.code] || (touched.email && errors.email) || ' '}
-                required
-                autoFocus
-              />
-              <TextField
-                margin="dense"
-                fullWidth
-                name="password"
-                label="Password"
-                type={showPassword ? 'text' : 'password'}
-                id="password"
-                autoComplete="current-password"
-                value={values.password}
-                onChange={handleChange}
-                error={!!PasswordError[error?.code] || (touched.password && !!errors.password)}
-                helperText={
-                  PasswordError[error?.code] || (touched.password && errors.password) || ' '
-                }
-                required
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <IconButton
-                        aria-label="toggle password visibility"
-                        onClick={handleClickShowPassword}
-                        onMouseDown={handleMouseDownPassword}
-                      >
-                        {showPassword ? <Visibility /> : <VisibilityOff />}
-                      </IconButton>
-                    </InputAdornment>
-                  ),
-                }}
-              />
-              <Button onClick={handleSubmit} fullWidth variant="contained" sx={{ mt: '8px' }}>
-                Sign In
-              </Button>
-              <FormHelperText error>
-                {!!error?.code ? FormError[error?.code] || FormError['*'] : ' '}
-              </FormHelperText>
-            </>
-          )}
-        </Formik>
-        <Grid container>
-          <Grid item xs>
-            <Link href="#" variant="body2" onClick={handleShowResetPasswordForm}>
-              Forgot password?
-            </Link>
+      {({ values, touched, errors, handleChange, handleSubmit }) => (
+        <>
+          <TextField
+            margin="dense"
+            fullWidth
+            id="email"
+            label="Email Address"
+            name="email"
+            autoComplete="email"
+            value={values.email}
+            onChange={handleChange}
+            error={!!EmailError[error?.code] || (touched.email && !!errors.email)}
+            helperText={EmailError[error?.code] || (touched.email && errors.email) || ' '}
+            required
+            autoFocus
+          />
+          <TextField
+            margin="dense"
+            fullWidth
+            name="password"
+            label="Password"
+            type={showPassword ? 'text' : 'password'}
+            id="password"
+            autoComplete="current-password"
+            value={values.password}
+            onChange={handleChange}
+            error={!!PasswordError[error?.code] || (touched.password && !!errors.password)}
+            helperText={PasswordError[error?.code] || (touched.password && errors.password) || ' '}
+            required
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={handleClickShowPassword}
+                    onMouseDown={handleMouseDownPassword}
+                  >
+                    {showPassword ? <Visibility /> : <VisibilityOff />}
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }}
+          />
+          <Button onClick={handleSubmit} fullWidth variant="contained" sx={{ mt: '8px' }}>
+            Sign In
+          </Button>
+          <FormHelperText error>
+            {!!error?.code ? FormError[error?.code] || FormError['*'] : ' '}
+          </FormHelperText>
+          <Grid container>
+            <Grid item xs>
+              <Link href="#" variant="body2" onClick={handleShowResetPasswordForm}>
+                Forgot password?
+              </Link>
+            </Grid>
+            <Grid item>
+              <Link href="#" variant="body2" onClick={handleShowRegistrationForm}>
+                {"Don't have an account? Sign Up"}
+              </Link>
+            </Grid>
           </Grid>
-          <Grid item>
-            <Link href="#" variant="body2" onClick={handleShowRegistrationForm}>
-              {"Don't have an account? Sign Up"}
-            </Link>
-          </Grid>
-        </Grid>
-      </Box>
-    </Box>
+        </>
+      )}
+    </Formik>
   );
 };
 

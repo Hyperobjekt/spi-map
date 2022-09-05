@@ -45,8 +45,9 @@ const ProfileMenu = () => {
       >
         <MenuItem
           onClick={() => {
-            setIntroModalIsOpen(true);
-            setIntroModalStage(STAGE.JUMP_TO);
+            alert('not yet implemented');
+            // setIntroModalIsOpen(true);
+            // setIntroModalStage(STAGE.JUMP_TO);
           }}
         >
           About

@@ -8,10 +8,14 @@ import Header from './components/Header';
 import { Map } from './Map';
 import { IntroModal } from './IntroModal';
 import { EmailAction } from './EmailAction';
+import { ReactQueryDevtools } from 'react-query/devtools';
 import { IndicatorPanel, CustomizeIndicatorPanel, useIndicatorPanelStore } from './IndicatorPanel';
 import { SearchModal } from './Search';
 import { Scorecards } from './Scorecards';
 import theme from '../theme';
+import { QueryClient, QueryClientProvider } from 'react-query';
+
+const queryClient = new QueryClient();
 
 const CONFIG = {
   app: '/assets/config/app.json',
@@ -49,23 +53,26 @@ function App() {
   const customizeOpen = useIndicatorPanelStore((state) => state.customizeOpen);
 
   const params = Object.fromEntries(new URLSearchParams(window.location.search));
-  console.log(params);
+
   return (
     <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <Dashboard config={CONFIG}>
-        <QueryParamRouter />
-        <AppWrapper className="App">
-          <Header />
-          <Map>
-            {!!params.mode ? <EmailAction {...params} /> : <IntroModal />}
-            <IndicatorPanel open={indicatorsOpen} onClose={() => setIndicatorsOpen(false)} />
-            <CustomizeIndicatorPanel open={customizeOpen} />
-          </Map>
-          <Scorecards />
-        </AppWrapper>
-        <SearchModal />
-      </Dashboard>
+      <QueryClientProvider client={queryClient}>
+        <CssBaseline />
+        <Dashboard config={CONFIG}>
+          <QueryParamRouter />
+          <AppWrapper className="App">
+            <Header />
+            <Map>
+              {!!params.mode ? <EmailAction {...params} /> : <IntroModal />}
+              <IndicatorPanel open={indicatorsOpen} onClose={() => setIndicatorsOpen(false)} />
+              <CustomizeIndicatorPanel open={customizeOpen} />
+            </Map>
+            <Scorecards />
+          </AppWrapper>
+          <SearchModal />
+        </Dashboard>
+        <ReactQueryDevtools initialIsOpen />
+      </QueryClientProvider>
     </ThemeProvider>
   );
 }

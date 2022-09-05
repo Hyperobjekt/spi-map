@@ -78,114 +78,98 @@ const RegistrationForm = ({ handleShowLoginForm, onRegister }) => {
   };
 
   return (
-    <Box
-      sx={{
-        marginTop: 4,
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
+    <Formik
+      initialValues={{
+        email: '',
+        password: '',
+        usage: '',
       }}
+      onSubmit={(values, { setSubmitting, setFieldError, setStatus }) => createUser(values)}
+      validationSchema={RegistrationFormSchema}
     >
-      <Typography component="h1" variant="h5">
-        Sign Up
-      </Typography>
-      <Box sx={{ mt: 1 }}>
-        <Formik
-          initialValues={{
-            email: '',
-            password: '',
-            usage: '',
-          }}
-          onSubmit={(values, { setSubmitting, setFieldError, setStatus }) => createUser(values)}
-          validationSchema={RegistrationFormSchema}
-        >
-          {({ values, touched, errors, handleChange, handleSubmit }) => (
-            <>
-              <TextField
-                margin="dense"
-                fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
-                value={values.email}
-                onChange={handleChange}
-                error={!!EmailError[error?.code] || (touched.email && !!errors.email)}
-                helperText={EmailError[error?.code] || (touched.email && errors.email) || ' '}
-                required
-                autoFocus
-              />
-              <TextField
-                margin="dense"
-                fullWidth
-                name="password"
-                label="Password"
-                type={showPassword ? 'text' : 'password'}
-                id="password"
-                autoComplete="current-password"
-                value={values.password}
-                onChange={handleChange}
-                error={!!PasswordError[error?.code] || (touched.password && !!errors.password)}
-                helperText={
-                  PasswordError[error?.code] || (touched.password && errors.password) || ' '
-                }
-                required
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <IconButton
-                        aria-label="toggle password visibility"
-                        onClick={handleClickShowPassword}
-                        onMouseDown={handleMouseDownPassword}
-                      >
-                        {showPassword ? <Visibility /> : <VisibilityOff />}
-                      </IconButton>
-                    </InputAdornment>
-                  ),
-                }}
-              />
-              <TextField
-                margin="dense"
-                fullWidth
-                name="usage"
-                label="Primary use of the US Social Progress Map™?"
-                id="usage"
-                value={values.usage}
-                onChange={handleChange}
-                error={touched.usage && !!errors.usage}
-                helperText={(touched.usage && errors.usage) || ' '}
-                required
-                select
-              >
-                <MenuItem value={'policymaking'}>Policymaking</MenuItem>
-                <MenuItem value={'resource_allocation'}>Resource allocation</MenuItem>
-                <MenuItem value={'investments'}>Investments</MenuItem>
-                <MenuItem value={'advocacy'}>Advocacy</MenuItem>
-                <MenuItem value={'academic_research'}>Academic research</MenuItem>
-                <MenuItem value={'personal_research'}>Personal research</MenuItem>
-                <MenuItem value={'csr_esg_strategy'}>CSR or ESG strategy</MenuItem>
-                <MenuItem value={'other'}>Other</MenuItem>
-              </TextField>
-              <Button onClick={handleSubmit} fullWidth variant="contained" sx={{ mt: '8px' }}>
-                Sign Up
-              </Button>
-              <FormHelperText error>
-                {!!error?.code && !PasswordError[error?.code] && !EmailError[error?.code]
-                  ? 'An unexpected error occurred. Please try again later.'
-                  : ' '}
-              </FormHelperText>
-            </>
-          )}
-        </Formik>
-        <Grid container>
-          <Grid item>
-            <Link href="#" variant="body2" onClick={handleShowLoginForm}>
-              {'Back to login'}
-            </Link>
+      {({ values, touched, errors, handleChange, handleSubmit }) => (
+        <>
+          <TextField
+            margin="dense"
+            fullWidth
+            id="email"
+            label="Email Address"
+            name="email"
+            autoComplete="email"
+            value={values.email}
+            onChange={handleChange}
+            error={!!EmailError[error?.code] || (touched.email && !!errors.email)}
+            helperText={EmailError[error?.code] || (touched.email && errors.email) || ' '}
+            required
+            autoFocus
+          />
+          <TextField
+            margin="dense"
+            fullWidth
+            name="password"
+            label="Password"
+            type={showPassword ? 'text' : 'password'}
+            id="password"
+            autoComplete="current-password"
+            value={values.password}
+            onChange={handleChange}
+            error={!!PasswordError[error?.code] || (touched.password && !!errors.password)}
+            helperText={PasswordError[error?.code] || (touched.password && errors.password) || ' '}
+            required
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={handleClickShowPassword}
+                    onMouseDown={handleMouseDownPassword}
+                  >
+                    {showPassword ? <Visibility /> : <VisibilityOff />}
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }}
+          />
+          <TextField
+            margin="dense"
+            fullWidth
+            name="usage"
+            label="Primary use of the US Social Progress Map™?"
+            id="usage"
+            value={values.usage}
+            onChange={handleChange}
+            error={touched.usage && !!errors.usage}
+            helperText={(touched.usage && errors.usage) || ' '}
+            required
+            select
+          >
+            <MenuItem value={'policymaking'}>Policymaking</MenuItem>
+            <MenuItem value={'resource_allocation'}>Resource allocation</MenuItem>
+            <MenuItem value={'investments'}>Investments</MenuItem>
+            <MenuItem value={'advocacy'}>Advocacy</MenuItem>
+            <MenuItem value={'academic_research'}>Academic research</MenuItem>
+            <MenuItem value={'personal_research'}>Personal research</MenuItem>
+            <MenuItem value={'csr_esg_strategy'}>CSR or ESG strategy</MenuItem>
+            <MenuItem value={'other'}>Other</MenuItem>
+          </TextField>
+          <Button onClick={handleSubmit} fullWidth variant="contained" sx={{ mt: '8px' }}>
+            Sign Up
+          </Button>
+          <FormHelperText error>
+            {!!error?.code && !PasswordError[error?.code] && !EmailError[error?.code]
+              ? 'An unexpected error occurred. Please try again later.'
+              : ' '}
+          </FormHelperText>
+          <Grid container>
+            <Grid item>
+              <Link href="#" variant="body2" onClick={handleShowLoginForm}>
+                Back to login
+              </Link>
+            </Grid>
           </Grid>
-        </Grid>
-      </Box>
-    </Box>
+        </>
+      )}
+    </Formik>
   );
 };
 

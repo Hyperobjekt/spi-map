@@ -1,6 +1,8 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 import { addDoc, collection, getFirestore } from 'firebase/firestore';
+import { useEffect, useState } from 'react';
+import { useQuery, useQueryClient } from 'react-query';
 
 const firebase = initializeApp({
   apiKey: 'AIzaSyBev3DymCj11FvaNPiH5fbzsyUPGnD160g',
@@ -17,3 +19,35 @@ export const auth = getAuth(firebase);
 export const db = getFirestore(firebase);
 export const users = collection(db, 'users');
 export const addUser = (data) => addDoc(users, data);
+
+// useAuthUser from react-query-firebase doesn't seem to retrigger correctly
+// Using a custom implementation for now
+export const useAuthUser = (key = 'user', options = {}) => {
+  const [enabled, setEnabled] = useState(true);
+  const [initialLoading, setInitialLoading] = useState(true);
+  const queryClient = useQueryClient();
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      setInitialLoading(false);
+      setEnabled(!!user);
+      if (!user) {
+        queryClient.setQueryData(key, () => undefined);
+        queryClient.removeQueries(key, () => undefined);
+      } else {
+        queryClient.invalidateQueries(key, { refetchActive: true, refetchInactive: true });
+      }
+    });
+    return () => unsubscribe();
+  }, [key, queryClient]);
+
+  const query = useQuery(key, () => auth.currentUser, {
+    ...options,
+    enabled,
+  });
+
+  return {
+    ...query,
+    isLoading: initialLoading || query.isLoading,
+  };
+};

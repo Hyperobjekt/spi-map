@@ -1,29 +1,11 @@
 import { styled } from '@mui/material';
 
-export const Container = styled('div')(({ theme }) => ({
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: '90%',
-  maxWidth: 640,
-  minHeight: 400,
-  backgroundColor: theme.palette.background.paper,
-  boxShadow: 24,
-  borderRadius: '12px',
-}));
-
 export const Boxmodal = styled('div')(({ theme }) => ({
   [theme.breakpoints.down('md')]: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
   },
-}));
-
-export const Content = styled('div')(({ theme }) => ({
-  padding: '3rem 4rem',
-  outline: 'none !important',
 }));
 
 export const Description = styled('div')(({ theme }) => ({

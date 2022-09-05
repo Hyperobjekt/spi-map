@@ -1,34 +1,67 @@
-import { Button, Grid, Link } from '@mui/material';
+import { Button, Grid, Link, Typography } from '@mui/material';
+import { styled } from '@mui/system';
 import { useAuthApplyActionCode, useAuthSendEmailVerification } from '@react-query-firebase/auth';
-import { STAGE, useIntroModalStore } from 'App/IntroModal';
+import { useJumpToModalStore } from 'App/IntroModal/JumpToModal';
 import { useEffect, useState } from 'react';
-import shallow from 'zustand/shallow';
+
+const Header = styled(Typography)({
+  textAlign: 'center',
+  marginBottom: 8,
+});
 
 const VerifyEmail = ({ auth, oobCode, continueUrl, lang }) => {
-  const [setStage] = useIntroModalStore((state) => [state.setStage], shallow);
+  const setOpen = useJumpToModalStore((state) => state.setOpen);
 
   const [componentKey, setComponentKey] = useState();
   const { mutate: applyActionCode } = useAuthApplyActionCode(auth);
   const { mutate: sendVerificationEmail } = useAuthSendEmailVerification();
 
-  const { email } = Object.fromEntries(new URLSearchParams(continueUrl));
+  // const { email } = Object.fromEntries(new URLSearchParams(continueUrl));
 
   const Component = {
-    SUCCESS: () => <div>Yay you did it!</div>,
+    SUCCESS: () => (
+      <>
+        <Header component="h1" variant="h5">
+          Successfully validated email
+        </Header>
+        <Typography component="p">Email has been successfully validated!</Typography>
+        <Button onClick={() => setOpen(true)} fullWidth variant="contained" sx={{ mt: '8px' }}>
+          Continue to Application
+        </Button>
+      </>
+    ),
     ERROR_LOGGED_OUT: () => (
-      <div>
-        Code is invalid or expired{' '}
+      <>
+        <Header component="h1" variant="h5">
+          Unable to validate email
+        </Header>
+        <Typography component="p">
+          Code is invalid or expired. Please sign in again to resend validation email.
+        </Typography>
         <Grid container>
           <Grid item>
             <Link href="#" variant="body2" onClick={() => window.location.reload()}>
-              {'Back to login'}
+              Back to login
             </Link>
           </Grid>
         </Grid>
-      </div>
+      </>
     ),
     ERROR_LOGGED_IN: () => (
-      <div>Code is invalid or expired. You will receive an updated validation email shortly.</div>
+      <>
+        <Header component="h1" variant="h5">
+          Unable to validate email
+        </Header>
+        <Typography component="p">Code is invalid or expired.</Typography>{' '}
+        <Button
+          onClick={() => sendVerificationEmail({ user: auth.currentUser })}
+          fullWidth
+          variant="contained"
+          sx={{ mt: '8px' }}
+        >
+          Resend Validation Email
+        </Button>
+      </>
     ),
   }[componentKey];
 
@@ -36,21 +69,10 @@ const VerifyEmail = ({ auth, oobCode, continueUrl, lang }) => {
     if (oobCode) {
       applyActionCode(oobCode, {
         onSuccess: () => {
-          // Email address has been verified.
-          // TODO: Display a confirmation message to the user.
-          // You could also provide the user with a link back to the app.
-          // TODO: If a continue URL is available, display a button which on
-          // click redirects the user back to the app via continueUrl with
-          // additional state determined from that URL's parameters.
-
           setComponentKey('SUCCESS');
         },
         onError: (error, variables, context) => {
-          // Code is invalid or expired. Ask the user to verify their email address
-          // again.
-
           if (auth.currentUser) {
-            console.log(auth.currentUser);
             sendVerificationEmail({ user: auth.currentUser });
             setComponentKey('ERROR_LOGGED_IN');
           } else {
@@ -59,7 +81,7 @@ const VerifyEmail = ({ auth, oobCode, continueUrl, lang }) => {
         },
       });
     }
-  }, [oobCode, applyActionCode, sendVerificationEmail]);
+  }, [oobCode, applyActionCode, sendVerificationEmail, auth.currentUser]);
 
   if (!Component) return null;
 
