@@ -6,16 +6,7 @@ import { useLocationStore, useToggleLocation } from '@hyperobjekt/react-dashboar
 import MapAutoSwitch from './MapAutoSwitch';
 import CityLabelsLayer from './CityLabelsLayer';
 import useSpiMapLayers from '../hooks/useSpiMapLayers';
-
-const TOKEN = `pk.eyJ1IjoiaHlwZXJvYmpla3QiLCJhIjoiY2pzZ3Bnd3piMGV6YTQzbjVqa3Z3dHQxZyJ9.rHobqsY_BjkNbqNQS4DNYw`;
-
-// bounds for continental US
-const US_BOUNDS = [
-  [-130, 24],
-  [-65, 50],
-];
-
-const MAP_STYLE = 'mapbox://styles/hyperobjekt/cl007w05t000414oaog417i9s';
+import { MAPBOX_TOKEN, MAP_STYLE, US_BOUNDS } from '../../shared/constants';
 
 export default function MapGL({ children, ...props }) {
   const ref = useRef(); // reference to mapgl instance (needed for sizing on panel open / close)
@@ -44,7 +35,7 @@ export default function MapGL({ children, ...props }) {
   return (
     <HypMapGL
       ref={ref}
-      mapboxAccessToken={TOKEN}
+      mapboxAccessToken={MAPBOX_TOKEN}
       sources={sources}
       layers={layers}
       mapStyle={MAP_STYLE}

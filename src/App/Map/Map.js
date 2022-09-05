@@ -3,8 +3,9 @@ import React from 'react';
 import shallow from 'zustand/shallow';
 import MapWrapper from './components/MapWrapper';
 import MapGL from './components/MapGL';
-import { Legend } from '../Legend';
 import MapTooltip from './components/MapTooltip';
+import MoreControls from './components/MoreControls';
+import { Legend } from '../Legend';
 import { useIndicatorPanelStore } from '../IndicatorPanel';
 
 export default function Map({ children, ...props }) {
@@ -30,6 +31,7 @@ export default function Map({ children, ...props }) {
             </Button>
           )}
         </Legend>
+        <MoreControls />
       </MapGL>
       {children}
       <MapTooltip />

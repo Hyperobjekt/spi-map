@@ -3,7 +3,7 @@
 import { getRegionFromGeoid } from '@hyperobjekt/react-dashboard';
 
 // TODO: put the state name in the tileset data so this is not needed.
-const FIPS_TO_STATE_NAME = {
+export const FIPS_TO_STATE_NAME = {
   '01': 'Alabama',
   '02': 'Alaska',
   '04': 'Arizona',
