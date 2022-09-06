@@ -14,6 +14,8 @@ import { SearchModal } from './Search';
 import { Scorecards } from './Scorecards';
 import theme from '../theme';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import useQueryParams from './hooks/useQueryParams';
+import { JumpToModal } from './JumpToModal';
 
 const queryClient = new QueryClient();
 
@@ -52,7 +54,7 @@ function App() {
   // tracks if the customize indicators panel is open
   const customizeOpen = useIndicatorPanelStore((state) => state.customizeOpen);
 
-  const params = Object.fromEntries(new URLSearchParams(window.location.search));
+  const params = useQueryParams();
 
   return (
     <ThemeProvider theme={theme}>
@@ -64,6 +66,7 @@ function App() {
             <Header />
             <Map>
               {!!params.mode ? <EmailAction {...params} /> : <IntroModal />}
+              <JumpToModal />
               <IndicatorPanel open={indicatorsOpen} onClose={() => setIndicatorsOpen(false)} />
               <CustomizeIndicatorPanel open={customizeOpen} />
             </Map>

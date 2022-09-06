@@ -1,8 +1,11 @@
 import { Button, Grid, Link, Typography } from '@mui/material';
 import { styled } from '@mui/system';
 import { useAuthApplyActionCode, useAuthSendEmailVerification } from '@react-query-firebase/auth';
-import { useJumpToModalStore } from 'App/IntroModal/JumpToModal';
+import { history } from 'App/history';
+import { STAGE, useIntroModalStore } from 'App/IntroModal';
+import { useJumpToModalStore } from 'App/JumpToModal';
 import { useEffect, useState } from 'react';
+import shallow from 'zustand/shallow';
 
 const Header = styled(Typography)({
   textAlign: 'center',
@@ -10,13 +13,15 @@ const Header = styled(Typography)({
 });
 
 const VerifyEmail = ({ auth, oobCode, continueUrl, lang }) => {
+  const [setIntroModalOpen, setIntroModalStage] = useIntroModalStore(
+    (state) => [state.setOpen, state.setStage],
+    shallow,
+  );
   const setOpen = useJumpToModalStore((state) => state.setOpen);
 
   const [componentKey, setComponentKey] = useState();
   const { mutate: applyActionCode } = useAuthApplyActionCode(auth);
   const { mutate: sendVerificationEmail } = useAuthSendEmailVerification();
-
-  // const { email } = Object.fromEntries(new URLSearchParams(continueUrl));
 
   const Component = {
     SUCCESS: () => (
@@ -25,7 +30,15 @@ const VerifyEmail = ({ auth, oobCode, continueUrl, lang }) => {
           Successfully validated email
         </Header>
         <Typography component="p">Email has been successfully validated!</Typography>
-        <Button onClick={() => setOpen(true)} fullWidth variant="contained" sx={{ mt: '8px' }}>
+        <Button
+          onClick={() => {
+            history.push(continueUrl);
+            setOpen(true);
+          }}
+          fullWidth
+          variant="contained"
+          sx={{ mt: '8px' }}
+        >
           Continue to Application
         </Button>
       </>
@@ -40,7 +53,15 @@ const VerifyEmail = ({ auth, oobCode, continueUrl, lang }) => {
         </Typography>
         <Grid container>
           <Grid item>
-            <Link href="#" variant="body2" onClick={() => window.location.reload()}>
+            <Link
+              href="#"
+              variant="body2"
+              onClick={() => {
+                setOpen(false);
+                setIntroModalOpen(true);
+                setIntroModalStage(STAGE.LOGIN);
+              }}
+            >
               Back to login
             </Link>
           </Grid>
@@ -53,31 +74,43 @@ const VerifyEmail = ({ auth, oobCode, continueUrl, lang }) => {
           Unable to validate email
         </Header>
         <Typography component="p">Code is invalid or expired.</Typography>{' '}
-        <Button
-          onClick={() => sendVerificationEmail({ user: auth.currentUser })}
-          fullWidth
-          variant="contained"
-          sx={{ mt: '8px' }}
+        <Grid
+          container
+          sx={{
+            flexFlow: 'row nowrap',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            gap: 4,
+          }}
         >
-          Resend Validation Email
-        </Button>
+          <Grid item>
+            <Link href="#" variant="body2" onClick={() => window.location.reload()}>
+              Back to login
+            </Link>
+          </Grid>
+          <Grid item>
+            <Button
+              onClick={() => sendVerificationEmail({ user: auth.currentUser })}
+              fullWidth
+              variant="contained"
+              sx={{ mt: '8px' }}
+            >
+              Resend Validation Email
+            </Button>
+          </Grid>
+        </Grid>
       </>
     ),
   }[componentKey];
 
   useEffect(() => {
-    if (oobCode) {
+    if (oobCode && auth.currentUser?.emailVerified !== true) {
       applyActionCode(oobCode, {
         onSuccess: () => {
           setComponentKey('SUCCESS');
         },
         onError: (error, variables, context) => {
-          if (auth.currentUser) {
-            sendVerificationEmail({ user: auth.currentUser });
-            setComponentKey('ERROR_LOGGED_IN');
-          } else {
-            setComponentKey('ERROR_LOGGED_OUT');
-          }
+          setComponentKey(`ERROR_LOGGED_${!!auth.currentUser ? 'IN' : 'OUT'}`);
         },
       });
     }

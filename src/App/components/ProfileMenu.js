@@ -2,15 +2,12 @@ import React from 'react';
 import { signOut } from 'firebase/auth';
 import { AccountCircleOutlined } from '@mui/icons-material';
 import { IconButton, Menu, MenuItem } from '@mui/material';
-import { STAGE, useIntroModalStore } from '../IntroModal';
 import shallow from 'zustand/shallow';
 import { auth } from 'App/firebase';
+import { useJumpToModalStore } from 'App/JumpToModal';
 
 const ProfileMenu = () => {
-  const [setIntroModalIsOpen, setIntroModalStage] = useIntroModalStore(
-    (state) => [state.setOpen, state.setStage],
-    shallow,
-  );
+  const setJumpToModalOpen = useJumpToModalStore((state) => state.setOpen, shallow);
 
   const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -45,9 +42,7 @@ const ProfileMenu = () => {
       >
         <MenuItem
           onClick={() => {
-            alert('not yet implemented');
-            // setIntroModalIsOpen(true);
-            // setIntroModalStage(STAGE.JUMP_TO);
+            setJumpToModalOpen(true);
           }}
         >
           About

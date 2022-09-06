@@ -1,4 +1,3 @@
-import useModalStore from 'App/Modal/store';
 import create from 'zustand';
 
 /**
@@ -6,9 +5,8 @@ import create from 'zustand';
  */
 
 export const useJumpToModalStore = create((set, get) => ({
-  // opened state of the jump to modal
-  open: useModalStore.getState().open,
-  setOpen: useModalStore.getState().setOpen,
+  open: false,
+  setOpen: (open) => set({ open }),
 }));
 
 export default useJumpToModalStore;

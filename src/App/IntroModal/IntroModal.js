@@ -1,6 +1,6 @@
 import { useMemo, useEffect } from 'react';
 import { visuallyHidden } from '@mui/utils';
-import { Box, Typography, CssBaseline, Container as MUIContainer } from '@mui/material';
+import { Box, Typography, CssBaseline, Container as MUIContainer, Button } from '@mui/material';
 import RegistrationForm from './RegistrationForm';
 import LoginForm from './LoginForm';
 import { Boxmodal, Description } from './IntroModal.styles';
@@ -9,16 +9,14 @@ import shallow from 'zustand/shallow';
 import { STAGE } from './constants';
 import ResetPasswordForm from './ResetPasswordForm';
 import { Modal } from 'App/Modal';
-import { useJumpToModalStore } from './JumpToModal';
 import { useAuthUser } from 'App/firebase';
+import EmailVerificationSent from './EmailVerificationSent';
 
 const IntroModal = () => {
   const [open, setOpen, stage, setStage] = useIntroModalStore(
     (state) => [state.open, state.setOpen, state.stage, state.setStage],
     shallow,
   );
-
-  const setJumpToModalOpen = useJumpToModalStore((state) => state.setOpen);
 
   const { data: user, isLoading } = useAuthUser();
 
@@ -34,7 +32,12 @@ const IntroModal = () => {
       setStage(STAGE.LOGIN);
       setOpen(true);
     }
-  }, [isSignedIn, isLoading, setStage, setOpen]);
+
+    if (isSignedIn && !user.emailVerified) {
+      setStage(STAGE.EMAIL_VERIFICATION_SENT);
+      setOpen(true);
+    }
+  }, [isSignedIn, isLoading, setStage, setOpen, user?.emailVerified]);
 
   const { Header, Content } = useMemo(
     () =>
@@ -43,7 +46,13 @@ const IntroModal = () => {
           Header: () => 'Sign In',
           Content: () => (
             <LoginForm
-              onLogin={() => setOpen(false)}
+              onLogin={({ user }) => {
+                if (user.emailVerified) {
+                  setOpen(false);
+                } else {
+                  setStage(STAGE.EMAIL_VERIFICATION_SENT);
+                }
+              }}
               handleShowRegistrationForm={() => setStage(STAGE.REGISTRATION)}
               handleShowResetPasswordForm={() => setStage(STAGE.RESET_PASSWORD)}
             />
@@ -64,15 +73,14 @@ const IntroModal = () => {
         },
         EMAIL_VERIFICATION_SENT: {
           Header: () => 'Email Verification Sent',
-          Content: () =>
-            `Verification email sent to ${user.email}. Please check your email and follow the instructions.`,
+          Content: () => <EmailVerificationSent email={user.email} />,
         },
       }[stage]),
-    [stage, setOpen, setStage, setJumpToModalOpen, user?.email],
+    [stage, setOpen, setStage, user?.email],
   );
 
   return (
-    <Modal>
+    <Modal isOpen={open}>
       <>
         <Boxmodal
           sx={{
@@ -98,26 +106,23 @@ const IntroModal = () => {
             </Description>
           </Box>
         </Boxmodal>
-        <div>
-          <MUIContainer component="main" maxWidth="xs">
-            <CssBaseline />
-            <Box
-              sx={{
-                marginTop: 2,
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-              }}
-            >
-              <Typography component="h1" variant="h5">
-                <Header />
-              </Typography>
-              <Box sx={{ mt: 1 }}>
-                <Content />
-              </Box>
+        <MUIContainer component="main" maxWidth="xs" sx={{ mt: 2 }}>
+          <CssBaseline />
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+            }}
+          >
+            <Typography component="h1" variant="h5">
+              <Header />
+            </Typography>
+            <Box sx={{ mt: 1 }}>
+              <Content />
             </Box>
-          </MUIContainer>
-        </div>
+          </Box>
+        </MUIContainer>
       </>
     </Modal>
   );

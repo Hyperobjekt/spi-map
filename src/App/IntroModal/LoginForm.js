@@ -7,9 +7,7 @@ import {
   InputAdornment,
   Link,
   TextField,
-  Typography,
 } from '@mui/material';
-import { Box } from '@mui/system';
 import { useAuthSignInWithEmailAndPassword } from '@react-query-firebase/auth';
 import { auth } from 'App/firebase';
 import { Formik } from 'formik';
@@ -93,7 +91,7 @@ const LoginForm = ({ handleShowRegistrationForm, handleShowResetPasswordForm, on
               ),
             }}
           />
-          <Button onClick={handleSubmit} fullWidth variant="contained" sx={{ mt: '8px' }}>
+          <Button onClick={handleSubmit} fullWidth variant="contained" sx={{ mt: 1 }}>
             Sign In
           </Button>
           <FormHelperText error>
