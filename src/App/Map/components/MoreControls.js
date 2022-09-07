@@ -5,29 +5,34 @@ import FlyToBtn from './FlyToBtn';
 
 const Root = styled('div')(({ theme }) => ({
   position: 'absolute',
-  top: '194px',
+  top: '156px',
   right: '18px',
   width: '29px',
   height: 'auto',
   flexDirection: 'column',
   justifyContent: 'flex-end',
   display: 'none',
+  borderRadius: '4px',
+  boxShadow: '0 0 0 2px #0000001a',
+  backgroundColor: '#fff',
+  '& > button + button': {
+    borderTop: '1px solid #ddd',
+  },
   [theme.breakpoints.up('md')]: {
     display: 'flex',
-    gap: '10px',
   },
 }));
 
 const MoreControls = () => {
   return (
     <Root className="more-controls">
-      <FlyToBtn fips="02" placement={'left'}>
+      <FlyToBtn fips="02" position="first">
         <AlaskaIcon />
       </FlyToBtn>
-      <FlyToBtn fips="15" placement={'left'}>
+      <FlyToBtn fips="15">
         <HawaiiIcon />
       </FlyToBtn>
-      <FlyToBtn fips="us" placement={'left'}>
+      <FlyToBtn fips="us" position="last">
         <USIcon />
       </FlyToBtn>
     </Root>

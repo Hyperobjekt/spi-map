@@ -12,8 +12,6 @@ const ButtonStyle = styled(Button)({
   backgroundColor: '#fff',
   padding: 0,
   minWidth: 0,
-  borderRadius: '4px',
-  boxShadow: '0 0 0 2px #0000001a',
   '& svg': {
     width: '20px',
     height: '20px',
@@ -33,9 +31,38 @@ const FlyToBtn = ({ children, ...props }) => {
     }
   };
 
+  const getBorderStyle = () => {
+    let borderStyle = { borderRadius: 0 };
+    if (props.position === 'first') {
+      borderStyle = {
+        borderTopLeftRadius: '4px',
+        borderTopRightRadius: '4px',
+        borderBottomLeftRadius: 0,
+        borderBottomRightRadius: 0,
+      };
+    }
+    if (props.position === 'last') {
+      borderStyle = {
+        borderTopLeftRadius: 0,
+        borderTopRightRadius: 0,
+        borderBottomLeftRadius: '4px',
+        borderBottomRightRadius: '4px',
+      };
+    }
+    return borderStyle;
+  };
+
   return (
-    <Tooltip title={`Fly to ${FIPS_TO_STATE_NAME[props.fips]}`} placement={props.placement} arrow>
-      <ButtonStyle aria-label={FIPS_TO_STATE_NAME[props.fips]} onClick={handleClick}>
+    <Tooltip
+      title={`Zoom to ${props.fips === 'us' ? 'contiguous U.S.' : FIPS_TO_STATE_NAME[props.fips]}`}
+      placement="left"
+      arrow
+    >
+      <ButtonStyle
+        aria-label={FIPS_TO_STATE_NAME[props.fips]}
+        onClick={handleClick}
+        style={{ ...getBorderStyle() }}
+      >
         {children}
       </ButtonStyle>
     </Tooltip>

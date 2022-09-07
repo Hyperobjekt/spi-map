@@ -1,5 +1,5 @@
 import React, { useCallback, useRef } from 'react';
-import { MapGL as HypMapGL, useMapFlyToFeature, ZoomToBoundsControl } from '@hyperobjekt/mapgl';
+import { MapGL as HypMapGL, useMapFlyToFeature } from '@hyperobjekt/mapgl';
 import { GeolocateControl, NavigationControl } from 'react-map-gl';
 import { useMapSources, useDashboardStore } from '@hyperobjekt/react-dashboard';
 import { useLocationStore, useToggleLocation } from '@hyperobjekt/react-dashboard';
@@ -46,7 +46,6 @@ export default function MapGL({ children, ...props }) {
     >
       <GeolocateControl />
       <NavigationControl />
-      <ZoomToBoundsControl bounds={US_BOUNDS} />
       {autoSwitchRegion && <MapAutoSwitch />}
       <CityLabelsLayer />
       {children}
