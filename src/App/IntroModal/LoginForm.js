@@ -1,3 +1,4 @@
+import { async } from '@firebase/util';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import {
   Button,
@@ -8,10 +9,13 @@ import {
   Link,
   TextField,
 } from '@mui/material';
-import { useAuthSignInWithEmailAndPassword } from '@react-query-firebase/auth';
-import { auth } from 'App/firebase';
+import {
+  useAuthSignInWithEmailAndPassword,
+  useAuthSignInWithRedirect,
+} from '@react-query-firebase/auth';
+import { auth, provider } from 'App/firebase';
 import { Formik } from 'formik';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import * as yup from 'yup';
 import { EmailError, FormError, PasswordError } from './utils';
 
@@ -23,11 +27,19 @@ const LoginFormSchema = yup.object({
 const LoginForm = ({ handleShowRegistrationForm, handleShowResetPasswordForm, onLogin }) => {
   const [showPassword, setShowPassword] = useState(false);
 
-  const { mutate: signIn, error } = useAuthSignInWithEmailAndPassword(auth, {
-    onSuccess: (user) => {
+  const { mutate: signIn, error: emailPasswordError } = useAuthSignInWithEmailAndPassword(auth, {
+    onSuccess: async (user) => {
       onLogin(user);
     },
   });
+
+  const { mutate: signInWithRedirect, error: googleError } = useAuthSignInWithRedirect(auth, {
+    onMutate: () => {
+      localStorage.setItem('SIGNED_IN', true);
+    },
+  });
+
+  const error = emailPasswordError || googleError;
 
   const handleClickShowPassword = () => {
     setShowPassword((x) => !x);
@@ -93,6 +105,14 @@ const LoginForm = ({ handleShowRegistrationForm, handleShowResetPasswordForm, on
           />
           <Button onClick={handleSubmit} fullWidth variant="contained" sx={{ mt: 1 }}>
             Sign In
+          </Button>
+          <Button
+            onClick={() => signInWithRedirect({ provider })}
+            fullWidth
+            variant="contained"
+            sx={{ mt: 1 }}
+          >
+            Sign In With Google
           </Button>
           <FormHelperText error>
             {!!error?.code ? FormError[error?.code] || FormError['*'] : ' '}

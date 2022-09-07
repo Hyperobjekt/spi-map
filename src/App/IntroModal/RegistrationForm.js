@@ -110,7 +110,7 @@ const RegistrationForm = ({ handleShowLoginForm, onRegister }) => {
             label="Password"
             type={showPassword ? 'text' : 'password'}
             id="password"
-            autoComplete="current-password"
+            autoComplete="new-password"
             value={values.password}
             onChange={handleChange}
             error={!!PasswordError[error?.code] || (touched.password && !!errors.password)}

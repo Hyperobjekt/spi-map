@@ -9,8 +9,9 @@ import shallow from 'zustand/shallow';
 import { STAGE } from './constants';
 import ResetPasswordForm from './ResetPasswordForm';
 import { Modal } from 'App/Modal';
-import { useAuthUser } from 'App/firebase';
+import { auth, useAuthUser } from 'App/firebase';
 import EmailVerificationSent from './EmailVerificationSent';
+import { useAuthGetRedirectResult } from '@react-query-firebase/auth';
 
 const IntroModal = () => {
   const [open, setOpen, stage, setStage] = useIntroModalStore(
@@ -19,6 +20,10 @@ const IntroModal = () => {
   );
 
   const { data: user, isLoading } = useAuthUser();
+  const { data: redirectedUser, isLoading: isLoadingRedirect } = useAuthGetRedirectResult(
+    'redirect-result',
+    auth,
+  );
 
   const isSignedIn = !!user;
 
@@ -26,9 +31,13 @@ const IntroModal = () => {
     // Only used for UI to decide whether or not to show
     // the Intro Modal immediately on startup.
     // If the auth request returns invalid, the modal will open regardless
-    localStorage.setItem('SIGNED_IN', !!isSignedIn);
+    debugger;
+    localStorage.setItem(
+      'SIGNED_IN',
+      JSON.parse(localStorage.getItem('SIGNED_IN')) === false && !!isSignedIn,
+    );
 
-    if (!isSignedIn && !isLoading) {
+    if (!isSignedIn && !isLoading && !isLoadingRedirect) {
       setStage(STAGE.LOGIN);
       setOpen(true);
     }

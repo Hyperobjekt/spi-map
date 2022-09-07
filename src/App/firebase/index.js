@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { getAuth } from 'firebase/auth';
+import { getAuth, GoogleAuthProvider } from 'firebase/auth';
 import { addDoc, collection, getFirestore } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import { useQuery, useQueryClient } from 'react-query';
@@ -14,7 +14,11 @@ const firebase = initializeApp({
   measurementId: 'G-MP8HGDHKHJ',
 });
 
-export const auth = getAuth(firebase);
+const auth = getAuth(firebase);
+auth.useDeviceLanguage();
+export { auth };
+
+export const provider = new GoogleAuthProvider();
 
 export const db = getFirestore(firebase);
 export const users = collection(db, 'users');
