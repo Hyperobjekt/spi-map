@@ -21,3 +21,16 @@ export const boundsToFly = {
     zoom: 5.52,
   },
 };
+
+export const boundsToFlyOnMobile = {
+  '02': {
+    latitude: 61.6,
+    longitude: -153.93,
+    zoom: 2.37,
+  },
+  15: {
+    latitude: 20.68,
+    longitude: -159.55,
+    zoom: 4.61,
+  },
+};

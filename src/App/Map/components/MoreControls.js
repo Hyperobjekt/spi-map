@@ -11,7 +11,6 @@ const Root = styled('div')(({ theme }) => ({
   height: 'auto',
   flexDirection: 'column',
   justifyContent: 'flex-end',
-  display: 'none',
   borderRadius: '4px',
   boxShadow: '0 0 0 2px #0000001a',
   backgroundColor: '#fff',

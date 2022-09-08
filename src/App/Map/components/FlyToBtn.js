@@ -1,10 +1,10 @@
 import { styled } from '@mui/system';
-import { Tooltip, Button } from '@mui/material';
+import { Tooltip, Button, useMediaQuery, useTheme } from '@mui/material';
 import { useMapStore } from '@hyperobjekt/mapgl';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FIPS_TO_STATE_NAME } from '../../utils';
-import { boundsToFly, US_BOUNDS } from '../../shared/constants';
+import { boundsToFly, boundsToFlyOnMobile, US_BOUNDS } from '../../shared/constants';
 
 const ButtonStyle = styled(Button)({
   width: '29px',
@@ -19,6 +19,8 @@ const ButtonStyle = styled(Button)({
 });
 
 const FlyToBtn = ({ children, ...props }) => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints['down']('sm'));
   const [flyTo, flyToBounds] = useMapStore((state) => [state.flyTo, state.flyToBounds]);
 
   const handleClick = () => {
@@ -26,7 +28,7 @@ const FlyToBtn = ({ children, ...props }) => {
       flyToBounds(US_BOUNDS);
     } else {
       if (boundsToFly[props.fips]) {
-        flyTo(boundsToFly[props.fips]);
+        flyTo(isMobile ? boundsToFlyOnMobile[props.fips] : boundsToFly[props.fips]);
       }
     }
   };
