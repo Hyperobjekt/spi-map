@@ -15,6 +15,7 @@ import {
   useAuthSendPasswordResetEmail,
   useAuthVerifyPasswordResetCode,
 } from '@react-query-firebase/auth';
+import Form from 'App/components/Form';
 import { history } from 'App/history';
 import { STAGE, useIntroModalStore } from 'App/IntroModal';
 import { FormError, PasswordError } from 'App/IntroModal/utils';
@@ -60,7 +61,7 @@ const UpdatePasswordForm = ({ auth, oobCode, continueUrl, lang, handleShowLoginF
           validationSchema={UpdatePasswordFormSchema}
         >
           {({ values, touched, errors, handleChange, handleSubmit }) => (
-            <>
+            <Form>
               <TextField
                 margin="dense"
                 fullWidth
@@ -96,7 +97,7 @@ const UpdatePasswordForm = ({ auth, oobCode, continueUrl, lang, handleShowLoginF
               <FormHelperText error>
                 {!!error?.code ? FormError[error?.code] || FormError['*'] : ' '}
               </FormHelperText>
-            </>
+            </Form>
           )}
         </Formik>
       ) : (

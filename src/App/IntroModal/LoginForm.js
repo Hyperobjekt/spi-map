@@ -13,6 +13,7 @@ import {
   useAuthSignInWithEmailAndPassword,
   useAuthSignInWithRedirect,
 } from '@react-query-firebase/auth';
+import Form from 'App/components/Form';
 import { auth, provider } from 'App/firebase';
 import { Formik } from 'formik';
 import { useEffect, useState } from 'react';
@@ -61,7 +62,7 @@ const LoginForm = ({ handleShowRegistrationForm, handleShowResetPasswordForm, on
       validationSchema={LoginFormSchema}
     >
       {({ values, touched, errors, handleChange, handleSubmit }) => (
-        <>
+        <Form>
           <TextField
             margin="dense"
             fullWidth
@@ -109,11 +110,34 @@ const LoginForm = ({ handleShowRegistrationForm, handleShowResetPasswordForm, on
           <Button
             onClick={() => signInWithRedirect({ provider })}
             fullWidth
-            variant="contained"
-            sx={{ mt: 1 }}
+            variant="outlined"
+            sx={{
+              mt: 1,
+              display: 'inline-block',
+              background: 'white',
+              color: '#444',
+              whiteSpace: 'nowrap',
+            }}
           >
-            Sign In With Google
+            <img
+              src={'/assets/img/google-logo.svg'}
+              style={{
+                position: 'absolute',
+                left: '0px',
+                top: '-5px',
+              }}
+              alt="Google"
+            />
+            <span
+              style={{
+                paddingLeft: '42px',
+                paddingRight: '42px',
+              }}
+            >
+              Continue with Google
+            </span>
           </Button>
+
           <FormHelperText error>
             {!!error?.code ? FormError[error?.code] || FormError['*'] : ' '}
           </FormHelperText>
@@ -129,7 +153,7 @@ const LoginForm = ({ handleShowRegistrationForm, handleShowResetPasswordForm, on
               </Link>
             </Grid>
           </Grid>
-        </>
+        </Form>
       )}
     </Formik>
   );

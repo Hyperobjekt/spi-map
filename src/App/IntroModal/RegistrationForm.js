@@ -20,6 +20,7 @@ import {
   useAuthSendEmailVerification,
 } from '@react-query-firebase/auth';
 import { addUser, auth, db } from 'App/firebase';
+import Form from 'App/components/Form';
 
 const RegistrationFormSchema = yup.object({
   email: yup.string('Enter your email').email('Enter a valid email').required('Email is required'),
@@ -88,7 +89,7 @@ const RegistrationForm = ({ handleShowLoginForm, onRegister }) => {
       validationSchema={RegistrationFormSchema}
     >
       {({ values, touched, errors, handleChange, handleSubmit }) => (
-        <>
+        <Form>
           <TextField
             margin="dense"
             fullWidth
@@ -167,7 +168,7 @@ const RegistrationForm = ({ handleShowLoginForm, onRegister }) => {
               </Link>
             </Grid>
           </Grid>
-        </>
+        </Form>
       )}
     </Formik>
   );

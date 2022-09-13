@@ -20,10 +20,7 @@ const IntroModal = () => {
   );
 
   const { data: user, isLoading } = useAuthUser();
-  const { data: redirectedUser, isLoading: isLoadingRedirect } = useAuthGetRedirectResult(
-    'redirect-result',
-    auth,
-  );
+  const { isLoading: isLoadingRedirect } = useAuthGetRedirectResult('redirect-result', auth);
 
   const isSignedIn = !!user;
 
@@ -31,7 +28,6 @@ const IntroModal = () => {
     // Only used for UI to decide whether or not to show
     // the Intro Modal immediately on startup.
     // If the auth request returns invalid, the modal will open regardless
-    debugger;
     localStorage.setItem(
       'SIGNED_IN',
       JSON.parse(localStorage.getItem('SIGNED_IN')) === false && !!isSignedIn,
@@ -46,7 +42,7 @@ const IntroModal = () => {
       setStage(STAGE.EMAIL_VERIFICATION_SENT);
       setOpen(true);
     }
-  }, [isSignedIn, isLoading, setStage, setOpen, user?.emailVerified]);
+  }, [isSignedIn, isLoading, setStage, setOpen, isLoadingRedirect, user?.emailVerified]);
 
   const { Header, Content } = useMemo(
     () =>
@@ -115,7 +111,7 @@ const IntroModal = () => {
             </Description>
           </Box>
         </Boxmodal>
-        <MUIContainer component="main" maxWidth="xs" sx={{ mt: 2 }}>
+        <MUIContainer component="main" maxWidth="xs" sx={{ mt: 4 }}>
           <CssBaseline />
           <Box
             sx={{
@@ -127,7 +123,7 @@ const IntroModal = () => {
             <Typography component="h1" variant="h5">
               <Header />
             </Typography>
-            <Box sx={{ mt: 1 }}>
+            <Box>
               <Content />
             </Box>
           </Box>

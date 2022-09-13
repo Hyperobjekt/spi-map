@@ -1,5 +1,6 @@
 import { Button, FormHelperText, Link, TextField, Typography } from '@mui/material';
 import { useAuthSendPasswordResetEmail } from '@react-query-firebase/auth';
+import Form from 'App/components/Form';
 import { auth } from 'App/firebase';
 import { Formik } from 'formik';
 import { useState } from 'react';
@@ -33,7 +34,7 @@ const ResetPasswordForm = ({ handleShowLoginForm }) => {
           validationSchema={ResetPasswordFormSchema}
         >
           {({ values, touched, errors, handleChange, handleSubmit }) => (
-            <>
+            <Form>
               <TextField
                 margin="dense"
                 fullWidth
@@ -48,13 +49,19 @@ const ResetPasswordForm = ({ handleShowLoginForm }) => {
                 required
                 autoFocus
               />
-              <Button onClick={handleSubmit} fullWidth variant="contained" sx={{ mt: '8px' }}>
+              <Button
+                type="submit"
+                onClick={handleSubmit}
+                fullWidth
+                variant="contained"
+                sx={{ mt: '8px' }}
+              >
                 Reset Password
               </Button>
               <FormHelperText error>
                 {!!error?.code ? FormError[error?.code] || FormError['*'] : ' '}
               </FormHelperText>
-            </>
+            </Form>
           )}
         </Formik>
       ) : (
