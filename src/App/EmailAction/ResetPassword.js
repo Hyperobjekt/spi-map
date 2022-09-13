@@ -101,7 +101,14 @@ const UpdatePasswordForm = ({ auth, oobCode, continueUrl, lang, handleShowLoginF
           )}
         </Formik>
       ) : (
-        <Typography>Your password has been updated</Typography>
+        <Typography
+          sx={{
+            mt: 2,
+            mb: 1,
+          }}
+        >
+          Your password has been updated
+        </Typography>
       )}
       <Link href="#" variant="body2" onClick={handleShowLoginForm}>
         Back to login
@@ -145,7 +152,13 @@ const ResetPassword = ({ auth, oobCode, continueUrl, lang }) => {
         <Header component="h1" variant="h5">
           Unable to reset password
         </Header>
-        <Typography component="p">
+        <Typography
+          component="p"
+          sx={{
+            mt: 2,
+            mb: 1,
+          }}
+        >
           Code is invalid or expired. Please sign in again to resend reset password email.
         </Typography>
         <Link href="#" variant="body2" onClick={handleShowLoginForm}>
@@ -158,7 +171,15 @@ const ResetPassword = ({ auth, oobCode, continueUrl, lang }) => {
         <Header component="h1" variant="h5">
           Unable to validate email
         </Header>
-        <Typography component="p">Code is invalid or expired.</Typography>
+        <Typography
+          component="p"
+          sx={{
+            mt: 2,
+            mb: 1,
+          }}
+        >
+          Code is invalid or expired.
+        </Typography>
         <Button
           onClick={() => sendPasswordResetEmail({ email: auth.currentUser.email })}
           fullWidth

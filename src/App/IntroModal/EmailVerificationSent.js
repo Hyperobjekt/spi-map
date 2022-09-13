@@ -7,7 +7,13 @@ const EmailVerificationSent = ({ email }) => {
 
   return (
     <>
-      <Typography component="p">
+      <Typography
+        component="p"
+        sx={{
+          mt: 2,
+          mb: 1,
+        }}
+      >
         Verification email sent to {email}. Please check your email and follow the instructions.
       </Typography>
       <Button

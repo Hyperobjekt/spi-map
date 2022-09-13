@@ -22,16 +22,17 @@ const IntroModal = () => {
   const { data: user, isLoading } = useAuthUser();
   const { isLoading: isLoadingRedirect } = useAuthGetRedirectResult('redirect-result', auth);
 
+  console.log({ user, isLoading, isLoadingRedirect });
+
   const isSignedIn = !!user;
 
   useEffect(() => {
-    // Only used for UI to decide whether or not to show
-    // the Intro Modal immediately on startup.
-    // If the auth request returns invalid, the modal will open regardless
-    localStorage.setItem(
-      'SIGNED_IN',
-      JSON.parse(localStorage.getItem('SIGNED_IN')) === false && !!isSignedIn,
-    );
+    if (!isLoading) {
+      // Only used for UI to decide whether or not to show
+      // the Intro Modal immediately on startup.
+      // If the auth request returns invalid, the modal will open regardless
+      localStorage.setItem('SIGNED_IN', !!isSignedIn);
+    }
 
     if (!isSignedIn && !isLoading && !isLoadingRedirect) {
       setStage(STAGE.LOGIN);
@@ -41,6 +42,10 @@ const IntroModal = () => {
     if (isSignedIn && !user.emailVerified) {
       setStage(STAGE.EMAIL_VERIFICATION_SENT);
       setOpen(true);
+    }
+
+    if (isSignedIn && user.emailVerified) {
+      setOpen(false);
     }
   }, [isSignedIn, isLoading, setStage, setOpen, isLoadingRedirect, user?.emailVerified]);
 

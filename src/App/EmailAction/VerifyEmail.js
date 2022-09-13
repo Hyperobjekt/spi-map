@@ -29,15 +29,24 @@ const VerifyEmail = ({ auth, oobCode, continueUrl, lang }) => {
         <Header component="h1" variant="h5">
           Successfully validated email
         </Header>
-        <Typography component="p">Email has been successfully validated!</Typography>
+        <Typography
+          component="p"
+          sx={{
+            mt: 2,
+            mb: 1,
+          }}
+        >
+          Email has been successfully validated!
+        </Typography>
         <Button
           onClick={() => {
             history.push(continueUrl);
+            debugger;
             setOpen(true);
           }}
           fullWidth
           variant="contained"
-          sx={{ mt: '8px' }}
+          sx={{ mt: 1 }}
         >
           Continue to Application
         </Button>
@@ -48,24 +57,26 @@ const VerifyEmail = ({ auth, oobCode, continueUrl, lang }) => {
         <Header component="h1" variant="h5">
           Unable to validate email
         </Header>
-        <Typography component="p">
+        <Typography
+          component="p"
+          sx={{
+            mt: 2,
+            mb: 1,
+          }}
+        >
           Code is invalid or expired. Please sign in again to resend validation email.
         </Typography>
-        <Grid container>
-          <Grid item>
-            <Link
-              href="#"
-              variant="body2"
-              onClick={() => {
-                setOpen(false);
-                setIntroModalOpen(true);
-                setIntroModalStage(STAGE.LOGIN);
-              }}
-            >
-              Back to login
-            </Link>
-          </Grid>
-        </Grid>
+        <Link
+          href="#"
+          variant="body2"
+          onClick={() => {
+            setOpen(false);
+            setIntroModalOpen(true);
+            setIntroModalStage(STAGE.LOGIN);
+          }}
+        >
+          Back to login
+        </Link>
       </>
     ),
     ERROR_LOGGED_IN: () => (
@@ -73,32 +84,26 @@ const VerifyEmail = ({ auth, oobCode, continueUrl, lang }) => {
         <Header component="h1" variant="h5">
           Unable to validate email
         </Header>
-        <Typography component="p">Code is invalid or expired.</Typography>{' '}
-        <Grid
-          container
+        <Typography
+          component="p"
           sx={{
-            flexFlow: 'row nowrap',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            gap: 4,
+            mt: 2,
+            mb: 1,
           }}
         >
-          <Grid item>
-            <Link href="#" variant="body2" onClick={() => window.location.reload()}>
-              Back to login
-            </Link>
-          </Grid>
-          <Grid item>
-            <Button
-              onClick={() => sendVerificationEmail({ user: auth.currentUser })}
-              fullWidth
-              variant="contained"
-              sx={{ mt: '8px' }}
-            >
-              Resend Validation Email
-            </Button>
-          </Grid>
-        </Grid>
+          Code is invalid or expired.
+        </Typography>{' '}
+        <Button
+          onClick={() => sendVerificationEmail({ user: auth.currentUser })}
+          fullWidth
+          variant="contained"
+          sx={{ mt: 1, mb: 2 }}
+        >
+          Resend Validation Email
+        </Button>
+        <Link href="#" variant="body2" onClick={() => window.location.reload()}>
+          Back to login
+        </Link>
       </>
     ),
   }[componentKey];
