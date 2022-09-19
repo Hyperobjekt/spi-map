@@ -7,6 +7,7 @@ import MapTooltip from './components/MapTooltip';
 import MoreControls from './components/MoreControls';
 import { Legend } from '../Legend';
 import { useIndicatorPanelStore } from '../IndicatorPanel';
+import { useAuthUser } from 'App/firebase';
 
 export default function Map({ children, ...props }) {
   // pull state and setter that determines if the indicator panel is open
@@ -15,9 +16,24 @@ export default function Map({ children, ...props }) {
     shallow,
   );
 
+  const { data: user, isLoading } = useAuthUser();
+
+  if (isLoading || !user?.accessToken) return false;
+
   return (
     <MapWrapper {...props}>
-      <MapGL>
+      <MapGL
+        transformRequest={(url, resourceType) => {
+          if (resourceType === 'Tile' && url.match('firebasestorage.googleapis.com/')) {
+            return {
+              url,
+              headers: {
+                Authorization: 'Bearer ' + user?.accessToken,
+              },
+            };
+          }
+        }}
+      >
         <Legend square>
           {!indicatorsOpen && (
             <Button

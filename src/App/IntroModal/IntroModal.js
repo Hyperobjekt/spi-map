@@ -22,8 +22,6 @@ const IntroModal = () => {
   const { data: user, isLoading } = useAuthUser();
   const { isLoading: isLoadingRedirect } = useAuthGetRedirectResult('redirect-result', auth);
 
-  console.log({ user, isLoading, isLoadingRedirect });
-
   const isSignedIn = !!user;
 
   useEffect(() => {

@@ -41,7 +41,6 @@ const VerifyEmail = ({ auth, oobCode, continueUrl, lang }) => {
         <Button
           onClick={() => {
             history.push(continueUrl);
-            debugger;
             setOpen(true);
           }}
           fullWidth
