@@ -5,9 +5,9 @@ const getColorFromPerformance = (performance) => {
     case 1:
       return '#D1605E';
     case 2:
-      return '#D1605E';
-    case 3:
       return '#E7CA60';
+    case 3:
+      return '#3e8ace';
     case 4:
       return '#6A9F58';
     case 5:
