@@ -18,8 +18,8 @@ const getColorFromPerformance = (performance) => {
 };
 
 const PerformanceIndicator = styled(Box)`
-  min-width: 8px;
-  min-height: 8px;
+  min-width: 12px;
+  min-height: 12px;
   border-radius: 100%;
   flex-shrink: 0;
   flex-grow: 0;

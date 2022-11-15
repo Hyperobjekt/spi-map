@@ -23,8 +23,25 @@ const ListItemHintButton = ({ value, children, itemProps, ...props }) => {
   const hint = useLang(langKey);
   return (
     <ListItemButton {...props}>
-      {hint && (
-        <Tooltip title={hint} arrow placement="left">
+      {(hint || itemProps?.source) && (
+        <Tooltip
+          title={
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+              {hint && <div>{hint}</div>}
+              {itemProps?.source && (
+                <div
+                  style={{
+                    fontStyle: 'italic',
+                  }}
+                >
+                  Source: {itemProps?.source}
+                </div>
+              )}
+            </div>
+          }
+          arrow
+          placement="left"
+        >
           <HintIconButton className="SpiHintIconButton-root" size="small">
             <HelpOutline />
           </HintIconButton>

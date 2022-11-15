@@ -1,9 +1,18 @@
-import { Divider, List, ListItem, ListItemText, Paper, styled, Typography } from '@mui/material';
+import {
+  Divider,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  Paper,
+  styled,
+  Typography,
+} from '@mui/material';
 import theme from '../../../theme';
 import { CustomizeIndicatorsToggle } from '../../IndicatorPanel';
 import { animated } from '@react-spring/web';
-// import { SearchInput } from '../../components';
-// import { FilterList } from '@mui/icons-material';
+import PerformanceIndicator from 'App/components/PerformanceIndicator';
+
 const StyledPaper = styled(Paper)`
   padding: ${theme.spacing(2)};
   opacity: 0;
@@ -40,8 +49,25 @@ const ScorecardControls = ({ onNavigateToSection, ...props }) => {
   const handleSectionNavigation = (section) => (e) => {
     onNavigateToSection && onNavigateToSection(e, section);
   };
+
   return (
     <ControlsWrapper {...props}>
+      <Typography variant="overline">Color Codes</Typography>
+      <List style={{ paddingBottom: 16 }}>
+        {[
+          [1, 'Underperforming'],
+          [3, 'Performing as expected'],
+          [5, 'Overperforming'],
+        ].map(([performance, primary]) => (
+          <ListItem style={{ paddingTop: 0, paddingBottom: 0 }}>
+            <ListItemIcon style={{ minWidth: 20 }}>
+              <PerformanceIndicator performance={performance} />
+            </ListItemIcon>
+            <ListItemText style={{ margin: 0 }} primary={primary} />
+          </ListItem>
+        ))}
+      </List>
+      <Divider />
       <Typography variant="overline">Scorecard Sections</Typography>
       <List>
         <ListItem button onClick={handleSectionNavigation('spi')}>

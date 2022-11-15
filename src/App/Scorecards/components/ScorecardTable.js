@@ -1,11 +1,13 @@
-import { getFormatter } from '@hyperobjekt/react-dashboard';
+import { getFormatter, useLang } from '@hyperobjekt/react-dashboard';
 import {
+  Icon,
   Table,
   TableBody,
   TableCell,
   TableContainer,
   TableHead,
   TableRow,
+  Tooltip,
   Typography,
 } from '@mui/material';
 import React, { useEffect, useState } from 'react';
@@ -14,6 +16,18 @@ import Papa from 'papaparse';
 import ScorecardHeaderCell from './ScorecardHeaderCell';
 import ScorecardValueCell from './ScorecardValueCell';
 import useIndicatorPanelStore from '../../IndicatorPanel/store';
+import { HelpOutline } from '@mui/icons-material';
+import styled from '@emotion/styled';
+
+const HintIcon = styled(Icon)(({ theme }) => ({
+  opacity: 0.54,
+  '&:hover': { opacity: 0.8 },
+  transition: theme.transitions.create('opacity'),
+  marginLeft: 'auto',
+  '& .MuiSvgIcon-root': {
+    fontSize: theme.typography.pxToRem(16),
+  },
+}));
 
 export const ScorecardTable = React.forwardRef(
   ({ locations: baseLocations, metrics: baseMetrics, ...props }, ref) => {
@@ -192,64 +206,97 @@ export const ScorecardTable = React.forwardRef(
             </TableRow>
           </TableHead>
           <TableBody>
-            {metrics.map((metric) => {
-              return (
-                <TableRow
-                  hover
-                  tabIndex={-1}
-                  key={metric.id}
-                  className={clsx('scorecard__row', 'scorecard__row--depth' + metric.depth)}
-                >
-                  <TableCell className="scorecard__label-cell">
-                    {/* SCROLL TARGET: offset by 90px to make room for header */}
-                    <span
-                      id={`scorecard-row-${metric.id}`}
-                      style={{
-                        width: '1px',
-                        height: '1px',
-                        position: 'absolute',
-                        marginTop: -90,
-                      }}
-                    />
-                    <Typography className="scorecard__metric-label">{metric.name}</Typography>
-                  </TableCell>
-                  {locations.map((location) => {
-                    const value = location[metric.id];
-                    const performance = location[metric.id + '_p'];
-                    const showPercent = [
-                      'poor',
-                      'below200pov',
-                      'under5',
-                      'age5_19',
-                      'age20_34',
-                      'age35_49',
-                      'age50_65',
-                      'over65',
-                      'nonhispwhite',
-                      'nonhispblack',
-                      'nonhispasian',
-                      'hispanicpop',
-                    ].includes(metric.id);
-
-                    return (
-                      <ScorecardValueCell
-                        key={location.id}
-                        value={
-                          value && metric.formatter
-                            ? metric.formatter(showPercent ? value / 100 : value)
-                            : value
-                        }
-                        performance={performance}
-                        percent={showPercent && value ? value / 100 : undefined}
-                      />
-                    );
-                  })}
-                </TableRow>
-              );
-            })}
+            {metrics.map((metric) => (
+              <Row metric={metric} locations={locations} />
+            ))}
           </TableBody>
         </Table>
       </TableContainer>
     );
   },
 );
+
+const Row = ({ metric, locations }) => {
+  const langKey = `DESC_${metric.id}`.toUpperCase();
+  const hint = useLang(langKey);
+
+  return (
+    <TableRow
+      hover
+      tabIndex={-1}
+      key={metric.id}
+      className={clsx('scorecard__row', 'scorecard__row--depth' + metric.depth)}
+    >
+      <TableCell className="scorecard__label-cell">
+        {/* SCROLL TARGET: offset by 90px to make room for header */}
+        <span
+          id={`scorecard-row-${metric.id}`}
+          style={{
+            width: '1px',
+            height: '1px',
+            position: 'absolute',
+            marginTop: -90,
+          }}
+        />
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          <Typography className="scorecard__metric-label">{metric.name}</Typography>
+          {(hint || metric?.source) && (
+            <Tooltip
+              title={
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                  {hint && <div>{hint}</div>}
+                  {metric?.source && (
+                    <div
+                      style={{
+                        fontStyle: 'italic',
+                      }}
+                    >
+                      Source: {metric.source}
+                    </div>
+                  )}
+                </div>
+              }
+              arrow
+              placement="left"
+            >
+              <HintIcon size="small" style={{ height: '100%' }}>
+                <HelpOutline />
+              </HintIcon>
+            </Tooltip>
+          )}
+        </div>
+      </TableCell>
+      {locations.map((location) => {
+        const value = location[metric.id];
+        const performance = location[metric.id + '_p'];
+        const showPercent = [
+          'poor',
+          'below200pov',
+          'under5',
+          'age5_19',
+          'age20_34',
+          'age35_49',
+          'age50_65',
+          'over65',
+          'nonhispwhite',
+          'nonhispblack',
+          'nonhispasian',
+          'hispanicpop',
+        ].includes(metric.id);
+
+        return (
+          <ScorecardValueCell
+            key={location.id}
+            value={
+              value && metric.formatter
+                ? metric.formatter(showPercent ? value / 100 : value)
+                : value
+            }
+            performance={performance}
+            percent={showPercent && value ? value / 100 : undefined}
+          />
+        );
+      })}
+    </TableRow>
+  );
+};
