@@ -56,8 +56,8 @@ const ScorecardControls = ({ onNavigateToSection, ...props }) => {
       <List style={{ paddingBottom: 16 }}>
         {[
           [1, 'Underperforming'],
-          [3, 'Performing as expected'],
-          [5, 'Overperforming'],
+          [2, 'Performing as expected'],
+          [3, 'Overperforming'],
         ].map(([performance, primary]) => (
           <ListItem style={{ paddingTop: 0, paddingBottom: 0 }}>
             <ListItemIcon style={{ minWidth: 20 }}>
