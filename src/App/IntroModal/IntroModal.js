@@ -19,7 +19,6 @@ const IntroModal = ({ ...props }) => {
     shallow,
   );
   const setRegion = useDashboardStore((state) => state.setRegion);
-  const setAutoSwitchRegion = useDashboardStore((state) => state.setAutoSwitchRegion);
 
   const handleClose = (e) => {
     setIntroModalOpen(false);
@@ -32,7 +31,6 @@ const IntroModal = ({ ...props }) => {
   };
 
   const handleViewCities = (e) => {
-    setAutoSwitchRegion(false);
     setRegion('cities');
     setIntroModalOpen(false);
     storeFirstVisit();

@@ -1,9 +1,8 @@
 import React, { useCallback, useRef } from 'react';
 import { MapGL as HypMapGL, useMapFlyToFeature } from '@hyperobjekt/mapgl';
 import { GeolocateControl, NavigationControl } from 'react-map-gl';
-import { useMapSources, useDashboardStore } from '@hyperobjekt/react-dashboard';
+import { useMapSources } from '@hyperobjekt/react-dashboard';
 import { useLocationStore, useToggleLocation } from '@hyperobjekt/react-dashboard';
-import MapAutoSwitch from './MapAutoSwitch';
 import CityLabelsLayer from './CityLabelsLayer';
 import useSpiMapLayers from '../hooks/useSpiMapLayers';
 import { MAPBOX_TOKEN, MAP_STYLE, US_BOUNDS } from '../../shared/constants';
@@ -16,7 +15,6 @@ export default function MapGL({ children, ...props }) {
   const isSelected = useLocationStore((state) => state.isSelected);
   // function that flys the map to a provided feature
   const flyToFeature = useMapFlyToFeature();
-  const autoSwitchRegion = useDashboardStore((state) => state.autoSwitchRegion);
 
   // fly to feature on click if it's not selected and toggle "selected" status
   const handleClick = useCallback(
@@ -46,7 +44,6 @@ export default function MapGL({ children, ...props }) {
     >
       <GeolocateControl />
       <NavigationControl />
-      {autoSwitchRegion && <MapAutoSwitch />}
       <CityLabelsLayer />
       {children}
     </HypMapGL>

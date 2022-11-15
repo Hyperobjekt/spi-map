@@ -1,7 +1,7 @@
-import { useChoroplethContext, useDashboardStore } from '@hyperobjekt/react-dashboard';
+import { useChoroplethContext } from '@hyperobjekt/react-dashboard';
 import useChoroplethLayerContext from './useChoroplethLayerContext';
 import useSpiScaleOverrides from '../../hooks/useSpiScaleOverrides';
-import { createCircleLayers, getChoroplethLayers } from '../utils';
+import { getChoroplethLayers } from '../utils';
 
 /**
  * Returns map layers for the current context for use with mapboxgl.
@@ -12,8 +12,6 @@ export default function useSpiMapLayers() {
   const currentContext = useChoroplethContext();
   // pull scale overrides for the current context (for category colors)
   const scaleOverrides = useSpiScaleOverrides(currentContext);
-  // pull if auto-switch is on or off
-  const autoSwitchRegion = useDashboardStore((state) => state.autoSwitchRegion);
   // create layers contexts for all available regions
   // each region has its own scale extents
   const layerContexts = {
@@ -39,28 +37,6 @@ export default function useSpiMapLayers() {
     //   scale: scaleOverrides,
     // }),
   };
-  // create separate context for circles (uses context for whichever region is active)
-  const circleContext = useChoroplethLayerContext({ scale: scaleOverrides });
-  /// if no autoswitch, then only return the layers for the current region
-  if (!autoSwitchRegion) {
-    return getChoroplethLayers(layerContexts[currentContext.region_id]);
-  }
-  // if autoswitch is on, then return all layers
-  const allLayers = Object.keys(layerContexts)
-    .map((region) => {
-      return getChoroplethLayers(layerContexts[region]);
-    })
-    .flat()
-    // ensure only the current choropleth region is interactive
-    .map((layer) => {
-      if (!layer.interactive) return layer;
-      if (layer.interactive && layer['source-layer'] === currentContext.region_id) return layer;
-      return {
-        ...layer,
-        interactive: false,
-      };
-    });
-  /** Circle layers for cities */
-  const circleLayers = createCircleLayers(circleContext);
-  return [...allLayers, ...circleLayers];
+
+  return getChoroplethLayers(layerContexts[currentContext.region_id]);
 }
