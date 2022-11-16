@@ -1,6 +1,6 @@
 import React, { useCallback, useRef } from 'react';
 import { MapGL as HypMapGL, useMapFlyToFeature } from '@hyperobjekt/mapgl';
-import { GeolocateControl, NavigationControl } from 'react-map-gl';
+import { GeolocateControl, NavigationControl, AttributionControl } from 'react-map-gl';
 import { useMapSources } from '@hyperobjekt/react-dashboard';
 import { useLocationStore, useToggleLocation } from '@hyperobjekt/react-dashboard';
 import CityLabelsLayer from './CityLabelsLayer';
@@ -39,11 +39,13 @@ export default function MapGL({ children, ...props }) {
       mapStyle={MAP_STYLE}
       onClick={handleClick}
       bounds={US_BOUNDS}
+      attributionControl={false}
       // interactiveLayerIds={[`${region_id}-choropleth`, `city-bubbles`]}
       {...props}
     >
       <GeolocateControl />
       <NavigationControl />
+      <AttributionControl customAttribution="Copyright © Social Progress Imperative, 2022" />
       <CityLabelsLayer />
       {children}
     </HypMapGL>
