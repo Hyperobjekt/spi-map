@@ -33,8 +33,6 @@ const RegionSelect = (props) => {
     map?.zoomTo(map?.getZoom() - 0.001);
   };
 
-  console.log({ selected, cachedSelection });
-
   return (
     <InlineMenu
       options={regions}

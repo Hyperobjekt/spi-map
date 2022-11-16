@@ -38,12 +38,14 @@ export const Header = () => {
   return (
     <AppBar color="transparent" sx={{ bgcolor: 'background.paper' }} position="sticky">
       <Toolbar>
-        <img
-          src="/assets/img/spi-logo.png"
-          alt="Social Progress Imperative logo"
-          height="40"
-          sx={{ marginRight: 'auto', height: 40 }}
-        />
+        <a href="https://www.socialprogress.org/us">
+          <img
+            src="/assets/img/spi-logo.png"
+            alt="Social Progress Imperative logo"
+            height="40"
+            sx={{ marginRight: 'auto', height: 40 }}
+          />
+        </a>
         <BackButtonWrapper style={buttonSpringProps}>
           <Button onClick={handleBackToMap}>
             <ArrowBack sx={{ fontSize: 24, mt: '-3px', mr: 1 }} />
