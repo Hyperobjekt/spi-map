@@ -52,7 +52,9 @@ const ScorecardControls = ({ onNavigateToSection, ...props }) => {
 
   return (
     <ControlsWrapper {...props}>
-      <Typography variant="overline">Color Codes</Typography>
+      <Typography variant="overline" fontWeight={600}>
+        Color Codes
+      </Typography>
       <List style={{ paddingBottom: 16 }}>
         {[
           [1, 'Underperforming'],
@@ -67,8 +69,14 @@ const ScorecardControls = ({ onNavigateToSection, ...props }) => {
           </ListItem>
         ))}
       </List>
-      <Divider />
-      <Typography variant="overline">Scorecard Sections</Typography>
+      <Typography variant="caption" maxWidth={360} display={'block'} fontSize={'0.875rem'}>
+        Strengths and vulnerabilities are relative to 15 cities of similar Median Household Income
+        per capita.
+      </Typography>
+      <Divider style={{ paddingTop: 16 }} />
+      <Typography variant="overline" fontWeight={600}>
+        Scorecard Sections
+      </Typography>
       <List>
         <ListItem button onClick={handleSectionNavigation('spi')}>
           <ListItemText primary="Social Progress Index" />
@@ -87,7 +95,7 @@ const ScorecardControls = ({ onNavigateToSection, ...props }) => {
         </ListItem>
       </List>
       <Divider />
-      <Typography sx={{ mb: 2, display: 'block' }} variant="overline">
+      <Typography sx={{ mb: 2, display: 'block' }} variant="overline" fontWeight={600}>
         Scorecard Indicators
       </Typography>
       {/*<SearchInput placeholder="Filter by keyword" icon={<FilterList />} />*/}

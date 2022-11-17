@@ -106,12 +106,12 @@ export const Legend = ({ children, ...props }) => {
       )}
       <ChoroplethSelect />
       <Box display="flex" alignItems="center" gap={0.5} mt={0.5} mb={1}>
-        <Typography lineHeight={1.2} variant="caption">
+        <Typography lineHeight={1.2} fontSize={15} variant="caption">
           {' '}
           for{' '}
         </Typography>{' '}
-        <RegionSelect lineHeight={1.2} color="grey.700" />{' '}
-        <Typography lineHeight={1.2} variant="caption">
+        <RegionSelect lineHeight={1.2} fontSize={15} color="grey.700" />{' '}
+        <Typography lineHeight={1.2} fontSize={15} variant="caption">
           {' '}
           in the U.S.{' '}
         </Typography>
