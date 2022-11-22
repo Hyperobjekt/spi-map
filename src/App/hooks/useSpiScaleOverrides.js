@@ -17,7 +17,7 @@ const non_reverse_metric_ids = [
   'eq_no2',
   'eq_ozone',
   'eq_pm25',
-  'nbm_foodsecurity',
+  'nbm_foodstamps',
   'hw_cancer',
   'hw_chd',
   'hw_diabetes',
