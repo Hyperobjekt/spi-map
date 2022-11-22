@@ -201,7 +201,7 @@
     "link": "https://www.census.gov/programs-surveys/acs/data.html"
   },
   {
-    "id": "abk_lessthan9th",
+    "id": "abk_lessthan9",
     "format": "percent_value",
     "category": "fow",
     "subcategory": "abk",
@@ -460,19 +460,19 @@
     "link": "https://www.census.gov/programs-surveys/acs/data.html"
   },
   {
-    "id": "pfc_adultnoinsuranc",
+    "id": "pfc_notinsuredunder65",
     "category": "opp",
     "format": "percent_value",
     "subcategory": "pfc"
   },
   {
-    "id": "pfc_altercommute",
+    "id": "pfc_cleancommute",
     "category": "opp",
     "format": "percent_value",
     "subcategory": "pfc"
   },
   {
-    "id": "pfc_teenbirthrate",
+    "id": "pfc_birthrate15_19",
     "category": "opp",
     "format": "percent_value",
     "subcategory": "pfc"
@@ -546,7 +546,7 @@
     "subcategory": "nbm"
   },
   {
-    "id": "nbm_supermarketacce",
+    "id": "nbm_supermarketaccess",
     "category": "bhn",
     "subcategory": "nbm",
     "format": "percent_value"
