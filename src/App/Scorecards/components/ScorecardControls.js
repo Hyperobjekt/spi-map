@@ -12,6 +12,7 @@ import theme from '../../../theme';
 import { CustomizeIndicatorsToggle } from '../../IndicatorPanel';
 import { animated } from '@react-spring/web';
 import PerformanceIndicator from 'App/components/PerformanceIndicator';
+import { useDashboardStore } from '@hyperobjekt/react-dashboard';
 
 const StyledPaper = styled(Paper)`
   padding: ${theme.spacing(2)};
@@ -46,6 +47,8 @@ const StyledPaper = styled(Paper)`
 const ControlsWrapper = animated(StyledPaper);
 
 const ScorecardControls = ({ onNavigateToSection, ...props }) => {
+  const region = useDashboardStore((state) => state.region);
+
   const handleSectionNavigation = (section) => (e) => {
     onNavigateToSection && onNavigateToSection(e, section);
   };
@@ -70,8 +73,8 @@ const ScorecardControls = ({ onNavigateToSection, ...props }) => {
         ))}
       </List>
       <Typography variant="caption" maxWidth={360} display={'block'} fontSize={'0.875rem'}>
-        Strengths and vulnerabilities are relative to 15 cities of similar Median Household Income
-        per capita.
+        {`Strengths and vulnerabilities are relative to 15 ${region} of similar Median Household Income
+        per capita.`}
       </Typography>
       <Divider style={{ paddingTop: 16 }} />
       <Typography variant="overline" fontWeight={600}>
