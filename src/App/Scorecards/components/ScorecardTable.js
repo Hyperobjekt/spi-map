@@ -18,6 +18,7 @@ import ScorecardValueCell from './ScorecardValueCell';
 import useIndicatorPanelStore from '../../IndicatorPanel/store';
 import { HelpOutline } from '@mui/icons-material';
 import styled from '@emotion/styled';
+import useActiveView from 'App/hooks/useActiveView';
 
 const HintIcon = styled(Icon)(({ theme }) => ({
   opacity: 0.54,
@@ -31,6 +32,8 @@ const HintIcon = styled(Icon)(({ theme }) => ({
 
 export const ScorecardTable = React.forwardRef(
   ({ locations: baseLocations, metrics: baseMetrics, ...props }, ref) => {
+    const [activeView, setActiveView] = useActiveView();
+
     const removeSelected = useLocationStore((state) => state.removeSelected);
 
     const [demographics, setDemographics] = useState([]);
@@ -200,7 +203,10 @@ export const ScorecardTable = React.forwardRef(
                   color={location.color}
                   name={location.name}
                   parentName={location.parentName}
-                  handleRemove={() => removeSelected(location)}
+                  handleRemove={() => {
+                    if (locations.length === 1) return setActiveView('map');
+                    removeSelected(location);
+                  }}
                   style={{
                     width: `${100 / (locations.length + 1)}%`,
                   }}

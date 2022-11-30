@@ -14,7 +14,7 @@ const StyledPaper = styled(Paper)`
     border-radius: 4px;
     position: absolute;
     right: 11px;
-    top: 28px;
+    top: 32px;
     bottom: 20px;
   }
   .scorecard__value-cell {
@@ -63,7 +63,7 @@ const StyledPaper = styled(Paper)`
   }
   .scorecard__location-remove {
     position: absolute;
-    top: 2px;
+    top: 4px;
     right: 2px;
     height: 24px;
     width: 24px;
