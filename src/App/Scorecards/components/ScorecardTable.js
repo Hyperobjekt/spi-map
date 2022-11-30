@@ -1,4 +1,4 @@
-import { getFormatter, useLang } from '@hyperobjekt/react-dashboard';
+import { getFormatter, useLang, useLocationStore } from '@hyperobjekt/react-dashboard';
 import {
   Icon,
   Table,
@@ -31,6 +31,8 @@ const HintIcon = styled(Icon)(({ theme }) => ({
 
 export const ScorecardTable = React.forwardRef(
   ({ locations: baseLocations, metrics: baseMetrics, ...props }, ref) => {
+    const removeSelected = useLocationStore((state) => state.removeSelected);
+
     const [demographics, setDemographics] = useState([]);
     const locations = baseLocations.map((l) => {
       const isState = l.state && l.GEOID && l.state === l.GEOID;
@@ -198,6 +200,7 @@ export const ScorecardTable = React.forwardRef(
                   color={location.color}
                   name={location.name}
                   parentName={location.parentName}
+                  handleRemove={() => removeSelected(location)}
                   style={{
                     width: `${100 / (locations.length + 1)}%`,
                   }}
