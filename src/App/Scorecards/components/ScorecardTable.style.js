@@ -13,8 +13,8 @@ const StyledPaper = styled(Paper)`
     width: 6px;
     border-radius: 4px;
     position: absolute;
-    right: 8px;
-    top: 20px;
+    right: 11px;
+    top: 32px;
     bottom: 20px;
   }
   .scorecard__value-cell {
@@ -46,6 +46,7 @@ const StyledPaper = styled(Paper)`
   .MuiTableCell-root.scorecard__header {
     background: #fff;
     z-index: 2;
+    padding-top: 32px;
   }
   .MuiTableCell-root.scorecard__header:nth-of-type(2n) {
     background-color: #fcfcfc;
@@ -59,6 +60,13 @@ const StyledPaper = styled(Paper)`
     text-align: right;
     margin-right: ${theme.spacing(3)};
     margin-left: auto;
+  }
+  .scorecard__location-remove {
+    position: absolute;
+    top: 4px;
+    right: 2px;
+    height: 24px;
+    width: 24px;
   }
   .scorecard__value-wrapper {
     display: flex;

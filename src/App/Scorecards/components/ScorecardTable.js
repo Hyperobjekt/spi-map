@@ -1,6 +1,5 @@
-import { getFormatter, useLang, useDashboardStore } from '@hyperobjekt/react-dashboard';
+import { getFormatter, useLang, useLocationStore, useDashboardStore } from '@hyperobjekt/react-dashboard';
 import {
-  Chip,
   Icon,
   Table,
   TableBody,
@@ -19,6 +18,7 @@ import ScorecardValueCell from './ScorecardValueCell';
 import useIndicatorPanelStore from '../../IndicatorPanel/store';
 import { HelpOutline } from '@mui/icons-material';
 import styled from '@emotion/styled';
+import useActiveView from 'App/hooks/useActiveView';
 import { GEOID_TO_PLACE_NAME } from 'App/utils';
 import { startCase } from 'lodash';
 
@@ -34,8 +34,9 @@ const HintIcon = styled(Icon)(({ theme }) => ({
 
 export const ScorecardTable = React.forwardRef(
   ({ locations: baseLocations, metrics: baseMetrics, ...props }, ref) => {
+    const [, setActiveView] = useActiveView();
+    const removeSelected = useLocationStore((state) => state.removeSelected);
     const region = useDashboardStore((state) => state.region);
-
     const [peers, setPeers] = useState([]);
     const [demographics, setDemographics] = useState([]);
 
@@ -243,6 +244,10 @@ export const ScorecardTable = React.forwardRef(
                   color={location.color}
                   name={location.name}
                   parentName={location.parentName}
+                  handleRemove={() => {
+                    if (locations.length === 1) return setActiveView('map');
+                    removeSelected(location);
+                  }}
                   style={{
                     width: `${100 / (locations.length + 1)}%`,
                   }}
