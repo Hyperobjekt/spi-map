@@ -99,7 +99,24 @@ export const Legend = ({ children, ...props }) => {
       </Snackbar>
       {metric.hint && (
         <HelpContainer>
-          <Tooltip title={metric.hint} placement="left" arrow>
+          <Tooltip
+            title={
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                <div>{metric.hint}</div>
+                {metric.source && (
+                  <div
+                    style={{
+                      fontStyle: 'italic',
+                    }}
+                  >
+                    Source: {metric.source}
+                  </div>
+                )}
+              </div>
+            }
+            placement="left"
+            arrow
+          >
             <HelpOutline />
           </Tooltip>
         </HelpContainer>
