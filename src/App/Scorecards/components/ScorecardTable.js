@@ -297,6 +297,7 @@ const Row = ({ metric, locations }) => {
               title={
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
                   {hint && <div>{hint}</div>}
+                  {metric.unit && <div>Values represent {metric.unit}</div>}
                   {metric?.source && (
                     <div
                       style={{
