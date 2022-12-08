@@ -95,7 +95,12 @@ const Scorecards = ({ ...props }) => {
           onNavigateToSection={handleSectionNavigation}
         />
         <ScorecardTableStyle style={tableSpringProps}>
-          <ScorecardTable locations={shapedLocations} metrics={flattenedMetrics} ref={tableRef} />
+          <ScorecardTable
+            locations={shapedLocations}
+            allLocations={locations}
+            metrics={flattenedMetrics}
+            ref={tableRef}
+          />
         </ScorecardTableStyle>
       </Box>
     </ScorecardSection>

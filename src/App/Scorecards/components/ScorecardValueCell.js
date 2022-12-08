@@ -21,7 +21,6 @@ const PercentBarStyle = styled(Box)`
   }
   .percent-bar__value {
     position: relative;
-    z-index: 2;
     background-color: currentColor;
     height: 100%;
     border-radius: 6px;

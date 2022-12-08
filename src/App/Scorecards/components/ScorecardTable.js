@@ -1,4 +1,9 @@
-import { getFormatter, useLang } from '@hyperobjekt/react-dashboard';
+import {
+  getFormatter,
+  useLang,
+  useLocationStore,
+  useDashboardStore,
+} from '@hyperobjekt/react-dashboard';
 import {
   Icon,
   Table,
@@ -18,6 +23,9 @@ import ScorecardValueCell from './ScorecardValueCell';
 import useIndicatorPanelStore from '../../IndicatorPanel/store';
 import { HelpOutline } from '@mui/icons-material';
 import styled from '@emotion/styled';
+import useActiveView from 'App/hooks/useActiveView';
+import { GEOID_TO_PLACE_NAME } from 'App/utils';
+import { startCase } from 'lodash';
 
 const HintIcon = styled(Icon)(({ theme }) => ({
   opacity: 0.54,
@@ -31,23 +39,40 @@ const HintIcon = styled(Icon)(({ theme }) => ({
 
 export const ScorecardTable = React.forwardRef(
   ({ locations: baseLocations, metrics: baseMetrics, ...props }, ref) => {
+    const [, setActiveView] = useActiveView();
+    const removeSelected = useLocationStore((state) => state.removeSelected);
+    const region = useDashboardStore((state) => state.region);
+    const [peers, setPeers] = useState([]);
     const [demographics, setDemographics] = useState([]);
-    const locations = baseLocations.map((l) => {
-      const isState = l.state && l.GEOID && l.state === l.GEOID;
-      const data = l.GEOID
-        ? demographics.find(
-            (d) =>
-              d?.geoid &&
-              (isState
-                ? d.geoid.startsWith('04000') && d.geoid.endsWith(l.GEOID)
-                : d.geoid.endsWith(l.GEOID)),
-          )
-        : null;
-      return {
-        ...l,
-        ...(data || {}),
-      };
-    });
+
+    const locations = baseLocations
+      .map((l) => {
+        const isState = l.state && l.GEOID && l.state === l.GEOID;
+        const data = l.GEOID
+          ? demographics.find(
+              (d) =>
+                d?.geoid &&
+                (isState
+                  ? d.geoid.startsWith('04000') && d.geoid.endsWith(l.GEOID)
+                  : d.geoid.endsWith(l.GEOID)),
+            )
+          : null;
+        return {
+          ...l,
+          ...(data || {}),
+        };
+      })
+      .map((l) => {
+        const { LocationGeoid, ...locationPeers } =
+          peers.find((d) => d?.LocationGeoid && d.LocationGeoid.endsWith(l.GEOID)) ?? {};
+
+        return {
+          ...l,
+          peers: Object.values(locationPeers || [])
+            .map((x) => GEOID_TO_PLACE_NAME[x])
+            .sort(),
+        };
+      });
 
     const customizedMetrics = useIndicatorPanelStore((state) => state.customizedMetrics);
     const hasCustomized = customizedMetrics.length > 0;
@@ -161,6 +186,22 @@ export const ScorecardTable = React.forwardRef(
         depth: 2,
         formatter: getFormatter('percent'),
       },
+      {
+        id: 'peers',
+        name: `Peer ${startCase(region)}`,
+        depth: 0,
+        cellStyle: { verticalAlign: 'top' },
+        formatter: (locations) => (
+          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', fontWeight: 'normal' }}>
+            {locations.map((location, i) => (
+              <>
+                {i > 0 && <span>•</span>}
+                <span>{location}</span>
+              </>
+            ))}
+          </div>
+        ),
+      },
     ];
 
     useEffect(() => {
@@ -178,28 +219,39 @@ export const ScorecardTable = React.forwardRef(
         },
       });
 
+      Papa.parse(`/assets/data/${region}-peers.csv`, {
+        header: true,
+        download: true,
+        dynamicTyping: true,
+        skipEmptyLines: true,
+        complete: (data) => {
+          setPeers(data.data);
+        },
+      });
+
       return () => {
         subscribed = false;
       };
-    }, []);
+    }, [region]);
 
     return (
       <TableContainer ref={ref} {...props}>
-        <Table stickyHeader aria-label="sticky table">
+        <Table stickyHeader aria-label="sticky table" style={{ width: 'auto' }}>
           <TableHead>
             <TableRow>
-              <TableCell
-                style={{ width: `${100 / (locations.length + 1)}%` }}
-                className="scorecard__label-cell"
-              />
+              <TableCell style={{ width: 300 }} className="scorecard__label-cell" />
               {locations.map((location) => (
                 <ScorecardHeaderCell
                   key={location.id}
                   color={location.color}
                   name={location.name}
                   parentName={location.parentName}
+                  handleRemove={() => {
+                    if (locations.length === 1) return setActiveView('map');
+                    removeSelected(location);
+                  }}
                   style={{
-                    width: `${100 / (locations.length + 1)}%`,
+                    width: 200,
                   }}
                 />
               ))}
@@ -227,7 +279,7 @@ const Row = ({ metric, locations }) => {
       key={metric.id}
       className={clsx('scorecard__row', 'scorecard__row--depth' + metric.depth)}
     >
-      <TableCell className="scorecard__label-cell">
+      <TableCell className="scorecard__label-cell" style={metric.cellStyle}>
         {/* SCROLL TARGET: offset by 90px to make room for header */}
         <span
           id={`scorecard-row-${metric.id}`}
@@ -245,6 +297,7 @@ const Row = ({ metric, locations }) => {
               title={
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
                   {hint && <div>{hint}</div>}
+                  {metric.unit && <div>Values represent {metric.unit}</div>}
                   {metric?.source && (
                     <div
                       style={{
@@ -294,6 +347,7 @@ const Row = ({ metric, locations }) => {
             }
             performance={performance}
             percent={showPercent && value ? value / 100 : undefined}
+            style={metric.cellStyle}
           />
         );
       })}

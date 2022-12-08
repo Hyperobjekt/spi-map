@@ -12,6 +12,8 @@ import theme from '../../../theme';
 import { CustomizeIndicatorsToggle } from '../../IndicatorPanel';
 import { animated } from '@react-spring/web';
 import PerformanceIndicator from 'App/components/PerformanceIndicator';
+import { useDashboardStore } from '@hyperobjekt/react-dashboard';
+import { startCase } from 'lodash';
 
 const StyledPaper = styled(Paper)`
   padding: ${theme.spacing(2)};
@@ -41,11 +43,21 @@ const StyledPaper = styled(Paper)`
     width: 100%;
     margin-top: ${theme.spacing(1)};
   }
+  button.jumplink {
+    cursor: pointer;
+    background-color: #fff;
+    border: none;
+    padding: 0;
+    text-decoration: underline;
+    color: #3e8ace;
+  }
 `;
 
 const ControlsWrapper = animated(StyledPaper);
 
 const ScorecardControls = ({ onNavigateToSection, ...props }) => {
+  const region = useDashboardStore((state) => state.region);
+
   const handleSectionNavigation = (section) => (e) => {
     onNavigateToSection && onNavigateToSection(e, section);
   };
@@ -70,8 +82,12 @@ const ScorecardControls = ({ onNavigateToSection, ...props }) => {
         ))}
       </List>
       <Typography variant="caption" maxWidth={360} display={'block'} fontSize={'0.875rem'}>
-        Strengths and vulnerabilities are relative to 15 cities of similar Median Household Income
-        per capita.
+        {`Strengths and vulnerabilities are relative to 16 ${region} of similar Median Household Income
+        per capita.`}{' '}
+        <button className="jumplink" onClick={handleSectionNavigation('peers')}>
+          View peer {region}
+        </button>
+        {` at the end of this table.`}
       </Typography>
       <Divider style={{ paddingTop: 16 }} />
       <Typography variant="overline" fontWeight={600}>
@@ -92,6 +108,9 @@ const ScorecardControls = ({ onNavigateToSection, ...props }) => {
         </ListItem>
         <ListItem button onClick={handleSectionNavigation('dem')}>
           <ListItemText primary="Demographics" />
+        </ListItem>
+        <ListItem button onClick={handleSectionNavigation('peers')}>
+          <ListItemText primary={`Peer ${startCase(region)}`} />
         </ListItem>
       </List>
       <Divider />
