@@ -1,4 +1,9 @@
-import { getFormatter, useLang, useLocationStore, useDashboardStore } from '@hyperobjekt/react-dashboard';
+import {
+  getFormatter,
+  useLang,
+  useLocationStore,
+  useDashboardStore,
+} from '@hyperobjekt/react-dashboard';
 import {
   Icon,
   Table,
@@ -231,13 +236,10 @@ export const ScorecardTable = React.forwardRef(
 
     return (
       <TableContainer ref={ref} {...props}>
-        <Table stickyHeader aria-label="sticky table">
+        <Table stickyHeader aria-label="sticky table" style={{ width: 'auto' }}>
           <TableHead>
             <TableRow>
-              <TableCell
-                style={{ width: `${100 / (locations.length + 1)}%` }}
-                className="scorecard__label-cell"
-              />
+              <TableCell style={{ width: 300 }} className="scorecard__label-cell" />
               {locations.map((location) => (
                 <ScorecardHeaderCell
                   key={location.id}
@@ -249,7 +251,7 @@ export const ScorecardTable = React.forwardRef(
                     removeSelected(location);
                   }}
                   style={{
-                    width: `${100 / (locations.length + 1)}%`,
+                    width: 200,
                   }}
                 />
               ))}
@@ -295,6 +297,7 @@ const Row = ({ metric, locations }) => {
               title={
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
                   {hint && <div>{hint}</div>}
+                  {metric.unit && <div>Values represent {metric.unit}</div>}
                   {metric?.source && (
                     <div
                       style={{

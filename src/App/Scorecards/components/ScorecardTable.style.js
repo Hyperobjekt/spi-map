@@ -5,7 +5,6 @@ import theme from '../../../theme';
 const StyledPaper = styled(Paper)`
   display: block;
   overflow: hidden;
-  width: 100%;
   .MuiTableContainer-root {
     max-height: calc(100vh - ${theme.spacing(16)});
   }
