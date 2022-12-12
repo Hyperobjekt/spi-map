@@ -16,6 +16,8 @@ import { useDashboardStore } from '@hyperobjekt/react-dashboard';
 import { startCase } from 'lodash';
 
 const StyledPaper = styled(Paper)`
+  max-height: calc(100vh - ${theme.spacing(16)});
+  overflow: auto;
   padding: ${theme.spacing(2)};
   opacity: 0;
   min-width: 264px;
