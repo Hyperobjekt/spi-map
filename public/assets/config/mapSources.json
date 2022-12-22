@@ -6,7 +6,7 @@
     "subgroup_id": "*",
     "year": "*",
     "tiles": [
-      "https://spi-tilesets.s3.us-west-2.amazonaws.com/v0.0.3/states/{z}/{x}/{y}.pbf"
+      "https://spi-tilesets.s3.us-west-2.amazonaws.com/v0.0.6/states/{z}/{x}/{y}.pbf"
     ],
     "type": "vector",
     "min_zoom": 1,
@@ -19,7 +19,7 @@
     "subgroup_id": "*",
     "year": "*",
     "tiles": [
-      "https://spi-tilesets.s3.us-west-2.amazonaws.com/v0.0.3/cities/{z}/{x}/{y}.pbf"
+      "https://spi-tilesets.s3.us-west-2.amazonaws.com/v0.0.6/cities/{z}/{x}/{y}.pbf"
     ],
     "type": "vector",
     "min_zoom": 7,
