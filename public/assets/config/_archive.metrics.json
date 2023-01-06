@@ -30,7 +30,7 @@
     "link": "https://www.cdc.gov/places/about/500-cities-2016-2019/index.html"
   },
   {
-    "id": "nbm_foodsecurity",
+    "id": "nbm_foodstamps",
     "format": "",
     "category": "Basic Human Needs",
     "subcategory": "Nutrition and Basic Medical Care",
@@ -257,7 +257,7 @@
     "link": "https://www.census.gov/programs-surveys/acs/data.html"
   },
   {
-    "id": "abk_lessthan9th",
+    "id": "abk_lessthan9",
     "format": "percent",
     "category": "Foundations of Wellbeing",
     "subcategory": "Access to Basic Knowledge",
