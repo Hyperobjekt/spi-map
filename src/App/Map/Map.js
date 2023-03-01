@@ -18,7 +18,7 @@ export default function Map({ children, ...props }) {
 
   const { data: user, isLoading } = useAuthUser();
 
-  if (isLoading || !user?.accessToken) return false;
+  // if (isLoading || !user?.accessToken) return false;
 
   return (
     <MapWrapper {...props}>

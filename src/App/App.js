@@ -6,16 +6,14 @@ import { styled, ThemeProvider } from '@mui/system';
 import shallow from 'zustand/shallow';
 import Header from './components/Header';
 import { Map } from './Map';
-import { IntroModal } from './IntroModal';
-import { EmailAction } from './EmailAction';
+import { SpiAuth } from 'spi-auth';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { IndicatorPanel, CustomizeIndicatorPanel, useIndicatorPanelStore } from './IndicatorPanel';
 import { SearchModal } from './Search';
 import { Scorecards } from './Scorecards';
 import theme from '../theme';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import useQueryParams from './hooks/useQueryParams';
-import { JumpToModal } from './JumpToModal';
+import { JumpToModal, useJumpToModalStore } from './JumpToModal';
 
 const queryClient = new QueryClient();
 
@@ -54,7 +52,7 @@ function App() {
   // tracks if the customize indicators panel is open
   const customizeOpen = useIndicatorPanelStore((state) => state.customizeOpen);
 
-  const params = useQueryParams();
+  const setOpen = useJumpToModalStore((state) => state.setOpen);
 
   return (
     <ThemeProvider theme={theme}>
@@ -65,7 +63,12 @@ function App() {
           <AppWrapper className="App">
             <Header />
             <Map>
-              {!!params.mode ? <EmailAction {...params} /> : <IntroModal />}
+              <SpiAuth
+                description="This map presents Social Progress Index data, including dozens of indicators and demographics, for the 50 US states and 500 cities."
+                onValidateEmail={() => {
+                  setOpen(true);
+                }}
+              />
               <JumpToModal />
               <IndicatorPanel open={indicatorsOpen} onClose={() => setIndicatorsOpen(false)} />
               <CustomizeIndicatorPanel open={customizeOpen} />

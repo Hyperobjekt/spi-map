@@ -1,9 +1,8 @@
 import React from 'react';
-import { signOut } from 'firebase/auth';
+import { signOut } from 'spi-auth';
 import { AccountCircleOutlined } from '@mui/icons-material';
 import { IconButton, Menu, MenuItem } from '@mui/material';
 import shallow from 'zustand/shallow';
-import { auth } from 'App/firebase';
 import { useJumpToModalStore } from 'App/JumpToModal';
 
 const ProfileMenu = () => {
@@ -47,7 +46,7 @@ const ProfileMenu = () => {
         >
           About
         </MenuItem>
-        <MenuItem onClick={() => signOut(auth)}>Log Out</MenuItem>
+        <MenuItem onClick={() => signOut()}>Log Out</MenuItem>
       </Menu>
     </>
   );
