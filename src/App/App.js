@@ -6,7 +6,7 @@ import { styled, ThemeProvider } from '@mui/system';
 import shallow from 'zustand/shallow';
 import Header from './components/Header';
 import { Map } from './Map';
-import { SpiAuth } from 'spi-auth';
+import { SpiAuth } from '@hyperobjekt/spi-auth';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { IndicatorPanel, CustomizeIndicatorPanel, useIndicatorPanelStore } from './IndicatorPanel';
 import { SearchModal } from './Search';

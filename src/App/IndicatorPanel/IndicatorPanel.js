@@ -32,7 +32,6 @@ const IndicatorPanel = ({ ...props }) => {
     if (parts.length > 1 && !expanded.includes(parts[0])) {
       setExpanded([...expanded, parts[0]]);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleSelectMetric = (event, id) => {

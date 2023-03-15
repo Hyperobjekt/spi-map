@@ -1,5 +1,5 @@
 import React from 'react';
-import { signOut } from 'spi-auth';
+import { signOut } from '@hyperobjekt/spi-auth';
 import { AccountCircleOutlined } from '@mui/icons-material';
 import { IconButton, Menu, MenuItem } from '@mui/material';
 import shallow from 'zustand/shallow';
