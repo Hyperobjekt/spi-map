@@ -24,55 +24,12 @@
     "link": ""
   },
   {
-    "id": "nmbc_dentalvisits",
-    "format": "percent_value",
-    "category": "bhn",
-    "subcategory": "nbm",
-    "source": "CDC 500 Cities",
-    "link": "https://www.cdc.gov/places/about/500-cities-2016-2019/index.html"
-  },
-  {
-    "id": "nbm_foodsecurity",
-    "category": "bhn",
-    "subcategory": "nbm",
-    "format": "percent_value",
-    "source": "Feeding America",
-    "link": "https://map.feedingamerica.org/"
-  },
-  {
     "id": "ps",
     "category": "bhn",
     "subcategory": "",
     "format": "number",
     "source": "",
     "link": ""
-  },
-  {
-    "id": "ps_motoraccidents(per 10,000pop)",
-    "category": "bhn",
-    "subcategory": "ps",
-    "years": "2016-2018",
-    "format": "number",
-    "source": "National Highway Transportation Safety Adminstration",
-    "link": "https://www.nhtsa.gov/research-data/fatality-analysis-reporting-system-fars"
-  },
-  {
-    "id": "ps_propertycrime(per 10,000pop)",
-    "category": "bhn",
-    "subcategory": "ps",
-    "format": "number",
-    "years": "2016-2018",
-    "source": "FBIs Uniform Crime Reporting (UCR) Program",
-    "link": "https://crime-data-explorer.app.cloud.gov/downloads-and-docs"
-  },
-  {
-    "id": "ps_violentcrime(per 1,000pop)",
-    "category": "bhn",
-    "subcategory": "ps",
-    "years": "2016-2018",
-    "format": "number",
-    "source": "FBIs Uniform Crime Reporting (UCR) Program",
-    "link": "https://crime-data-explorer.app.cloud.gov/downloads-and-docs"
   },
   {
     "id": "s",
@@ -83,72 +40,12 @@
     "link": ""
   },
   {
-    "id": "sh_costburden_owners",
-    "category": "bhn",
-    "subcategory": "s",
-    "format": "percent_value",
-    "source": "American Community Survey 5-Year Data",
-    "link": "https://www.census.gov/programs-surveys/acs/data.html"
-  },
-  {
-    "id": "sh_costburden_renters",
-    "category": "bhn",
-    "subcategory": "s",
-    "format": "percent_value",
-    "source": "American Community Survey 5-Year Data",
-    "link": "https://www.census.gov/programs-surveys/acs/data.html"
-  },
-  {
-    "id": "sh_overcrowding",
-    "category": "bhn",
-    "subcategory": "s",
-    "format": "percent_value",
-    "source": "American Community Survey 5-Year Data",
-    "link": "https://www.census.gov/programs-surveys/acs/data.html"
-  },
-  {
-    "id": "sh_lackkitchen",
-    "category": "bhn",
-    "subcategory": "s",
-    "format": "percent_value"
-  },
-  {
     "id": "ws",
     "category": "bhn",
     "subcategory": "",
     "source": "",
     "format": "number",
     "link": ""
-  },
-  {
-    "id": "ws_wastewaterproximity",
-    "category": "bhn",
-    "subcategory": "ws",
-    "years": "2017-2019",
-    "format": "number",
-    "source": "Environmental Protection Agency",
-    "link": "https://echo.epa.gov/tools/data-downloads#exporter"
-  },
-  {
-    "id": "ws_hazardouswasteproximity",
-    "category": "bhn",
-    "subcategory": "ws",
-    "format": "number",
-    "years": "2017-2019",
-    "source": "Environmental Protection Agency",
-    "link": "https://echo.epa.gov/tools/data-downloads#exporter"
-  },
-  {
-    "id": "ws_floodrisk",
-    "category": "bhn",
-    "format": "number",
-    "subcategory": "ws"
-  },
-  {
-    "id": "ws_lackplumbing",
-    "format": "percent_value",
-    "category": "bhn",
-    "subcategory": "ws"
   },
   {
     "id": "fow",
@@ -167,30 +64,6 @@
     "link": ""
   },
   {
-    "id": "abk_withouthighdiploma",
-    "format": "percent_value",
-    "category": "fow",
-    "subcategory": "abk",
-    "source": "American Community Survey 5-Year Data",
-    "link": "https://www.census.gov/programs-surveys/acs/data.html"
-  },
-  {
-    "id": "abk_lessthan9thgrade",
-    "format": "percent_value",
-    "category": "fow",
-    "subcategory": "abk",
-    "source": "American Community Survey 5-Year Data",
-    "link": "https://www.census.gov/programs-surveys/acs/data.html"
-  },
-  {
-    "id": "abk_preschool",
-    "format": "percent_value",
-    "category": "fow",
-    "subcategory": "abk",
-    "source": "American Community Survey 5-Year Data",
-    "link": "https://www.census.gov/programs-surveys/acs/data.html"
-  },
-  {
     "id": "aic",
     "category": "fow",
     "format": "number",
@@ -198,30 +71,7 @@
     "source": "",
     "link": ""
   },
-  {
-    "id": "aic_broadband",
-    "format": "percent_value",
-    "category": "fow",
-    "subcategory": "aic",
-    "source": "American Community Survey 5-Year Data",
-    "link": "https://www.census.gov/programs-surveys/acs/data.html"
-  },
-  {
-    "id": "aic_celldata",
-    "format": "percent_value",
-    "category": "fow",
-    "subcategory": "aic",
-    "source": "American Community Survey 5-Year Data",
-    "link": "https://www.census.gov/programs-surveys/acs/data.html"
-  },
-  {
-    "id": "aic_nointernet",
-    "format": "percent_value",
-    "category": "fow",
-    "subcategory": "aic",
-    "source": "American Community Survey 5-Year Data",
-    "link": "https://www.census.gov/programs-surveys/acs/data.html"
-  },
+
   {
     "id": "eq",
     "category": "fow",
@@ -231,88 +81,12 @@
     "link": ""
   },
   {
-    "id": "eq_ozone",
-    "category": "fow",
-    "format": "decimal",
-    "subcategory": "eq",
-    "source": "Environmental Protection Agency",
-    "link": "https://aqs.epa.gov/aqsweb/airdata/download_files.html"
-  },
-  {
-    "id": "eq_pm2.5",
-    "format": "number",
-    "category": "fow",
-    "subcategory": "eq",
-    "source": "Environmental Protection Agency",
-    "link": "https://aqs.epa.gov/aqsweb/airdata/download_files.html"
-  },
-  {
-    "id": "eq_renewableenergy",
-    "category": "fow",
-    "format": "percent_value",
-    "subcategory": "eq"
-  },
-  {
-    "id": "eq_waterrisk",
-    "category": "fow",
-    "format": "number",
-    "subcategory": "eq"
-  },
-  {
     "id": "hw",
     "category": "fow",
     "subcategory": "",
     "source": "",
     "format": "number",
     "link": ""
-  },
-  {
-    "id": "hw_cancer",
-    "format": "percent_value",
-    "category": "fow",
-    "subcategory": "hw",
-    "source": "CDC 500 Cities",
-    "link": "https://www.cdc.gov/places/about/500-cities-2016-2019/index.html"
-  },
-  {
-    "id": "hw_chd",
-    "format": "percent_value",
-    "category": "fow",
-    "subcategory": "hw",
-    "source": "CDC 500 Cities",
-    "link": "https://www.cdc.gov/places/about/500-cities-2016-2019/index.html"
-  },
-  {
-    "id": "hw_diabetes",
-    "format": "percent_value",
-    "category": "fow",
-    "subcategory": "hw",
-    "source": "CDC 500 Cities",
-    "link": "https://www.cdc.gov/places/about/500-cities-2016-2019/index.html"
-  },
-  {
-    "id": "hw_overdose",
-    "category": "fow",
-    "subcategory": "hw",
-    "format": "number",
-    "source": "CDC National Center for Health Statistics",
-    "link": "https://wonder.cdc.gov/"
-  },
-  {
-    "id": "hw_mentalhealth",
-    "category": "fow",
-    "subcategory": "hw",
-    "format": "number",
-    "source": "CDC 500 Cities",
-    "link": "https://www.cdc.gov/places/about/500-cities-2016-2019/index.html"
-  },
-  {
-    "id": "hw_obesity",
-    "format": "percent_value",
-    "category": "fow",
-    "subcategory": "hw",
-    "source": "CDC 500 Cities",
-    "link": "https://www.cdc.gov/places/about/500-cities-2016-2019/index.html"
   },
   {
     "id": "opp",
@@ -331,61 +105,12 @@
     "link": ""
   },
   {
-    "id": "aae_associates",
-    "format": "percent_value",
-    "category": "opp",
-    "subcategory": "aae",
-    "source": "American Community Survey 5-Year Data",
-    "link": "https://www.census.gov/programs-surveys/acs/data.html"
-  },
-  {
-    "id": "aae_bachelors",
-    "format": "percent_value",
-    "category": "opp",
-    "subcategory": "aae",
-    "source": "American Community Survey 5-Year Data",
-    "link": "https://www.census.gov/programs-surveys/acs/data.html"
-  },
-  {
-    "id": "aae_graduate",
-    "format": "percent_value",
-    "category": "opp",
-    "subcategory": "aae",
-    "source": "American Community Survey 5-Year Data",
-    "link": "https://www.census.gov/programs-surveys/acs/data.html"
-  },
-  {
     "id": "i",
     "category": "opp",
     "subcategory": "",
     "source": "",
     "format": "number",
     "link": ""
-  },
-  {
-    "id": "inc_residentialsegregation",
-    "category": "opp",
-    "subcategory": "i",
-    "format": "number",
-    "source": "American Community Survey 5-Year Data",
-    "link": "https://www.census.gov/programs-surveys/acs/data.html"
-  },
-  {
-    "id": "i_isolation",
-    "category": "opp",
-    "subcategory": "i",
-    "format": "number",
-    "source": "American Community Survey 5-Year Data",
-    "link": "https://www.census.gov/programs-surveys/acs/data.html"
-  },
-  {
-    "id": "inc_linguisticisolation",
-    "format": "percent_value",
-    "category": "opp",
-    "subcategory": "i",
-    "format": "number",
-    "source": "American Community Survey 5-Year Data",
-    "link": "https://www.census.gov/programs-surveys/acs/data.html"
   },
   {
     "id": "pfc",
@@ -396,32 +121,6 @@
     "link": ""
   },
   {
-    "id": "pfc_disconnectedyouth",
-    "format": "percent_value",
-    "category": "opp",
-    "subcategory": "pfc",
-    "source": "American Community Survey 5-Year Data",
-    "link": "https://www.census.gov/programs-surveys/acs/data.html"
-  },
-  {
-    "id": "pfc_lackhealthinsurance",
-    "category": "opp",
-    "format": "percent_value",
-    "subcategory": "pfc"
-  },
-  {
-    "id": "pfc_altercommute",
-    "category": "opp",
-    "format": "percent_value",
-    "subcategory": "pfc"
-  },
-  {
-    "id": "pfc_teenbirthrate",
-    "category": "opp",
-    "format": "percent_value",
-    "subcategory": "pfc"
-  },
-  {
     "id": "pr",
     "category": "opp",
     "format": "number",
@@ -430,58 +129,451 @@
     "link": ""
   },
   {
-    "id": "pr_fatalencounters",
-    "category": "opp",
-    "subcategory": "pr",
-    "years": "2015-2019",
+    "id": "nbmc_preventativeservices_women",
+    "category": "bhn",
+    "subcategory": "nbm",
+    "source": "CDC Places",
     "format": "number",
-    "source": "Fatal Encounters",
-    "link": "https://fatalencounters.org/"
+    "link": "https://chronicdata.cdc.gov/500-Cities-Places/PLACES-Local-Data-for-Better-Health-Place-Data-202/eav7-hnsx"
+  },
+  {
+    "id": "nbm_mencorehealth",
+    "category": "bhn",
+    "subcategory": "nbm",
+    "source": "CDC Places",
+    "format": "number",
+    "link": "https://chronicdata.cdc.gov/500-Cities-Places/PLACES-Local-Data-for-Better-Health-Place-Data-202/eav7-hnsx"
+  },
+  {
+    "id": "nbmc_foodstamps",
+    "category": "bhn",
+    "subcategory": "nbm",
+    "source": "American Community Survey 5-Year Data",
+    "format": "percent_value",
+    "link": "https://api.census.gov/data/2021/acs/acs5/profile?get=NAME,DP03_0074PE&for=state:*"
+  },
+  {
+    "id": "nmbc_supermarketaccess",
+    "category": "bhn",
+    "subcategory": "nbm",
+    "source": "USDA Food Access Research Atlas",
+    "format": "percent_value",
+    "link": "https://www.ers.usda.gov/data-products/food-access-research-atlas/download-the-data/"
+  },
+  {
+    "id": "nmbc_dentalvisits",
+    "category": "bhn",
+    "subcategory": "nbm",
+    "source": "CDC Places",
+    "format": "number",
+    "link": ""
+  },
+  {
+    "id": "ws_wastewaterproximity",
+    "category": "bhn",
+    "subcategory": "ws",
+    "source": "Department of Environmental Protection Agency",
+    "format": "percent_value",
+    "link": "https://ejscreen.epa.gov/mapper/"
+  },
+  {
+    "id": "ws_superfundsiteproximity",
+    "category": "bhn",
+    "subcategory": "ws",
+    "source": "Department of Environmental Protection Agency",
+    "format": "percent_value",
+    "link": "https://ejscreen.epa.gov/mapper/"
+  },
+  {
+    "id": "ws_hazardouswasteproximity",
+    "category": "bhn",
+    "subcategory": "ws",
+    "source": "Department of Environmental Protection Agency",
+    "format": "percent_value",
+    "link": "https://ejscreen.epa.gov/mapper/"
+  },
+  {
+    "id": "ws_lackplumbing",
+    "category": "bhn",
+    "subcategory": "ws",
+    "source": "American Community Survey 5-Year Data",
+    "format": "number",
+    "link": "https://api.census.gov/data/2021/acs/acs5/profile?get=NAME,DP04_0073PE&for=state:*"
+  },
+  {
+    "id": "ws_floodrisk",
+    "category": "bhn",
+    "subcategory": "ws",
+    "source": "Federal Emergency Management Agency",
+    "format": "number",
+    "link": "https://hazards.fema.gov/nri/map"
+  },
+  {
+    "id": "sh_lackkitchen",
+    "category": "bhn",
+    "subcategory": "s",
+    "source": "American Community Survey 5-Year Data",
+    "format": "number",
+    "link": "https://api.census.gov/data/2021/acs/acs5/profile?get=NAME,DP04_0074PE&for=state:*"
+  },
+  {
+    "id": "sh_costburden_owners",
+    "category": "bhn",
+    "subcategory": "s",
+    "source": "American Community Survey 5-Year Data",
+    "format": "percent_value",
+    "link": "https://api.census.gov/data/2021/acs/acs5/profile?get=NAME,DP04_0115PE&for=state:*"
+  },
+  {
+    "id": "sh_costburden_renters",
+    "category": "bhn",
+    "subcategory": "s",
+    "source": "American Community Survey 5-Year Data",
+    "format": "percent_value",
+    "link": "https://api.census.gov/data/2021/acs/acs5/profile?get=NAME,DP04_0142PE&for=state:*"
+  },
+  {
+    "id": "sh_overcrowding",
+    "category": "bhn",
+    "subcategory": "s",
+    "source": "American Community Survey 5-Year Data",
+    "format": "percent_value",
+    "link": "https://api.census.gov/data/2021/acs/acs5/profile?get=NAME,DP04_0079PE&for=state:*"
+  },
+  {
+    "id": "ps_motoraccidents(per 10,000pop)",
+    "category": "bhn",
+    "subcategory": "ps",
+    "source": "National Highway Transportation Safety Adminstration",
+    "format": "number",
+    "link": "https://data-usdot.opendata.arcgis.com/datasets/fatal-motor-vehicle-accidents-fars/explore?location=37.241187%2C-116.205950%2C3.95"
+  },
+  {
+    "id": "ps_propertycrime(per 10,000pop)",
+    "category": "bhn",
+    "subcategory": "ps",
+    "source": "Federal Bureau of Investigation UCR",
+    "format": "number",
+    "link": "https://www.opendataphilly.org/dataset/crime-incidents/resource/a2373b85-408b-4144-84e9-cb24843e5f2b"
+  },
+  {
+    "id": "ps_violentcrime(per 1,000pop)",
+    "category": "bhn",
+    "subcategory": "ps",
+    "source": "Federal Bureau of Investigation UCR",
+    "format": "number",
+    "link": "https://www.opendataphilly.org/dataset/crime-incidents/resource/a2373b85-408b-4144-84e9-cb24843e5f2b"
+  },
+  {
+    "id": "abk_lessthan9thgrade",
+    "category": "fow",
+    "subcategory": "abk",
+    "source": "American Community Survey 5-Year Data",
+    "format": "number",
+    "link": "https://api.census.gov/data/2021/acs/acs5/profile?get=NAME,DP02_0060PE&for=state:*"
+  },
+  {
+    "id": "abk_withouthighdiploma",
+    "category": "fow",
+    "subcategory": "abk",
+    "source": "American Community Survey 5-Year Data",
+    "format": "number",
+    "link": "https://api.census.gov/data/2021/acs/acs5/subject?get=NAME,S1501_C02_002E&for=state:*"
+  },
+  {
+    "id": "abk_preschool",
+    "category": "fow",
+    "subcategory": "abk",
+    "source": "American Community Survey 5-Year Data",
+    "format": "number",
+    "link": "https://api.census.gov/data/2021/acs/acs5/subject?get=NAME,S1401_C02_014E&for=state:*"
+  },
+  {
+    "id": "abk_highschoolbutnodiploa",
+    "category": "fow",
+    "subcategory": "abk",
+    "source": "American Community Survey 5-Year Data",
+    "format": "number",
+    "link": "https://api.census.gov/data/2021/acs/acs5/profile?get=NAME,DP02_0061PE&for=state:*"
+  },
+  {
+    "id": "abk_collegeeduwithoutdegree",
+    "category": "fow",
+    "subcategory": "abk",
+    "source": "American Community Survey 5-Year Data",
+    "format": "number",
+    "link": "https://api.census.gov/data/2021/acs/acs5/profile?get=NAME,DP02PR_0063PE&for=place:*"
+  },
+  {
+    "id": "aic_broadband",
+    "category": "fow",
+    "subcategory": "aic",
+    "source": "American Community Survey 5-Year Data",
+    "format": "percent_value",
+    "link": "https://api.census.gov/data/2021/acs/acs5/subject?get=NAME,S2801_C02_014E&for=state:*"
+  },
+  {
+    "id": "aic_celldata",
+    "category": "fow",
+    "subcategory": "aic",
+    "source": "American Community Survey 5-Year Data",
+    "format": "percent_value",
+    "link": "https://api.census.gov/data/2021/acs/acs5/subject?get=NAME,S2801_C02_015E&for=state:*"
+  },
+  {
+    "id": "aic_nointernet",
+    "category": "fow",
+    "subcategory": "aic",
+    "source": "American Community Survey 5-Year Data",
+    "format": "percent_value",
+    "link": "https://api.census.gov/data/2021/acs/acs5/subject?get=NAME,S2801_C02_019E&for=state:*"
+  },
+  {
+    "id": "hw_chd",
+    "category": "fow",
+    "subcategory": "hw",
+    "source": "CDC Places",
+    "format": "percent_value",
+    "link": "https://chronicdata.cdc.gov/500-Cities-Places/PLACES-Local-Data-for-Better-Health-Place-Data-202/eav7-hnsx"
+  },
+  {
+    "id": "hw_cancer",
+    "category": "fow",
+    "subcategory": "hw",
+    "source": "CDC Places",
+    "format": "percent_value",
+    "link": "https://chronicdata.cdc.gov/500-Cities-Places/PLACES-Local-Data-for-Better-Health-Place-Data-202/eav7-hnsx"
+  },
+  {
+    "id": "hw_diabetes",
+    "category": "fow",
+    "subcategory": "hw",
+    "source": "CDC Places",
+    "format": "percent_value",
+    "link": "https://chronicdata.cdc.gov/500-Cities-Places/PLACES-Local-Data-for-Better-Health-Place-Data-202/eav7-hnsx"
+  },
+  {
+    "id": "hw_overdose",
+    "category": "fow",
+    "subcategory": "hw",
+    "source": "CDC Wonder",
+    "format": "number",
+    "link": "https://wonder.cdc.gov/controller/datarequest/D158;jsessionid=EDDB2F2432C3601F6C87900F0FB6"
+  },
+  {
+    "id": "hw_mentalhealth",
+    "category": "fow",
+    "subcategory": "hw",
+    "source": "CDC Places",
+    "format": "number",
+    "link": "https://chronicdata.cdc.gov/500-Cities-Places/PLACES-Local-Data-for-Better-Health-Place-Data-202/eav7-hnsx"
+  },
+  {
+    "id": "hw_obesity",
+    "category": "fow",
+    "subcategory": "hw",
+    "source": "CDC Places",
+    "format": "percent_value",
+    "link": "https://chronicdata.cdc.gov/500-Cities-Places/PLACES-Local-Data-for-Better-Health-Place-Data-202/eav7-hnsx"
+  },
+  {
+    "id": "eq_ozone",
+    "category": "fow",
+    "subcategory": "eq",
+    "source": "Department of Environmental Protection Agency",
+    "format": "percent_value",
+    "link": "https://www.epa.gov/ejscreen/download-ejscreen-data"
+  },
+  {
+    "id": "eq_pm2.5",
+    "category": "fow",
+    "subcategory": "eq",
+    "source": "Department of Environmental Protection Agency",
+    "format": "percent_value",
+    "link": "https://www.epa.gov/ejscreen/download-ejscreen-data"
+  },
+  {
+    "id": "eq_airtoxics",
+    "category": "fow",
+    "subcategory": "eq",
+    "source": "Department of Environmental Protection Agency",
+    "format": "percent_value",
+    "link": "https://www.epa.gov/ejscreen/download-ejscreen-data"
+  },
+  {
+    "id": "eq_trafficprox",
+    "category": "fow",
+    "subcategory": "eq",
+    "source": "Department of Environmental Protection Agency",
+    "format": "percent_value",
+    "link": "https://www.epa.gov/ejscreen/download-ejscreen-data"
+  },
+  {
+    "id": "eq_renewableenergy",
+    "category": "fow",
+    "subcategory": "eq",
+    "source": "Environmental Protection Agency",
+    "format": "number",
+    "link": "https://www.epa.gov/egrid"
+  },
+  {
+    "id": "eq_installsolar",
+    "category": "fow",
+    "subcategory": "eq",
+    "source": "Google Sunroof Project",
+    "format": "percent_value",
+    "link": "https://sunroof.withgoogle.com/data-explorer/"
+  },
+  {
+    "id": "eq_waterrisk",
+    "category": "fow",
+    "subcategory": "eq",
+    "source": "World Resources Institute",
+    "format": "number",
+    "link": "https://www.wri.org/data/aqueduct-global-maps-30-data"
   },
   {
     "id": "pr_homeownership",
-    "format": "percent_value",
     "category": "opp",
     "subcategory": "pr",
     "source": "American Community Survey 5-Year Data",
-    "link": "https://www.census.gov/programs-surveys/acs/data.html"
+    "format": "percent_value",
+    "link": "https://api.census.gov/data/2021/acs/acs5/profile?get=NAME,DP04_0046PE&for=state:*"
   },
   {
-    "id": "pr_voterturnot",
-    "format": "percent_value",
+    "id": "pr_fatalencounters",
     "category": "opp",
     "subcategory": "pr",
-    "source": "MIT Election Data & Science Lab (MEDSL)",
-    "link": "https://electionlab.mit.edu/"
+    "source": "Fatal Encounters",
+    "format": "number",
+    "link": "https://fatalencounters.org/"
   },
   {
     "id": "pr_stateconst_AgainstGenderDesc",
     "category": "opp",
-    "subcategory": "pr"
+    "subcategory": "pr",
+    "source": "CATO Institute/Freedom Index",
+    "format": "number",
+    "link": "https://www.freedominthe50states.org/"
+  },
+  {
+    "id": "pr_genderpaygap",
+    "category": "opp",
+    "subcategory": "pr",
+    "source": "American Community Survey 5-Year Data",
+    "format": "number",
+    "link": "https://data.census.gov/cedsci/"
+  },
+  {
+    "id": "pr_voterturnot",
+    "category": "opp",
+    "subcategory": "pr",
+    "source": "MIT Election Data & Science Lab (MEDSL)",
+    "format": "number",
+    "link": "https://electionlab.mit.edu/data#data"
+  },
+  {
+    "id": "pfc_alternativetransport",
+    "category": "opp",
+    "subcategory": "pfc",
+    "source": "American Community Survey 5-Year Data",
+    "format": "percent_value",
+    "link": "https://api.census.gov/data/2021/acs/acs5/profile?get=NAME,DP03_0019PE&for=state:*"
+  },
+  {
+    "id": "pfc_disconnectedyouth",
+    "category": "opp",
+    "subcategory": "pfc",
+    "source": "American Community Survey 5-Year Data",
+    "format": "percent_value",
+    "link": "https://api.census.gov/data/2021/acs/acs5/subject?get=NAME,S0902_C01_017E&for=state:*"
+  },
+  {
+    "id": "pfc_lackhealthinsurance",
+    "category": "opp",
+    "subcategory": "pfc",
+    "source": "CDC Places",
+    "format": "number",
+    "link": "https://chronicdata.cdc.gov/500-Cities-Places/PLACES-Local-Data-for-Better-Health-Place-Data-202/eav7-hnsx"
+  },
+  {
+    "id": "pfc_teenbirthrate",
+    "category": "opp",
+    "subcategory": "pfc",
+    "source": "American Community Survey 5-Year Data",
+    "format": "number",
+    "link": "https://api.census.gov/data/2021/acs/acs5/subject?get=NAME,S1301_C03_002E&for=state:*"
+  },
+  {
+    "id": "inc_residentialsegregation",
+    "category": "opp",
+    "subcategory": "i",
+    "source": "American Community Survey 5-Year Data",
+    "format": "percent_value",
+    "link": "https://data.census.gov/cedsci/"
+  },
+  {
+    "id": "inc_econicallyactivewomen",
+    "category": "opp",
+    "subcategory": "i",
+    "source": "American Community Survey 5-Year Data",
+    "format": "number",
+    "link": "https://api.census.gov/data/2021/acs/acs5/profile?get=NAME,DP03_0011PE&for=state:*"
+  },
+  {
+    "id": "inc_residentialisolation",
+    "category": "opp",
+    "subcategory": "i",
+    "source": "American Community Survey 5-Year Data",
+    "format": "number",
+    "link": "https://data.census.gov/cedsci/"
   },
   {
     "id": "inc_averagecommuttetime",
     "category": "opp",
+    "subcategory": "i",
+    "source": "American Community Survey 5-Year Data",
     "format": "number",
-    "subcategory": "i"
+    "link": "https://api.census.gov/data/2021/acs/acs5/profile?get=NAME,DP03_0025E&for=state:*"
   },
   {
-    "id": "nbmc_preventativeservices_men",
-    "category": "bhn",
-    "subcategory": "nbm",
-    "format": "percent_value"
-  },
-  {
-    "id": "nbmc_preventativeservices_women",
-    "category": "bhn",
+    "id": "inc_linguisticisolation",
+    "category": "opp",
+    "subcategory": "i",
+    "source": "American Community Survey 5-Year Data",
     "format": "percent_value",
-    "subcategory": "nbm"
+    "link": "https://data.census.gov/cedsci/"
   },
   {
-    "id": "nbmc_supermarketaccess",
-    "category": "bhn",
-    "subcategory": "nbm",
-    "format": "percent_value"
+    "id": "inc_femalerep",
+    "category": "opp",
+    "subcategory": "i",
+    "source": "State Legislature and City Council Rosters",
+    "format": "number",
+    "link": ""
+  },
+  {
+    "id": "aae_associates",
+    "category": "opp",
+    "subcategory": "aae",
+    "source": "American Community Survey 5-Year Data",
+    "format": "percent_value",
+    "link": "https://api.census.gov/data/2021/acs/acs5/subject?get=NAME,S1501_C02_011E&for=state:*"
+  },
+  {
+    "id": "aae_bachelors",
+    "category": "opp",
+    "subcategory": "aae",
+    "source": "American Community Survey 5-Year Data",
+    "format": "percent_value",
+    "link": "https://api.census.gov/data/2021/acs/acs5/subject?get=NAME,S1501_C02_012E&for=state:*"
+  },
+  {
+    "id": "aae_graduate",
+    "category": "opp",
+    "subcategory": "aae",
+    "source": "American Community Survey 5-Year Data",
+    "format": "percent_value",
+    "link": "https://api.census.gov/data/2021/acs/acs5/subject?get=NAME,S1501_C02_013E&for=state:*"
   }
-
 ]
