@@ -99,14 +99,6 @@
     "link": "https://www.census.gov/programs-surveys/acs/data.html"
   },
   {
-    "id": "s_homeless",
-    "category": "bhn",
-    "subcategory": "s",
-    "format": "number",
-    "source": "US Department of Housing and Urban Development",
-    "link": "https://www.hudexchange.info/resource/3031/pit-and-hic-data-since-2007/"
-  },
-  {
     "id": "sh_overcrowding",
     "category": "bhn",
     "subcategory": "s",
@@ -175,24 +167,6 @@
     "link": ""
   },
   {
-    "id": "abk_g3reading",
-    "format": "percent_value",
-    "category": "fow",
-    "subcategory": "abk",
-    "years": "2015-2016",
-    "source": "Stanford Education Data Archive 4.0",
-    "link": "https://edopportunity.org/"
-  },
-  {
-    "id": "abk_g8math",
-    "format": "percent_value",
-    "category": "fow",
-    "subcategory": "abk",
-    "years": "2015-2016",
-    "source": "Stanford Education Data Archive 4.0",
-    "link": "https://edopportunity.org/"
-  },
-  {
     "id": "abk_withouthighdiploma",
     "format": "percent_value",
     "category": "fow",
@@ -233,14 +207,6 @@
     "link": "https://www.census.gov/programs-surveys/acs/data.html"
   },
   {
-    "id": "aic_broadbandspeed",
-    "format": "number",
-    "category": "fow",
-    "subcategory": "aic",
-    "source": "Federal Communications Commision",
-    "link": "https://www.fcc.gov/general/broadband-deployment-data-fcc-form-477"
-  },
-  {
     "id": "aic_celldata",
     "format": "percent_value",
     "category": "fow",
@@ -265,14 +231,6 @@
     "link": ""
   },
   {
-    "id": "eq_no2",
-    "category": "fow",
-    "format": "number",
-    "subcategory": "eq",
-    "source": "Environmental Protection Agency",
-    "link": "https://aqs.epa.gov/aqsweb/airdata/download_files.html"
-  },
-  {
     "id": "eq_ozone",
     "category": "fow",
     "format": "decimal",
@@ -287,12 +245,6 @@
     "subcategory": "eq",
     "source": "Environmental Protection Agency",
     "link": "https://aqs.epa.gov/aqsweb/airdata/download_files.html"
-  },
-  {
-    "id": "eq_affectedglobalwa",
-    "category": "fow",
-    "format": "percent_value",
-    "subcategory": "eq"
   },
   {
     "id": "eq_renewableenergy",
@@ -419,14 +371,6 @@
     "link": "https://www.census.gov/programs-surveys/acs/data.html"
   },
   {
-    "id": "i_genderpaygap",
-    "category": "opp",
-    "subcategory": "i",
-    "format": "number",
-    "source": "American Community Survey 5-Year Data",
-    "link": "https://www.census.gov/programs-surveys/acs/data.html"
-  },
-  {
     "id": "i_isolation",
     "category": "opp",
     "subcategory": "i",
@@ -511,12 +455,6 @@
     "link": "https://electionlab.mit.edu/"
   },
   {
-    "id": "pr_gendergappower",
-    "category": "opp",
-    "format": "number",
-    "subcategory": "pr"
-  },
-  {
     "id": "pr_stateconst_AgainstGenderDesc",
     "category": "opp",
     "subcategory": "pr"
@@ -540,13 +478,7 @@
     "subcategory": "nbm"
   },
   {
-    "id": "nbm_poorhealth",
-    "category": "bhn",
-    "format": "percent_value",
-    "subcategory": "nbm"
-  },
-  {
-    "id": "nbm_supermarketacce",
+    "id": "nbmc_supermarketaccess",
     "category": "bhn",
     "subcategory": "nbm",
     "format": "percent_value"

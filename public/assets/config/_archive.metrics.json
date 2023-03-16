@@ -143,7 +143,6 @@
     "link": "https://www.census.gov/programs-surveys/acs/data.html"
   },
   {
-    "id": "s_homeless",
     "format": "",
     "category": "Basic Human Needs",
     "subcategory": "Housing",
@@ -225,28 +224,6 @@
     "link": ""
   },
   {
-    "id": "abk_g3reading",
-    "format": "percent",
-    "category": "Foundations of Wellbeing",
-    "subcategory": "Access to Basic Knowledge",
-    "name": "Third grade language arts proficiency (% of 3rd graders)",
-    "years": "2015-2016",
-    "description": "Percentage of 3rd graders reaching proficiency in language arts on state standardized tests where proficiency levels are modeled to be consistent across states and years.",
-    "source": "Stanford Education Data Archive 4.0",
-    "link": "https://edopportunity.org/"
-  },
-  {
-    "id": "abk_g8math",
-    "format": "percent",
-    "category": "Foundations of Wellbeing",
-    "subcategory": "Access to Basic Knowledge",
-    "name": "Eighth grade math proficiency (% of 8th graders)",
-    "years": "2015-2016",
-    "description": "Percentage of 8th graders reaching proficiency in mathematics on state standardized tests where proficiency levels are modeled to be consistent across states and years.",
-    "source": "Stanford Education Data Archive 4.0",
-    "link": "https://edopportunity.org/"
-  },
-  {
     "id": "abk_withouthighdiploma",
     "format": "percent",
     "category": "Foundations of Wellbeing",
@@ -295,16 +272,6 @@
     "description": "Percentage of population with a broadband subscription.",
     "source": "American Community Survey 5-Year Data",
     "link": "https://www.census.gov/programs-surveys/acs/data.html"
-  },
-  {
-    "id": "aic_broadbandspeed",
-    "format": "decimal",
-    "category": "Foundations of Wellbeing",
-    "subcategory": "Access to Information and Communications",
-    "name": "Average Broadband Speed (Mbps download)",
-    "description": "Average maximum download speed in megabytes per second advertised by all consumer ISPs.",
-    "source": "Federal Communications Commision",
-    "link": "https://www.fcc.gov/general/broadband-deployment-data-fcc-form-477"
   },
   {
     "id": "aic_celldata",
@@ -356,16 +323,6 @@
     "description": "Percentage of total land area in FEMA-designated high-risk flood zones A, AE, V, or VE which all have at least a 1% annual chance of flooding and a 26% chance of flooding over the life of a 30-year mortgage.",
     "source": "FEMA National Flood Hazard Layers",
     "link": "https://msc.fema.gov/portal/availabilitySearch#searchresultsanchor"
-  },
-  {
-    "id": "eq_no2",
-    "format": "decimal",
-    "category": "Foundations of Wellbeing",
-    "subcategory": "Environmental Quality",
-    "name": "Nitrogen dioxide average annual concentration (ppb)",
-    "description": "Average annual nitrogen dioxide concentration in parts per billion, modeled to census tract level from air quality monitoring station data.",
-    "source": "Environmental Protection Agency",
-    "link": "https://aqs.epa.gov/aqsweb/airdata/download_files.html"
   },
   {
     "id": "eq_ozone",
@@ -546,16 +503,6 @@
     "description": "Percentage of women in state legislature or city council or equivalent in jurisdiction.",
     "source": "State Legislature and City Council Rosters",
     "link": "N/A"
-  },
-  {
-    "id": "i_genderpaygap",
-    "format": "",
-    "category": "Opportunity",
-    "subcategory": "Inclusiveness",
-    "name": "Gender Pay Gap (female/male)",
-    "description": "Ratio of female to male median earnings in the past 12 months (2017 inflation-adjusted dollars)",
-    "source": "American Community Survey 5-Year Data",
-    "link": "https://www.census.gov/programs-surveys/acs/data.html"
   },
   {
     "id": "i_isolation",
