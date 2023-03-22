@@ -1,7 +1,7 @@
 {
   "METRIC_SPI": "Social Progress Index",
   "METRIC_BHN": "Basic Human Needs",
-  "METRIC_NBM": "Nutrition and Basic Medical Care",
+  "METRIC_NBMC": "Nutrition and Basic Medical Care",
   "METRIC_PS": "Personal Safety",
   "METRIC_S": "Shelter",
   "METRIC_WS": "Water and Sanitation",

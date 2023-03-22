@@ -16,7 +16,7 @@
     "link": ""
   },
   {
-    "id": "nbm",
+    "id": "nbmc",
     "category": "bhn",
     "subcategory": "",
     "source": "",
@@ -131,7 +131,7 @@
   {
     "id": "nbmc_preventativeservices_women",
     "category": "bhn",
-    "subcategory": "nbm",
+    "subcategory": "nbmc",
     "source": "CDC Places",
     "format": "number",
     "link": "https://chronicdata.cdc.gov/500-Cities-Places/PLACES-Local-Data-for-Better-Health-Place-Data-202/eav7-hnsx"
@@ -139,7 +139,7 @@
   {
     "id": "nbmc_preventativeservices_men",
     "category": "bhn",
-    "subcategory": "nbm",
+    "subcategory": "nbmc",
     "source": "CDC Places",
     "format": "number",
     "link": "https://chronicdata.cdc.gov/500-Cities-Places/PLACES-Local-Data-for-Better-Health-Place-Data-202/eav7-hnsx"
@@ -147,7 +147,7 @@
   {
     "id": "nbmc_foodstamps",
     "category": "bhn",
-    "subcategory": "nbm",
+    "subcategory": "nbmc",
     "source": "American Community Survey 5-Year Data",
     "format": "percent_value",
     "link": "https://api.census.gov/data/2021/acs/acs5/profile?get=NAME,DP03_0074PE&for=state:*"
@@ -155,7 +155,7 @@
   {
     "id": "nmbc_supermarketaccess",
     "category": "bhn",
-    "subcategory": "nbm",
+    "subcategory": "nbmc",
     "source": "USDA Food Access Research Atlas",
     "format": "percent_value",
     "link": "https://www.ers.usda.gov/data-products/food-access-research-atlas/download-the-data/"
@@ -163,7 +163,7 @@
   {
     "id": "nmbc_dentalvisits",
     "category": "bhn",
-    "subcategory": "nbm",
+    "subcategory": "nbmc",
     "source": "CDC Places",
     "format": "number",
     "link": ""

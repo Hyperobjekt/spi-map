@@ -15,7 +15,7 @@ const non_reverse_metric_ids = [
   'aic_nointernet',
   'eq_ozone',
   'eq_pm2.5',
-  'nbm_foodsecurity',
+  'nbmc_foodsecurity',
   'hw_cancer',
   'hw_chd',
   'hw_diabetes',
