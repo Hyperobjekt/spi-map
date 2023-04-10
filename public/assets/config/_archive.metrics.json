@@ -10,7 +10,7 @@
     "link": ""
   },
   {
-    "id": "nbm",
+    "id": "nbmc",
     "format": "",
     "category": "Basic Human Needs",
     "subcategory": "",
@@ -20,7 +20,7 @@
     "link": ""
   },
   {
-    "id": "nbm_dental",
+    "id": "nmbc_dentalvisits",
     "format": "percent",
     "category": "Basic Human Needs",
     "subcategory": "Nutrition and Basic Medical Care",
@@ -50,7 +50,7 @@
     "link": "https://www.cdc.gov/places/about/500-cities-2016-2019/index.html"
   },
   {
-    "id": "nbm_supermarketaccess",
+    "id": "nmbc_supermarketaccess",
     "format": "percent",
     "category": "Basic Human Needs",
     "subcategory": "Nutrition and Basic Medical Care",
@@ -70,7 +70,7 @@
     "link": ""
   },
   {
-    "id": "ps_accidents",
+    "id": "ps_motoraccidents(per 10,000pop)",
     "format": "",
     "category": "Basic Human Needs",
     "subcategory": "Personal Safety",
@@ -81,7 +81,7 @@
     "link": "https://www.nhtsa.gov/research-data/fatality-analysis-reporting-system-fars"
   },
   {
-    "id": "ps_property",
+    "id": "ps_propertycrime(per 10,000pop)",
     "format": "",
     "category": "Basic Human Needs",
     "subcategory": "Personal Safety",
@@ -92,7 +92,7 @@
     "link": "https://crime-data-explorer.app.cloud.gov/downloads-and-docs"
   },
   {
-    "id": "ps_violent",
+    "id": "ps_violentcrime(per 1,000pop)",
     "format": "",
     "category": "Basic Human Needs",
     "subcategory": "Personal Safety",
@@ -123,7 +123,7 @@
     "link": "https://evictionlab.org/"
   },
   {
-    "id": "s_hburdenowner",
+    "id": "sh_costburden_owners",
     "format": "",
     "category": "Basic Human Needs",
     "subcategory": "Housing",
@@ -133,7 +133,7 @@
     "link": "https://www.census.gov/programs-surveys/acs/data.html"
   },
   {
-    "id": "s_hburdenrenter",
+    "id": "sh_costburden_renters",
     "format": "",
     "category": "Basic Human Needs",
     "subcategory": "Housing",
@@ -143,7 +143,6 @@
     "link": "https://www.census.gov/programs-surveys/acs/data.html"
   },
   {
-    "id": "s_homeless",
     "format": "",
     "category": "Basic Human Needs",
     "subcategory": "Housing",
@@ -153,7 +152,7 @@
     "link": "https://www.hudexchange.info/resource/3031/pit-and-hic-data-since-2007/"
   },
   {
-    "id": "s_overcrowded",
+    "id": "sh_overcrowding",
     "format": "",
     "category": "Basic Human Needs",
     "subcategory": "Housing",
@@ -173,7 +172,7 @@
     "link": ""
   },
   {
-    "id": "ws_drinkingwater",
+    "id": "ws_wastewaterproximity",
     "format": "",
     "category": "Basic Human Needs",
     "subcategory": "Water and Sanitation",
@@ -184,7 +183,7 @@
     "link": "https://echo.epa.gov/tools/data-downloads#exporter"
   },
   {
-    "id": "ws_hazardouswaste",
+    "id": "ws_hazardouswasteproximity",
     "format": "",
     "category": "Basic Human Needs",
     "subcategory": "Water and Sanitation",
@@ -225,29 +224,7 @@
     "link": ""
   },
   {
-    "id": "abk_g3reading",
-    "format": "percent",
-    "category": "Foundations of Wellbeing",
-    "subcategory": "Access to Basic Knowledge",
-    "name": "Third grade language arts proficiency (% of 3rd graders)",
-    "years": "2015-2016",
-    "description": "Percentage of 3rd graders reaching proficiency in language arts on state standardized tests where proficiency levels are modeled to be consistent across states and years.",
-    "source": "Stanford Education Data Archive 4.0",
-    "link": "https://edopportunity.org/"
-  },
-  {
-    "id": "abk_g8math",
-    "format": "percent",
-    "category": "Foundations of Wellbeing",
-    "subcategory": "Access to Basic Knowledge",
-    "name": "Eighth grade math proficiency (% of 8th graders)",
-    "years": "2015-2016",
-    "description": "Percentage of 8th graders reaching proficiency in mathematics on state standardized tests where proficiency levels are modeled to be consistent across states and years.",
-    "source": "Stanford Education Data Archive 4.0",
-    "link": "https://edopportunity.org/"
-  },
-  {
-    "id": "abk_hsincomplete",
+    "id": "abk_withouthighdiploma",
     "format": "percent",
     "category": "Foundations of Wellbeing",
     "subcategory": "Access to Basic Knowledge",
@@ -257,7 +234,7 @@
     "link": "https://www.census.gov/programs-surveys/acs/data.html"
   },
   {
-    "id": "abk_lessthan9th",
+    "id": "abk_lessthan9thgrade",
     "format": "percent",
     "category": "Foundations of Wellbeing",
     "subcategory": "Access to Basic Knowledge",
@@ -267,7 +244,7 @@
     "link": "https://www.census.gov/programs-surveys/acs/data.html"
   },
   {
-    "id": "abk_preschoolenroll",
+    "id": "abk_preschool",
     "format": "percent",
     "category": "Foundations of Wellbeing",
     "subcategory": "Access to Basic Knowledge",
@@ -295,16 +272,6 @@
     "description": "Percentage of population with a broadband subscription.",
     "source": "American Community Survey 5-Year Data",
     "link": "https://www.census.gov/programs-surveys/acs/data.html"
-  },
-  {
-    "id": "aic_broadbandspeed",
-    "format": "decimal",
-    "category": "Foundations of Wellbeing",
-    "subcategory": "Access to Information and Communications",
-    "name": "Average Broadband Speed (Mbps download)",
-    "description": "Average maximum download speed in megabytes per second advertised by all consumer ISPs.",
-    "source": "Federal Communications Commision",
-    "link": "https://www.fcc.gov/general/broadband-deployment-data-fcc-form-477"
   },
   {
     "id": "aic_celldata",
@@ -358,16 +325,6 @@
     "link": "https://msc.fema.gov/portal/availabilitySearch#searchresultsanchor"
   },
   {
-    "id": "eq_no2",
-    "format": "decimal",
-    "category": "Foundations of Wellbeing",
-    "subcategory": "Environmental Quality",
-    "name": "Nitrogen dioxide average annual concentration (ppb)",
-    "description": "Average annual nitrogen dioxide concentration in parts per billion, modeled to census tract level from air quality monitoring station data.",
-    "source": "Environmental Protection Agency",
-    "link": "https://aqs.epa.gov/aqsweb/airdata/download_files.html"
-  },
-  {
     "id": "eq_ozone",
     "format": "decimal",
     "category": "Foundations of Wellbeing",
@@ -378,7 +335,7 @@
     "link": "https://aqs.epa.gov/aqsweb/airdata/download_files.html"
   },
   {
-    "id": "eq_pm25",
+    "id": "eq_pm2.5",
     "format": "decimal",
     "category": "Foundations of Wellbeing",
     "subcategory": "Environmental Quality",
@@ -428,7 +385,7 @@
     "link": "https://www.cdc.gov/places/about/500-cities-2016-2019/index.html"
   },
   {
-    "id": "hw_drugod",
+    "id": "hw_overdose",
     "format": "",
     "category": "Foundations of Wellbeing",
     "subcategory": "Health and Wellness",
@@ -528,7 +485,7 @@
     "link": ""
   },
   {
-    "id": "i_dissimilarity",
+    "id": "inc_residentialsegregation",
     "format": "",
     "category": "Opportunity",
     "subcategory": "Inclusiveness",
@@ -548,16 +505,6 @@
     "link": "N/A"
   },
   {
-    "id": "i_genderpaygap",
-    "format": "",
-    "category": "Opportunity",
-    "subcategory": "Inclusiveness",
-    "name": "Gender Pay Gap (female/male)",
-    "description": "Ratio of female to male median earnings in the past 12 months (2017 inflation-adjusted dollars)",
-    "source": "American Community Survey 5-Year Data",
-    "link": "https://www.census.gov/programs-surveys/acs/data.html"
-  },
-  {
     "id": "i_isolation",
     "format": "",
     "category": "Opportunity",
@@ -568,7 +515,7 @@
     "link": "https://www.census.gov/programs-surveys/acs/data.html"
   },
   {
-    "id": "i_linguistic",
+    "id": "inc_linguisticisolation",
     "format": "",
     "category": "Opportunity",
     "subcategory": "Inclusiveness",
@@ -588,7 +535,7 @@
     "link": ""
   },
   {
-    "id": "pfc_cleancommute",
+    "id": "pfc_alternativetransport",
     "format": "",
     "category": "Opportunity",
     "subcategory": "Personal Freedom and Choice",
@@ -598,7 +545,7 @@
     "link": "https://www.census.gov/programs-surveys/acs/data.html"
   },
   {
-    "id": "pfc_disconnected",
+    "id": "pfc_disconnectedyouth",
     "format": "",
     "category": "Opportunity",
     "subcategory": "Personal Freedom and Choice",
@@ -640,7 +587,7 @@
     "link": "https://www2.ed.gov/about/offices/list/ocr/data.html"
   },
   {
-    "id": "pr_fatal",
+    "id": "pr_fatalencounters",
     "format": "",
     "category": "Opportunity",
     "subcategory": "Personal Rights",
@@ -671,7 +618,7 @@
     "link": "http://trends.vera.org/incarceration-rates?data=pretrial&year=2018"
   },
   {
-    "id": "pr_turnout",
+    "id": "pr_voterturnot",
     "format": "",
     "category": "Opportunity",
     "subcategory": "Personal Rights",
