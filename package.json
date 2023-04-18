@@ -9,7 +9,7 @@
     "@hyperobjekt/mapgl": "^1.1.7",
     "@hyperobjekt/react-dashboard": "^1.3.2",
     "@hyperobjekt/scales": "^2.1.2",
-    "@hyperobjekt/spi-auth": "^0.0.9",
+    "@hyperobjekt/spi-auth": "^0.0.24",
     "@mui/icons-material": "^5.4.2",
     "@mui/material": "^5.4.2",
     "@react-query-firebase/auth": "^1.0.0-dev.2",
