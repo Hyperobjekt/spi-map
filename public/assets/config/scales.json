@@ -44,9 +44,9 @@
     "type": "choropleth"
   },
   {
-    "id": "pr_stateconstagains",
+    "id": "pr_stateconst_AgainstGenderDesc",
     "region_id": "*",
-    "metric_id": "pr_stateconstagains",
+    "metric_id": "pr_stateconst_AgainstGenderDesc",
     "subgroup_id": "*",
     "year": "*",
     "type": "choropleth",
