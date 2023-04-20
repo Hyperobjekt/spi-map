@@ -1300,9 +1300,9 @@
     zustand "^3.0.0"
 
 "@hyperobjekt/react-dashboard@^1.3.3":
-  version "1.3.4"
-  resolved "https://registry.yarnpkg.com/@hyperobjekt/react-dashboard/-/react-dashboard-1.3.4.tgz#812bb5dc80b833b3a158777d07b2e915cc83ae9a"
-  integrity sha512-FQ88LDkD+W3ntjyreqWbLEYrvxfDlZL89x4mhsJuLAYEufxtXGr3zq/BJczv9kOAzWqUXdFVSy8iYoJKwDaWpw==
+  version "1.3.5"
+  resolved "https://registry.yarnpkg.com/@hyperobjekt/react-dashboard/-/react-dashboard-1.3.5.tgz#de2315479e9dc763b318d41837ec34c1cca6818b"
+  integrity sha512-J5mKWDe5nBjNgX2Q7UNYIbKPdTrDGN+e5snQk4E1PZ9t6qzf1hYFBheT0LO8E7Sc1fZOOG8d1lpZ/cU57aYHFA==
   dependencies:
     d3-dsv "^3.0.1"
     d3-format "^3.1.0"
