@@ -38,7 +38,7 @@ export default function MapGL({ children, ...props }) {
     >
       <GeolocateControl />
       <NavigationControl />
-      <AttributionControl customAttribution="Copyright © Social Progress Imperative, 2022" />
+      <AttributionControl customAttribution="Copyright © Social Progress Imperative, 2023" />
       <CityLabelsLayer />
       {children}
     </HypMapGL>
