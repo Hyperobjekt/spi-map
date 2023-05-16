@@ -19,7 +19,7 @@ const RegionSelect = (props) => {
   const selected = useLocationStore((state) => state.selected);
 
   // Stores the selected cities/states so toggling regions back and forth will keep previous state
-  const [cachedSelection, setCachedSelection] = useState({ cities: [], states: [] });
+  const [cachedSelection, setCachedSelection] = useState({ cities: [], states: [], tracts: [] });
 
   useEffect(() => {
     setCachedSelection((x) => ({ ...x, [region]: selected }));

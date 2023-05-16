@@ -29,13 +29,13 @@ export default function useSpiMapLayers() {
       },
       scale: scaleOverrides,
     }),
-    // tracts: useChoroplethLayerContext({
-    //   context: {
-    //     region_id: "tracts",
-    //     isActiveRegion: currentContext.region_id === "tracts",
-    //   },
-    //   scale: scaleOverrides,
-    // }),
+    tracts: useChoroplethLayerContext({
+      context: {
+        region_id: 'tracts',
+        isActiveRegion: currentContext.region_id === 'tracts',
+      },
+      scale: scaleOverrides,
+    }),
   };
 
   return getChoroplethLayers(layerContexts[currentContext.region_id]);
