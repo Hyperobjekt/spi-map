@@ -127,14 +127,13 @@ const IntroModal = ({ ...props }) => {
 
             <Label>View data for Census tracts</Label>
             <Button
-              disabled
               fullWidth
               size="large"
               variant="contained"
               color="primary"
               onClick={handleViewTracts}
             >
-              Coming soon!
+              Go to census tracts view
             </Button>
           </Buttoncontainer>
         </Content>
