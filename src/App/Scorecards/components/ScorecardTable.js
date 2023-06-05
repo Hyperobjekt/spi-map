@@ -47,15 +47,8 @@ export const ScorecardTable = React.forwardRef(
 
     const locations = baseLocations
       .map((l) => {
-        const isState = l.state && l.GEOID && l.state === l.GEOID;
         const data = l.GEOID
-          ? demographics.find(
-              (d) =>
-                d?.geoid &&
-                (isState
-                  ? d.geoid.startsWith('04000') && d.geoid.endsWith(l.GEOID)
-                  : d.geoid.endsWith(l.GEOID)),
-            )
+          ? demographics.find((d) => d.geoid?.toString().split('US').at(-1) === l.GEOID)
           : null;
         return {
           ...l,
@@ -210,8 +203,9 @@ export const ScorecardTable = React.forwardRef(
       Papa.parse('/assets/data/demographics.csv', {
         header: true,
         download: true,
-        dynamicTyping: true,
+        dynamicTyping: false,
         skipEmptyLines: true,
+        transform: (value, col) => (!value ? value : col === 'geoid' ? value.toString() : +value),
         complete: (data) => {
           if (subscribed) {
             setDemographics(data.data);
