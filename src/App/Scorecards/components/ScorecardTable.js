@@ -287,7 +287,8 @@ const Row = ({ metric, locations }) => {
             width: '1px',
             height: '1px',
             position: 'absolute',
-            marginTop: -90,
+            marginTop: -98,
+            top: 0,
           }}
         />
         <div style={{ display: 'flex', alignItems: 'center' }}>
