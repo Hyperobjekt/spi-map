@@ -11,6 +11,9 @@ import { IndicatorPanel, CustomizeIndicatorPanel, useIndicatorPanelStore } from 
 import { SearchModal } from './Search';
 import { Scorecards } from './Scorecards';
 import theme from '../theme';
+import { auth } from '@hyperobjekt/spi-auth';
+import { useEffect, useState } from 'react';
+import useAppStore from './store';
 
 const CONFIG = {
   app: '/assets/config/app.json',
@@ -46,6 +49,22 @@ function App() {
 
   // tracks if the customize indicators panel is open
   const customizeOpen = useIndicatorPanelStore((state) => state.customizeOpen);
+
+  const setRole = useAppStore((state) => state.setRole);
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged(function (user) {
+      if (user) {
+        user.getIdToken(true).then(() =>
+          user.getIdTokenResult().then((idTokenResult) => {
+            // setRole(idTokenResult.claims.stripeRole);
+            setRole('Premium Plus');
+          }),
+        );
+      }
+    });
+    return () => unsubscribe();
+  }, []);
 
   return (
     <ThemeProvider theme={theme}>
