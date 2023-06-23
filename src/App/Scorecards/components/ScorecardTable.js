@@ -87,7 +87,7 @@ export const ScorecardTable = React.forwardRef(
               //true if subcategory with children selected
               return baseMetrics
                 .filter((m) => customizedMetrics.includes(m.id))
-                .map((m) => m.subcategory)
+                .map((m) => m.id)
                 .includes(metric.id);
             } else {
               //true if item is selected
