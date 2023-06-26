@@ -87,7 +87,7 @@ export const ScorecardTable = React.forwardRef(
               //true if subcategory with children selected
               return baseMetrics
                 .filter((m) => customizedMetrics.includes(m.id))
-                .map((m) => m.subcategory)
+                .map((m) => m.id)
                 .includes(metric.id);
             } else {
               //true if item is selected
@@ -287,7 +287,8 @@ const Row = ({ metric, locations }) => {
             width: '1px',
             height: '1px',
             position: 'absolute',
-            marginTop: -90,
+            marginTop: -98,
+            top: 0,
           }}
         />
         <div style={{ display: 'flex', alignItems: 'center' }}>
