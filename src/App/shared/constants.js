@@ -9,6 +9,20 @@ export const US_BOUNDS = [
   [-65, 50],
 ];
 
+export const coordsToFly = {
+  15: {
+    center: [-157.86, 21.31],
+    zoom: 6.7,
+  }
+}
+
+export const coordsToFlyOnMobile = {
+  15: {
+    center: [-157.86, 21.31],
+    zoom: 5.5,
+  }
+}
+
 export const boundsToFly = {
   '02': {
     latitude: 63.04,

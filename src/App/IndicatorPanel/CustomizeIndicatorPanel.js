@@ -54,7 +54,7 @@ const getIdsFromTree = (tree) => {
  * a footer with Apply / Cancel buttons. Once applied, the global store is
  * updated with the selections.
  */
-const CustomizeIndiactorPanel = ({ ...props }) => {
+const CustomizeIndicatorPanel = ({ ...props }) => {
   // list of the current customized metrics, and the setter
   const [customizedMetrics, setCustomizedMetrics] = useIndicatorPanelStore(
     (state) => [state.customizedMetrics, state.setCustomizedMetrics],
@@ -169,4 +169,4 @@ const CustomizeIndiactorPanel = ({ ...props }) => {
   );
 };
 
-export default CustomizeIndiactorPanel;
+export default CustomizeIndicatorPanel;
