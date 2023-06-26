@@ -52,7 +52,7 @@ function App() {
 
   const setRole = useAppStore((state) => state.setRole);
 
-  useEffect(() => {
+  useEffect(() => {\
     const unsubscribe = auth.onAuthStateChanged(function (user) {
       if (user) {
         user.getIdToken(true).then(() =>

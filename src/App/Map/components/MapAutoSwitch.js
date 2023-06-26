@@ -1,6 +1,7 @@
 import { useMapState } from '@hyperobjekt/mapgl';
 import { useConfig, useDashboardStore } from '@hyperobjekt/react-dashboard';
 import { usePreviousProps } from '@mui/utils';
+import useAppStore from 'App/store';
 import { useEffect } from 'react';
 
 /**
@@ -53,6 +54,7 @@ const MapAutoSwitch = () => {
   const regionsConfig = useConfig('regions');
   const currentRegion = useDashboardStore((state) => state.region);
   const setRegion = useDashboardStore((state) => state.setRegion);
+  const role = useAppStore((state) => state.role);
 
   // get zoom state of the map, and track previous to know zoom direction
   const viewState = useMapState('viewState');
@@ -71,8 +73,9 @@ const MapAutoSwitch = () => {
   const nextRegion = getSwitchRegion(regionsInZoomRange, isZoomingIn);
   const nextRegionId = nextRegion?.id;
   useEffect(() => {
+    if (role !== 'Premium Plus' && nextRegionId === 'tracts') return;
     shouldSwitch && nextRegionId && setRegion(nextRegionId);
-  }, [nextRegionId, shouldSwitch, setRegion]);
+  }, [nextRegionId, shouldSwitch, setRegion, role]);
 
   // render nothing!
   return null;

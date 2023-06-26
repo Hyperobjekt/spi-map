@@ -129,7 +129,7 @@ const IntroModal = ({ ...props }) => {
               Go to cities view
             </Button>
 
-            {(process.env.NODE_ENV === 'development' || role === 'Premium Plus') && (
+            {role === 'Premium Plus' && (
               <>
                 <Label>View data for Census tracts</Label>
                 <Button

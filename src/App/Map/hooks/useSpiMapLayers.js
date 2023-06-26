@@ -2,6 +2,7 @@ import { useChoroplethContext, useDashboardStore } from '@hyperobjekt/react-dash
 import useChoroplethLayerContext from './useChoroplethLayerContext';
 import useSpiScaleOverrides from '../../hooks/useSpiScaleOverrides';
 import { createCircleLayers, getChoroplethLayers } from '../utils';
+import useAppStore from 'App/store';
 
 /**
  * Returns map layers for the current context for use with mapboxgl.
@@ -14,6 +15,7 @@ export default function useSpiMapLayers() {
   const scaleOverrides = useSpiScaleOverrides(currentContext);
   // pull if auto-switch is on or off
   const autoSwitchRegion = useDashboardStore((state) => state.autoSwitchRegion);
+  const role = useAppStore((state) => state.role);
   // create layers contexts for all available regions
   // each region has its own scale extents
   const layerContexts = {
@@ -47,6 +49,7 @@ export default function useSpiMapLayers() {
   }
   // if autoswitch is on, then return all layers
   const allLayers = Object.keys(layerContexts)
+    .filter((region) => (role === 'Premium Plus' ? region : region !== 'tracts'))
     .map((region) => {
       return getChoroplethLayers(layerContexts[region]);
     })

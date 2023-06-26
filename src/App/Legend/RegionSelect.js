@@ -46,11 +46,7 @@ const RegionSelect = (props) => {
   };
   return (
     <InlineMenu
-      options={
-        process.env.NODE_ENV === 'development' || role === 'Premium Plus'
-          ? regions
-          : regions.filter((x) => x.id !== 'tracts')
-      }
+      options={role === 'Premium Plus' ? regions : regions.filter((x) => x.id !== 'tracts')}
       variant={'string'}
       fontWeight="bold"
       label={currentRegion.name}
