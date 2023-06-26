@@ -3,6 +3,7 @@ import { useRegionConfig, useDashboardStore, useLocationStore } from '@hyperobje
 import { useMapState } from '@hyperobjekt/mapgl';
 import { Divider, MenuItem, Switch, Typography } from '@mui/material';
 import { InlineMenu } from '../components';
+import useAppStore from 'App/store';
 
 /**
  * Renders an inline menu for selecting the region, with an
@@ -19,6 +20,7 @@ const RegionSelect = (props) => {
   const currentRegion = regions.find((r) => r.id === region);
   const map = useMapState('map');
   const selected = useLocationStore((state) => state.selected);
+  const role = useAppStore((state) => state.role);
 
   // Stores the selected cities/states so toggling regions back and forth will keep previous state
   const [cachedSelection, setCachedSelection] = useState({ cities: [], states: [], tracts: [] });
@@ -44,7 +46,11 @@ const RegionSelect = (props) => {
   };
   return (
     <InlineMenu
-      options={regions}
+      options={
+        process.env.NODE_ENV === 'development' || role === 'Premium Plus'
+          ? regions
+          : regions.filter((x) => x.id !== 'tracts')
+      }
       variant={'string'}
       fontWeight="bold"
       label={currentRegion.name}

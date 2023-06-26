@@ -12,6 +12,7 @@ import {
   Buttoncontainer,
   Label,
 } from './IntroModal.styles';
+import useAppStore from 'App/store';
 
 const IntroModal = ({ ...props }) => {
   const [introModalOpen, setIntroModalOpen] = useIntroModalStore(
@@ -20,6 +21,7 @@ const IntroModal = ({ ...props }) => {
   );
   const setRegion = useDashboardStore((state) => state.setRegion);
   const setAutoSwitchRegion = useDashboardStore((state) => state.setAutoSwitchRegion);
+  const role = useAppStore((state) => state.role);
 
   const handleClose = (e) => {
     setIntroModalOpen(false);
@@ -127,16 +129,20 @@ const IntroModal = ({ ...props }) => {
               Go to cities view
             </Button>
 
-            <Label>View data for Census tracts</Label>
-            <Button
-              fullWidth
-              size="large"
-              variant="contained"
-              color="primary"
-              onClick={handleViewTracts}
-            >
-              Go to census tracts view
-            </Button>
+            {(process.env.NODE_ENV === 'development' || role === 'Premium Plus') && (
+              <>
+                <Label>View data for Census tracts</Label>
+                <Button
+                  fullWidth
+                  size="large"
+                  variant="contained"
+                  color="primary"
+                  onClick={handleViewTracts}
+                >
+                  Go to census tracts view
+                </Button>
+              </>
+            )}
           </Buttoncontainer>
         </Content>
       </Container>
