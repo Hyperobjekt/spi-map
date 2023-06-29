@@ -134,8 +134,7 @@
     "subcategory": "aae",
     "source": "American Community Survey 5-Year Data",
     "format": "percent_value",
-    "link": "https://api.census.gov/data/2021/acs/acs5/subject?get=NAME,S1501_C02_011E&for=state:*",
-    "indicator": "Associates degree holders as highest degree (percentage of population ≥25 years)"
+    "link": "https://api.census.gov/data/2021/acs/acs5/subject?get=NAME,S1501_C02_011E&for=state:*"
   },
   {
     "id": "aae_bachelors",
@@ -143,8 +142,7 @@
     "subcategory": "aae",
     "source": "American Community Survey 5-Year Data",
     "format": "percent_value",
-    "link": "https://api.census.gov/data/2021/acs/acs5/subject?get=NAME,S1501_C02_012E&for=state:*",
-    "indicator": "Bachelors degree holders as highest degree (percentage of population ≥25 years)"
+    "link": "https://api.census.gov/data/2021/acs/acs5/subject?get=NAME,S1501_C02_012E&for=state:*"
   },
   {
     "id": "aae_graduate",
@@ -152,8 +150,7 @@
     "subcategory": "aae",
     "source": "American Community Survey 5-Year Data",
     "format": "percent_value",
-    "link": "https://api.census.gov/data/2021/acs/acs5/subject?get=NAME,S1501_C02_013E&for=state:*",
-    "indicator": "Advanced degree holders as highest degree (percentage of population ≥25 years)"
+    "link": "https://api.census.gov/data/2021/acs/acs5/subject?get=NAME,S1501_C02_013E&for=state:*"
   },
   {
     "id": "abk_collegeeduwithoutdegree",
@@ -161,8 +158,7 @@
     "subcategory": "abk",
     "source": "American Community Survey 5-Year Data",
     "format": "number",
-    "link": "https://api.census.gov/data/2021/acs/acs5/profile?get=NAME,DP02PR_0063PE&for=place:*",
-    "indicator": "College education without degree (percentage of population ≥25 years)"
+    "link": "https://api.census.gov/data/2021/acs/acs5/profile?get=NAME,DP02PR_0063PE&for=place:*"
   },
   {
     "id": "abk_highschoolbutnodiploa",
@@ -170,8 +166,7 @@
     "subcategory": "abk",
     "source": "American Community Survey 5-Year Data",
     "format": "number",
-    "link": "https://api.census.gov/data/2021/acs/acs5/profile?get=NAME,DP02_0061PE&for=state:*",
-    "indicator": "High school education without diploma"
+    "link": "https://api.census.gov/data/2021/acs/acs5/profile?get=NAME,DP02_0061PE&for=state:*"
   },
   {
     "id": "abk_lessthan9thgrade",
@@ -179,8 +174,7 @@
     "subcategory": "abk",
     "source": "American Community Survey 5-Year Data",
     "format": "number",
-    "link": "https://api.census.gov/data/2021/acs/acs5/profile?get=NAME,DP02_0060PE&for=state:*",
-    "indicator": "Population with less than 9th grade education (percentage of population ≥25 years)"
+    "link": "https://api.census.gov/data/2021/acs/acs5/profile?get=NAME,DP02_0060PE&for=state:*"
   },
   {
     "id": "abk_preschool",
@@ -188,8 +182,7 @@
     "subcategory": "abk",
     "source": "American Community Survey 5-Year Data",
     "format": "number",
-    "link": "https://api.census.gov/data/2021/acs/acs5/subject?get=NAME,S1401_C02_014E&for=state:*",
-    "indicator": "Preschool enrollment (percentage of 3 & 4 year olds enrolled)"
+    "link": "https://api.census.gov/data/2021/acs/acs5/subject?get=NAME,S1401_C02_014E&for=state:*"
   },
   {
     "id": "abk_withouthighdiploma",
@@ -197,8 +190,7 @@
     "subcategory": "abk",
     "source": "American Community Survey 5-Year Data",
     "format": "number",
-    "link": "https://api.census.gov/data/2021/acs/acs5/subject?get=NAME,S1501_C02_002E&for=state:*",
-    "indicator": "Population without high school diploma or equivalent (percentage of population ≥25 years)"
+    "link": "https://api.census.gov/data/2021/acs/acs5/subject?get=NAME,S1501_C02_002E&for=state:*"
   },
   {
     "id": "aic_broadband",
@@ -206,8 +198,7 @@
     "subcategory": "aic",
     "source": "American Community Survey 5-Year Data",
     "format": "percent_value",
-    "link": "https://api.census.gov/data/2021/acs/acs5/subject?get=NAME,S2801_C02_014E&for=state:*",
-    "indicator": "Broadband subscription (percentage of households)"
+    "link": "https://api.census.gov/data/2021/acs/acs5/subject?get=NAME,S2801_C02_014E&for=state:*"
   },
   {
     "id": "aic_celldata",
@@ -215,8 +206,7 @@
     "subcategory": "aic",
     "source": "American Community Survey 5-Year Data",
     "format": "percent_value",
-    "link": "https://api.census.gov/data/2021/acs/acs5/subject?get=NAME,S2801_C02_015E&for=state:*",
-    "indicator": "Cellular data subscription (percentage of households)"
+    "link": "https://api.census.gov/data/2021/acs/acs5/subject?get=NAME,S2801_C02_015E&for=state:*"
   },
   {
     "id": "aic_nointernet",
@@ -224,8 +214,7 @@
     "subcategory": "aic",
     "source": "American Community Survey 5-Year Data",
     "format": "percent_value",
-    "link": "https://api.census.gov/data/2021/acs/acs5/subject?get=NAME,S2801_C02_019E&for=state:*",
-    "indicator": "No internet access (percentage of households)"
+    "link": "https://api.census.gov/data/2021/acs/acs5/subject?get=NAME,S2801_C02_019E&for=state:*"
   },
   {
     "id": "eq_airtoxics",
@@ -233,8 +222,7 @@
     "subcategory": "eq",
     "source": "Department of Environmental Protection Agency",
     "format": "percent_value",
-    "link": "https://www.epa.gov/ejscreen/download-ejscreen-data",
-    "indicator": "Toxic air respiratory risk (percentile)"
+    "link": "https://www.epa.gov/ejscreen/download-ejscreen-data"
   },
   {
     "id": "eq_installsolar",
@@ -242,8 +230,7 @@
     "subcategory": "eq",
     "source": "Google Sunroof Project",
     "format": "percent_value",
-    "link": "https://sunroof.withgoogle.com/data-explorer/",
-    "indicator": "Installed solar (percentage of buildings)"
+    "link": "https://sunroof.withgoogle.com/data-explorer/"
   },
   {
     "id": "eq_ozone",
@@ -251,8 +238,7 @@
     "subcategory": "eq",
     "source": "Department of Environmental Protection Agency",
     "format": "percent_value",
-    "link": "https://www.epa.gov/ejscreen/download-ejscreen-data",
-    "indicator": "Ozone average 8-hour concentration (ppm)"
+    "link": "https://www.epa.gov/ejscreen/download-ejscreen-data"
   },
   {
     "id": "eq_pm2.5",
@@ -260,8 +246,7 @@
     "subcategory": "eq",
     "source": "Department of Environmental Protection Agency",
     "format": "percent_value",
-    "link": "https://www.epa.gov/ejscreen/download-ejscreen-data",
-    "indicator": "Average concentration of fine particulate matter (PM2.5 in the air)"
+    "link": "https://www.epa.gov/ejscreen/download-ejscreen-data"
   },
   {
     "id": "eq_renewableenergy",
@@ -269,8 +254,7 @@
     "subcategory": "eq",
     "source": "Environmental Protection Agency",
     "format": "number",
-    "link": "https://www.epa.gov/egrid",
-    "indicator": "Electricity generated by plants using renewable energy resources"
+    "link": "https://www.epa.gov/egrid"
   },
   {
     "id": "eq_trafficprox",
@@ -278,8 +262,7 @@
     "subcategory": "eq",
     "source": "Department of Environmental Protection Agency",
     "format": "percent_value",
-    "link": "https://www.epa.gov/ejscreen/download-ejscreen-data",
-    "indicator": "Traffic proximity (percentile)"
+    "link": "https://www.epa.gov/ejscreen/download-ejscreen-data"
   },
   {
     "id": "eq_waterrisk",
@@ -287,8 +270,7 @@
     "subcategory": "eq",
     "source": "World Resources Institute",
     "format": "number",
-    "link": "https://www.wri.org/data/aqueduct-global-maps-30-data",
-    "indicator": "Overall water risk"
+    "link": "https://www.wri.org/data/aqueduct-global-maps-30-data"
   },
   {
     "id": "hw_cancer",
@@ -296,8 +278,7 @@
     "subcategory": "hw",
     "source": "CDC Places",
     "format": "percent_value",
-    "link": "https://chronicdata.cdc.gov/500-Cities-Places/PLACES-Local-Data-for-Better-Health-Place-Data-202/eav7-hnsx",
-    "indicator": "Coronary heart disease prevalence (percentage of adults)"
+    "link": "https://chronicdata.cdc.gov/500-Cities-Places/PLACES-Local-Data-for-Better-Health-Place-Data-202/eav7-hnsx"
   },
   {
     "id": "hw_chd",
@@ -305,8 +286,7 @@
     "subcategory": "hw",
     "source": "CDC Places",
     "format": "percent_value",
-    "link": "https://chronicdata.cdc.gov/500-Cities-Places/PLACES-Local-Data-for-Better-Health-Place-Data-202/eav7-hnsx",
-    "indicator": "Cancer prevalence (percentage of adults)"
+    "link": "https://chronicdata.cdc.gov/500-Cities-Places/PLACES-Local-Data-for-Better-Health-Place-Data-202/eav7-hnsx"
   },
   {
     "id": "hw_diabetes",
@@ -314,8 +294,7 @@
     "subcategory": "hw",
     "source": "CDC Places",
     "format": "percent_value",
-    "link": "https://chronicdata.cdc.gov/500-Cities-Places/PLACES-Local-Data-for-Better-Health-Place-Data-202/eav7-hnsx",
-    "indicator": "Diabetes prevalence (percentage of adults)"
+    "link": "https://chronicdata.cdc.gov/500-Cities-Places/PLACES-Local-Data-for-Better-Health-Place-Data-202/eav7-hnsx"
   },
   {
     "id": "hw_mentalhealth",
@@ -323,8 +302,7 @@
     "subcategory": "hw",
     "source": "CDC Places",
     "format": "number",
-    "link": "https://chronicdata.cdc.gov/500-Cities-Places/PLACES-Local-Data-for-Better-Health-Place-Data-202/eav7-hnsx",
-    "indicator": "Poor mental health over 14 days (percentage of adults)"
+    "link": "https://chronicdata.cdc.gov/500-Cities-Places/PLACES-Local-Data-for-Better-Health-Place-Data-202/eav7-hnsx"
   },
   {
     "id": "hw_obesity",
@@ -332,8 +310,7 @@
     "subcategory": "hw",
     "source": "CDC Places",
     "format": "percent_value",
-    "link": "https://chronicdata.cdc.gov/500-Cities-Places/PLACES-Local-Data-for-Better-Health-Place-Data-202/eav7-hnsx",
-    "indicator": "Obesity prevalence (percentage of adults)"
+    "link": "https://chronicdata.cdc.gov/500-Cities-Places/PLACES-Local-Data-for-Better-Health-Place-Data-202/eav7-hnsx"
   },
   {
     "id": "hw_overdose",
@@ -341,8 +318,7 @@
     "subcategory": "hw",
     "source": "CDC Wonder",
     "format": "number",
-    "link": "https://wonder.cdc.gov/controller/datarequest/D158;jsessionid=EDDB2F2432C3601F6C87900F0FB6",
-    "indicator": "Drug overdose deaths"
+    "link": "https://wonder.cdc.gov/controller/datarequest/D158;jsessionid=EDDB2F2432C3601F6C87900F0FB6"
   },
   {
     "id": "inc_averagecommuttetime",
@@ -350,8 +326,7 @@
     "subcategory": "i",
     "source": "American Community Survey 5-Year Data",
     "format": "number",
-    "link": "https://api.census.gov/data/2021/acs/acs5/profile?get=NAME,DP03_0025E&for=state:*",
-    "indicator": "Average commute (minutes)"
+    "link": "https://api.census.gov/data/2021/acs/acs5/profile?get=NAME,DP03_0025E&for=state:*"
   },
   {
     "id": "inc_econicallyactivewomen",
@@ -359,8 +334,7 @@
     "subcategory": "i",
     "source": "American Community Survey 5-Year Data",
     "format": "number",
-    "link": "https://api.census.gov/data/2021/acs/acs5/profile?get=NAME,DP03_0011PE&for=state:*",
-    "indicator": "Female labor force participation (percentage of labor force-eligible women)"
+    "link": "https://api.census.gov/data/2021/acs/acs5/profile?get=NAME,DP03_0011PE&for=state:*"
   },
   {
     "id": "inc_femalerep",
@@ -368,8 +342,7 @@
     "subcategory": "i",
     "source": "State Legislature and City Council Rosters",
     "format": "number",
-    "link": "Compiled from state legislature and city council registers",
-    "indicator": "Female representation in public office"
+    "link": "Compiled from state legislature and city council registers"
   },
   {
     "id": "inc_linguisticisolation",
@@ -377,8 +350,7 @@
     "subcategory": "i",
     "source": "American Community Survey 5-Year Data",
     "format": "percent_value",
-    "link": "https://data.census.gov/cedsci/",
-    "indicator": "Linguistic isolation (percentage of households that do not speak English well)"
+    "link": "https://data.census.gov/cedsci/"
   },
   {
     "id": "inc_residentialisolation",
@@ -386,8 +358,7 @@
     "subcategory": "i",
     "source": "American Community Survey 5-Year Data",
     "format": "number",
-    "link": "https://data.census.gov/cedsci/",
-    "indicator": "Residential isolation (comparison of non-white and white populations, expressed on a scale of 0-1 where 0 is the most segregated and 1 is the least)"
+    "link": "https://data.census.gov/cedsci/"
   },
   {
     "id": "inc_residentialsegregation",
@@ -395,62 +366,55 @@
     "subcategory": "i",
     "source": "American Community Survey 5-Year Data",
     "format": "percent_value",
-    "link": "https://data.census.gov/cedsci/",
-    "indicator": "Residential segregation (comparison of non-white and white populations, expressed on a scale of 0-1 where 0 is the least segregated and 1 is the most)"
+    "link": "https://data.census.gov/cedsci/"
   },
   {
     "id": "nbmc_foodstamps",
     "category": "bhn",
-    "subcategory": "nbm",
+    "subcategory": "nbmc",
     "source": "American Community Survey 5-Year Data",
     "format": "percent_value",
-    "link": "https://api.census.gov/data/2021/acs/acs5/profile?get=NAME,DP03_0074PE&for=state:*",
-    "indicator": "Households with food stamp benefits in the past 12 months (percentage of households)"
+    "link": "https://api.census.gov/data/2021/acs/acs5/profile?get=NAME,DP03_0074PE&for=state:*"
   },
   {
     "id": "nbmc_preventativeservices_men",
     "category": "bhn",
-    "subcategory": "nbm",
+    "subcategory": "nbmc",
     "source": "CDC Places",
     "format": "number",
-    "link": "https://chronicdata.cdc.gov/500-Cities-Places/PLACES-Local-Data-for-Better-Health-Place-Data-202/eav7-hnsx",
-    "indicator": "Clinical preventive services for older adults aged ≥65 years (percentage of men)"
+    "link": "https://chronicdata.cdc.gov/500-Cities-Places/PLACES-Local-Data-for-Better-Health-Place-Data-202/eav7-hnsx"
   },
   {
     "id": "nbmc_preventativeservices_women",
     "category": "bhn",
-    "subcategory": "nbm",
+    "subcategory": "nbmc",
     "source": "CDC Places",
     "format": "number",
-    "link": "https://chronicdata.cdc.gov/500-Cities-Places/PLACES-Local-Data-for-Better-Health-Place-Data-202/eav7-hnsx",
-    "indicator": "Clinical preventive services for older adults aged ≥65 years (percentage of women)"
+    "link": "https://chronicdata.cdc.gov/500-Cities-Places/PLACES-Local-Data-for-Better-Health-Place-Data-202/eav7-hnsx"
   },
   {
     "id": "nbmc_teethlost",
     "category": "bhn",
-    "subcategory": "nbm",
+    "subcategory": "nbmc",
     "source": "CDC Places",
     "format": "number",
-    "link": "https://chronicdata.cdc.gov/500-Cities-Places/PLACES-Local-Data-for-Better-Health-Place-Data-202/eav7-hnsx",
-    "indicator": "All teeth lost for adults aged ≥65 years (percentage of population ≥65 years)"
+    "link": "https://chronicdata.cdc.gov/500-Cities-Places/PLACES-Local-Data-for-Better-Health-Place-Data-202/eav7-hnsx"
   },
   {
     "id": "nmbc_dentalvisits",
     "category": "bhn",
-    "subcategory": "nbm",
+    "subcategory": "nbmc",
     "source": "CDC Places",
     "format": "number",
-    "link": "https://www.cdc.gov/places/measure-definitions/prevention/index.html#visits-dentist",
-    "indicator": "Adults who have visited the dentist in the past 12 months (percentage of population)"
+    "link": "https://www.cdc.gov/places/measure-definitions/prevention/index.html#visits-dentist"
   },
   {
     "id": "nmbc_supermarketaccess",
     "category": "bhn",
-    "subcategory": "nbm",
+    "subcategory": "nbmc",
     "source": "USDA Food Access Research Atlas",
     "format": "percent_value",
-    "link": "https://www.ers.usda.gov/data-products/food-access-research-atlas/download-the-data/",
-    "indicator": "Low supermarket access (percentage of population that are beyond 1/2 mile from supermarket)"
+    "link": "https://www.ers.usda.gov/data-products/food-access-research-atlas/download-the-data/"
   },
   {
     "id": "pfc_alternativetransport",
@@ -458,8 +422,7 @@
     "subcategory": "pfc",
     "source": "American Community Survey 5-Year Data",
     "format": "percent_value",
-    "link": "https://api.census.gov/data/2021/acs/acs5/profile?get=NAME,DP03_0019PE&for=state:*",
-    "indicator": "Alternative transportation usage (percentage of commuters)"
+    "link": "https://api.census.gov/data/2021/acs/acs5/profile?get=NAME,DP03_0019PE&for=state:*"
   },
   {
     "id": "pfc_disconnectedyouth",
@@ -467,8 +430,7 @@
     "subcategory": "pfc",
     "source": "American Community Survey 5-Year Data",
     "format": "percent_value",
-    "link": "https://api.census.gov/data/2021/acs/acs5/subject?get=NAME,S0902_C01_017E&for=state:*",
-    "indicator": "Disconnected youth"
+    "link": "https://api.census.gov/data/2021/acs/acs5/subject?get=NAME,S0902_C01_017E&for=state:*"
   },
   {
     "id": "pfc_lackhealthinsurance",
@@ -476,8 +438,7 @@
     "subcategory": "pfc",
     "source": "American Community Survey 5-Year Data",
     "format": "number",
-    "link": "https://api.census.gov/data/2021/acs/acs5/subject?get=NAME,S1301_C03_002E&for=state:*",
-    "indicator": "Teenage birth rate (percentage of female population 15-19 years old)"
+    "link": "https://api.census.gov/data/2021/acs/acs5/subject?get=NAME,S1301_C03_002E&for=state:*"
   },
   {
     "id": "pfc_teenbirthrate",
@@ -485,8 +446,7 @@
     "subcategory": "pfc",
     "source": "CDC Places",
     "format": "number",
-    "link": "https://chronicdata.cdc.gov/500-Cities-Places/PLACES-Local-Data-for-Better-Health-Place-Data-202/eav7-hnsx",
-    "indicator": "Current lack of health insurance among adults aged 18–64 years (percentage)"
+    "link": "https://chronicdata.cdc.gov/500-Cities-Places/PLACES-Local-Data-for-Better-Health-Place-Data-202/eav7-hnsx"
   },
   {
     "id": "pr_fatalencounters",
@@ -494,8 +454,7 @@
     "subcategory": "pr",
     "source": "Fatal Encounters",
     "format": "number",
-    "link": "https://fatalencounters.org/",
-    "indicator": "Fatal encounters with law enforcement (per 100,000 population)"
+    "link": "https://fatalencounters.org/"
   },
   {
     "id": "pr_genderpaygap",
@@ -503,8 +462,7 @@
     "subcategory": "pr",
     "source": "American Community Survey 5-Year Data",
     "format": "number",
-    "link": "https://data.census.gov/cedsci/",
-    "indicator": "Gender pay gap (ratio from 0-1, where 0 is the largest gap and 1 is no gap)"
+    "link": "https://data.census.gov/cedsci/"
   },
   {
     "id": "pr_homeownership",
@@ -512,8 +470,7 @@
     "subcategory": "pr",
     "source": "American Community Survey 5-Year Data",
     "format": "percent_value",
-    "link": "https://api.census.gov/data/2021/acs/acs5/profile?get=NAME,DP04_0046PE&for=state:*",
-    "indicator": "Home ownership (percentage of households)"
+    "link": "https://api.census.gov/data/2021/acs/acs5/profile?get=NAME,DP04_0046PE&for=state:*"
   },
   {
     "id": "pr_stateconst_AgainstGenderDesc",
@@ -521,8 +478,7 @@
     "subcategory": "pr",
     "source": "CATO Institute/Freedom Index",
     "format": "number",
-    "link": "https://www.freedominthe50states.org/",
-    "indicator": "State constitution against gender discrimination"
+    "link": "https://www.freedominthe50states.org/"
   },
   {
     "id": "pr_voterturnot",
@@ -530,8 +486,7 @@
     "subcategory": "pr",
     "source": "MIT Election Data & Science Lab (MEDSL)",
     "format": "number",
-    "link": "https://electionlab.mit.edu/data#data",
-    "indicator": "Voter turnout (percentage of voting eligible population)"
+    "link": "https://electionlab.mit.edu/data#data"
   },
   {
     "id": "ps_motoraccidents(per 10,000pop)",
@@ -539,8 +494,7 @@
     "subcategory": "ps",
     "source": "National Highway Transportation Safety Adminstration",
     "format": "number",
-    "link": "https://data-usdot.opendata.arcgis.com/datasets/fatal-motor-vehicle-accidents-fars/explore?location=37.241187%2C-116.205950%2C3.95",
-    "indicator": "Motor vehicle accident rate (per 10,000 population)"
+    "link": "https://data-usdot.opendata.arcgis.com/datasets/fatal-motor-vehicle-accidents-fars/explore?location=37.241187%2C-116.205950%2C3.95"
   },
   {
     "id": "ps_propertycrime(per 10,000pop)",
@@ -548,8 +502,7 @@
     "subcategory": "ps",
     "source": "Federal Bureau of Investigation UCR",
     "format": "number",
-    "link": "https://www.opendataphilly.org/dataset/crime-incidents/resource/a2373b85-408b-4144-84e9-cb24843e5f2b",
-    "indicator": "Property crime rate (per 10,000 population)"
+    "link": "https://www.opendataphilly.org/dataset/crime-incidents/resource/a2373b85-408b-4144-84e9-cb24843e5f2b"
   },
   {
     "id": "ps_violentcrime(per 1,000pop)",
@@ -557,8 +510,7 @@
     "subcategory": "ps",
     "source": "Federal Bureau of Investigation UCR",
     "format": "number",
-    "link": "https://www.opendataphilly.org/dataset/crime-incidents/resource/a2373b85-408b-4144-84e9-cb24843e5f2b",
-    "indicator": "Violent crime rate (per 1,000 population)"
+    "link": "https://www.opendataphilly.org/dataset/crime-incidents/resource/a2373b85-408b-4144-84e9-cb24843e5f2b"
   },
   {
     "id": "sh_costburden_owners",
@@ -566,8 +518,7 @@
     "subcategory": "s",
     "source": "American Community Survey 5-Year Data",
     "format": "percent_value",
-    "link": "https://api.census.gov/data/2021/acs/acs5/profile?get=NAME,DP04_0115PE&for=state:*",
-    "indicator": "Housing cost burden for owners (percentage of owner-occupied households experiencing cost burden)"
+    "link": "https://api.census.gov/data/2021/acs/acs5/profile?get=NAME,DP04_0115PE&for=state:*"
   },
   {
     "id": "sh_costburden_renters",
@@ -575,8 +526,7 @@
     "subcategory": "s",
     "source": "American Community Survey 5-Year Data",
     "format": "percent_value",
-    "link": "https://api.census.gov/data/2021/acs/acs5/profile?get=NAME,DP04_0142PE&for=state:*",
-    "indicator": "Housing cost burden for renters (percentage of renter-occupied households experiencing cost burden)"
+    "link": "https://api.census.gov/data/2021/acs/acs5/profile?get=NAME,DP04_0142PE&for=state:*"
   },
   {
     "id": "sh_lackkitchen",
@@ -584,8 +534,7 @@
     "subcategory": "s",
     "source": "American Community Survey 5-Year Data",
     "format": "number",
-    "link": "https://api.census.gov/data/2021/acs/acs5/profile?get=NAME,DP04_0074PE&for=state:*",
-    "indicator": "Occupied housing units lacking complete kitchen facilities (percentage of households)"
+    "link": "https://api.census.gov/data/2021/acs/acs5/profile?get=NAME,DP04_0074PE&for=state:*"
   },
   {
     "id": "sh_overcrowding",
@@ -593,8 +542,7 @@
     "subcategory": "s",
     "source": "American Community Survey 5-Year Data",
     "format": "percent_value",
-    "link": "https://api.census.gov/data/2021/acs/acs5/profile?get=NAME,DP04_0079PE&for=state:*",
-    "indicator": "Housing overcrowding (percentage of households experiencing crowding)"
+    "link": "https://api.census.gov/data/2021/acs/acs5/profile?get=NAME,DP04_0079PE&for=state:*"
   },
   {
     "id": "ws_floodrisk",
@@ -602,8 +550,7 @@
     "subcategory": "ws",
     "source": "Federal Emergency Management Agency",
     "format": "number",
-    "link": "https://hazards.fema.gov/nri/map",
-    "indicator": "Flood risk, measured on a scale of 0-100 where 0 is the least flood risk and 100 is the most"
+    "link": "https://hazards.fema.gov/nri/map"
   },
   {
     "id": "ws_hazardouswasteproximity",
@@ -611,8 +558,7 @@
     "subcategory": "ws",
     "source": "Department of Environmental Protection Agency",
     "format": "percent_value",
-    "link": "https://ejscreen.epa.gov/mapper/",
-    "indicator": "Hazardous waste proximity (percentile where 0 is the least proximity to waste sites and 100 is the most)"
+    "link": "https://ejscreen.epa.gov/mapper/"
   },
   {
     "id": "ws_lackplumbing",
@@ -620,8 +566,7 @@
     "subcategory": "ws",
     "source": "American Community Survey 5-Year Data",
     "format": "number",
-    "link": "https://api.census.gov/data/2021/acs/acs5/profile?get=NAME,DP04_0073PE&for=state:*",
-    "indicator": "Occupied housing units lacking complete plumbing facilities (percentage of households)"
+    "link": "https://api.census.gov/data/2021/acs/acs5/profile?get=NAME,DP04_0073PE&for=state:*"
   },
   {
     "id": "ws_superfundsiteproximity",
@@ -629,8 +574,7 @@
     "subcategory": "ws",
     "source": "Department of Environmental Protection Agency",
     "format": "percent_value",
-    "link": "https://ejscreen.epa.gov/mapper/",
-    "indicator": "Abandoned hazardous waste site proximity (percentile where 0 is the least proximity to waste sites and 100 is the most)"
+    "link": "https://ejscreen.epa.gov/mapper/"
   },
   {
     "id": "ws_wastewaterproximity",
@@ -638,7 +582,6 @@
     "subcategory": "ws",
     "source": "Department of Environmental Protection Agency",
     "format": "percent_value",
-    "link": "https://ejscreen.epa.gov/mapper/",
-    "indicator": "Waste water proximity (percentile where 0 is the least proximity to waste water and 100 is the most)"
+    "link": "https://ejscreen.epa.gov/mapper/"
   }
 ]

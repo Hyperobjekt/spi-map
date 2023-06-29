@@ -29,7 +29,7 @@ const InlineMenuButton = styled('button')({
   '& svg': {
     fontSize: '1.5em',
     margin: '-0.25em',
-    // marginRight: -18,
+    // marginRight: -18
   },
   '&:hover span': {
     textDecoration: 'underline',

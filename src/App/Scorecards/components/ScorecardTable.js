@@ -274,10 +274,12 @@ const Row = ({ metric, locations, region }) => {
     'Female representation in public office',
     'Disconnected youth',
     'State constitution against gender discrimination',
-    'Below 200% Poverty Rate'
-  ]
+    'Below 200% Poverty Rate',
+  ];
 
-  return (region == 'tracts' && skipTractsMetrics.includes(metric.name)) ? true : (
+  return region == 'tracts' && skipTractsMetrics.includes(metric.name) ? (
+    true
+  ) : (
     <TableRow
       hover
       tabIndex={-1}
