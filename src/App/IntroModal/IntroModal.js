@@ -132,7 +132,7 @@ const IntroModal = ({ ...props }) => {
             <>
               <Label>NEW: View data for Census tracts</Label>
               <Button
-                disabed={role !== 'Premium Plus'}
+                disabled={role !== 'Premium Plus'}
                 fullWidth
                 size="large"
                 variant="contained"
