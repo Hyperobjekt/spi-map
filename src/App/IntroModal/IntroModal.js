@@ -41,6 +41,7 @@ const IntroModal = ({ ...props }) => {
   };
 
   const handleViewTracts = (e) => {
+    setAutoSwitchRegion(false);
     setRegion('tracts');
     setIntroModalOpen(false);
     storeFirstVisit();
