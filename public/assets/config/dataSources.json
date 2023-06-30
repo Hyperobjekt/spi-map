@@ -15,7 +15,7 @@
     "subgroup_id": "*",
     "year": "*",
     "type": "extents",
-    "url": "/assets/data/states-extents.csv"
+    "url": "/assets/data/cities-extents.csv"
   },
   {
     "id": "tracts_*_*_*",
@@ -24,6 +24,6 @@
     "subgroup_id": "*",
     "year": "*",
     "type": "extents",
-    "url": "/assets/data/states-extents.csv"
+    "url": "/assets/data/tracts-extents.csv"
   }
 ]

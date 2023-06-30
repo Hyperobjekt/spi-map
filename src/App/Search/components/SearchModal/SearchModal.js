@@ -52,7 +52,7 @@ const SearchModal = () => {
         `https://api.mapbox.com/geocoding/v5/mapbox.places/${inputValue}.json?` +
         `access_token=${MAPBOX_TOKEN}&cachebuster=${Math.floor(
           Date.now(),
-        )}&autocomplete=true&country=US&types=region,place${
+        )}&autocomplete=true&country=US&types=region,place,address${
           viewport?.zoom > FULL_FUNCT_ZOOM_THRESHOLD
             ? `&proximity=${viewport.longitude},${viewport.latitude}`
             : ``
@@ -62,7 +62,9 @@ const SearchModal = () => {
         .then((json) => {
           // Limit to states or city with data on map
           return json.features.filter(
-            (f) => f.place_type.includes('region') || includedCities.includes(f.place_name),
+            (f) =>
+              f.place_type.includes('region') ||
+              includedCities.some((x) => x.split(', ').every((y) => f.place_name.includes(y))),
           );
         })
         .then((results) => {

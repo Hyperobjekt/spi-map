@@ -128,14 +128,14 @@
     "source": "",
     "link": ""
   },
-    {
-      "id": "aae_associates",
-      "category": "opp",
-      "subcategory": "aae",
-      "source": "American Community Survey 5-Year Data",
-      "format": "percent_value",
-      "link": "https://api.census.gov/data/2021/acs/acs5/subject?get=NAME,S1501_C02_011E&for=state:*"
-    },
+  {
+    "id": "aae_associates",
+    "category": "opp",
+    "subcategory": "aae",
+    "source": "American Community Survey 5-Year Data",
+    "format": "percent_value",
+    "link": "https://api.census.gov/data/2021/acs/acs5/subject?get=NAME,S1501_C02_011E&for=state:*"
+  },
   {
     "id": "aae_bachelors",
     "category": "opp",
@@ -436,17 +436,17 @@
     "id": "pfc_lackhealthinsurance",
     "category": "opp",
     "subcategory": "pfc",
-    "source": "CDC Places",
+    "source": "American Community Survey 5-Year Data",
     "format": "number",
-    "link": "https://chronicdata.cdc.gov/500-Cities-Places/PLACES-Local-Data-for-Better-Health-Place-Data-202/eav7-hnsx"
+    "link": "https://api.census.gov/data/2021/acs/acs5/subject?get=NAME,S1301_C03_002E&for=state:*"
   },
   {
     "id": "pfc_teenbirthrate",
     "category": "opp",
     "subcategory": "pfc",
-    "source": "American Community Survey 5-Year Data",
+    "source": "CDC Places",
     "format": "number",
-    "link": "https://api.census.gov/data/2021/acs/acs5/subject?get=NAME,S1301_C03_002E&for=state:*"
+    "link": "https://chronicdata.cdc.gov/500-Cities-Places/PLACES-Local-Data-for-Better-Health-Place-Data-202/eav7-hnsx"
   },
   {
     "id": "pr_fatalencounters",

@@ -79,8 +79,8 @@ const getLineWidths = (region) => {
       return [3, 1, 6, 2, 10, 4];
     case 'cities':
       return [8, 1, 12, 4];
-    // case "tracts":
-    //   return [10, 1, 20, 3];
+    case 'tracts':
+      return [10, 1, 20, 3];
     default:
       return [1, 1.5];
   }
@@ -107,7 +107,17 @@ const getComplementaryColor = (color) => {
  * @returns {Array<mapboxgl.Layer>} [layer]](https://docs.mapbox.com/mapbox-gl-js/style-spec/layers/)
  */
 export const getChoroplethFillLayers = (context) => {
-  const { chunks, accessor, region_id: region, steps, beforeId = 'water' } = context;
+  const {
+    chunks,
+    accessor,
+    region_id: region,
+    steps,
+    zoomBuffer,
+    beforeId = 'water',
+    min_zoom,
+    max_zoom,
+    autoSwitch,
+  } = context;
   const fillRule = chunks
     ? ['step', ['get', accessor(context)], ...steps]
     : ['interpolate', ['linear'], ['get', accessor(context)], ...steps];
@@ -126,8 +136,28 @@ export const getChoroplethFillLayers = (context) => {
     beforeId,
     interactive: true,
   };
-
-  return [baseLayer];
+  // auto switch overrides so regions are only visible at certain zooms
+  const autoSwitchOverrides = {
+    minzoom: min_zoom - zoomBuffer,
+    maxzoom: max_zoom + zoomBuffer,
+    paint: {
+      'fill-opacity': [
+        'interpolate',
+        ['linear'],
+        ['zoom'],
+        min_zoom - zoomBuffer,
+        0,
+        min_zoom,
+        1,
+        max_zoom,
+        1,
+        max_zoom + zoomBuffer,
+        0,
+      ],
+    },
+  };
+  // merge in the auto switch overrides if auto switch is enabled
+  return [autoSwitch ? deepmerge(baseLayer, autoSwitchOverrides) : baseLayer];
 };
 
 /**

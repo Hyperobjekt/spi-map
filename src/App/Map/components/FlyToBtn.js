@@ -4,7 +4,13 @@ import { useMapStore } from '@hyperobjekt/mapgl';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FIPS_TO_STATE_NAME } from '../../utils';
-import { boundsToFly, boundsToFlyOnMobile, US_BOUNDS, coordsToFly, coordsToFlyOnMobile } from '../../shared/constants';
+import {
+  boundsToFly,
+  boundsToFlyOnMobile,
+  US_BOUNDS,
+  coordsToFly,
+  coordsToFlyOnMobile,
+} from '../../shared/constants';
 
 const ButtonStyle = styled(Button)({
   width: '29px',
@@ -28,8 +34,7 @@ const FlyToBtn = ({ children, ...props }) => {
       flyToBounds(US_BOUNDS);
     } else if (props.fips == '15') {
       flyTo(isMobile ? coordsToFlyOnMobile[props.fips] : coordsToFly[props.fips]);
-    }
-    else {
+    } else {
       if (boundsToFly[props.fips]) {
         flyTo(isMobile ? boundsToFlyOnMobile[props.fips] : boundsToFly[props.fips]);
       }

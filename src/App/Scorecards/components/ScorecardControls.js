@@ -64,6 +64,31 @@ const ScorecardControls = ({ onNavigateToSection, ...props }) => {
     onNavigateToSection && onNavigateToSection(e, section);
   };
 
+  const peerLanguage = () => {
+    return region === 'tracts' ? (
+      `Strengths and vulnerabilities of each census tract/neighborhood are relative to all census tracts/neighborhoods in that city.`
+    ) : (
+      <>
+        {`Strengths and vulnerabilities are relative to 16 ${region} of similar Median Household Income per capita.`}{' '}
+        <button className="jumplink" onClick={handleSectionNavigation('peers')}>
+          {` `}
+          {`View peer ${region}`}
+        </button>{' '}
+        {` at the end of this table.`}
+      </>
+    );
+  };
+
+  const peerListItem = () => {
+    return region === 'tracts' ? (
+      true
+    ) : (
+      <ListItem button onClick={handleSectionNavigation('peers')}>
+        <ListItemText primary={`Peer ${startCase(region)}`} />
+      </ListItem>
+    );
+  };
+
   return (
     <ControlsWrapper {...props}>
       <Typography variant="overline" fontWeight={600}>
@@ -84,12 +109,7 @@ const ScorecardControls = ({ onNavigateToSection, ...props }) => {
         ))}
       </List>
       <Typography variant="caption" maxWidth={360} display={'block'} fontSize={'0.875rem'}>
-        {`Strengths and vulnerabilities are relative to 16 ${region} of similar Median Household Income
-        per capita.`}{' '}
-        <button className="jumplink" onClick={handleSectionNavigation('peers')}>
-          View peer {region}
-        </button>
-        {` at the end of this table.`}
+        {peerLanguage()}
       </Typography>
       <Divider style={{ paddingTop: 16 }} />
       <Typography variant="overline" fontWeight={600}>
@@ -111,9 +131,7 @@ const ScorecardControls = ({ onNavigateToSection, ...props }) => {
         <ListItem button onClick={handleSectionNavigation('dem')}>
           <ListItemText primary="Demographics" />
         </ListItem>
-        <ListItem button onClick={handleSectionNavigation('peers')}>
-          <ListItemText primary={`Peer ${startCase(region)}`} />
-        </ListItem>
+        {peerListItem()}
       </List>
       <Divider />
       <Typography sx={{ mb: 2, display: 'block' }} variant="overline" fontWeight={600}>
