@@ -51,6 +51,7 @@ function App() {
   const customizeOpen = useIndicatorPanelStore((state) => state.customizeOpen);
 
   const setRole = useAppStore((state) => state.setRole);
+  const role = useAppStore((state) => state.role);
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
@@ -66,6 +67,8 @@ function App() {
     });
     return () => unsubscribe();
   }, []);
+
+  if (!role) return null;
 
   return (
     <ThemeProvider theme={theme}>
