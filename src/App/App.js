@@ -50,8 +50,7 @@ function App() {
   // tracks if the customize indicators panel is open
   const customizeOpen = useIndicatorPanelStore((state) => state.customizeOpen);
 
-  const setRole = useAppStore((state) => state.setRole);
-  const role = useAppStore((state) => state.role);
+  const [role, setRole] = useAppStore((state) => [state.role, state.setRole], shallow);
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
