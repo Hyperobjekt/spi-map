@@ -56,7 +56,7 @@ function App() {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
         user.getIdToken(true).then(() =>
-          user.getIdTokenResult().then((idTokenResult) => {         
+          user.getIdTokenResult().then((idTokenResult) => {
             setRole(idTokenResult.claims.stripeRole);
           }),
         );

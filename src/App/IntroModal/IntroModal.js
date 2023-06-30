@@ -139,7 +139,7 @@ const IntroModal = ({ ...props }) => {
                 color="primary"
                 onClick={handleViewTracts}
               >
-                Go to census tracts view
+                {role === 'Premium Plus' ? 'Go to census tracts view' : 'Contact us for access'}
               </Button>
             </>
           </Buttoncontainer>

@@ -65,12 +65,29 @@ const ScorecardControls = ({ onNavigateToSection, ...props }) => {
   };
 
   const peerLanguage = () => {
-    return region === 'tracts' ? `Strengths and vulnerabilities of each census tract/neighborhood are relative to all census tracts/neighborhoods in that city.` : <>{`Strengths and vulnerabilities are relative to 16 ${region} of similar Median Household Income per capita.`} <button className="jumplink" onClick={handleSectionNavigation('peers')}>{` `}{`View peer ${region}`}</button> {` at the end of this table.`}</>
-  }
+    return region === 'tracts' ? (
+      `Strengths and vulnerabilities of each census tract/neighborhood are relative to all census tracts/neighborhoods in that city.`
+    ) : (
+      <>
+        {`Strengths and vulnerabilities are relative to 16 ${region} of similar Median Household Income per capita.`}{' '}
+        <button className="jumplink" onClick={handleSectionNavigation('peers')}>
+          {` `}
+          {`View peer ${region}`}
+        </button>{' '}
+        {` at the end of this table.`}
+      </>
+    );
+  };
 
   const peerListItem = () => {
-    return region === 'tracts' ? true : <ListItem button onClick={handleSectionNavigation('peers')}><ListItemText primary={`Peer ${startCase(region)}`} /></ListItem>
-  }
+    return region === 'tracts' ? (
+      true
+    ) : (
+      <ListItem button onClick={handleSectionNavigation('peers')}>
+        <ListItemText primary={`Peer ${startCase(region)}`} />
+      </ListItem>
+    );
+  };
 
   return (
     <ControlsWrapper {...props}>
