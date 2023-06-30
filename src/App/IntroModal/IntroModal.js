@@ -129,20 +129,19 @@ const IntroModal = ({ ...props }) => {
               Go to cities view
             </Button>
 
-            {role === 'Premium Plus' && (
-              <>
-                <Label>View data for Census tracts</Label>
-                <Button
-                  fullWidth
-                  size="large"
-                  variant="contained"
-                  color="primary"
-                  onClick={handleViewTracts}
-                >
-                  Go to census tracts view
-                </Button>
-              </>
-            )}
+            <>
+              <Label>NEW: View data for Census tracts</Label>
+              <Button
+                disabed={role !== 'Premium Plus'}
+                fullWidth
+                size="large"
+                variant="contained"
+                color="primary"
+                onClick={handleViewTracts}
+              >
+                Go to census tracts view
+              </Button>
+            </>
           </Buttoncontainer>
         </Content>
       </Container>
