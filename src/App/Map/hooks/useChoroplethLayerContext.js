@@ -2,6 +2,7 @@ import {
   useLocationFeature,
   useAppConfig,
   useRegionConfig,
+  useDashboardStore,
   useChoroplethContext,
   useChoroplethScale,
   getStepsFromChunks,
@@ -35,6 +36,7 @@ export default function useChoroplethLayerContext({
 }) {
   const context = useChoroplethContext(contextOverrides);
   const scale = useChoroplethScale({ context, config: scaleOverrides });
+  const autoSwitch = useDashboardStore((state) => state.autoSwitchRegion);
   const selected = useLocationFeature(5);
   const hoverColor = useAppConfig('hover_color');
   const regionConfig = useRegionConfig(context.region_id);
@@ -56,6 +58,7 @@ export default function useChoroplethLayerContext({
     accessor: contextOverrides?.accessor || GET_VARIABLE_NAME,
     selected,
     hoverColor,
+    autoSwitch,
     zoomBuffer: 1,
     min_zoom: regionConfig?.min_zoom || 0,
     max_zoom: regionConfig?.max_zoom || 20,
