@@ -53,6 +53,10 @@ function App() {
   const [role, setRole] = useAppStore((state) => [state.role, state.setRole], shallow);
 
   useEffect(() => {
+    if (process.env.REACT_APP_DISABLE_AUTH?.toLowerCase() === 'true') {
+      setRole('Premium Plus');
+      return;
+    }
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
         user.getIdToken(true).then(() =>
