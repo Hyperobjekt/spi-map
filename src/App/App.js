@@ -61,7 +61,7 @@ function App() {
       if (user) {
         user.getIdToken(true).then(() =>
           user.getIdTokenResult().then((idTokenResult) => {
-            setRole(idTokenResult.claims.stripeRole);
+            setRole(user.email.endsWith('.gov') ? 'Premium' : idTokenResult.claims.stripeRole);
           }),
         );
       } else {
