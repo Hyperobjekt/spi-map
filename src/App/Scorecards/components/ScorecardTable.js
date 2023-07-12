@@ -275,6 +275,7 @@ const Row = ({ metric, locations, region }) => {
     'Disconnected youth',
     'State constitution against gender discrimination',
     'Below 200% Poverty Rate',
+    'High school education without diploma',
   ];
 
   return region == 'tracts' && skipTractsMetrics.includes(metric.name) ? (
