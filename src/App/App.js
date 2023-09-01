@@ -71,8 +71,6 @@ function App() {
     return () => unsubscribe();
   }, []);
 
-  if (!role) return null;
-
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />

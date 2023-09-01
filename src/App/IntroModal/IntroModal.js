@@ -121,13 +121,14 @@ const IntroModal = ({ ...props }) => {
 
             <Label>View data for 500 U.S. cities</Label>
             <Button
+              disabled={!role}
               fullWidth
               size="large"
               variant="contained"
               color="primary"
               onClick={handleViewCities}
             >
-              Go to cities view
+              {!!role ? 'Go to cities view' : 'Contact us for access'}
             </Button>
 
             <>

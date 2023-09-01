@@ -47,9 +47,13 @@ export default function useSpiMapLayers() {
   if (!autoSwitchRegion) {
     return getChoroplethLayers(layerContexts[currentContext.region_id]);
   }
+
   // if autoswitch is on, then return all layers
   const allLayers = Object.keys(layerContexts)
-    .filter((region) => (role === 'Premium Plus' ? region : region !== 'tracts'))
+    .filter((region) => {
+      if (!role) return region === 'states';
+      return role === 'Premium Plus' ? region : region !== 'tracts';
+    })
     .map((region) => {
       return getChoroplethLayers(layerContexts[region]);
     })

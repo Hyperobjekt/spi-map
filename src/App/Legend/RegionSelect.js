@@ -44,9 +44,16 @@ const RegionSelect = (props) => {
     const isSwitchClick = event.target.type === 'checkbox';
     if (isSwitchClick) event.stopPropagation();
   };
+
+  const allowedRegions = {
+    'Premium Plus': regions,
+    Premium: regions.filter((x) => x.id !== 'tracts'),
+    '*': regions.filter((x) => x.id === 'states'),
+  }[role || '*'];
+
   return (
     <InlineMenu
-      options={role === 'Premium Plus' ? regions : regions.filter((x) => x.id !== 'tracts')}
+      options={allowedRegions}
       variant={'string'}
       fontWeight="bold"
       label={currentRegion.name}

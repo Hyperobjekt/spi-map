@@ -1843,10 +1843,10 @@
     deepmerge "^4.2.2"
     prop-types "^15.8.1"
 
-"@hyperobjekt/spi-auth@^0.5.0":
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/@hyperobjekt/spi-auth/-/spi-auth-0.5.0.tgz#b961a2c210a7ed31d86fdfa6aab136549981a845"
-  integrity sha512-nA8vmMbx9slCHJIEkBLyKpXpEBAimU5JTaS76d0rSzY2KUVUAQoRYMq0Vnxugm4yw8R886pWFvB8f1fsrPA/+Q==
+"@hyperobjekt/spi-auth@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@hyperobjekt/spi-auth/-/spi-auth-1.1.0.tgz#e5e9a49ba5e86bb1ac180871ace2c3fb3a16e6aa"
+  integrity sha512-heyvebf+qRTYGlCrJahGL0IYGfJJ5bqiNAXyHJaPDRmyYOKWp4re0f0voJ7qp69CJdYjgVdkNO/PUw/OXMyvwg==
   dependencies:
     "@emotion/react" "^11.10.5"
     "@emotion/styled" "^11.10.5"

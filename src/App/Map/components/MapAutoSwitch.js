@@ -74,6 +74,8 @@ const MapAutoSwitch = () => {
   const nextRegionId = nextRegion?.id;
   useEffect(() => {
     if (role !== 'Premium Plus' && nextRegionId === 'tracts') return;
+    if (!role && nextRegionId === 'cities') return;
+
     shouldSwitch && nextRegionId && setRegion(nextRegionId);
   }, [nextRegionId, shouldSwitch, setRegion, role]);
 
