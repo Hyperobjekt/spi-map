@@ -64,8 +64,6 @@ function App() {
             setRole(user.email.endsWith('.gov') ? 'Premium' : idTokenResult.claims.stripeRole);
           }),
         );
-      } else {
-        window.location.href = 'https://www.socialprogress.org/us';
       }
     });
     return () => unsubscribe();
