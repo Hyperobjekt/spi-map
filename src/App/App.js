@@ -61,13 +61,19 @@ function App() {
       if (user) {
         user.getIdToken(true).then(() =>
           user.getIdTokenResult().then((idTokenResult) => {
-            setRole(user.email.endsWith('.gov') ? 'Premium' : idTokenResult.claims.stripeRole);
+            setRole(
+              user.email.endsWith('.gov') ? 'Premium' : idTokenResult.claims.stripeRole ?? 'basic',
+            );
           }),
         );
+      } else {
+        window.location.href = 'https://www.socialprogress.org/us';
       }
     });
     return () => unsubscribe();
   }, []);
+
+  if (!role) return null;
 
   return (
     <ThemeProvider theme={theme}>

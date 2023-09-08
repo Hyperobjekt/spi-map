@@ -51,7 +51,7 @@ export default function useSpiMapLayers() {
   // if autoswitch is on, then return all layers
   const allLayers = Object.keys(layerContexts)
     .filter((region) => {
-      if (!role) return region === 'states';
+      if (role === 'basic') return region === 'states';
       return role === 'Premium Plus' ? region : region !== 'tracts';
     })
     .map((region) => {
