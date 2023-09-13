@@ -49,7 +49,7 @@ const RegionSelect = (props) => {
     'Premium Plus': regions,
     Premium: regions.filter((x) => x.id !== 'tracts'),
     Basic: regions.filter((x) => x.id === 'states'),
-  }[role || '*'];
+  }[role];
 
   return (
     <InlineMenu

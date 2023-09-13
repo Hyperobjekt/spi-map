@@ -128,7 +128,7 @@ const IntroModal = ({ ...props }) => {
               color="primary"
               onClick={handleViewCities}
             >
-              {!!role ? 'Go to cities view' : 'Contact us for access'}
+              {role !== 'Basic' ? 'Go to cities view' : 'Contact us for access'}
             </Button>
 
             <>
