@@ -48,7 +48,7 @@ const RegionSelect = (props) => {
   const allowedRegions = {
     'Premium Plus': regions,
     Premium: regions.filter((x) => x.id !== 'tracts'),
-    '*': regions.filter((x) => x.id === 'states'),
+    Basic: regions.filter((x) => x.id === 'states'),
   }[role || '*'];
 
   return (

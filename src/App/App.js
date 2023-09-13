@@ -62,7 +62,7 @@ function App() {
         user.getIdToken(true).then(() =>
           user.getIdTokenResult().then((idTokenResult) => {
             setRole(
-              user.email.endsWith('.gov') ? 'Premium' : idTokenResult.claims.stripeRole ?? 'basic',
+              user.email.endsWith('.gov') ? 'Premium' : idTokenResult.claims.stripeRole ?? 'Basic',
             );
           }),
         );
