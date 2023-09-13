@@ -121,7 +121,7 @@ const IntroModal = ({ ...props }) => {
 
             <Label>View data for 500 U.S. cities</Label>
             <Button
-              disabled={!role}
+              disabled={role === 'Basic'}
               fullWidth
               size="large"
               variant="contained"
