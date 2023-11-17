@@ -180,6 +180,24 @@ export const ScorecardTable = React.forwardRef(
         formatter: getFormatter('percent'),
       },
       {
+        id: 'nonhisphawnpi',
+        name: 'Hawaiian/Pacific Islander',
+        depth: 2,
+        formatter: getFormatter('percent'),
+      },
+      {
+        id: 'nonhispamind',
+        name: 'American Indian',
+        depth: 2,
+        formatter: getFormatter('percent'),
+      },
+      {
+        id: 'foreignborn',
+        name: 'Foreign-born',
+        depth: 2,
+        formatter: getFormatter('percent'),
+      },
+      {
         id: 'peers',
         name: `Peer ${startCase(region)}`,
         depth: 0,
@@ -344,6 +362,9 @@ const Row = ({ metric, locations, region }) => {
           'nonhispblack',
           'nonhispasian',
           'hispanicpop',
+          'nonhisphawnpi',
+          'nonhispamind',
+          'foreignborn',
         ].includes(metric.id);
 
         return (
