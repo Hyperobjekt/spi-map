@@ -33,7 +33,7 @@ const PercentBar = ({ percent = 0, className, ...props }) => {
   return (
     <PercentBarStyle className={clsx('percent-bar__root', className)} {...props}>
       <div className="percent-bar__track" />
-      <div className="percent-bar__value" style={{ width: percent * 100 + '%' }} />
+      <div className="percent-bar__value" style={{ width: percent * 10000 + '%' }} />
     </PercentBarStyle>
   );
 };

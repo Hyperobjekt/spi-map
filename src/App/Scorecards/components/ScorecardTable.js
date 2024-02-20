@@ -111,12 +111,12 @@ export const ScorecardTable = React.forwardRef(
         depth: 2,
         formatter: getFormatter('percent'),
       },
-      {
+      /*  {
         id: 'below200pov',
         name: 'Below 200% Poverty Rate',
         depth: 2,
         formatter: getFormatter('percent'),
-      },
+      }, */
       { id: 'age', name: 'Age Groups', depth: 1 },
       {
         id: 'under5',
@@ -176,6 +176,30 @@ export const ScorecardTable = React.forwardRef(
       {
         id: 'hispanicpop',
         name: 'Hispanic',
+        depth: 2,
+        formatter: getFormatter('percent'),
+      },
+      {
+        id: 'nonhispamind',
+        name: 'American Indian & Alaska Native',
+        depth: 2,
+        formatter: getFormatter('percent'),
+      },
+      {
+        id: 'nonhisphawnpi',
+        name: 'Native Hawaiian & Other Pacific Islander',
+        depth: 2,
+        formatter: getFormatter('percent'),
+      },
+      {
+        id: 'otherrace',
+        name: 'Other race',
+        depth: 2,
+        formatter: getFormatter('percent'),
+      },
+      {
+        id: 'twoormore',
+        name: 'Two or more races',
         depth: 2,
         formatter: getFormatter('percent'),
       },
@@ -344,15 +368,17 @@ const Row = ({ metric, locations, region }) => {
           'nonhispblack',
           'nonhispasian',
           'hispanicpop',
+          'nonhispamind',
+          'nonhisphawnpi',
+          'otherrace',
+          'twoormore',
         ].includes(metric.id);
 
         return (
           <ScorecardValueCell
             key={location.id}
             value={
-              value && metric.formatter
-                ? metric.formatter(showPercent ? value / 100 : value)
-                : value
+              value && metric.formatter ? metric.formatter(showPercent ? value / 1 : value) : value
             }
             performance={performance}
             percent={showPercent && value ? value / 100 : undefined}
