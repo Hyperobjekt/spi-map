@@ -144,7 +144,7 @@ export const ScorecardTable = React.forwardRef(
       },
       {
         id: 'age50_65',
-        name: 'Age 50-65',
+        name: 'Age 50-64',
         depth: 2,
         formatter: getFormatter('percent'),
       },
